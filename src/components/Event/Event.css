@@ -1,0 +1,81 @@
+.event-wrapper {
+  margin-top: 50px;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.event-container {
+  position: relative;
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+  padding: 0; /* Xóa padding */
+}
+
+.event-slide {
+  position: relative;
+}
+
+.event-image {
+  width: 360px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  height: 188px;
+  object-fit: cover;
+}
+
+.event-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.event-title-main {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.nav-button {
+  position: absolute;
+  top: 70%;
+  transform: translateY(-50%);
+  width: 40px !important;
+  height: 40px !important;
+  background-color: rgba(128, 128, 128, 0.7) !important;
+  border: none !important;
+  z-index: 2;
+}
+
+.nav-button:hover {
+  background-color: rgba(128, 128, 128, 0.9) !important;
+}
+
+.nav-button-prev {
+  left: -20px;
+  z-index: 1;
+}
+
+.nav-button-next {
+  right: -5px;
+  z-index: 1;
+}
+
+/* Override ant-design carousel styles */
+.ant-carousel {
+  width: 100%;
+}
+
+.ant-carousel .slick-slide {
+  padding: 0 5px; /* Giảm từ 10px xuống 5px */
+}
+
+.ant-carousel .slick-list {
+  margin: 0 -5px; /* Giảm từ -10px xuống -5px */
+}
+
+.ant-carousel .slick-track {
+  display: flex;
+  align-items: center;
+}

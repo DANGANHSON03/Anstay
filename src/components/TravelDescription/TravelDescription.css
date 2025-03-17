@@ -1,0 +1,94 @@
+.travel-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.custom-tabs .ant-tabs-nav {
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: none;
+}
+
+.tab-button {
+  background-color: #444;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+
+.tab-button:not(.active) {
+  background-color: #444;
+}
+
+.travel-card {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.88); /* Consistent text color for all tab panes */
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 16px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
+
+.comment-item {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 12px;
+}
+
+.comment-item h4 {
+  margin: 0;
+  color: #333;
+}
+
+.comment-item small {
+  color: #666;
+  font-size: 0.85em;
+}
+
+.day-itinerary {
+  margin-bottom: 24px;
+}
+
+.day-title {
+  color: #1890ff;
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.activity {
+  margin-bottom: 8px;
+  padding-left: 20px;
+}
+
+.activity strong {
+  color: #333;
+}

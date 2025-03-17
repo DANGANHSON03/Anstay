@@ -1,0 +1,53 @@
+.vtg-container {
+  text-align: center;
+  padding: 40px 0;
+  background-color: white;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.vtg-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.vtg-description {
+  color: gray;
+  max-width: 1200px;
+  margin: 10px auto;
+}
+
+.vtg-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.vtg-feature-card {
+  text-align: center;
+  width: 100%;
+  height: 155px;
+  border: 1px solid #3b82f6;
+}
+
+.vtg-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  color: #3b82f6;
+}
+
+.vtg-icon {
+  font-size: 30px;
+}
+
+.vtg-feature-title {
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.vtg-feature-description {
+  color: gray;
+  margin-top: 5px;
+}
