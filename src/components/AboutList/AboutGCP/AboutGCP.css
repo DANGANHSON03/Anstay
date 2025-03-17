@@ -1,0 +1,82 @@
+.aboutcp{
+    margin-top: 130px; 
+}
+
+.banner-img{
+    position: relative;
+}
+
+.banner-des{
+    color:white;
+    position: absolute;
+    bottom: 30px;
+    left: 18%;
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.banner-img img{
+    width: 100%;
+    height: 297px; 
+    object-fit: cover;
+    transition: filter 0.3s ease-in-out;
+    filter: brightness(50%);
+}
+
+.company-card {
+    margin: 0 auto; /* Center the card */
+    width: 80%; /* Increase the width */
+    padding: 20px; /* Add some padding */
+    font-size: 1.2em; /* Increase the font size */
+    background: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+  }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 20px;
+    margin-top: 12px;
+    color: #333;
+  }
+  
+  .header1 {
+    grid-column: 1 / -1; /* Span the header across the entire grid */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .company-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #7d4b32;
+  }
+  
+  .website-link {
+    color: #d27d50;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+  }
+  
+  .website-link:hover {
+    text-decoration: underline;
+  }
+  
+  .label {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 150px; /* Ensure equal width for all labels */
+  }
+  
+  .bold {
+    font-weight: bold;
+    color: #000;
+  }

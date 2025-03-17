@@ -8,6 +8,9 @@ import Tour from "./components/Tour/Tour";
 import TourDetail from "./components/TourDetail/TourDetail";
 import Booking from "./components/Booking/Booking";
 import Help from "./components/Help/Help";
+import AboutUs from "./components/AboutUs/AboutUs";
+import AboutCP  from "./components/AboutList/AboutCP/AboutCP";
+import AboutGCP from "./components/AboutList/AboutGCP/AboutGCP";
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
           <Route path="/tour/:id" element={<TourDetail />} />
           <Route path="/booking" element={<Booking />} />
           <Route path="/help" element={<Help />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/about-us/company" element={<AboutCP />} />
+          <Route path="/about-us/groupcompany" element={<AboutGCP />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>

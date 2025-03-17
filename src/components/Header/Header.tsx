@@ -6,6 +6,7 @@ import { DownOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Dropdown, Space } from "antd";
 
+
 const items: MenuProps["items"] = [
   {
     key: "1",
@@ -80,7 +81,7 @@ const Header: React.FC = () => {
               </a>
             </Dropdown>
             <Link to="#">Cooperate</Link>
-            <Link to="#">About Us</Link>
+            <Link to="/about-us">About Us</Link>
             <Link to="#">Instruction Book</Link>
             <Link to="#">Explore & Experience</Link>
           </div>

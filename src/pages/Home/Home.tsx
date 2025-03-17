@@ -34,6 +34,8 @@ import Review from "../../components/Review/Review";
 import Mapcty from "../../components/Mapcty/Mapcty";
 import ScrollToTopButton from "../../components/ScrollToTopButton/ScrollToTopButton";
 import Should from "../../components/Should/Should";
+
+
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const [dates, setDates] = useState([dayjs(), dayjs().add(1, "day")]);
