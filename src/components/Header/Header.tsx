@@ -5,7 +5,7 @@ import { CircleHelp, Earth, BriefcaseBusiness, UserRound } from "lucide-react";
 import { DownOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Dropdown, Space } from "antd";
-
+import LoginPopup from "../Login/LoginPopup";
 
 const items: MenuProps["items"] = [
   {
@@ -39,6 +39,12 @@ const items: MenuProps["items"] = [
 ];
 
 const Header: React.FC = () => {
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleSignInClick = () => {
+    setShowPopup(true);
+  };
+
   return (
     <header className="header">
       <div className="header-container">
@@ -67,7 +73,7 @@ const Header: React.FC = () => {
             </div>
             <div className="select-nav">
               <UserRound size={18} className="header-icon" />
-              <Link to="#">Sign In</Link>
+              <Link to="#" onClick={handleSignInClick}>Sign In</Link>
             </div>
           </div>
           <div className="header-nav">
@@ -80,13 +86,14 @@ const Header: React.FC = () => {
                 </Space>
               </a>
             </Dropdown>
-            <Link to="#">Cooperate</Link>
+            <Link to="/coperate">Cooperate</Link>
             <Link to="/about-us">About Us</Link>
             <Link to="#">Instruction Book</Link>
             <Link to="#">Explore & Experience</Link>
           </div>
         </div>
       </div>
+      {showPopup && <LoginPopup onClose={() => setShowPopup(false)} />}
     </header>
   );
 };

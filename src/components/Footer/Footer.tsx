@@ -66,14 +66,7 @@ const Footer: React.FC = () => {
                 </a>
               </div>
               <div className="list-item">
-                <a href="#">
-                  <img
-                    src="https://i.ibb.co/5gJQm8xY/instagram-vector-logo-icon-social-media-logotype-901408-392.jpg"
-                    alt="insta"
-                    className="icon-fl"
-                  />
-                  Instagram
-                </a>
+                
               </div>
               <div className="list-item">
                 <a href="#">
@@ -86,7 +79,7 @@ const Footer: React.FC = () => {
                 </a>
               </div>
               <div className="list-item">
-                <a to="#">
+                <a href="#">
                   <img
                     src="https://i.ibb.co/zhkk3H5Y/1.jpg"
                     alt="tele"

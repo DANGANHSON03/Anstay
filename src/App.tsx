@@ -11,8 +11,12 @@ import Help from "./components/Help/Help";
 import AboutUs from "./components/AboutUs/AboutUs";
 import AboutCP  from "./components/AboutList/AboutCP/AboutCP";
 import AboutGCP from "./components/AboutList/AboutGCP/AboutGCP";
+import AboutContact from "./components/AboutList/AboutContact/AboutContact";
+import Coperate from "./components/Coperate/Coperate";
+
 
 function App() {
+  
   return (
     <BrowserRouter>
       <MainLayout>
@@ -27,6 +31,8 @@ function App() {
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/about-us/company" element={<AboutCP />} />
           <Route path="/about-us/groupcompany" element={<AboutGCP />} />
+          <Route path="/about-us/contact" element={<AboutContact />} />
+          <Route path="/coperate" element={<Coperate />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>

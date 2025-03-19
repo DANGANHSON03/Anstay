@@ -4,6 +4,7 @@
   padding: 20px;
   background-color: #f0f2f5;
   margin-top: 50px;
+
 }
 
 .app-tabs {
@@ -11,6 +12,7 @@
   padding: 10px;
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: 20px;
 }
 
 .issues-collapse .ant-collapse-header {
@@ -46,10 +48,31 @@
   text-align: center;
   margin-bottom: 20px;
   margin-top: 90px;
+  
 }
 
 .help-poster h1 {
   margin: 0;
   font-size: 28px;
   font-weight: 500;
+}
+.panel-content p {
+  font-size: 14px;
+}
+
+.send-button {
+  background: transparent !important;
+  border: 2px solid #ffffff !important;
+  color: #200d0d !important;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  height: 70px !important;
+  padding: 0 30px !important;
+  font-size: 16px !important;
+  min-width: 180px;
+  margin-top: 5px;
+}
+.contact-f h3{
+   text-align: left; 
 }

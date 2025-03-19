@@ -1,9 +1,11 @@
-.container{
+.container-about-us{
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
     gap: 10px; 
-    margin-top: 130px; 
-    justify-content: center;
+    place-content: center;
+    max-width: 900px;
+    margin: 130px auto;
+   
 }
 .item {
     position: relative;
@@ -14,8 +16,9 @@
 .item img{
     transition: filter 0.3s ease-in-out;
     filter: brightness(50%);
-    width: 700px;
-    height: 350px;
+    width: 600px;
+    object-fit: cover;
+    height: 300px;
    
 }
 .item:hover img {

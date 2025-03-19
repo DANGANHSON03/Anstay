@@ -1,0 +1,31 @@
+.coperate-container{
+    color: black;
+    margin-top: 130px;
+}
+
+.coperate-section {
+  margin-bottom: 30px 0;
+}
+
+
+.partner-logo:hover {
+  cursor: pointer;
+}
+
+.partner-logo {
+    width: 200px; /* Điều chỉnh kích thước phù hợp */
+    height: 200px;
+    border-radius: 50%; /* Bo tròn */
+    object-fit: contain; /* Giữ nguyên tỉ lệ ảnh, không bị cắt */
+    background-color: white; /* Nếu ảnh không phải hình tròn hoàn toàn */
+    padding: 5px; /* Tạo khoảng cách với viền nếu cần */
+    border: 2px solid #ddd; /* Viền nhẹ để dễ nhìn */
+    margin: 0 10px;
+ }
+.coperate-list{
+    list-style-type: none; /* Loại bỏ dấu chấm */
+    padding-left: 0; 
+} 
+.coperate-list li{
+   font-size: 20px;
+}
