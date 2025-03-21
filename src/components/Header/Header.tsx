@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef,useContext } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { CircleHelp, Earth, BriefcaseBusiness, UserRound } from "lucide-react";
@@ -6,6 +6,7 @@ import { DownOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Dropdown, Space } from "antd";
 import LoginPopup from "../Login/LoginPopup";
+import { AuthContext } from "../../Context/AuthContext";
 
 const items: MenuProps["items"] = [
   {
@@ -40,9 +41,22 @@ const items: MenuProps["items"] = [
 
 const Header: React.FC = () => {
   const [showPopup, setShowPopup] = useState(false);
+  const auth = useContext(AuthContext);
+  if (!auth) return null;
+
+  const handleLogout = () => {
+    auth.logout();  // Cập nhật lại state trong Context
+    localStorage.removeItem("user"); // Xóa user khỏi Local Storage
+  };
 
   const handleSignInClick = () => {
     setShowPopup(true);
+  };
+
+   const [showDropdown, setShowDropdown] = useState(false);
+
+  const toggleDropdown = () => {
+    setShowDropdown((prev) => !prev);
   };
 
   return (
@@ -61,19 +75,39 @@ const Header: React.FC = () => {
           <div className="header-select">
             <div className="select-nav">
               <CircleHelp size={18} className="header-icon" />
-              <Link to="help">Help</Link>
+              <Link to="help">Trợ giúp</Link>
             </div>
             <div className="select-nav">
               <Earth size={18} className="header-icon" />
-              <Link to="#">Language</Link>
+              <Link to="#">Ngôn ngữ</Link>
             </div>
             <div className="select-nav">
               <BriefcaseBusiness size={18} className="header-icon" />
-              <Link to="#">My Trips</Link>
+              <Link to="#">Chuyến đi của tôi</Link>
             </div>
             <div className="select-nav">
+             {auth.user ? 
+             (
+              <>
+              <div className="user-menu">
+                <div className="user-info" onClick={toggleDropdown}>
+                  <UserRound size={18} className="header-icon" /> 
+                  <span className="user-email">{auth.user.email}</span>
+                </div>
+                <div className={`dropdown ${showDropdown ? "show" : ""}`}>
+                  <button onClick={handleLogout} className="logout-btn">Đăng xuất</button>
+                </div>
+              </div>
+                
+              </>
+             ):
+             (
+              <>
               <UserRound size={18} className="header-icon" />
-              <Link to="#" onClick={handleSignInClick}>Sign In</Link>
+              <Link to="#" onClick={handleSignInClick}>Đăng nhập</Link>
+              </>
+             )}
+             
             </div>
           </div>
           <div className="header-nav">
@@ -86,14 +120,15 @@ const Header: React.FC = () => {
                 </Space>
               </a>
             </Dropdown>
-            <Link to="/coperate">Cooperate</Link>
-            <Link to="/about-us">About Us</Link>
-            <Link to="#">Instruction Book</Link>
-            <Link to="#">Explore & Experience</Link>
+            <Link to="/coperate">Hợp tác</Link>
+            <Link to="/about-us">Thông tin về chúng tôi</Link>
+            <Link to="#">Hướng dẫn</Link>
+            <Link to="/explore&experience">Khám phá & Trải nghiệm</Link>
           </div>
         </div>
       </div>
-      {showPopup && <LoginPopup onClose={() => setShowPopup(false)} />}
+      {showPopup && <LoginPopup   onClose={() => setShowPopup(false)} 
+  onLoginSuccess={(email) => console.log("User logged in:", email)}  />}
     </header>
   );
 };

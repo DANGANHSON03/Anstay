@@ -162,10 +162,10 @@ const Home: React.FC = () => {
           <Space>
             <UserOutlined />{" "}
             {key === "adults"
-              ? "Adults"
+              ? "Người lớn"
               : key === "children"
-              ? "Children"
-              : "Rooms"}
+              ? "Trẻ em"
+              : "Phòng"}
           </Space>
           <Space>
             <Button
@@ -207,7 +207,7 @@ const Home: React.FC = () => {
       <div className={`search-home-home ${scrolled ? "scrolled" : ""}`}>
         <Card className={`search-card ${scrolled ? "scrolled-card" : ""}`}>
           <h3 className={scrolled ? "scrolled-title" : ""}>
-            Search by Requirements
+            Tìm kiếm theo yêu cầu
           </h3>
           <div className={`search-card1 ${scrolled ? "scrolled-card1" : ""}`}>
             <div
@@ -219,7 +219,7 @@ const Home: React.FC = () => {
               <label
                 className={`search-label ${scrolled ? "scrolled-label" : ""}`}
               >
-                Find
+                Tìm kiếm
               </label>
               <Input
                 placeholder="City, Hotel, Destination"
@@ -284,7 +284,7 @@ const Home: React.FC = () => {
                 <label
                   className={`search-label ${scrolled ? "scrolled-label" : ""}`}
                 >
-                  Check-in:
+                  Đăng ký vào:
                 </label>
                 <DatePicker
                   value={dates[0]}
@@ -305,7 +305,7 @@ const Home: React.FC = () => {
                 <label
                   className={`search-label ${scrolled ? "scrolled-label" : ""}`}
                 >
-                  Nights:
+                  Đêm:
                 </label>
                 <Select
                   value={nights}
@@ -331,7 +331,7 @@ const Home: React.FC = () => {
                 <label
                   className={`search-label ${scrolled ? "scrolled-label" : ""}`}
                 >
-                  Check-out:
+                  Trả phòng:
                 </label>
                 <p className={scrolled ? "scrolled-text" : ""}>
                   {dates[1].format("dddd, DD [thg] M YYYY")}
@@ -352,7 +352,7 @@ const Home: React.FC = () => {
               <label
                 className={`search-label ${scrolled ? "scrolled-label" : ""}`}
               >
-                Guests and Rooms:
+                Khách và phòng:
               </label>
               <Dropdown overlay={guestMenu} trigger={["click"]}>
                 <Button
@@ -377,7 +377,7 @@ const Home: React.FC = () => {
                 scrolled ? "scrolled-search-button" : ""
               }`}
             >
-              Search Hotels
+              Tìm khách sạn
             </Button>
           </div>
         </Card>
