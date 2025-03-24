@@ -37,15 +37,15 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onLoginSuccess }) => {
     }
   };
 
-  const handleRegisterSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    alert("Đăng ký thành công!"); // Xử lý đăng ký tại đây
-  };
+  // const handleRegisterSubmit = (event: React.FormEvent) => {
+  //   event.preventDefault();
+  //   alert("Đăng ký thành công!"); // Xử lý đăng ký tại đây
+  // };
 
-  const handleForgotPasswordSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    alert("Yêu cầu đặt lại mật khẩu đã được gửi!"); // Xử lý quên mật khẩu tại đây
-  };
+  // const handleForgotPasswordSubmit = (event: React.FormEvent) => {
+  //   event.preventDefault();
+  //   alert("Yêu cầu đặt lại mật khẩu đã được gửi!"); // Xử lý quên mật khẩu tại đây
+  // };
 
   return (
     <div className="popup-overlay" onClick={onClose}>
@@ -85,8 +85,8 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onLoginSuccess }) => {
           </form>
         ) : showRegister ? (
           <form className="popup-form" onSubmit={handleRegisterSubmit}>
-            <label>Họ và tên *</label>
-            <input type="text" placeholder="Họ và tên" required />
+            <label>Tên người dùng *</label>
+            <input type="text" placeholder="Nhập tên người dùng" required />
 
             <label>Email *</label>
             <input type="email" placeholder="Nhập email" required />
