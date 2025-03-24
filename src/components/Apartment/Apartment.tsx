@@ -274,18 +274,18 @@ const Apartment = () => {
                     className="listing-img"
                   />
                   {/* Favorite button */}
-                  <button
+                  {/* <button
                     className="favorite-btn"
                     onClick={(e) => {
                       e.stopPropagation();
                     }}
                   >
                     ❤
-                  </button>
+                  </button> */}
                   {/* Navigation arrows */}
                   <div className="nav-buttons">
                     <button
-                      className="nav-btn"
+                      className="nav-btn nav-btn-prev"
                       onClick={(e) => {
                         e.stopPropagation();
                         navigateImage(listing.id, "prev");
@@ -294,7 +294,8 @@ const Apartment = () => {
                       ❮
                     </button>
                     <button
-                      className="nav-btn"
+                     
+                      className="nav-btn nav-btn-next"
                       onClick={(e) => {
                         e.stopPropagation();
                         navigateImage(listing.id, "next");

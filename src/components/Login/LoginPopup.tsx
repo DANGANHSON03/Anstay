@@ -1,14 +1,17 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import "./LoginPopup.css"; // Import file CSS
-import {AuthContext} from "../../Context/AuthContext";
+import { AuthContext } from "../../Context/AuthContext";
+
 interface LoginPopupProps {
   onClose: () => void;
-  onLoginSuccess: (email: string) => void;
+  onLoginSuccess: (fullname: string) => void;
 }
+
 interface User {
-    email: string;
-    password: string;
-  }
+  email: string;
+  password: string;
+  fullname: string;
+}
 
 const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onLoginSuccess }) => {
   const [showRegister, setShowRegister] = useState(false);
@@ -17,19 +20,19 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onLoginSuccess }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const auth = useContext(AuthContext);
- 
+
   const handleSubmit = (event: React.FormEvent) => {
-    const fakeUsers : User[]=[
-        { email: "test@example.com", password: "123456" },
-        { email: "a@gmail.com", password: "1" },
-      ];
+    const fakeUsers: User[] = [
+      { email: "test@example.com", password: "123456", fullname: "Test User" },
+      { email: "a@gmail.com", password: "1", fullname: "Test 2" },
+    ];
     event.preventDefault();
     const user = fakeUsers.find((u) => u.email === email && u.password === password);
 
     if (user && auth) {
       localStorage.setItem("user", JSON.stringify(user)); // Lưu vào Local Storage
-      auth.login(user);  // Lưu user vào context
-      onLoginSuccess(user.email); // Gọi function và truyền email
+      auth.login(user); // Lưu user vào context
+      onLoginSuccess(user.fullname); // Gọi function và truyền fullname
       alert("Đăng nhập thành công! ✅");
       onClose(); // Close the popup after successful login
     } else {
@@ -37,15 +40,15 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onLoginSuccess }) => {
     }
   };
 
-  // const handleRegisterSubmit = (event: React.FormEvent) => {
-  //   event.preventDefault();
-  //   alert("Đăng ký thành công!"); // Xử lý đăng ký tại đây
-  // };
+  const handleRegisterSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    alert("Đăng ký thành công!"); // Xử lý đăng ký tại đây
+  };
 
-  // const handleForgotPasswordSubmit = (event: React.FormEvent) => {
-  //   event.preventDefault();
-  //   alert("Yêu cầu đặt lại mật khẩu đã được gửi!"); // Xử lý quên mật khẩu tại đây
-  // };
+  const handleForgotPasswordSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    alert("Yêu cầu đặt lại mật khẩu đã được gửi!"); // Xử lý quên mật khẩu tại đây
+  };
 
   return (
     <div className="popup-overlay" onClick={onClose}>

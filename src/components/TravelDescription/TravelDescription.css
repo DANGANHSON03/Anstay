@@ -82,6 +82,7 @@
   margin-bottom: 12px;
   font-size: 18px;
   font-weight: bold;
+  width: 350px;
 }
 
 .activity {
@@ -91,4 +92,43 @@
 
 .activity strong {
   color: #333;
+}
+
+.custom-meta {
+  margin: 5px auto;
+  text-align: left;
+}
+.custom-meta .ant-list-item-meta-description {
+  font-size: 16px; 
+}
+.list-title{
+ font-size: 20px;
+}
+.list-date{
+  float: right;
+  font-size: 16px;
+}
+
+
+.day-itinerary{
+  display: flex;
+
+}
+
+.list-interary{
+  text-align: left;
+  
+}
+.activity {
+  display: flex;
+  align-items: flex-start; /* Giúp mô tả không bị đẩy lệch */
+  gap: 8px;
+}
+.activity strong {
+  width: 60px; /* Cố định độ rộng cho phần thời gian */
+  text-align: right; /* Canh phải để đồng nhất */
+  flex-shrink: 0; /* Giữ nguyên kích thước, không bị co lại */
+}
+.activity span {
+  flex: 1; /* Phần mô tả tự động giãn ra */
 }

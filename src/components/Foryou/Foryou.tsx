@@ -29,19 +29,19 @@ const Foryou = () => {
             <Row gutter={[16, 16]} className="icon-grid-container">
               <div className="divider-vertical" />
               <div className="divider-horizontal" />
-              <Col span={12} style={{ textAlign: "center" }}>
+              <Col span={12} style={{ textAlign: "center" }} className="col-p">
                 <BedSingle style={{ fontSize: 32, color: "#ff6f61" }} />
                 <p>Earn Free Nights</p>
               </Col>
-              <Col span={12} style={{ textAlign: "center" }}>
+              <Col span={12} style={{ textAlign: "center" }} className="col-p">
                 <Tickets style={{ fontSize: 32, color: "#ff6f61" }} />
                 <p>Member Rates</p>
               </Col>
-              <Col span={12} style={{ textAlign: "center" }}>
+              <Col span={12} style={{ textAlign: "center" }} className="col-p">
                 <WifiOutlined style={{ fontSize: 32, color: "#ff6f61" }} />
                 <p>Free Wi-Fi</p>
               </Col>
-              <Col span={12} style={{ textAlign: "center" }}>
+              <Col span={12} style={{ textAlign: "center" }} className="col-p">
                 <MobileOutlined style={{ fontSize: 32, color: "#ff6f61" }} />
                 <p>Mobile Check-in</p>
               </Col>

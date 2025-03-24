@@ -131,7 +131,7 @@ const Tour = () => {
                       ❮
                     </button>
                     <button
-                      className="nav-btn"
+                      className="nav-btn nav-btn-next1"
                       onClick={(e) => {
                         e.stopPropagation();
                         navigateImage(listing.id, "next");

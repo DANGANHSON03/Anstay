@@ -1,8 +1,16 @@
 import React from "react";
-import { Tabs, Card } from "antd";
+import { Tabs, Card,Form,Input,Button} from "antd";
 import "./TravelDescription.css";
-
+import { Avatar, List } from 'antd';
 const { TabPane } = Tabs;
+import dayjs from "dayjs";
+
+const { TextArea } = Input;
+
+interface CommentData {
+  title: string;
+  date: string;
+}
 
 const tourData = {
   id: 1,
@@ -93,6 +101,14 @@ const tourData = {
   ],
 };
 
+const data = [
+  { title: "Ant Design Title 1", date: dayjs().format("DD/MM/YYYY"), img:"https://nano-ceramic.vn/wp-content/uploads/2024/12/300-hinh-anh-dai-dien-dep-cho-facebook-tiktok-zalo-79.jpg" },
+  { title: "Ant Design Title 2", date: dayjs().format("DD/MM/YYYY") },
+  { title: "Ant Design Title 3", date: dayjs().format("DD/MM/YYYY") },
+  { title: "Ant Design Title 4", date: dayjs().format("DD/MM/YYYY") },
+];
+
+
 const TravelDescription = () => {
   return (
     <div className="travel-container">
@@ -106,18 +122,22 @@ const TravelDescription = () => {
             <p>{tourData.description}</p>
 
             <h3>Lịch Trình Chi Tiết:</h3>
-            {tourData.itinerary.map((day, index) => (
+               {tourData.itinerary.map((day, index) => (
               <div key={index} className="day-itinerary">
                 <h4 className="day-title">
                   {day.day} | {day.title}
                 </h4>
-                {day.activities.map((activity, actIndex) => (
+                <div className="list-interary">
+                   {day.activities.map((activity, actIndex) => (
                   <div key={actIndex} className="activity">
                     <strong>{activity.time}</strong>: {activity.description}
                   </div>
                 ))}
+                </div>
               </div>
             ))}
+          
+           
           </Card>
         </TabPane>
         <TabPane
@@ -125,7 +145,28 @@ const TravelDescription = () => {
           key="2"
         >
           <Card className="travel-card">
-            <p>Phần bình luận sẽ được cập nhật...</p>
+            <List
+              itemLayout="horizontal"
+              dataSource={data}
+              renderItem={(item, index) => (
+                <List.Item>
+                  <List.Item.Meta
+                    avatar={<Avatar src={item.img} />}
+                    title={<><a href="https://ant.design" className="list-title">{item.title}</a> <span className="list-date">{item.date}</span></>}
+                    description={`Ant Design, a design language for background applications, is refined by Ant UED Team.`}
+                    className="custom-meta"
+                  />
+                </List.Item>
+              )}
+            />
+            <Form>
+              <Form.Item name="comment">
+                <TextArea rows={4} placeholder="Viết bình luận..." />
+              </Form.Item>
+              <Form.Item>
+                <Button type="primary" htmlType="submit">Gửi bình luận</Button>
+              </Form.Item>
+            </Form>
           </Card>
         </TabPane>
         <TabPane

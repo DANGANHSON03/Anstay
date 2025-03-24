@@ -5,14 +5,14 @@ import { RightOutlined } from "@ant-design/icons";
 
 
 const categories = [
-  { title: "Family Gatherings & More", image: "https://cache.marriott.com/is/image/marriotts7prod/pdt-Family-enjoying-breakfast-478950141904961:Classic-Ver?wid=380&fit=constrain, https://cache.marriott.com/is/image/marriotts7prod/pdt-Family-enjoying-breakfast-478950141904961:Classic-Ver?wid=760&fit=constrain 2x" },
-  { title: "Food & Drink", image: "https://cache.marriott.com/is/image/marriotts7prod/pdt-JW-Orlando-Dessert-Table2-985558347887442" },
-  { title: "Spaces & Venues", image: "https://cache.marriott.com/is/image/marriotts7prod/pdt-B2B-JW-Marriott-41-314154048289847" }
+  { title: "Các buổi gặp gỡ gia đình", image: "https://cache.marriott.com/is/image/marriotts7prod/pdt-Family-enjoying-breakfast-478950141904961:Classic-Ver?wid=380&fit=constrain, https://cache.marriott.com/is/image/marriotts7prod/pdt-Family-enjoying-breakfast-478950141904961:Classic-Ver?wid=760&fit=constrain 2x" },
+  { title: "Thức ăn và đồ uống", image: "https://www.kkday.com/vi/blog/wp-content/uploads/ban-do-am-thuc-ha-long-3.jpg" },
+  { title: "Không gia và địa điểm", image: "https://zeimydinh.com/wp-content/uploads/2020/12/tien-ich-a-la-carte-ha-long-1.jpg" }
  
 ];
 const categories2 = [
-    { title: "Destinations", image: "https://cache.marriott.com/is/image/marriotts7prod/pdt-B2B-NY-Rooftop-Bar-882786605428890" },
-    { title: "Accommodations", image: "https://cache.marriott.com/is/image/marriotts7prod/pdt-Sarasota-family-room42237-169963514665836" },
+    { title: "Điểm đến", image: "https://sonhailimousine.com/upload/filemanager/dia-diem-du-lich-ha-long%20(20).png" },
+    { title: "Chỗ ở", image: "https://quangninhtop.com/wp-content/uploads/2023/09/Alacarte-Ha-Long-2.webp" },
 ]  
 
 const ExploExper: React.FC = () => {
@@ -21,21 +21,20 @@ const ExploExper: React.FC = () => {
     <div className="event-container">
       {/* Phần giới thiệu */}
       <div className="event-header">
-        <h2>Explore Social Events</h2>
-        <p>Get insider info with us. Make the most of your next gathering.</p>
+        <h2>Khám phá sự kiện xã hội</h2>
+        <p>Nhận thông tin nội bộ cùng chúng tôi. Tận dụng tối đa buổi họp mặt tiếp theo của bạn.</p>
       </div>
 
       {/* Phần chính (Hình lớn + mô tả) */}
       <div className="event-main">
         <div className="event-info">
-          <h3>Plan Your Social Event</h3>
+          <h3>Lên kế hoạch cho sự kiện xã hội của bạn</h3>
           <p>
-            Mix, mingle, and maximize. From vacations to business meetups, let
-            us handle all of your event-planning needs.
+          Kết hợp, giao lưu và tối đa hóa. Từ kỳ nghỉ đến các cuộc họp kinh doanh, hãy để chúng tôi xử lý mọi nhu cầu lập kế hoạch sự kiện của bạn.
           </p>
-          <button className="learn-more-btn">Learn More</button>
+          <button className="learn-more-btn">Tìm hiểu thêm</button>
         </div>
-        <img src="https://cache.marriott.com/is/image/marriotts7prod/pdt-JW-Orlando-Parents-P99094-169177196938976:Wide-Hor?wid=670&fit=constrain" alt="Main Event" className="main-image" />
+        <img src="https://khachsanvietnam.com.vn/vnt_upload/news/08_2022/khach_san_Alacarte_da_nang_9.jpg" alt="Main Event" className="main-image" />
       </div>
 
       {/* Lưới danh mục sự kiện */}

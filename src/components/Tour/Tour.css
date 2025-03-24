@@ -103,6 +103,10 @@
   border: none;
 }
 
+.nav-btn-next1 {
+  right: 30px;
+}
+
 /* Image Dots */
 .image-dots {
   position: absolute;
