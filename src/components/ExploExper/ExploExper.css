@@ -1,9 +1,10 @@
 /* Tổng thể trang */
-.event-container {
+.event-container2 {
     max-width: 1200px;
-    margin-top: 110px ;
+    margin: 80px auto;
     padding: 20px;
     text-align: center;
+    
     
   }
   
@@ -72,6 +73,7 @@
     width: 50%;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    object-fit: contain;
   }
   
   /* Lưới hình ảnh */
@@ -91,7 +93,7 @@
   
   .event-card img {
     width: 100%;
-    height: 80vh;
+    height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease-in-out;
   }
@@ -131,3 +133,104 @@
   .right-icon{
     margin-right: 30px;
   }
+
+  @media screen and (max-width: 1024px) {
+    .event-main {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .event-info {
+        padding: 20px;
+    }
+
+    .main-image {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .event-header h2 {
+        font-size: 24px;
+    }
+
+    .event-header p {
+        font-size: 14px;
+    }
+
+    .event-info h3 {
+        font-size: 20px;
+    }
+
+    .event-info p {
+        font-size: 14px;
+    }
+
+    .learn-more-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .event-card-2 {
+        width: 100%;
+        height: auto;
+    }
+
+    .event-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+  .event-container2 {
+    max-width: 480px;
+    width: 100%;  /* Đảm bảo không bị ghi đè */
+    margin: 0px;
+    padding: 0;
+    
+    
+  }
+  .event-main{
+    flex-direction: column-reverse;
+  }
+  .event-card-1{
+    height: 600px;
+  }
+  .event-grid{
+    width: 448px;
+    padding: 0 16px;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+    .event-header h2 {
+        font-size: 20px;
+    }
+
+    .event-header p {
+        font-size: 12px;
+    }
+
+    .event-info {
+        padding: 10px;
+    }
+
+    .event-info h3 {
+        font-size: 18px;
+    }
+
+    .event-info p {
+        font-size: 12px;
+    }
+
+    .learn-more-btn {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .event-card-overlay {
+        font-size: 14px;
+        padding: 5px;
+    }
+}

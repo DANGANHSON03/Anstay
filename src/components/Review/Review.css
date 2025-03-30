@@ -163,3 +163,147 @@
   margin: 0;
   font-size: 16px;
 }
+
+@media (max-width: 1024px) {
+  .event-wrapper1 {
+    width: 100%;
+   
+  }
+
+  .event-container1 {
+    max-width: 100%;
+  }
+
+  .event-image1 {
+    width: 100%;
+    height: 250px;
+  }
+
+  .event-image-wrapper1 {
+    width: 100%;
+    height: 250px;
+  }
+
+  .event-description1 {
+    padding: 20px;
+    font-size: 14px;
+  }
+
+  .nav-button1 {
+    width: 35px !important;
+    height: 35px !important;
+  }
+
+  .nav-button-prev1 {
+    left: -10px;
+  }
+
+  .nav-button-next1 {
+    right: -10px;
+  }
+
+  .review-title h2 {
+    font-size: 20px;
+  }
+
+  .review-title p {
+    font-size: 14px;
+  }
+}
+
+/* Mobile (Dưới 768px) */
+@media (max-width: 768px) {
+  .event-wrapper1 {
+    width: 100%;
+   
+  }
+
+  .event-container1 {
+    max-width: 100%;
+  }
+
+  .event-image1 {
+    width: 100%;
+    height: 200px;
+  }
+
+  .event-image-wrapper1 {
+    width: 100%;
+    height: 200px;
+  }
+
+  .event-description1 {
+    padding: 15px;
+    font-size: 13px;
+  }
+
+  .nav-button1 {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .nav-button-prev1 {
+    left: -5px;
+  }
+
+  .nav-button-next1 {
+    right: -5px;
+  }
+
+  .review-title h2 {
+    font-size: 18px;
+  }
+
+  .review-title p {
+    font-size: 13px;
+  }
+}
+
+/* Mobile Nhỏ (Dưới 480px) */
+@media (max-width: 480px) {
+  .event-wrapper1 {
+    width: 100%;
+    
+  }
+
+  .review-title{
+    margin-left: 10px;
+  }
+
+  .event-image1 {
+    width: 100%;
+    height: 180px;
+  }
+
+  .event-image-wrapper1 {
+    width: 100%;
+    height: 180px;
+  }
+
+  .event-description1 {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .nav-button1 {
+    width: 25px !important;
+    height: 25px !important;
+    display: none;
+  }
+
+  .nav-button-prev1 {
+    left: 0px;
+  }
+
+  .nav-button-next1 {
+    right: 0px;
+  }
+
+  .review-title h2 {
+    font-size: 16px;
+  }
+
+  .review-title p {
+    font-size: 12px;
+  }
+}

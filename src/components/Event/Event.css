@@ -81,24 +81,131 @@
 }
 
 
-/* Mobile (dưới 768px) */
+@media (max-width: 1024px) {
+  .event-wrapper {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .event-container {
+    max-width: 100%;
+  }
+
+  .event-image {
+    width: 280px;
+    height: 150px;
+  }
+
+  .event-title {
+    font-size: 20px;
+  }
+
+  .nav-button {
+    width: 35px !important;
+    height: 35px !important;
+  }
+
+  .nav-button-prev {
+    left: 5px;
+  }
+
+  .nav-button-next {
+    right: 5px;
+  }
+}
+
+/* Mobile (Dưới 768px) */
 @media (max-width: 768px) {
-  body {
+  .event-wrapper {
+    margin-top: 30px;
+    width: 100%;
+    padding: 0;
+
+  }
+
+  .event-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .event-title {
+    font-size: 18px;
+  }
+
+  .nav-button {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .nav-button-prev {
+    left: 5px;
+  }
+
+  .nav-button-next {
+    right: 5px;
+  }
+
+  .ant-carousel .slick-slide {
+    padding: 0 3px;
+  }
+
+  .ant-carousel .slick-list {
+    margin: 0 -3px;
+  }
+}
+
+/* Mobile nhỏ (Dưới 480px) */
+@media (max-width: 480px) {
+  
+  .event-wrapper {
+    margin-top: 20px;
+
+  }
+
+  .event-image {
+    width: 80%;
+    height: auto;
+    border-radius: 5px;
+  }
+
+  .event-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .nav-button{
+    display: none;
+  }
+
+  .ant-carousel .slick-slide {
+    padding: 0 2px;
+  }
+
+  .ant-carousel .slick-list {
+    margin: 0 -2px;
+  } 
+
+  .event-container .ant-carousel .slick-list {
+    overflow: hidden; /* Hide overflow to show only one image */
+  }
+
+  .event-container .ant-carousel .slick-track {
+    display: flex; /* Align slides horizontally */
+    transition: transform 0.3s ease; /* Smooth transition for sliding */
+  }
+
+  .event-image {
+    width: 100%; /* Ensure the image spans the full width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure the image fits nicely */
+  }
+  .event-title-main{
+    margin-left: 10px;
+  }
+  .event-title-main h1{
     font-size: 14px;
   }
-}
-
-/* Tablet (từ 768px - 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) {
-  body {
-    font-size: 16px;
+  .event-title-main p{
+    font-size: 14px;
   }
-}
-
-/* Laptop & PC (trên 1024px) */
-@media (min-width: 1025px) {
-  body{
-    margin: 0 auto;
-  }
-  
-}
+} 

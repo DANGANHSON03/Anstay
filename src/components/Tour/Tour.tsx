@@ -12,6 +12,7 @@ const Tour = () => {
       transportation: "Xe bus + Du thuyền",
       hotel: "Hạ Long Plaza Hotel 5*",
       price: 2500000,
+      discount: 10, // Thêm thuộc tính discount
       images: [
         "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b",
         "https://images.unsplash.com/photo-1573146500785-c0244c0daae3",
@@ -25,6 +26,7 @@ const Tour = () => {
       transportation: "Xe limousine",
       hotel: "Bamboo Sapa Hotel 4*",
       price: 1800000,
+      discount: 15, // Thêm thuộc tính discount
       images: [
         "https://images.unsplash.com/photo-1565953520-b883f6795957",
         "https://images.unsplash.com/photo-1565953522043-8e75f4b6087f",
@@ -88,8 +90,8 @@ const Tour = () => {
       <div className="container-wrapper">
         <div className="container">
           <div className="filters">
+            <span>Sắp xếp theo:</span>
             <div className="filter-item">
-              <span>Sắp xếp theo:</span>
               <select className="filter-select">
                 <option>Thời gian: Tất cả</option>
                 <option>2 ngày 1 đêm</option>
@@ -114,6 +116,11 @@ const Tour = () => {
                 onClick={() => handleListingClick(listing.id)}
               >
                 <div className="listing-image">
+                  {listing.discount && (
+                    <div className="discount-badge">
+                      -{listing.discount}%
+                    </div>
+                  )}
                   <img
                     src={listing.images[activeImages[listing.id] || 0]}
                     alt={listing.title}

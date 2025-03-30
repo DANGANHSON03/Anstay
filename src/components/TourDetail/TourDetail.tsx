@@ -44,7 +44,7 @@ const TourDetail = () => {
     ],
     images: [
       "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b",
-      "https://images.unsplash.com/photo-1573146500785-c0244c0daae3",
+      "https://vcdn1-dulich.vnecdn.net/2022/05/07/vinhHaLongQuangNinh-1651912066-8789-1651932294.jpg?w=0&h=0&q=100&dpr=2&fit=crop&s=bAYE9-ifwt-9mB2amIjnqg",
       "https://images.unsplash.com/photo-1528127269322-539801943592",
     ],
   };
@@ -77,8 +77,8 @@ const TourDetail = () => {
 
   return (
     <div className="tour-detail-container">
-      <Row gutter={[24, 24]}>
-        <Col span={14}>
+      <Row gutter={[24, 24]} className="row-tour-details">
+        <Col span={14} xs={24} md={14} className="col-tour-details">
           <div className="main-image-container">
             <img
               src={tourData.images[currentImageIndex]}
@@ -108,7 +108,7 @@ const TourDetail = () => {
           </div>
         </Col>
 
-        <Col span={10}>
+        <Col xs={24} md={10} span={10}>
           <div className="tour-info">
             <Title level={3}>Thông tin Tour</Title>
             <div className="tour-details">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef,useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { CircleHelp, Earth, BriefcaseBusiness, UserRound } from "lucide-react";
@@ -42,7 +42,12 @@ const items: MenuProps["items"] = [
 const Header: React.FC = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [loggedInFullname, setLoggedInFullname] = useState<string | null>(null);
+  const [userMenuActive, setUserMenuActive] = useState(false); // State for user-menu dropdown
   const auth = useContext(AuthContext);
+  const navRef = useRef<HTMLDivElement>(null);
+  const hamburgerRef = useRef<HTMLDivElement>(null);
+  const userMenuRef = useRef<HTMLDivElement>(null); // Ref for user-menu dropdown
+
   if (!auth) return null;
 
   useEffect(() => {
@@ -53,8 +58,8 @@ const Header: React.FC = () => {
   }, []);
 
   const handleLogout = () => {
-    auth.logout(); // Cập nhật lại state trong Context
-    localStorage.removeItem("user"); // Xóa user khỏi Local Storage
+    auth.logout();
+    localStorage.removeItem("user");
     setLoggedInFullname(null);
   };
 
@@ -67,19 +72,36 @@ const Header: React.FC = () => {
     setShowPopup(false);
   };
 
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [navActive, setNavActive] = useState(false);
 
-  const handleMouseEnter = () => {
-    setShowDropdown(true);
-    
+  const toggleNav = () => {
+    setNavActive(!navActive);
   };
 
-  const handleMouseLeave = () => {
-    setShowDropdown(false);
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      navRef.current &&
+      !navRef.current.contains(event.target as Node) &&
+      hamburgerRef.current &&
+      !hamburgerRef.current.contains(event.target as Node) &&
+      userMenuRef.current &&
+      !userMenuRef.current.contains(event.target as Node)
+    ) {
+      setNavActive(false);
+      setUserMenuActive(false); // Close user-menu dropdown when clicking outside
+    }
   };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <header className="header">
+      {navActive && <div className="header-nav-overlay active" onClick={() => setNavActive(false)}></div>}
       <div className="header-container">
         <div className="header-logo-container">
           <Link to="/">
@@ -90,7 +112,15 @@ const Header: React.FC = () => {
             />
           </Link>
         </div>
-        <div className="header-nav-container">
+        <div className="hamburger" onClick={toggleNav} ref={hamburgerRef}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div
+          className={`header-nav-container ${navActive ? "active" : ""}`}
+          ref={navRef}
+        >
           <div className="header-select">
             <div className="select-nav">
               <CircleHelp size={18} className="header-icon" />
@@ -104,36 +134,41 @@ const Header: React.FC = () => {
               <BriefcaseBusiness size={18} className="header-icon" />
               <Link to="#">Chuyến đi của tôi</Link>
             </div>
-            <div className="select-nav">
-             {auth.user ? 
-             (
-              <>
-              <div className="user-menu" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <div className="user-info">
-                  <UserRound size={18} className="header-icon" /> 
-                  <span className="user-fullname">{loggedInFullname}</span>
-                </div>
-                <div className={`dropdown ${showDropdown ? "show" : ""}`}>
-                  <button className="btn-login information-btn">Thông tin cá nhân</button>
-                  <button onClick={handleLogout} className="btn-login logout-btn">Đăng xuất</button>
-                </div>
+            <div
+              className="user-menu"
+              ref={userMenuRef}
+              onMouseEnter={() => setUserMenuActive(true)} // Show dropdown on hover
+              onMouseLeave={() => setUserMenuActive(false)} // Hide dropdown when not hovering
+            >
+              <div className="user-info">
+                <UserRound size={18} className="header-icon" />
+                <span className="user-fullname">{loggedInFullname}</span>
               </div>
-                
-              </>
-             ):
-             (
-              <>
-              <UserRound size={18} className="header-icon" />
-              <Link to="#" onClick={handleSignInClick}>Đăng nhập</Link>
-              </>
-             )}
-             
+              {userMenuActive && (
+                <div className="dropdown">
+                  <Link to="/dashbroad">
+                    <button className="btn-login information-btn">
+                      Thông tin cá nhân
+                    </button>
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="btn-login logout-btn"
+                  >
+                    Đăng xuất
+                  </button>
+                </div>
+              )}
             </div>
           </div>
           <div className="header-nav">
-            <Link to="#"></Link>
-            <Dropdown menu={{ items }}>
-              <a onClick={(e) => e.preventDefault()}>
+            <Dropdown
+              menu={{ items }}
+              overlayClassName="ant-dropdown" // Add a custom class for styling
+              trigger={['hover']} // Change trigger to hover
+              placement="bottomLeft" // Ensure dropdown is placed below
+            >
+              <a>
                 <Space>
                   Tour & Căn hộ
                   <DownOutlined />
@@ -147,8 +182,12 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
-      {showPopup && <LoginPopup   onClose={() => setShowPopup(false)} 
-  onLoginSuccess={handleLoginSuccess}  />}
+      {showPopup && (
+        <LoginPopup
+          onClose={() => setShowPopup(false)}
+          onLoginSuccess={handleLoginSuccess}
+        />
+      )}
     </header>
   );
 };

@@ -27,7 +27,7 @@
   flex: 1; /* Chiếm 1 phần */
   text-align: left;
   padding-left: 200px;
-  margin-top: -120px;
+  margin-top: -80px;
 }
 .footer-right-img {
   display: flex;
@@ -68,4 +68,123 @@
   margin-top: 20px;
   color: #f8f9fa;
   flex-direction: column;
+}
+@media (max-width: 1024px) {
+  .footer-main {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-left {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-right {
+    padding-left: 0;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .footer-right-img {
+    justify-content: center;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .footer-main {
+    width: 90%;
+    padding: 10px;
+  }
+
+  .footer-left {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .footer-right {
+    width: 100%;
+    text-align: center;
+  }
+
+  .footer-right-img {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .list-item {
+    justify-content: center;
+  }
+
+  .list-item a {
+    font-size: 14px;
+  }
+
+  .footer-bottom {
+    font-size: 14px;
+    height: 50px;
+  }
+}
+
+/* Mobile nhỏ (dưới 480px) */
+@media (max-width: 480px) {
+  .footer-main {
+    width: 95%;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .footer-left {
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    gap:10px;
+  }
+  .footer-left h3{
+    text-align: center;
+  }
+
+  .footer-right {
+    width: 100%;
+    text-align: center;
+    padding-left: 0;
+    margin-top: 10px;
+  }
+
+  .footer-right-img {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .footer-right-img1 {
+    width: 30px;
+    height: 25px;
+  }
+
+  .icon-fl {
+    width: 20px;
+    height: 20px;
+  }
+
+  .list-item {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .list-item a {
+    font-size: 12px;
+  }
+
+  .footer-bottom {
+    font-size: 12px;
+    height: 45px;
+    padding: 5px;
+  }
+  .ftr-2{
+    display: flex;
+    flex-direction: row;
+  }
 }

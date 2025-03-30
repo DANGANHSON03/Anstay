@@ -30,6 +30,84 @@
   transform: translateY(-50%);
 }
 
+.col-p1 p{
+  text-align: center;
+  font-size: 20px;
+}
 .col-p p{
   text-align: center;
+  font-size: 20px;
+}
+
+
+@media (max-width: 1024px) {
+  .foryou-container {
+    padding: 0 20px;
+  }
+
+  .icon-grid-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 cột trên tablet */
+    gap: 15px;
+  }
+
+  .divider-vertical {
+    width: 1px;
+  }
+
+  .divider-horizontal {
+    height: 1px;
+  }
+
+  .col-p p {
+    font-size: 20px;
+  }
+}
+
+/* Mobile (Dưới 768px) */
+@media (max-width: 768px) {
+  .foryou-container {
+    padding: 0 10px;
+  }
+
+  .icon-grid-container {
+    grid-template-columns: repeat(2, 1fr); /* 1 cột trên điện thoại */
+    gap: 10px;
+  }
+
+  .divider-vertical,
+  .divider-horizontal {
+    display: none; /* Ẩn đường kẻ khi chỉ có 1 cột */
+  }
+
+  .col-p1 p {
+    font-size: 14px;
+  }
+}
+
+/* Mobile Nhỏ (Dưới 480px) */
+@media (max-width: 480px) {
+  .foryou-container {
+    width: 460px;
+    margin-top: 10px;
+  }
+
+   .icon-grid-container{
+    gap: 5px;
+  }
+  .col-p{
+    margin-top: 5px;
+  }
+  con
+  .col-p1 p{
+    font-size: 14px;
+  }
+  .col-p p{
+    font-size: 14px;
+  }
+
+  .divider-vertical,
+  .divider-horizontal {
+    display: block;
+  }
+ 
 }

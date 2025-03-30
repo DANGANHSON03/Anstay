@@ -61,7 +61,7 @@ const Review = () => {
 
         <Carousel
           ref={carouselRef}
-          slidesToShow={2}
+          slidesToShow={window.innerWidth <= 480 ? 1 : 2}
           centerMode={false}
           infinite={true}
           dots={true}

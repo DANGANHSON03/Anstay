@@ -1,7 +1,7 @@
 .container-wrapper {
   background-color: #f5f5f5;
   padding: 20px;
-  margin-top: 130px;
+  margin-top: 50px;
 }
 
 .container {
@@ -425,4 +425,115 @@
   background-color: #2196f3;
   color: white;
   flex: 1;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+@media (max-width: 1024px) {
+  .listings-grid {
+      grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filters {
+      flex-wrap: wrap;
+      justify-content: center;
+  }
+}
+
+/* Dưới 768px: Chuyển từ 2 cột thành 1 cột */
+@media (max-width: 768px) {
+  .filters span{
+    text-align: left;
+  }
+  .filter-select {
+    
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .apart-top{
+   
+  }
+  .listings-grid {
+      grid-template-columns: 1fr;
+  }
+
+  .filters {
+      flex-direction: column;
+      align-items: stretch;
+  }
+
+  .filter-item {
+      width: 100%;
+      justify-content: center;
+  }
+
+  .filter-select,
+  .pagination {
+      width: 100%;
+      text-align: center;
+  }
+
+  .apart-top {
+      height: 40vh; /* Điều chỉnh chiều cao */
+  }
+
+  .title-top-apart {
+      font-size: 1.5rem;
+  }
+}
+
+/* Dưới 480px: Điều chỉnh các nút và nội dung */
+@media (max-width: 480px) {
+  .container-wrapper {
+    margin-top: 10px;
+    padding: 0 10px; /* Thêm padding để tránh sát mép màn hình */
+  }
+
+  .listing-content {
+    padding: 12px; /* Tăng nhẹ padding để dễ đọc hơn */
+  }
+
+  .listing-title {
+    font-size: 18px; /* Tăng kích thước tiêu đề một chút */
+    font-weight: bold;
+  }
+
+  .listing-price {
+    font-size: 16px;
+    color: #e65100; /* Giữ màu sắc nổi bật */
+  }
+
+  .popup-title {
+    font-size: 22px; /* Làm cho tiêu đề nổi bật hơn */
+    text-align: center;
+  }
+
+  .popup-actions {
+    flex-direction: column;
+    gap: 8px; /* Thêm khoảng cách giữa các nút */
+  }
+
+  .popup-contact-btn,
+  .popup-schedule-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .load-more-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+  }
 }

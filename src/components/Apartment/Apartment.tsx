@@ -15,6 +15,7 @@ const Apartment = () => {
       area: 130,
       description: "Căn hộ cao cấp với view đẹp, nội thất hiện đại",
       amenities: ["Ban công", "Bảo vệ 24/7", "Bể bơi", "Gym"],
+      discount:10,
       images: [
         "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
         "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688",
@@ -22,6 +23,7 @@ const Apartment = () => {
         "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8",
         "https://images.unsplash.com/photo-1564078516393-cf04bd966897",
       ],
+      soldOut: true, // Add soldOut property
     },
     {
       id: 2,
@@ -33,12 +35,14 @@ const Apartment = () => {
       area: 72,
       description: "Căn hộ tiện nghi, gần trung tâm",
       amenities: ["Thang máy", "Bảo vệ 24/7"],
+      discount:15,
       images: [
         "https://images.unsplash.com/photo-1598928506311-c55ded91a20c",
         "https://images.unsplash.com/photo-1598928636135-d0f224ca81f7",
         "https://images.unsplash.com/photo-1598928506311-c55ded91a20c",
         "https://images.unsplash.com/photo-1598928636135-d0f224ca81f7",
       ],
+      
     },
     {
       id: 3,
@@ -139,6 +143,7 @@ const Apartment = () => {
       area: 92,
       description: "Căn hộ hiện đại, đầy đủ tiện nghi",
       amenities: ["Bể bơi", "Gym", "Bảo vệ 24/7"],
+   
       images: [
         "/api/placeholder/400/200",
         "/api/placeholder/400/200",
@@ -244,9 +249,9 @@ const Apartment = () => {
       <div className="container-wrapper">
         <div className="container">
           {/* Filters */}
-          <div className="filters">
+          <div className="filters">    
+            <span>Sắp xếp theo:</span>
             <div className="filter-item">
-              <span>Sắp xếp theo:</span>
               <select className="filter-select">
                 <option>Kỳ hạn: Tất cả</option>
               </select>
@@ -268,6 +273,14 @@ const Apartment = () => {
               >
                 {/* Image carousel */}
                 <div className="listing-image">
+                  {listing.discount && (
+                    <div className="discount-badge-ap">
+                      -{listing.discount}%
+                    </div>
+                  )}
+                  {listing.soldOut && (
+                    <div className="sold-out-banner">Hết phòng</div>
+                  )}
                   <img
                     src={listing.images[activeImages[listing.id] || 0]}
                     alt={listing.title}

@@ -21,7 +21,13 @@
 
 @media (max-width: 768px) {
   .main-content {
-    max-width: 95%; /* Đặt max-width để giới hạn chiều rộng tối đa */
+    max-width: 100%; /* Đặt max-width để giới hạn chiều rộng tối đa */
+    margin-top: 80px;
+  }
+}
+@media (max-width: 480px) {
+  .main-content {
+    max-width: 100%; /* Đặt max-width để giới hạn chiều rộng tối đa */
     margin-top: 80px;
   }
 }

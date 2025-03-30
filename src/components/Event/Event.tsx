@@ -39,12 +39,12 @@ const Event = () => {
       <div className="event-container">
         <div className="event-title-main">
           <h2>Sự kiện nổi bật</h2>
-          <p>Một số sự kiện nổi bật mà bạn có thể tham khả</p>
+          <p>Một số sự kiện nổi bật mà bạn có thể tham khảo</p>
         </div>
 
         <Carousel
           ref={carouselRef}
-          slidesToShow={3}
+          slidesToShow={window.innerWidth <= 480 ? 1 : 3} // Show 1 image for max-width 480px
           centerMode={false}
           infinite={true}
           dots={true}

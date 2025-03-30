@@ -132,3 +132,34 @@
 .activity span {
   flex: 1; /* Phần mô tả tự động giãn ra */
 }
+
+@media screen and (max-width: 768px) {
+
+}
+
+
+@media screen and (max-width: 480px) {
+
+  .travel-container{
+    width: 100%;
+    max-width: 463px;
+    margin: 0;
+    padding: 0;
+  }
+  .tab-button {
+    width: 100%; /* Để tab trải dài toàn bộ chiều ngang */
+    text-align: center;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr; /* Chỉ hiển thị 1 ảnh trên mỗi hàng */
+  }
+
+  .gallery-grid img {
+    height: auto; /* Để hình ảnh giữ tỷ lệ */
+  }
+
+  .comment-item {
+    font-size: 13px;
+  }
+}

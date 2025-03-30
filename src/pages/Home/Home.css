@@ -1,7 +1,8 @@
-.background-main {
-  height: 1000px;
-  width: 1920px;
+.main-home{
+  max-width: 100vw;
+  overflow: hidden;
 }
+
 .search-bar {
   background-color: antiquewhite;
 }
@@ -193,5 +194,4 @@
 .scrolled-title {
   display: none;
 }
-
 

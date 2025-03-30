@@ -15,6 +15,7 @@ import AboutContact from "./components/AboutList/AboutContact/AboutContact";
 import Coperate from "./components/Coperate/Coperate";
 import { AuthProvider } from "./Context/AuthContext";
 import ExploExper from "./components/ExploExper/ExploExper";
+import DashBroad from "./components/DashBroad/DashBroad";
 
 function App() {
   
@@ -36,6 +37,7 @@ function App() {
           <Route path="/about-us/contact" element={<AboutContact />} />
           <Route path="/coperate" element={<Coperate />} />
           <Route path="/explore&experience" element={<ExploExper />} />
+          <Route path="/dashbroad" element={<DashBroad/>} />
         </Routes>
       </MainLayout>
     </BrowserRouter>

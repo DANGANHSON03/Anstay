@@ -1,6 +1,6 @@
 .tour-detail-container {
   max-width: 1200px;
-  margin: 120px auto;
+  margin: 100px auto;
   padding: 0 20px;
 }
 
@@ -75,4 +75,62 @@
 .contact-button:hover {
   border-color: #40a9ff;
   color: #40a9ff;
+}
+
+@media (max-width: 768px) {
+  .tour-detail-container {
+    margin: 0px auto;
+    padding: 0 8px; /* Giảm padding */
+  }
+
+  .main-image-container {
+    height: 350px; /* Giảm chiều cao ảnh */
+  }
+
+  .tour-info {
+    position: relative; /* Không cần sticky trên mobile */
+    top: 0;
+    padding: 20px;
+  }
+
+  .tour-details {
+    padding: 15px; /* Giảm padding */
+  }
+
+  .tour-details div {
+    font-size: 14px; /* Giảm kích thước font */
+  }
+
+  .tour-price {
+    font-size: 18px !important;
+  }
+
+  .booking-button, .contact-button {
+    height: 45px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* .ant-col-14 {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  } */
+
+  .main-image-container {
+    width: 100%;
+  }
+
+  .thumbnail-container {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    overflow-x: auto;
+  }
+  /* .ant-col-10 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  } */
+
 }

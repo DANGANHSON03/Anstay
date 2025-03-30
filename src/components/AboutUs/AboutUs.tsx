@@ -17,7 +17,10 @@ const AboutUs =( )=>{
                 items.map((item,index)=>(
                     <Link to={item.link} className="item">
                         <img src={item.image} alt="" />
-                        <div className="description">{item.title} <CircleChevronRight size={36} className="icon" /></div>
+                        <div className="description">
+                        <div>{item.title}</div>
+                        <div className="des-icon"><CircleChevronRight size={36} /></div>
+                        </div>
                     </Link>
                 ))
             }

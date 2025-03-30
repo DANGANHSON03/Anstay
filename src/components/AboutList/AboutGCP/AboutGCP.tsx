@@ -14,9 +14,9 @@ const AboutGCP = () => {
     <div>
         <div className="aboutgcp">
             <div className="banner">
-            <div className="banner-img">
+            <div className="banner-img1">
                 <img src="https://crm.flesta.vn//uploads/about_us/Group-Companies.png" alt="" />
-                <div className="banner-des">Nhóm công ty</div>
+                <div className="banner-desg">Nhóm công ty</div>
             </div>
             </div>
             <div className="company-card">

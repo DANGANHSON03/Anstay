@@ -29,11 +29,16 @@
 
 .description{
     position: absolute;
-    bottom: 40px;
+    bottom: 20px;
     left: 40px;
     color:white;
     font-size: 36px;
     font-weight: 500;
+    display: flex;
+}
+.des-icon{
+  margin-left: 10px;
+  margin-top: 8px;
 }
 .description:hover{
     filter: brightness(100%); 
@@ -41,6 +46,42 @@
 }
 
 
-
+@media (max-width: 768px) {
+    .container-about-us {
+      grid-template-columns: 1fr; /* Chuyển về 1 cột */
+      gap: 15px;
+      max-width: 100%; /* Chiếm toàn bộ màn hình */
+      padding: 0 20px;
+    }
+  
+    .item img {
+      width: 100%; /* Ảnh co giãn theo màn hình */
+      height: 250px; /* Giảm chiều cao để cân đối */
+    }
+  
+    .description {
+      font-size: 24px; /* Chữ nhỏ lại */
+      left: 20px;
+      bottom: 20px;
+    }
+  }
+  
+  /* Responsive cho màn hình rất nhỏ (dưới 480px - điện thoại nhỏ) */
+  @media (max-width: 480px) {
+    .container-about-us {
+      margin: 30px auto; /* Giảm khoảng cách trên dưới */
+    }
+   
+  
+    .item img {
+      height: 200px; /* Giảm tiếp chiều cao ảnh */
+    }
+  
+    .description {
+      font-size: 28px;
+      left: 15px;
+      bottom: 15px;
+    }
+  }
 
 

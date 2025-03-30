@@ -246,9 +246,7 @@
     .form-title {
       font-size: 1.25rem;
     }
-    .main-content {
-      margin-bottom: 400px;
-    }
+   
     .contact-info {
       font-size: 0.875rem;
     }
@@ -265,7 +263,8 @@
   
   @media (max-width: 768px) {
     .contact-container {
-      margin-top: 50px;
+      margin-top: 5px;
+   
       margin-bottom: 330px;
     }
   

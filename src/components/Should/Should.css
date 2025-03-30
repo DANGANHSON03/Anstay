@@ -54,3 +54,95 @@
   text-align: center;
 }
 
+@media (max-width: 1024px) {
+  .vtg-container {
+    padding: 30px 15px;
+  }
+
+  .vtg-title {
+    font-size: 1.3rem;
+  }
+
+  .vtg-description {
+    font-size: 14px;
+  }
+
+  .vtg-grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+  }
+
+  .vtg-feature-card {
+    height: 180px;
+  }
+
+  .vtg-icon {
+    font-size: 26px;
+  }
+}
+
+/* Mobile (Dưới 768px) */
+@media (max-width: 768px) {
+  .vtg-container {
+    padding: 20px 10px;
+  }
+
+  .vtg-title {
+    font-size: 1.2rem;
+  }
+
+  .vtg-description {
+    font-size: 14px;
+  }
+
+  .vtg-grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+  }
+
+  .vtg-feature-card {
+    height: 160px;
+    padding: 15px;
+  }
+
+  .vtg-icon {
+    font-size: 24px;
+  }
+}
+
+/* Mobile nhỏ (Dưới 480px) */
+@media (max-width: 480px) {
+  .vtg-container {
+
+    padding: 15px 5px;
+  }
+
+  .vtg-title {
+    font-size: 1rem;
+  }
+
+  .vtg-description {
+    font-size: 13px;
+  }
+
+  .vtg-grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 5px;
+  }
+
+  .vtg-feature-card {
+    height: 200px;
+    padding: 10px;
+  }
+  .vtg-feature-card h3{
+    font-size: 14px;
+  }
+
+  .vtg-feature-card p{
+    font-size: 14px;
+  }
+
+  .vtg-icon {
+    font-size: 22px;
+  }
+}

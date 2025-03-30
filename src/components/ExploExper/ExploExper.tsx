@@ -18,7 +18,7 @@ const categories2 = [
 const ExploExper: React.FC = () => {
   return (
     <>
-    <div className="event-container">
+    <div className="event-container2 ">
       {/* Phần giới thiệu */}
       <div className="event-header">
         <h2>Khám phá sự kiện xã hội</h2>
@@ -40,8 +40,8 @@ const ExploExper: React.FC = () => {
       {/* Lưới danh mục sự kiện */}
       <div className="event-grid">
         {categories.map((category, index) => (
-          <div key={index} className="event-card">
-            <img src={category.image} alt={category.title} className="event-card-1"/>
+          <div key={index} className="event-card event-card-1">
+            <img src={category.image} alt={category.title} />
             <div className="event-card-overlay">
               <h4>{category.title}</h4>
               <RightOutlined className="right-icon"/>
@@ -60,9 +60,10 @@ const ExploExper: React.FC = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div> 
+        <Review />
     </div>
-    <Review />
+ 
     </>
   );
 };

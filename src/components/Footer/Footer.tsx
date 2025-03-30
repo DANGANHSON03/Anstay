@@ -66,9 +66,6 @@ const Footer: React.FC = () => {
                 </a>
               </div>
               <div className="list-item">
-                
-              </div>
-              <div className="list-item">
                 <a href="#">
                   <img
                     src="https://i.ibb.co/dJJsWrtS/3.jpg"
@@ -95,7 +92,7 @@ const Footer: React.FC = () => {
           <div className="footer-right-title">
             <h3>HÌNH THỨC THANH TOÁN</h3>
           </div>
-          <div className="footer-right-img">
+          <div className="footer-right-img ftr-2">
             <img
               src="https://i.ibb.co/1JQm30kz/logo-tp-bank.jpg"
               alt="tpbank"
