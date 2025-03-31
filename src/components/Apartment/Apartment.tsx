@@ -1,213 +1,112 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./Apartment.css";
+
+interface Owner {
+  id: number;
+  name: string;
+  phone: string;
+  email: string;
+  address: string;
+}
+
+interface Image {
+  id: number;
+  apartmentId: number;
+  imageUrl: string;
+  featured: boolean;
+}
+
+interface Apartment {
+  id: number;
+  name: string;
+  location: string;
+  ownerId: number;
+  pricePerDay: number;
+  pricePerMonth: number;
+  discountPercent: number;
+  description: string;
+  maxAdults: number;
+  maxChildren: number;
+  numRooms: number;
+  status: string;
+  owners: Owner[];
+  images: Image[];
+  area: string;
+}
 
 const Apartment = () => {
   const navigate = useNavigate();
-  const [listingData] = useState([
-    {
-      id: 1,
-      title: "Vinhomes Metropolis 3BR",
-      address: "29 Liễu Giai, Ngọc Khánh",
-      district: "Quận Ba Đình",
-      bedrooms: 3,
-      price: 3000,
-      area: 130,
-      description: "Căn hộ cao cấp với view đẹp, nội thất hiện đại",
-      amenities: ["Ban công", "Bảo vệ 24/7", "Bể bơi", "Gym"],
-      discount:10,
-      images: [
-        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
-        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688",
-        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2",
-        "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8",
-        "https://images.unsplash.com/photo-1564078516393-cf04bd966897",
-      ],
-      soldOut: true, // Add soldOut property
-    },
-    {
-      id: 2,
-      title: "T-Place 2BR",
-      address: "30A Lý Thường Kiệt, Hàng Bài",
-      district: "Quận Hoàn Kiếm",
-      bedrooms: 2,
-      price: 2300,
-      area: 72,
-      description: "Căn hộ tiện nghi, gần trung tâm",
-      amenities: ["Thang máy", "Bảo vệ 24/7"],
-      discount:15,
-      images: [
-        "https://images.unsplash.com/photo-1598928506311-c55ded91a20c",
-        "https://images.unsplash.com/photo-1598928636135-d0f224ca81f7",
-        "https://images.unsplash.com/photo-1598928506311-c55ded91a20c",
-        "https://images.unsplash.com/photo-1598928636135-d0f224ca81f7",
-      ],
-      
-    },
-    {
-      id: 3,
-      title: "FLESTA Lancaster Luminaire 3BR",
-      address: "1152 Đường Láng, Láng Thượng",
-      district: "Quận Đống Đa",
-      bedrooms: 2,
-      price: 2100,
-      area: 92,
-      description: "Căn hộ hiện đại, đầy đủ tiện nghi",
-      amenities: ["Bể bơi", "Gym", "Bảo vệ 24/7"],
-      images: [
-        "https://images.unsplash.com/photo-1484154218962-a197022b5858",
-        "https://images.unsplash.com/photo-1507089947368-19c1da9775ae",
-        "https://images.unsplash.com/photo-1502005097973-6a7082348e28",
-        "https://images.unsplash.com/photo-1495433324511-bf8e92934d90",
-      ],
-    },
-    {
-      id: 4,
-      title: "FLESTA Lancaster Luminaire 3BR",
-      address: "1152 Đường Láng, Láng Thượng",
-      district: "Quận Đống Đa",
-      bedrooms: 2,
-      price: 2100,
-      area: 92,
-      description: "Căn hộ hiện đại, đầy đủ tiện nghi",
-      amenities: ["Bể bơi", "Gym", "Bảo vệ 24/7"],
-      images: [
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-      ],
-    },
-    {
-      id: 5,
-      title: "FLESTA Lancaster Luminaire 3BR",
-      address: "1152 Đường Láng, Láng Thượng",
-      district: "Quận Đống Đa",
-      bedrooms: 2,
-      price: 2100,
-      area: 92,
-      description: "Căn hộ hiện đại, đầy đủ tiện nghi",
-      amenities: ["Bể bơi", "Gym", "Bảo vệ 24/7"],
-      images: [
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-      ],
-    },
-    {
-      id: 6,
-      title: "FLESTA Lancaster Luminaire 3BR",
-      address: "1152 Đường Láng, Láng Thượng",
-      district: "Quận Đống Đa",
-      bedrooms: 2,
-      price: 2100,
-      area: 92,
-      description: "Căn hộ hiện đại, đầy đủ tiện nghi",
-      amenities: ["Bể bơi", "Gym", "Bảo vệ 24/7"],
-      images: [
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-      ],
-    },
-    {
-      id: 7,
-      title: "FLESTA Lancaster Luminaire 3BR",
-      address: "1152 Đường Láng, Láng Thượng",
-      district: "Quận Đống Đa",
-      bedrooms: 2,
-      price: 2100,
-      area: 92,
-      description: "Căn hộ hiện đại, đầy đủ tiện nghi",
-      amenities: ["Bể bơi", "Gym", "Bảo vệ 24/7"],
-      images: [
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-      ],
-    },
-    {
-      id: 8,
-      title: "FLESTA Lancaster Luminaire 3BR",
-      address: "1152 Đường Láng, Láng Thượng",
-      district: "Quận Đống Đa",
-      bedrooms: 2,
-      price: 2100,
-      area: 92,
-      description: "Căn hộ hiện đại, đầy đủ tiện nghi",
-      amenities: ["Bể bơi", "Gym", "Bảo vệ 24/7"],
-   
-      images: [
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-      ],
-    },
-    {
-      id: 9,
-      title: "FLESTA Lancaster Luminaire 3BR",
-      address: "1152 Đường Láng, Láng Thượng",
-      district: "Quận Đống Đa",
-      bedrooms: 2,
-      price: 2100,
-      area: 92,
-      description: "Căn hộ hiện đại, đầy đủ tiện nghi",
-      amenities: ["Bể bơi", "Gym", "Bảo vệ 24/7"],
-      images: [
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-      ],
-    },
-    {
-      id: 10,
-      title: "FLESTA Lancaster Luminaire 3BR",
-      address: "1152 Đường Láng, Láng Thượng",
-      district: "Quận Đống Đa",
-      bedrooms: 2,
-      price: 2100,
-      area: 92,
-      description: "Căn hộ hiện đại, đầy đủ tiện nghi",
-      amenities: ["Bể bơi", "Gym", "Bảo vệ 24/7"],
-      images: [
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-        "/api/placeholder/400/200",
-      ],
-    },
-  ]);
+  const location = useLocation();
+  const [listingData, setListingData] = useState<Apartment[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Add new state for current area
+  const [currentArea, setCurrentArea] = useState(
+    location.state?.location || "HA_NOI"
+  );
+
+  useEffect(() => {
+    const fetchApartments = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          `http://localhost:8085/api/apartments/by-area?area=${currentArea}`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch apartments");
+        }
+        const data = await response.json();
+        setListingData(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchApartments();
+  }, [currentArea]); // Add currentArea as dependency
+
+  // Update currentArea when location.state changes
+  useEffect(() => {
+    if (location.state?.location) {
+      setCurrentArea(location.state.location);
+    }
+  }, [location.state?.location]);
+
+  // Update URL when currentArea changes
+  useEffect(() => {
+    // Update URL without causing navigation
+    window.history.replaceState(
+      { location: currentArea },
+      "",
+      window.location.pathname
+    );
+  }, [currentArea]);
+
+  // Modify handleAreaChange to use navigate
+  const handleAreaChange = (area: string) => {
+    navigate("/apartment", { state: { location: area } });
+    setVisibleCount(9);
+    setActiveImages({});
+  };
 
   // State for active image index per listing
-  const [activeImages, setActiveImages] = useState({
-    1: 0,
-    2: 0,
-    3: 0,
-    4: 0,
-    5: 0,
-    6: 0,
-  });
+  const [activeImages, setActiveImages] = useState<{ [key: number]: number }>(
+    {}
+  );
 
   // State for visible listings count (initially show 9)
   const [visibleCount, setVisibleCount] = useState(9);
 
   // Function to navigate images
-  const navigateImage = (listingId, direction) => {
-    const currentIndex = activeImages[listingId];
-    const imagesCount = listingData.find((listing) => listing.id === listingId)
-      .images.length;
+  const navigateImage = (listingId: number, direction: string) => {
+    const currentIndex = activeImages[listingId] || 0;
+    const imagesCount =
+      listingData.find((listing) => listing.id === listingId)?.images.length ||
+      0;
 
     let newIndex;
     if (direction === "next") {
@@ -229,9 +128,14 @@ const Apartment = () => {
   const visibleListings = listingData.slice(0, visibleCount);
 
   // Thay thế hàm openPopup bằng hàm navigate
-  const handleListingClick = (listingId) => {
-    navigate(`/apartment/${listingId}`);
+  const handleListingClick = (listing: Apartment) => {
+    if (listing.status !== "OCCUPIED") {
+      navigate(`/apartment/${listing.id}`);
+    }
   };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div>
@@ -248,8 +152,25 @@ const Apartment = () => {
       </div>
       <div className="container-wrapper">
         <div className="container">
-          {/* Filters */}
-          <div className="filters">    
+          {/* Add area selector */}
+          <div className="filters">
+            <span>Khu vực:</span>
+            <div className="filter-item">
+              <select
+                className="filter-select"
+                value={currentArea}
+                onChange={(e) => handleAreaChange(e.target.value)}
+              >
+                <option value="HA_NOI">Hà Nội</option>
+                <option value="HA_LONG">Hạ Long</option>
+                <option value="DA_NANG">Đà Nẵng</option>
+                <option value="NHA_TRANG">Nha Trang</option>
+                <option value="DA_LAT">Đà Lạt</option>
+                <option value="HO_CHI_MINH">Hồ Chí Minh</option>
+                <option value="PHU_QUOC">Phú Quốc</option>
+              </select>
+            </div>
+            {/* Filters */}
             <span>Sắp xếp theo:</span>
             <div className="filter-item">
               <select className="filter-select">
@@ -268,33 +189,34 @@ const Apartment = () => {
             {visibleListings.map((listing) => (
               <div
                 key={listing.id}
-                className="listing-card"
-                onClick={() => handleListingClick(listing.id)}
+                className={`listing-card ${
+                  listing.status === "OCCUPIED" ? "disabled" : ""
+                }`}
+                onClick={() => handleListingClick(listing)}
+                style={{
+                  cursor:
+                    listing.status === "OCCUPIED" ? "not-allowed" : "pointer",
+                  opacity: listing.status === "OCCUPIED" ? 0.7 : 1,
+                }}
               >
                 {/* Image carousel */}
                 <div className="listing-image">
-                  {listing.discount && (
+                  {listing.discountPercent > 0 && (
                     <div className="discount-badge-ap">
-                      -{listing.discount}%
+                      -{listing.discountPercent}%
                     </div>
                   )}
-                  {listing.soldOut && (
+                  {listing.status !== "AVAILABLE" && (
                     <div className="sold-out-banner">Hết phòng</div>
                   )}
                   <img
-                    src={listing.images[activeImages[listing.id] || 0]}
-                    alt={listing.title}
+                    src={
+                      listing.images[activeImages[listing.id] || 0]?.imageUrl ||
+                      ""
+                    }
+                    alt={listing.name}
                     className="listing-img"
                   />
-                  {/* Favorite button */}
-                  {/* <button
-                    className="favorite-btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                    }}
-                  >
-                    ❤
-                  </button> */}
                   {/* Navigation arrows */}
                   <div className="nav-buttons">
                     <button
@@ -307,7 +229,6 @@ const Apartment = () => {
                       ❮
                     </button>
                     <button
-                     
                       className="nav-btn nav-btn-next"
                       onClick={(e) => {
                         e.stopPropagation();
@@ -340,18 +261,23 @@ const Apartment = () => {
 
                 {/* Content */}
                 <div className="listing-content">
-                  <h3 className="listing-title">{listing.title}</h3>
-                  <div className="listing-address">📍 {listing.address}</div>
-                  <div className="listing-address">📍 {listing.district}</div>
+                  <h3 className="listing-title">{listing.name}</h3>
+                  <div className="listing-address">📍 {listing.location}</div>
+                  <div className="listing-address">📍 {listing.area}</div>
                   <div className="listing-details">
-                    <div className="listing-price">${listing.price}/tháng</div>
+                    <div className="listing-price">
+                      ${listing.pricePerMonth.toLocaleString()}/tháng
+                    </div>
                     <div className="listing-feature">
-                      🛏️ {listing.bedrooms} phòng ngủ
+                      🛏️ {listing.numRooms} phòng ngủ
                     </div>
                   </div>
                   <div className="listing-details">
                     <div></div>
-                    <div className="listing-feature">📏 {listing.area}m²</div>
+                    <div className="listing-feature">
+                      👥 {listing.maxAdults} người lớn, {listing.maxChildren}{" "}
+                      trẻ em
+                    </div>
                   </div>
                 </div>
               </div>

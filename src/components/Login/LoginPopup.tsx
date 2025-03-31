@@ -30,6 +30,13 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onLoginSuccess }) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [registerData, setRegisterData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+  });
   const auth = useContext(AuthContext);
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -81,9 +88,78 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onLoginSuccess }) => {
     }
   };
 
-  const handleRegisterSubmit = (event: React.FormEvent) => {
+  const handleRegisterSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    alert("Đăng ký thành công!"); // Xử lý đăng ký tại đây
+
+    if (registerData.password !== registerData.confirmPassword) {
+      toast.error("❌ Mật khẩu xác nhận không khớp!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      return;
+    }
+
+    try {
+      // Check for existing users
+      const existingUsers = await axios.get("http://localhost:8085/api/users");
+      const users: User[] = existingUsers.data;
+
+      const existingEmail = users.find(
+        (user) => user.email === registerData.email
+      );
+      const existingPhone = users.find(
+        (user) => user.phone === registerData.phone
+      );
+
+      if (existingEmail && existingPhone) {
+        toast.error("❌ Email và số điện thoại đã được sử dụng!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+        return;
+      }
+
+      if (existingEmail) {
+        toast.error("❌ Email đã được sử dụng!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+        return;
+      }
+
+      if (existingPhone) {
+        toast.error("❌ Số điện thoại đã được sử dụng!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+        return;
+      }
+
+      // If no duplicates, proceed with registration
+      const response = await axios.post(
+        "http://localhost:8085/api/users/create",
+        {
+          fullName: registerData.fullName,
+          email: registerData.email,
+          phone: registerData.phone,
+          password: registerData.password,
+        }
+      );
+
+      if (response.status === 200 || response.status === 201) {
+        toast.success("🎉 Đăng ký thành công!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+        setShowRegister(false);
+      }
+    } catch (error) {
+      toast.error("❌ Có lỗi xảy ra khi đăng ký!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      console.error(error);
+    }
   };
 
   const handleForgotPasswordSubmit = (event: React.FormEvent) => {
@@ -157,20 +233,62 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onLoginSuccess }) => {
         ) : showRegister ? (
           <form className="popup-form" onSubmit={handleRegisterSubmit}>
             <label>Tên người dùng *</label>
-            <input type="text" placeholder="Nhập tên người dùng" required />
+            <input
+              type="text"
+              placeholder="Nhập tên người dùng"
+              required
+              value={registerData.fullName}
+              onChange={(e) =>
+                setRegisterData({ ...registerData, fullName: e.target.value })
+              }
+            />
 
             <label>Email *</label>
-            <input type="email" placeholder="Nhập email" required />
+            <input
+              type="email"
+              placeholder="Nhập email"
+              required
+              value={registerData.email}
+              onChange={(e) =>
+                setRegisterData({ ...registerData, email: e.target.value })
+              }
+            />
 
             <label>Số điện thoại *</label>
-            <input type="tel" placeholder="Nhập số điện thoại" required />
+            <input
+              type="tel"
+              placeholder="Nhập số điện thoại"
+              required
+              value={registerData.phone}
+              onChange={(e) =>
+                setRegisterData({ ...registerData, phone: e.target.value })
+              }
+            />
 
             <label>Mật khẩu *</label>
-            <input type="password" placeholder="Nhập mật khẩu" required />
+            <input
+              type="password"
+              placeholder="Nhập mật khẩu"
+              required
+              value={registerData.password}
+              onChange={(e) =>
+                setRegisterData({ ...registerData, password: e.target.value })
+              }
+            />
 
             <label>Xác nhận mật khẩu *</label>
-            <input type="password" placeholder="Xác nhận mật khẩu" required />
-
+            <input
+              type="password"
+              placeholder="Xác nhận mật khẩu"
+              required
+              value={registerData.confirmPassword}
+              onChange={(e) =>
+                setRegisterData({
+                  ...registerData,
+                  confirmPassword: e.target.value,
+                })
+              }
+            />
 
             <button type="submit" className="login-btn">
               Đăng ký
