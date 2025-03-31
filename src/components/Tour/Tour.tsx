@@ -1,39 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "./Tour.css";
 
 const Tour = () => {
   const navigate = useNavigate();
-  const [listingData] = useState([
-    {
-      id: 1,
-      title: "Du lịch Hạ Long 3 ngày 2 đêm",
-      time: "3 ngày 2 đêm",
-      transportation: "Xe bus + Du thuyền",
-      hotel: "Hạ Long Plaza Hotel 5*",
-      price: 2500000,
-      discount: 10, // Thêm thuộc tính discount
-      images: [
-        "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b",
-        "https://images.unsplash.com/photo-1573146500785-c0244c0daae3",
-        "https://images.unsplash.com/photo-1528127269322-539801943592",
-      ],
-    },
-    {
-      id: 2,
-      title: "Tour Sapa - Fansipan 2 ngày",
-      time: "2 ngày 1 đêm",
-      transportation: "Xe limousine",
-      hotel: "Bamboo Sapa Hotel 4*",
-      price: 1800000,
-      discount: 15, // Thêm thuộc tính discount
-      images: [
-        "https://images.unsplash.com/photo-1565953520-b883f6795957",
-        "https://images.unsplash.com/photo-1565953522043-8e75f4b6087f",
-      ],
-    },
-    // ...thêm các tour khác tương tự
-  ]);
+  const location = useLocation();
+  const [listingData, setListingData] = useState([]);
+
+  const formatDuration = (days) => {
+    if (days < 1) {
+      return "Dữ liệu không hợp lệ";
+    }
+    const nights = days - 1;
+    return `${days} ngày ${nights} đêm`;
+  };
+
+  useEffect(() => {
+    const fetchTours = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:8085/api/tours/by-area?area=${location.state?.location}`
+        );
+        const data = await response.json();
+        const transformedData = data.map((tour) => ({
+          id: tour.id,
+          title: tour.name,
+          description: tour.description,
+          time: formatDuration(tour.durationDays),
+          transportation: tour.transportation,
+          hotel: tour.hotel,
+          price: tour.price * 1000,
+          discount: tour.discountPercent,
+          area: tour.area,
+          images: tour.images.map((img) => img.imageUrl) || [
+            "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b", // fallback image
+          ],
+          schedules: tour.schedules,
+        }));
+        setListingData(transformedData);
+      } catch (error) {
+        console.error("Error fetching tours:", error);
+      }
+    };
+
+    if (location.state?.location) {
+      fetchTours();
+    }
+  }, [location.state?.location]);
 
   // State for active image index per listing
   const [activeImages, setActiveImages] = useState({
@@ -117,9 +131,7 @@ const Tour = () => {
               >
                 <div className="listing-image">
                   {listing.discount && (
-                    <div className="discount-badge">
-                      -{listing.discount}%
-                    </div>
+                    <div className="discount-badge">-{listing.discount}%</div>
                   )}
                   <img
                     src={listing.images[activeImages[listing.id] || 0]}

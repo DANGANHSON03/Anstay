@@ -15,11 +15,19 @@ const items: MenuProps["items"] = [
     children: [
       {
         key: "1-1",
-        label: <Link to="/tour">Tour Hà Nội</Link>,
+        label: (
+          <Link to="/tour" state={{ location: "HA_NOI" }}>
+            Tour Hà Nội
+          </Link>
+        ),
       },
       {
         key: "1-2",
-        label: <Link to="/apartment">Căn hộ Hà Nội</Link>,
+        label: (
+          <Link to="/apartment" state={{ location: "HA_NOI" }}>
+            Căn hộ Hà Nội
+          </Link>
+        ),
       },
     ],
   },
@@ -29,11 +37,19 @@ const items: MenuProps["items"] = [
     children: [
       {
         key: "2-1",
-        label: <Link to="/tour">Tour Hạ Long</Link>,
+        label: (
+          <Link to="/tour" state={{ location: "HA_LONG" }}>
+            Tour Hạ Long
+          </Link>
+        ),
       },
       {
         key: "2-2",
-        label: <Link to="/apartment">Căn hộ Hạ Long</Link>,
+        label: (
+          <Link to="/apartment" state={{ location: "HA_LONG" }}>
+            Căn hộ Hạ Long
+          </Link>
+        ),
       },
     ],
   },
@@ -102,7 +118,12 @@ const Header: React.FC = () => {
 
   return (
     <header className="header">
-      {navActive && <div className="header-nav-overlay active" onClick={() => setNavActive(false)}></div>}
+      {navActive && (
+        <div
+          className="header-nav-overlay active"
+          onClick={() => setNavActive(false)}
+        ></div>
+      )}
       <div className="header-container">
         <div className="header-logo-container">
           <Link to="/">
@@ -174,7 +195,7 @@ const Header: React.FC = () => {
             <Dropdown
               menu={{ items }}
               overlayClassName="ant-dropdown" // Add a custom class for styling
-              trigger={['hover']} // Change trigger to hover
+              trigger={["hover"]} // Change trigger to hover
               placement="bottomLeft" // Ensure dropdown is placed below
             >
               <a>
