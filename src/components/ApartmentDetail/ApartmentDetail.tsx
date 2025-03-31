@@ -68,7 +68,7 @@ const ApartmentDetail = () => {
   return (
     <div className="apartment-detail-container">
       <Row gutter={[24, 24]}>
-        <Col span={14}>
+        <Col span={14} xs={24} md={14}  >
           <div className="main-image-container">
             <img
               src={listing.images[currentImageIndex]}
@@ -98,7 +98,7 @@ const ApartmentDetail = () => {
           </div>
         </Col>
 
-        <Col span={10}>
+        <Col span={10} xs={24} md={10}>
           <div className="booking-form">
             <Title level={3}>Thông tin liên hệ</Title>
             <Form layout="vertical">

@@ -222,3 +222,79 @@
   color: #333;
   font-weight: 500;
 }
+
+@media (max-width: 480px) {
+  .apartment-detail-container {
+    max-width: 480px;
+    width: 100%;
+    margin: 0;
+  }
+
+  .main-image-container {
+    height: 180px;
+  }
+
+  .nav-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .thumbnail {
+    width: 70px;
+    height: 50px;
+  }
+
+  .apartment-info {
+    flex-direction: column;
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .apartment-info div {
+    font-size: 13px;
+  }
+
+  .features {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .features span {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .amenities-list {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+  }
+
+  .amenities-list div {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .booking-card {
+    position: relative;
+    padding: 12px;
+    box-shadow: none;
+  }
+
+  .booking-summary {
+    padding: 10px;
+  }
+
+  .booking-detail {
+    font-size: 13px;
+  }
+
+  .booking-detail.total {
+    font-size: 15px;
+  }
+
+  .ant-btn-primary {
+    height: 38px;
+    font-size: 13px;
+  }
+}
