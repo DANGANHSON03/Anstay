@@ -10,7 +10,6 @@
   height: 450px;
   border-radius: 12px;
   overflow: hidden;
-
 }
 
 .main-image {
@@ -78,6 +77,14 @@
   color: #40a9ff;
 }
 
+/* Remove these schedule-related styles */
+.schedule-section,
+.schedule-day,
+.schedule-details,
+.schedule-detail-item {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .tour-detail-container {
     margin: 0px auto;
@@ -106,7 +113,8 @@
     font-size: 18px !important;
   }
 
-  .booking-button, .contact-button {
+  .booking-button,
+  .contact-button {
     height: 45px;
     font-size: 16px;
   }
@@ -133,5 +141,4 @@
     flex: 0 0 100% !important;
     max-width: 100% !important;
   } */
-
 }

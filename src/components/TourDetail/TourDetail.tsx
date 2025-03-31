@@ -1,20 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import {
-  Typography,
-  Row,
-  Col,
-  Button,
-  Form,
-  Input,
-  DatePicker,
-  InputNumber,
-  Modal,
-} from "antd";
+import { Typography, Row, Col, Button, Form, Input, Modal } from "antd";
 import "./TourDetail.css";
 import TravelDescription from "../TravelDescription/TravelDescription";
 
 const { Title, Text } = Typography;
+
+interface Image {
+  id: number;
+  tourId: number;
+  imageUrl: string;
+  isFeatured: boolean;
+  featured: boolean;
+}
+
+interface TourDataType {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  durationDays: number;
+  discountPercent: number;
+  createdAt: string;
+  images: Image[];
+  area: string;
+  transportation: string;
+  hotel: string;
+}
 
 const TourDetail = () => {
   const { id } = useParams();
@@ -22,32 +34,25 @@ const TourDetail = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isContactModalVisible, setIsContactModalVisible] = useState(false);
   const [form] = Form.useForm();
+  const [tourData, setTourData] = useState<TourDataType | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(true);
 
-  // Giả lập dữ liệu tour, sau này sẽ lấy từ API dựa trên id
-  const tourData = {
-    id: 1,
-    title: "Du lịch Hạ Long 3 ngày 2 đêm",
-    time: "3 ngày 2 đêm",
-    transportation: "Xe bus + Du thuyền",
-    hotel: "Hạ Long Plaza Hotel 5*",
-    price: 2500000,
-    description:
-      "Hạ Long là điểm đến nổi tiếng với vẻ đẹp kỳ vĩ của hàng nghìn hòn đảo đá vôi và hang động tuyệt đẹp. Tour du lịch Hạ Long 3 ngày 2 đêm sẽ đưa bạn khám phá Vịnh Hạ Long - Di sản thiên nhiên thế giới được UNESCO công nhận, trải nghiệm đêm nghỉ trên du thuyền sang trọng, thưởng thức hải sản tươi ngon và tham gia nhiều hoạt động thú vị như chèo thuyền kayak, tập tai chi buổi sáng trên boong tàu, học nấu ăn món ăn Việt Nam...",
-    highlights: [
-      "Ngắm bình minh và hoàng hôn tuyệt đẹp trên Vịnh Hạ Long",
-      "Khám phá hang Sửng Sốt - một trong những hang động đẹp nhất vịnh",
-      "Leo núi và ngắm toàn cảnh vịnh từ đỉnh đảo Ti Tốp",
-      "Trải nghiệm đêm nghỉ trên du thuyền 5 sao giữa vịnh",
-      "Học nấu các món ăn truyền thống Việt Nam",
-      "Thưởng thức buffet hải sản tươi ngon",
-      "Tham gia hoạt động chèo thuyền kayak khám phá các hang động",
-    ],
-    images: [
-      "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b",
-      "https://vcdn1-dulich.vnecdn.net/2022/05/07/vinhHaLongQuangNinh-1651912066-8789-1651932294.jpg?w=0&h=0&q=100&dpr=2&fit=crop&s=bAYE9-ifwt-9mB2amIjnqg",
-      "https://images.unsplash.com/photo-1528127269322-539801943592",
-    ],
-  };
+  useEffect(() => {
+    const fetchTourData = async () => {
+      try {
+        const response = await fetch(`http://localhost:8085/api/tours/${id}`);
+        const data = await response.json();
+        setTourData(data[0]); // Assuming the API returns an array with one tour
+      } catch (error) {
+        console.error("Error fetching tour data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTourData();
+  }, [id]);
 
   const handleNextImage = () => {
     setCurrentImageIndex((prev) =>
@@ -75,14 +80,22 @@ const TourDetail = () => {
     setIsContactModalVisible(false);
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!tourData) {
+    return <div>Tour not found</div>;
+  }
+
   return (
     <div className="tour-detail-container">
       <Row gutter={[24, 24]} className="row-tour-details">
         <Col span={14} xs={24} md={14} className="col-tour-details">
           <div className="main-image-container">
             <img
-              src={tourData.images[currentImageIndex]}
-              alt={tourData.title}
+              src={tourData.images[currentImageIndex]?.imageUrl}
+              alt={tourData.name}
               className="main-image"
             />
             <button className="nav-btn prev" onClick={handlePrevImage}>
@@ -102,7 +115,7 @@ const TourDetail = () => {
                 }`}
                 onClick={() => setCurrentImageIndex(index)}
               >
-                <img src={image} alt={`Thumbnail ${index + 1}`} />
+                <img src={image.imageUrl} alt={`Thumbnail ${index + 1}`} />
               </div>
             ))}
           </div>
@@ -112,20 +125,26 @@ const TourDetail = () => {
           <div className="tour-info">
             <Title level={3}>Thông tin Tour</Title>
             <div className="tour-details">
-              <Title level={2}>{tourData.title}</Title>
-              <div>⏱️ {tourData.time}</div>
+              <Title level={2}>{tourData.name}</Title>
+              <div>⏱️ {tourData.durationDays} ngày</div>
               <div>🚗 {tourData.transportation}</div>
               <div>🏨 {tourData.hotel}</div>
               <div className="tour-price">
                 💰 {tourData.price.toLocaleString("vi-VN")}đ/người
               </div>
+              {tourData.discountPercent > 0 && (
+                <div className="discount">
+                  Giảm giá: {tourData.discountPercent}%
+                </div>
+              )}
               <Button
                 type="primary"
                 size="large"
                 className="booking-button"
                 onClick={handleBooking}
+                disabled={isDisabled}
               >
-                Đặt Tour
+                {isDisabled ? "Đặt Tour" : "Đặt Tour"}
               </Button>
               <p>
                 Hoặc Quý khách có thể để lại thông tin liên hệ điện thoại chúng
@@ -143,7 +162,8 @@ const TourDetail = () => {
           </div>
         </Col>
       </Row>
-      <TravelDescription />
+
+      <TravelDescription description={tourData.description} />
 
       <Modal
         title="Để lại thông tin liên hệ"
