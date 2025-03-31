@@ -95,6 +95,10 @@ const Header: React.FC = () => {
     setNavActive(!navActive);
   };
 
+  const toggleUserMenu = () => {
+    setUserMenuActive(!userMenuActive); // Toggle dropdown on click
+  };
+
   const handleClickOutside = (event: MouseEvent) => {
     if (
       navRef.current &&
@@ -157,14 +161,12 @@ const Header: React.FC = () => {
               <Link to="#">Chuyến đi của tôi</Link>
             </div>
             <div
-              className="user-menu"
+              className={`user-menu ${userMenuActive ? "active" : ""}`} // Add active class when dropdown is open
               ref={userMenuRef}
-              onMouseEnter={() => setUserMenuActive(true)} // Show dropdown on hover
-              onMouseLeave={() => setUserMenuActive(false)} // Hide dropdown when not hovering
             >
               {loggedInFullname ? (
                 <div>
-                  <div className="user-info">
+                  <div className="user-info" onClick={toggleUserMenu}>
                     <UserRound size={18} className="header-icon" />
                     <span className="user-fullname">{loggedInFullname}</span>
                   </div>

@@ -192,6 +192,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden; /* Để tránh ảnh bị tràn ra ngoài */
+  margin-top: 100px;
 }
 
 .img-top-apart {
@@ -461,7 +462,7 @@
   }
 
   .apart-top{
-   
+   margin-top: 0;
   }
   .listings-grid {
       grid-template-columns: 1fr;
