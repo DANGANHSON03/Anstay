@@ -162,17 +162,15 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onLoginSuccess }) => {
             <label>Email *</label>
             <input type="email" placeholder="Nhập email" required />
 
+            <label>Số điện thoại *</label>
+            <input type="tel" placeholder="Nhập số điện thoại" required />
+
             <label>Mật khẩu *</label>
             <input type="password" placeholder="Nhập mật khẩu" required />
 
             <label>Xác nhận mật khẩu *</label>
             <input type="password" placeholder="Xác nhận mật khẩu" required />
 
-            <label>Ngày tháng năm sinh *</label>
-            <input type="date" required onKeyDown={(e) => e.preventDefault()} />
-
-            <label>Địa chỉ *</label>
-            <input type="text" placeholder="Nhập địa chỉ" required />
 
             <button type="submit" className="login-btn">
               Đăng ký
