@@ -77,7 +77,7 @@
 
 .user-menu .dropdown {
   display: none;
-  position: absolute;
+  position: absolute; /* Ensure dropdown is positioned absolutely */
   top: 100%;
   right: 0;
   background: white;
@@ -88,7 +88,7 @@
 
 .user-menu.active .dropdown {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Ensure dropdown items stack vertically */
 }
 
 .header-nav .ant-dropdown {
@@ -130,9 +130,11 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px; /* Adjust font size */
-  margin: 0; /* Remove any default margin */
+  margin: 3px; /* Remove any default margin */
   line-height: 1; /* Ensure consistent height */
   vertical-align: middle; /* Align with other elements */
+  width:150px;
+  height: 35px;
 }
 
 .btn-login:hover {
@@ -214,6 +216,11 @@
 
 /* Responsive cho màn hình rất nhỏ (dưới 480px) */
 @media (max-width: 480px) {
+  .header {
+    height: auto; /* Allow the header to expand based on content */
+    padding-bottom: 20px; /* Add padding to ensure dropdown visibility */
+  }
+
   .header-container {
     display: flex;
     justify-content: space-between;
@@ -237,7 +244,7 @@
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .header-nav-container.active {
@@ -308,10 +315,28 @@
 
   .dropdown .btn-login {
     width: 100%; /* Ensure buttons span the full width */
+    padding: 0;
+    margin: 0;
   }
 
   .user-fullname{
 
     margin-left: 25px;
+  }
+
+  .user-menu .dropdown {
+    width: 141%; /* Ensure dropdown spans the full width */
+    position: absolute; /* Prevent pushing elements down */
+    top: 124%; /* Position below user-info */
+    right: -60px;
+    margin-top: 5px; /* Add spacing below user-info */
+  }
+  .dropdown a{
+    padding: 5px 10px;
+  }
+
+  .user-menu.active .dropdown {
+    display: flex; /* Ensure dropdown is visible */
+    flex-direction: column; /* Stack items vertically */
   }
 }

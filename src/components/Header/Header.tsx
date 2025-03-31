@@ -177,12 +177,13 @@ const Header: React.FC = () => {
                           Thông tin cá nhân
                         </button>
                       </Link>
-                      <button
+                      <Link to="#"> <button
                         onClick={handleLogout}
                         className="btn-login logout-btn"
                       >
                         Đăng xuất
-                      </button>
+                      </button></Link>
+                     
                     </div>
                   )}
                 </div>
