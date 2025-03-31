@@ -60,7 +60,8 @@ const Header: React.FC = () => {
   const handleLogout = () => {
     auth.logout();
     localStorage.removeItem("user");
-    setLoggedInFullname(null);
+    setLoggedInFullname(null); // Ensure loggedInFullname is reset
+    setUserMenuActive(false); // Close the dropdown after logout
   };
 
   const handleSignInClick = () => {
@@ -140,24 +141,32 @@ const Header: React.FC = () => {
               onMouseEnter={() => setUserMenuActive(true)} // Show dropdown on hover
               onMouseLeave={() => setUserMenuActive(false)} // Hide dropdown when not hovering
             >
-              <div className="user-info">
-                <UserRound size={18} className="header-icon" />
-                <span className="user-fullname">{loggedInFullname}</span>
-              </div>
-              {userMenuActive && (
-                <div className="dropdown">
-                  <Link to="/dashbroad">
-                    <button className="btn-login information-btn">
-                      Thông tin cá nhân
-                    </button>
-                  </Link>
-                  <button
-                    onClick={handleLogout}
-                    className="btn-login logout-btn"
-                  >
-                    Đăng xuất
-                  </button>
+              {loggedInFullname ? (
+                <div>
+                  <div className="user-info">
+                    <UserRound size={18} className="header-icon" />
+                    <span className="user-fullname">{loggedInFullname}</span>
+                  </div>
+                  {userMenuActive && (
+                    <div className="dropdown">
+                      <Link to="/dashbroad">
+                        <button className="btn-login information-btn">
+                          Thông tin cá nhân
+                        </button>
+                      </Link>
+                      <button
+                        onClick={handleLogout}
+                        className="btn-login logout-btn"
+                      >
+                        Đăng xuất
+                      </button>
+                    </div>
+                  )}
                 </div>
+              ) : (
+                <button className="btn-login" onClick={handleSignInClick}>
+                  Đăng nhập
+                </button>
               )}
             </div>
           </div>
