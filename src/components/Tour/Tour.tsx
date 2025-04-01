@@ -19,9 +19,11 @@ const Tour = () => {
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:8085/api/tours/by-area?area=${location.state?.location}`
-        );
+        const apiUrl = location.state?.location
+          ? `http://localhost:8085/api/tours/by-area?area=${location.state.location}`
+          : "http://localhost:8085/api/tours";
+
+        const response = await fetch(apiUrl);
         const data = await response.json();
         const transformedData = data.map((tour) => ({
           id: tour.id,
@@ -44,9 +46,7 @@ const Tour = () => {
       }
     };
 
-    if (location.state?.location) {
-      fetchTours();
-    }
+    fetchTours();
   }, [location.state?.location]);
 
   // State for active image index per listing

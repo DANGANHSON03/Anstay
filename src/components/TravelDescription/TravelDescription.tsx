@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Tabs, Card, Form, Input, Button, message } from "antd";
 import "./TravelDescription.css";
 import { Avatar, List } from "antd";
@@ -88,6 +88,7 @@ const TravelDescription = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [form] = Form.useForm();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTourData = async () => {
@@ -120,7 +121,12 @@ const TravelDescription = () => {
           return { ...comment, user: userData };
         })
       );
-      setComments(commentsWithUser);
+      // Sort comments by date, newest first
+      const sortedComments = commentsWithUser.sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+      setComments(sortedComments);
     } catch (error) {
       console.error("Error fetching comments:", error);
     }
@@ -171,11 +177,30 @@ const TravelDescription = () => {
   };
 
   useEffect(() => {
-    const userJson = localStorage.getItem("user");
-    if (userJson) {
-      setCurrentUser(JSON.parse(userJson));
-    }
+    const checkUser = () => {
+      const userJson = localStorage.getItem("user");
+      if (userJson) {
+        setCurrentUser(JSON.parse(userJson));
+      } else {
+        setCurrentUser(null);
+      }
+    };
+
+    checkUser();
+    // Add event listener for storage changes
+    window.addEventListener("storage", checkUser);
+
+    return () => {
+      window.removeEventListener("storage", checkUser);
+    };
   }, []);
+
+  const handleLoginClick = () => {
+    const currentPath = window.location.pathname + window.location.search;
+    console.log("Saving return URL:", currentPath);
+    localStorage.setItem("returnUrl", currentPath);
+    window.location.href = "/login";
+  };
 
   if (!tour) {
     return <div>Loading...</div>;
@@ -214,34 +239,43 @@ const TravelDescription = () => {
           key="2"
         >
           <Card className="travel-card">
-            <List
-              itemLayout="horizontal"
-              dataSource={comments}
-              renderItem={(item) => (
-                <List.Item>
-                  <List.Item.Meta
-                    avatar={
-                      <Avatar
-                        src={item.user?.avatar || "https://defaultavatar.com"}
-                      />
-                    }
-                    title={
-                      <>
-                        <span className="list-title">
-                          {item.user?.fullName}
-                          {/* sử dụng username thay vì fullName */}
-                        </span>{" "}
-                        <span className="list-date">
-                          {dayjs(item.createdAt).format("DD/MM/YYYY")}
-                        </span>
-                      </>
-                    }
-                    description={item.comment}
-                    className="custom-meta"
-                  />
-                </List.Item>
-              )}
-            />
+            <div
+              style={{
+                height: "400px",
+                overflowY: "auto",
+                marginBottom: "20px",
+                display: "flex",
+                flexDirection: "column-reverse",
+              }}
+            >
+              <List
+                itemLayout="horizontal"
+                dataSource={comments}
+                renderItem={(item) => (
+                  <List.Item>
+                    <List.Item.Meta
+                      avatar={
+                        <Avatar
+                          src={item.user?.avatar || "https://defaultavatar.com"}
+                        />
+                      }
+                      title={
+                        <>
+                          <span className="list-title">
+                            {item.user?.fullName}
+                          </span>{" "}
+                          <span className="list-date">
+                            {dayjs(item.createdAt).format("DD/MM/YYYY")}
+                          </span>
+                        </>
+                      }
+                      description={item.comment}
+                      className="custom-meta"
+                    />
+                  </List.Item>
+                )}
+              />
+            </div>
             {currentUser ? (
               <Form form={form} onFinish={handleSubmitComment}>
                 <Form.Item
@@ -262,11 +296,24 @@ const TravelDescription = () => {
                 </Form.Item>
               </Form>
             ) : (
-              <div style={{ textAlign: "center", padding: "20px" }}>
-                <p>Vui lòng đăng nhập để bình luận</p>
-                <Button type="primary">
-                  <a href="/login"> Đăng nhập</a>
-                </Button>
+              <div
+                style={{
+                  textAlign: "center",
+                  padding: "30px 20px",
+                  background: "#f5f5f5",
+                  borderRadius: "8px",
+                  margin: "20px 0",
+                }}
+              >
+                <h3
+                  style={{
+                    marginBottom: "15px",
+                    color: "#595959",
+                    fontSize: "16px",
+                  }}
+                >
+                  Vui lòng đăng nhập để chia sẻ ý kiến của bạn
+                </h3>
               </div>
             )}
           </Card>

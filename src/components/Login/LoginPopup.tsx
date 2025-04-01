@@ -51,39 +51,28 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onLoginSuccess }) => {
 
       if (user && user.role === "USER") {
         const userData = {
-          ...user,
-          password: undefined, // Remove password before storing
+          id: user.id,
+          fullName: user.fullName,
+          email: user.email,
+          role: user.role,
         };
 
-        localStorage.setItem("user", JSON.stringify(userData));
         if (auth) {
           auth.login(userData);
           onLoginSuccess(userData.fullName);
+          // Dispatch custom event
+          window.dispatchEvent(new Event("userLogin"));
           toast.success("🎉 Đăng nhập thành công!", {
             position: "top-right",
             autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
           });
-          setTimeout(() => onClose(), 1000); // Close after 1s
+          setTimeout(() => onClose(), 1000);
         }
       } else {
-        toast.error(
-          "❌ Sai email hoặc mật khẩu hoặc không có quyền truy cập!",
-          {
-            position: "top-right",
-            autoClose: 3000,
-          }
-        );
+        toast.error("❌ Sai email hoặc mật khẩu hoặc không có quyền truy cập!");
       }
     } catch (error) {
-      toast.error("❌ Có lỗi xảy ra khi đăng nhập!", {
-        position: "top-right",
-        autoClose: 3000,
-      });
+      toast.error("❌ Có lỗi xảy ra khi đăng nhập!");
       console.error(error);
     }
   };

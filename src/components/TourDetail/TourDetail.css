@@ -2,6 +2,13 @@
   max-width: 1200px;
   margin: 100px auto;
   padding: 0 20px;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  pointer-events: auto;
 }
 
 .main-image-container {
@@ -28,6 +35,14 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 100px;
+  user-select: none;
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  -o-user-select: none !important;
+  user-select: none !important;
+  pointer-events: auto !important;
 }
 
 .tour-details {
@@ -38,6 +53,14 @@
   padding: 20px;
   background: #f8f9fa;
   border-radius: 12px;
+  user-select: none;
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  -o-user-select: none !important;
+  user-select: none !important;
+  pointer-events: auto !important;
 }
 
 .tour-details div {
@@ -46,12 +69,26 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  -o-user-select: none !important;
+  user-select: none !important;
+  pointer-events: auto !important;
 }
 
 .tour-price {
   font-size: 20px !important;
   font-weight: bold;
   color: #e65100 !important;
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  -o-user-select: none !important;
+  user-select: none !important;
+  pointer-events: auto !important;
 }
 
 .booking-button {
@@ -141,4 +178,14 @@
     flex: 0 0 100% !important;
     max-width: 100% !important;
   } */
+}
+
+.ant-typography {
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  -o-user-select: none !important;
+  user-select: none !important;
+  pointer-events: auto !important;
 }

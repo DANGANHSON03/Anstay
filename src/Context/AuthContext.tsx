@@ -1,43 +1,38 @@
-import { createContext, useState, ReactNode, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
-// 1. Định nghĩa kiểu dữ liệu của user
 interface User {
+  id: number;
+  fullName: string;
   email: string;
-  avatar?: string; // Có thể thêm ảnh đại diện sau này
+  role: string;
 }
 
-// 2. Định nghĩa kiểu dữ liệu cho AuthContext
 interface AuthContextType {
   user: User | null;
   login: (user: User) => void;
   logout: () => void;
 }
 
-// 3. Tạo Context với giá trị mặc định ban đầu là null
 export const AuthContext = createContext<AuthContextType | null>(null);
 
-// 4. Provider quản lý trạng thái đăng nhập
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
-
-  // 5. Kiểm tra LocalStorage khi load trang
-  useEffect(() => {
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [user, setUser] = useState<User | null>(() => {
     const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser)); // Chuyển từ JSON về object
-    }
-  }, []);
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
-  // 6. Hàm đăng nhập: lưu user vào state & LocalStorage
-  const login = (user: User) => {
-    localStorage.setItem("user", JSON.stringify(user));
-    setUser(user);
+  const login = (userData: User) => {
+    setUser(userData);
+    localStorage.setItem("user", JSON.stringify(userData));
+    // Dispatch custom event
+    window.dispatchEvent(new Event("userLogin"));
   };
 
-  // 7. Hàm đăng xuất: xóa user khỏi state & LocalStorage
   const logout = () => {
-    localStorage.removeItem("user");
     setUser(null);
+    localStorage.removeItem("user");
+    // Dispatch custom event
+    window.dispatchEvent(new Event("userLogout"));
   };
 
   return (

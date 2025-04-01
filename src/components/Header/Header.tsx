@@ -63,6 +63,8 @@ const Header: React.FC = () => {
   const navRef = useRef<HTMLDivElement>(null);
   const hamburgerRef = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null); // Ref for user-menu dropdown
+  const [userName, setUserName] = useState<string>("");
+  const [loggedInUser, setLoggedInUser] = useState<any>(null);
 
   if (!auth) return null;
 
@@ -73,11 +75,42 @@ const Header: React.FC = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const userData = JSON.parse(storedUser);
+      setUserName(userData.fullName);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Check for user data when component mounts and when auth.user changes
+    const checkUserLogin = () => {
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        const userData = JSON.parse(storedUser);
+        setLoggedInUser(userData);
+        setLoggedInFullname(userData.fullName);
+      } else {
+        setLoggedInUser(null);
+        setLoggedInFullname(null);
+      }
+    };
+
+    checkUserLogin();
+    // Add event listener for storage changes
+    window.addEventListener("storage", checkUserLogin);
+
+    return () => {
+      window.removeEventListener("storage", checkUserLogin);
+    };
+  }, [auth.user]);
+
   const handleLogout = () => {
     auth.logout();
-    localStorage.removeItem("user");
-    setLoggedInFullname(null); // Ensure loggedInFullname is reset
-    setUserMenuActive(false); // Close the dropdown after logout
+    setLoggedInUser(null);
+    setLoggedInFullname(null);
+    setUserMenuActive(false);
   };
 
   const handleSignInClick = () => {
@@ -177,13 +210,15 @@ const Header: React.FC = () => {
                           Thông tin cá nhân
                         </button>
                       </Link>
-                      <Link to="#"> <button
-                        onClick={handleLogout}
-                        className="btn-login logout-btn"
-                      >
-                        Đăng xuất
-                      </button></Link>
-                     
+                      <Link to="#">
+                        {" "}
+                        <button
+                          onClick={handleLogout}
+                          className="btn-login logout-btn"
+                        >
+                          Đăng xuất
+                        </button>
+                      </Link>
                     </div>
                   )}
                 </div>
@@ -221,6 +256,7 @@ const Header: React.FC = () => {
           onLoginSuccess={handleLoginSuccess}
         />
       )}
+      {userName && <span>{userName}</span>}
     </header>
   );
 };

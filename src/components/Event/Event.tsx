@@ -31,7 +31,7 @@ const Event = () => {
 
   const handleGoToEvent = () => {
     const eventName = images[currentIndex].name;
-    navigate(`/event?name=${eventName}`);
+    navigate("/tour");
   };
 
   return (
