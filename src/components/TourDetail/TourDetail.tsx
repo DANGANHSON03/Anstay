@@ -37,6 +37,7 @@ const TourDetail = () => {
   const [tourData, setTourData] = useState<TourDataType | null>(null);
   const [loading, setLoading] = useState(true);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [submitLoading, setSubmitLoading] = useState(false);
 
   useEffect(() => {
     const fetchTourData = async () => {
@@ -74,10 +75,43 @@ const TourDetail = () => {
     setIsContactModalVisible(true);
   };
 
-  const handleContactSubmit = (values: any) => {
-    console.log("Contact form values:", values);
-    form.resetFields();
-    setIsContactModalVisible(false);
+  const handleContactSubmit = async (values: any) => {
+    setSubmitLoading(true);
+    try {
+      const response = await fetch(
+        `http://localhost:8085/api/tours/${id}/contact`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: values.name,
+            email: values.email,
+            phone: values.phone,
+            message: values.note,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        Modal.success({
+          title: "Thành công",
+          content: "Thông tin của bạn đã được gửi thành công!",
+        });
+        form.resetFields();
+        setIsContactModalVisible(false);
+      } else {
+        throw new Error("Failed to submit");
+      }
+    } catch (error) {
+      Modal.error({
+        title: "Lỗi",
+        content: "Có lỗi xảy ra khi gửi thông tin. Vui lòng thử lại!",
+      });
+    } finally {
+      setSubmitLoading(false);
+    }
   };
 
   if (loading) {
@@ -202,7 +236,12 @@ const TourDetail = () => {
             <Input.TextArea rows={4} />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" block>
+            <Button
+              type="primary"
+              htmlType="submit"
+              block
+              loading={submitLoading}
+            >
               Gửi thông tin
             </Button>
           </Form.Item>
