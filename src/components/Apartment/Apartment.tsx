@@ -320,12 +320,8 @@ const Apartment = () => {
                       className="listing-price"
                       style={{ textAlign: "left", width: "100%" }}
                     >
-                      <div>
-                        📅 Theo ngày: {listing.pricePerDay.toLocaleString()} VNĐ
-                      </div>
-                      <div>
-                        📅 Theo tháng: {listing.pricePerMonth.toLocaleString()}{" "}
-                        VNĐ
+                      <div style={{textAlign:"center"}}>
+                        {listing.pricePerDay.toLocaleString()} ~{listing.pricePerMonth.toLocaleString()} VNĐ/Ngày
                       </div>
                     </div>
                   </div>

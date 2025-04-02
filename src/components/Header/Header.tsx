@@ -315,7 +315,7 @@ const Header: React.FC = () => {
             </div>
             <Link to="/coperate">Hợp tác</Link>
             <Link to="/about-us">Thông tin về chúng tôi</Link>
-            <Link to="#">Hướng dẫn</Link>
+            <Link to="/food">Ẩm thực</Link>
             <Link to="/explore&experience">Khám phá & Trải nghiệm</Link>
           </div>
         </div>

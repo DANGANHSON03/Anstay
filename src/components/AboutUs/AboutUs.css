@@ -4,7 +4,7 @@
     gap: 10px; 
     place-content: center;
     max-width: 900px;
-    margin: 130px auto;
+    margin: 130px auto 30px auto;
    
 }
 .item {

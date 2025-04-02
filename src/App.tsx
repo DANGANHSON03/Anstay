@@ -17,7 +17,7 @@ import { AuthProvider } from "./Context/AuthContext";
 import ExploExper from "./components/ExploExper/ExploExper";
 import DashBroad from "./components/DashBroad/DashBroad";
 import LoginPopup from "./components/Login/LoginPopup";
-
+import Food from "./components/Food/Food"
 function App() {
   return (
     <AuthProvider>
@@ -38,6 +38,7 @@ function App() {
             <Route path="/coperate" element={<Coperate />} />
             <Route path="/explore&experience" element={<ExploExper />} />
             <Route path="/dashbroad" element={<DashBroad />} />
+            <Route path="/food" element={<Food/>}/>
             <Route path="/login" element={<LoginPopup />} />
             {/* Add more routes as needed */}
           </Routes>
