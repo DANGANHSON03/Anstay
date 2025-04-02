@@ -153,6 +153,16 @@ const Header: React.FC = () => {
     };
   }, []);
 
+  const [isMobile, setIsMobile] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 480);
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <header className="header">
       {navActive && (
@@ -202,6 +212,7 @@ const Header: React.FC = () => {
                   <div className="user-info" onClick={toggleUserMenu}>
                     <UserRound size={18} className="header-icon" />
                     <span className="user-fullname">{loggedInFullname}</span>
+                    <DownOutlined />
                   </div>
                   {userMenuActive && (
                     <div className="dropdown">
@@ -230,7 +241,7 @@ const Header: React.FC = () => {
             </div>
           </div>
           <div className="header-nav">
-            <Dropdown
+            {/* <Dropdown
               menu={{ items }}
               overlayClassName="ant-dropdown" // Add a custom class for styling
               trigger={["hover"]} // Change trigger to hover
@@ -242,7 +253,48 @@ const Header: React.FC = () => {
                   <DownOutlined />
                 </Space>
               </a>
-            </Dropdown>
+            </Dropdown> */}
+            <div className={isMobile ? "dropdown-container mobile" : "dropdown-container"}>
+      {isMobile ? (
+        <div className="dropdown-mobile">
+          <button onClick={() => setOpen(!open)} className="dropdown-btn">
+            Tour và căn hộ <DownOutlined />
+          </button>
+          {open && (
+            <ul className="dropdown-menu">
+              {items.map((item) => (
+                <li key={item.key} className="dropdown-item">
+                  <button
+                    className="dropdown-submenu-btn"
+                    onClick={() => setOpenSubMenu(openSubMenu === item.key ? null : item.key)}
+                  >
+                    {item.label} <DownOutlined />
+                  </button>
+                  {openSubMenu === item.key && (
+                    <ul className="dropdown-submenu">
+                      {item.children?.map((subItem) => (
+                        <li key={subItem.key} className="dropdown-submenu-item">
+                          {subItem.label}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ) : (
+        <Dropdown menu={{ items }} trigger={["hover"]} placement="bottomLeft">
+          <a className="dropdown-link">
+            <Space>
+              Tour và căn hộ
+              <DownOutlined />
+            </Space>
+          </a>
+        </Dropdown>
+      )}
+    </div>
             <Link to="/coperate">Hợp tác</Link>
             <Link to="/about-us">Thông tin về chúng tôi</Link>
             <Link to="#">Hướng dẫn</Link>
@@ -256,7 +308,7 @@ const Header: React.FC = () => {
           onLoginSuccess={handleLoginSuccess}
         />
       )}
-      {userName && <span>{userName}</span>}
+      
     </header>
   );
 };

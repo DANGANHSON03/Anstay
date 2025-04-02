@@ -245,7 +245,7 @@
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .header-nav-container.active {
@@ -260,6 +260,9 @@
     padding: 10px 20px;
     text-align: right;
     
+  }
+  .dropdown a {
+    padding: 0;
   }
 
   .header-nav-container a:last-child {
@@ -319,22 +322,47 @@
   }
 
   .user-fullname{
-
+    margin-right: 10px;
     margin-left: 25px;
   }
 
   .user-menu .dropdown {
-    width: auto; /* Adjust width to fit content */
+    width: 116%; /* Adjust width to fit content */
     position: absolute; /* Position relative to user-info */
-    top: 100%; /* Place it directly below user-info */
-    left: 0; /* Align with the left edge of user-info */
-    z-index: 1000; /* Ensure it appears above other elements */
-    margin-top: 5px; /* Add a small gap below user-info */
+    top: 139%; /* Place it directly below user-info */
+    left: -11px; /* Align with the left edge of user-info */
+    z-index: 1; /* Ensure it appears above other elements */
+    margin-top: 1px; /* Add a small gap below user-info */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for visibility */
   }
 
   .user-menu.active .dropdown {
     display: flex; /* Ensure dropdown is visible */
     flex-direction: column; /* Stack items vertically */
+  }
+
+  .dropdown-container {
+    display: block;
+  }
+  .dropdown-mobile{
+    text-align: left;
+  }
+  .dropdown-menu {
+    position: static; /* Đổi từ absolute thành static để đẩy nội dung xuống */
+    display: block;
+    padding: 0;
+  }
+  .dropdown-mobile li{
+   list-style-type: none;
+  }
+  .dropdown-submenu-btn{
+    width: 108px;    
+  }
+  .dropdown-submenu-item{
+    width: 100%;
+    height: 30px;
+    background-color: #f9f9f9;
+    margin: 5px 0;
+    border-radius: 5px;
   }
 }
