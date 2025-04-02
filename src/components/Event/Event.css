@@ -17,7 +17,7 @@
 }
 
 .event-image {
-  width: 360px;
+  width: 385px;
   cursor: pointer;
   transition: all 0.3s ease;
   border-radius: 10px;
@@ -68,7 +68,7 @@
 }
 
 .ant-carousel .slick-slide {
-  padding: 0 5px; /* Giảm từ 10px xuống 5px */
+  padding: 0 ; /* Giảm từ 10px xuống 5px */
 }
 
 .ant-carousel .slick-list {
