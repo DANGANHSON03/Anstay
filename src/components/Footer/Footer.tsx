@@ -68,11 +68,11 @@ const Footer: React.FC = () => {
               <div className="list-item">
                 <a href="#">
                   <img
-                    src="https://i.ibb.co/dJJsWrtS/3.jpg"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_of_Zalo.svg/2048px-Icon_of_Zalo.svg.png"
                     alt="face"
                     className="icon-fl"
                   />
-                  Tiktok
+                  Zalo
                 </a>
               </div>
               <div className="list-item">

@@ -41,11 +41,33 @@ const Apartment = () => {
   const [listingData, setListingData] = useState<Apartment[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  // Add new state for current area
   const [currentArea, setCurrentArea] = useState(
     location.state?.location || "HA_NOI"
   );
+  // Add new state for price sorting
+  const [priceSort, setPriceSort] = useState<"asc" | "desc" | null>(null);
+
+  // Add this helper function inside the component
+  const getAreaName = (areaCode: string) => {
+    switch (areaCode) {
+      case "HA_NOI":
+        return "HÀ NỘI";
+      case "HA_LONG":
+        return "HẠ LONG";
+      case "DA_NANG":
+        return "ĐÀ NẴNG";
+      case "NHA_TRANG":
+        return "NHA TRANG";
+      case "DA_LAT":
+        return "ĐÀ LẠT";
+      case "HO_CHI_MINH":
+        return "HỒ CHÍ MINH";
+      case "PHU_QUOC":
+        return "PHÚ QUỐC";
+      default:
+        return areaCode;
+    }
+  };
 
   useEffect(() => {
     const fetchApartments = async () => {
@@ -91,6 +113,17 @@ const Apartment = () => {
     navigate("/apartment", { state: { location: area } });
     setVisibleCount(9);
     setActiveImages({});
+  };
+
+  // Add function to handle price sorting
+  const handlePriceSort = (order: "asc" | "desc") => {
+    setPriceSort(order);
+    const sortedListings = [...listingData].sort((a, b) => {
+      return order === "asc"
+        ? a.pricePerMonth - b.pricePerMonth
+        : b.pricePerMonth - a.pricePerMonth;
+    });
+    setListingData(sortedListings);
   };
 
   // State for active image index per listing
@@ -154,7 +187,7 @@ const Apartment = () => {
         <div className="container">
           {/* Add area selector */}
           <div className="filters">
-            <span>Khu vực:</span>
+            {/* <span>Khu vực:</span>
             <div className="filter-item">
               <select
                 className="filter-select"
@@ -169,7 +202,7 @@ const Apartment = () => {
                 <option value="HO_CHI_MINH">Hồ Chí Minh</option>
                 <option value="PHU_QUOC">Phú Quốc</option>
               </select>
-            </div>
+            </div> */}
             {/* Filters */}
             <span>Sắp xếp theo:</span>
             <div className="filter-item">
@@ -178,8 +211,16 @@ const Apartment = () => {
               </select>
             </div>
             <div className="filter-item">
-              <select className="filter-select">
-                <option>Giá tiền: Giá giảm dần</option>
+              <select
+                className="filter-select"
+                onChange={(e) =>
+                  handlePriceSort(e.target.value as "asc" | "desc")
+                }
+                value={priceSort || ""}
+              >
+                <option value="">Giá tiền: Mặc định</option>
+                <option value="asc">Giá tiền: Tăng dần</option>
+                <option value="desc">Giá tiền: Giảm dần</option>
               </select>
             </div>
           </div>
@@ -262,22 +303,34 @@ const Apartment = () => {
                 {/* Content */}
                 <div className="listing-content">
                   <h3 className="listing-title">{listing.name}</h3>
-                  <div className="listing-address">📍 {listing.location}</div>
-                  <div className="listing-address">📍 {listing.area}</div>
+                  <div
+                    className="listing-address"
+                    style={{ textAlign: "left" }}
+                  >
+                    📍 {listing.location}
+                  </div>
+                  <div
+                    className="listing-address"
+                    style={{ textAlign: "left" }}
+                  >
+                    📍 {getAreaName(listing.area)}
+                  </div>
                   <div className="listing-details">
-                    <div className="listing-price">
-                      ${listing.pricePerMonth.toLocaleString()}/tháng
-                    </div>
-                    <div className="listing-feature">
-                      🛏️ {listing.numRooms} phòng ngủ
+                    <div
+                      className="listing-price"
+                      style={{ textAlign: "left", width: "100%" }}
+                    >
+                      <div>
+                        📅 Theo ngày: {listing.pricePerDay.toLocaleString()} VNĐ
+                      </div>
+                      <div>
+                        📅 Theo tháng: {listing.pricePerMonth.toLocaleString()}{" "}
+                        VNĐ
+                      </div>
                     </div>
                   </div>
                   <div className="listing-details">
                     <div></div>
-                    <div className="listing-feature">
-                      👥 {listing.maxAdults} người lớn, {listing.maxChildren}{" "}
-                      trẻ em
-                    </div>
                   </div>
                 </div>
               </div>

@@ -175,7 +175,7 @@ const Header: React.FC = () => {
         <div className="header-logo-container">
           <Link to="/">
             <img
-              src="https://i.ibb.co/TqBMd49m/logo.jpg"
+              src="https://i.ibb.co/35SyTcnX/Anstay.png"
               alt="logo"
               className="header-logo"
             />
@@ -254,47 +254,65 @@ const Header: React.FC = () => {
                 </Space>
               </a>
             </Dropdown> */}
-            <div className={isMobile ? "dropdown-container mobile" : "dropdown-container"}>
-      {isMobile ? (
-        <div className="dropdown-mobile">
-          <button onClick={() => setOpen(!open)} className="dropdown-btn">
-            Tour và căn hộ <DownOutlined />
-          </button>
-          {open && (
-            <ul className="dropdown-menu">
-              {items.map((item) => (
-                <li key={item.key} className="dropdown-item">
+            <div
+              className={
+                isMobile ? "dropdown-container mobile" : "dropdown-container"
+              }
+            >
+              {isMobile ? (
+                <div className="dropdown-mobile">
                   <button
-                    className="dropdown-submenu-btn"
-                    onClick={() => setOpenSubMenu(openSubMenu === item.key ? null : item.key)}
+                    onClick={() => setOpen(!open)}
+                    className="dropdown-btn"
                   >
-                    {item.label} <DownOutlined />
+                    Tour và căn hộ <DownOutlined />
                   </button>
-                  {openSubMenu === item.key && (
-                    <ul className="dropdown-submenu">
-                      {item.children?.map((subItem) => (
-                        <li key={subItem.key} className="dropdown-submenu-item">
-                          {subItem.label}
+                  {open && (
+                    <ul className="dropdown-menu">
+                      {items.map((item) => (
+                        <li key={item.key} className="dropdown-item">
+                          <button
+                            className="dropdown-submenu-btn"
+                            onClick={() =>
+                              setOpenSubMenu(
+                                openSubMenu === item.key ? null : item.key
+                              )
+                            }
+                          >
+                            {item.label} <DownOutlined />
+                          </button>
+                          {openSubMenu === item.key && (
+                            <ul className="dropdown-submenu">
+                              {item.children?.map((subItem) => (
+                                <li
+                                  key={subItem.key}
+                                  className="dropdown-submenu-item"
+                                >
+                                  {subItem.label}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
                         </li>
                       ))}
                     </ul>
                   )}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      ) : (
-        <Dropdown menu={{ items }} trigger={["hover"]} placement="bottomLeft">
-          <a className="dropdown-link">
-            <Space>
-              Tour và căn hộ
-              <DownOutlined />
-            </Space>
-          </a>
-        </Dropdown>
-      )}
-    </div>
+                </div>
+              ) : (
+                <Dropdown
+                  menu={{ items }}
+                  trigger={["hover"]}
+                  placement="bottomLeft"
+                >
+                  <a className="dropdown-link">
+                    <Space>
+                      Tour và căn hộ
+                      <DownOutlined />
+                    </Space>
+                  </a>
+                </Dropdown>
+              )}
+            </div>
             <Link to="/coperate">Hợp tác</Link>
             <Link to="/about-us">Thông tin về chúng tôi</Link>
             <Link to="#">Hướng dẫn</Link>
@@ -308,7 +326,6 @@ const Header: React.FC = () => {
           onLoginSuccess={handleLoginSuccess}
         />
       )}
-      
     </header>
   );
 };
