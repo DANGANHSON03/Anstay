@@ -1,8 +1,48 @@
 import React from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, message } from "antd";
+import axios from "axios";
 import "./contact.css";
 
 const Contact: React.FC = () => {
+  const [form] = Form.useForm();
+
+  // Configure message globally
+  message.config({
+    top: 80,
+    duration: 3,
+    maxCount: 1,
+  });
+
+  const onFinish = async (values: any) => {
+    try {
+      await axios.post("http://localhost:8085/api/contacts", {
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+        message: values.hobbies,
+      });
+
+      message.success({
+        content: "Gửi tin thành công!",
+        className: "custom-message",
+        style: {
+          fontSize: "16px",
+          fontWeight: "bold",
+        },
+      });
+      form.resetFields();
+    } catch (error) {
+      message.error({
+        content: "Có lỗi xảy ra khi gửi tin!",
+        className: "custom-message",
+        style: {
+          fontSize: "16px",
+          fontWeight: "bold",
+        },
+      });
+    }
+  };
+
   return (
     <div className="main-contact">
       <div className="img-contact">
@@ -23,25 +63,44 @@ const Contact: React.FC = () => {
           </div>
         </div>
         <div className="contact-right">
-          <Form layout="vertical" className="custom-form">
-            <Form.Item name="name">
+          <Form
+            form={form}
+            layout="vertical"
+            className="custom-form"
+            onFinish={onFinish}
+          >
+            <Form.Item
+              name="name"
+              rules={[{ required: true, message: "Vui lòng nhập họ tên!" }]}
+            >
               <Input placeholder="Họ và Tên" />
             </Form.Item>
-            <Form.Item name="phone">
+            <Form.Item
+              name="phone"
+              rules={[
+                { required: true, message: "Vui lòng nhập số điện thoại!" },
+              ]}
+            >
               <Input placeholder="SĐT" />
             </Form.Item>
-            <Form.Item name="email">
+            <Form.Item
+              name="email"
+              rules={[
+                { required: true, message: "Vui lòng nhập email!" },
+                { type: "email", message: "Email không hợp lệ!" },
+              ]}
+            >
               <Input type="email" placeholder="Email" />
             </Form.Item>
-            <Form.Item name="address">
-              <Input placeholder="Địa chỉ" />
-            </Form.Item>
-            <Form.Item name="hobbies">
-              <Input placeholder="Sở thích" />
+            <Form.Item
+              name="hobbies"
+              rules={[{ required: true, message: "Vui lòng nhập tin nhắn!" }]}
+            >
+              <Input.TextArea placeholder="Tin nhắn" />
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit" className="send-button">
-                GỬI TIN
+                <span style={{ color: "white" }}>GỬI TIN</span>
               </Button>
             </Form.Item>
           </Form>
