@@ -159,12 +159,13 @@
   
   .event-wrapper {
     margin-top: 20px;
+    padding: 0 5px;
 
   }
 
   .event-image {
-    width: 80%;
-    height: auto;
+    width: 98%;
+    height: 250px;
     border-radius: 5px;
   }
 
@@ -192,12 +193,6 @@
   .event-container .ant-carousel .slick-track {
     display: flex; /* Align slides horizontally */
     transition: transform 0.3s ease; /* Smooth transition for sliding */
-  }
-
-  .event-image {
-    width: 100%; /* Ensure the image spans the full width */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: cover; /* Ensure the image fits nicely */
   }
   .event-title-main{
     margin-left: 10px;

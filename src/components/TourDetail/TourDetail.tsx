@@ -204,6 +204,7 @@ const TourDetail = () => {
         open={isContactModalVisible}
         onCancel={() => setIsContactModalVisible(false)}
         footer={null}
+        className="modal-tour"
       >
         <Form form={form} layout="vertical" onFinish={handleContactSubmit}>
           <Form.Item

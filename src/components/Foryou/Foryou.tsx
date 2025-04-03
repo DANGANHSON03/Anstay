@@ -10,8 +10,8 @@ const Foryou = () => {
         style={{
           borderRadius: 16,
           padding: 24,
-          paddingRight: "50px",
-          width: "98%", // Điều chỉnh chiều rộng
+          paddingRight: "24px",
+          width: "110%", // Điều chỉnh chiều rộng
           maxWidth: "1200px", // Giới hạn chiều rộng tối đa
           boxShadow: "0 4px 16px rgba(0, 0, 0, 0.1)",
           border: "2px solid #f0f0f0",

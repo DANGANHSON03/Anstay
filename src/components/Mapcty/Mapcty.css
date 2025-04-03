@@ -17,11 +17,11 @@
 
 @media (max-width: 480px) {
   .map-cty-main {
-    margin-top: 370px; /* Adjust margin for smaller screens */
+    margin-top: 380px; /* Adjust margin for smaller screens */
   }
 
   .map-cty-main iframe {
-    height: 200px;
+    height: 250px;
     margin-top: 20px; /* Reduce margin for better spacing */
 
   }

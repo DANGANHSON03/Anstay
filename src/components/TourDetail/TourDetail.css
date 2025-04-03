@@ -123,7 +123,7 @@
 
 @media (max-width: 768px) {
   .tour-detail-container {
-    margin: 0px auto;
+    margin: 16px auto;
     padding: 0 8px; /* Giảm padding */
   }
 
@@ -177,6 +177,10 @@
     flex: 0 0 100% !important;
     max-width: 100% !important;
   } */
+  .ant-modal-content{
+    width: 400px;
+    margin: 0  auto;
+  }
 }
 
 .ant-typography {

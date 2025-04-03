@@ -287,6 +287,7 @@ const Header: React.FC = () => {
                                 <li
                                   key={subItem.key}
                                   className="dropdown-submenu-item"
+                                  onClick={() => setNavActive(false)}
                                 >
                                   {subItem.label}
                                 </li>
@@ -313,10 +314,10 @@ const Header: React.FC = () => {
                 </Dropdown>
               )}
             </div>
-            <Link to="/coperate">Hợp tác</Link>
-            <Link to="/about-us">Thông tin về chúng tôi</Link>
-            <Link to="/food">Ẩm thực</Link>
-            <Link to="/explore&experience">Khám phá & Trải nghiệm</Link>
+            <Link to="/coperate" onClick={() => setNavActive(false)}>Hợp tác</Link>
+            <Link to="/about-us" onClick={() => setNavActive(false)}>Thông tin về chúng tôi</Link>
+            <Link to="/food" onClick={() => setNavActive(false)}>Ẩm thực</Link>
+            <Link to="/explore&experience" onClick={() => setNavActive(false)}>Khám phá & Trải nghiệm</Link>
           </div>
         </div>
       </div>

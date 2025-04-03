@@ -112,9 +112,11 @@
 
 /* Mobile nhỏ (Dưới 480px) */
 @media (max-width: 480px) {
+  .ant-card-body{
+    padding: 15px 0 0 0 !important;
+  }
   .vtg-container {
-
-    padding: 15px 5px;
+    padding: 5px 5px;
   }
 
   .vtg-title {
@@ -126,13 +128,15 @@
   }
 
   .vtg-grid-container {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat( minmax(200px, 1fr));
     gap: 5px;
+   margin-left: 20px;
   }
 
   .vtg-feature-card {
-    height: 200px;
-    padding: 10px;
+    height:200px;
+    width: 200px;
+  margin-bottom: 20px;
   }
   .vtg-feature-card h3{
     font-size: 14px;

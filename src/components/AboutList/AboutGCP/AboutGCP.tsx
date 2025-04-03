@@ -42,9 +42,7 @@ const AboutGCP = () => {
     
     <p>Trụ sở chính tại Hà Nội cùng chi nhánh tại Hạ Long.</p>
     
-    <p>Môi giới và cho thuê căn hộ, văn phòng, mặt bằng thương mại thông qua thương hiệu <a href='anstay.com.vn'>ANSTAY VN</a>.</p>
-    
-    <p>Đầu tư và phát triển thương hiệu dịch vụ <strong>Căn Hộ</strong> và dịch vụ <strong>Tour</strong>.</p>
+    <p>Đầu tư và phát triển thương hiệu <strong>Bất động sản</strong> và đại lý <strong>Du lịch</strong>.</p>
     
     <p>Tour du lịch trọn gói dành riêng cho khách hàng trong nước và quốc tế.</p>
     

@@ -165,7 +165,7 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onLoginSuccess }) => {
         </button>
         <div className="popup-header">
           <img
-            src="https://i.ibb.co/TqBMd49m/logo.jpg"
+            src="https://i.ibb.co/35SyTcnX/Anstay.png"
             alt="logo"
             className="header-logo"
           />
