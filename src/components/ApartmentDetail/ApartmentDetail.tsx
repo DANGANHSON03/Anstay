@@ -296,16 +296,6 @@ const ApartmentDetail = () => {
                 />
               </Form.Item>
 
-              <Form.Item
-                name="agreement"
-                valuePropName="checked"
-                rules={[
-                  { required: true, message: "Vui lòng đồng ý với điều khoản" },
-                ]}
-              >
-                <Checkbox>Tôi đồng ý với các điều khoản và điều kiện</Checkbox>
-              </Form.Item>
-
               <Button type="primary" size="large" block htmlType="submit">
                 Xác nhận
               </Button>

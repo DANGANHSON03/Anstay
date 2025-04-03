@@ -216,13 +216,50 @@ const TravelDescription = () => {
           <Card className="travel-card">
             <h2 className="title">{tour.name}</h2>
             {tour.schedules.map((schedule) => (
-              <p key={schedule.id}>{schedule.description}</p>
+              <>
+                {schedule.description.split(/[.:]/).map((sentence, index) => {
+                  if (!sentence.trim()) return null;
+
+                  const previousText = schedule.description.slice(
+                    0,
+                    schedule.description.indexOf(sentence)
+                  );
+                  const isAfterColon = previousText.endsWith(":");
+                  const delimiter = previousText.endsWith(":") ? ":" : ".";
+
+                  return (
+                    <div
+                      key={`${schedule.id}-${index}`}
+                      style={{
+                        display: "flex",
+                        marginBottom: "8px",
+                        // paddingLeft: isAfterColon ? "20px" : "0",
+                      }}
+                    >
+                      {!isAfterColon ? (
+                        <p style={{ margin: 0 }}>
+                          {sentence.trim()}
+                          {delimiter}
+                        </p>
+                      ) : (
+                        <div style={{ display: "flex", width: "100%" }}>
+                          <span style={{ minWidth: "200px" }}>
+                            {sentence.trim()}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </>
             ))}
 
             <h3>Lịch Trình Chi Tiết:</h3>
             {tour.schedules.map((schedule) => (
               <div key={schedule.id} className="day-itinerary">
-                <h4 className="day-title">{schedule.title}</h4>
+                <h4 className="day-title" style={{ textAlign: "left" }}>
+                  {schedule.title}
+                </h4>
                 <div className="list-interary">
                   {schedule.details.map((detail) => (
                     <div key={detail.id} className="activity">

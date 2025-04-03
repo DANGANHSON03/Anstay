@@ -82,7 +82,7 @@
   margin-bottom: 12px;
   font-size: 18px;
   font-weight: bold;
-  width: 350px;
+  width: 400px;
 }
 
 .activity {
@@ -99,25 +99,22 @@
   text-align: left;
 }
 .custom-meta .ant-list-item-meta-description {
-  font-size: 16px; 
+  font-size: 16px;
 }
-.list-title{
- font-size: 20px;
+.list-title {
+  font-size: 20px;
 }
-.list-date{
+.list-date {
   float: right;
   font-size: 16px;
 }
 
-
-.day-itinerary{
+.day-itinerary {
   display: flex;
-
 }
 
-.list-interary{
+.list-interary {
   text-align: left;
-  
 }
 .activity {
   display: flex;
@@ -134,13 +131,10 @@
 }
 
 @media screen and (max-width: 768px) {
-
 }
 
-
 @media screen and (max-width: 480px) {
-
-  .travel-container{
+  .travel-container {
     width: 100%;
     max-width: 463px;
     margin: 0;

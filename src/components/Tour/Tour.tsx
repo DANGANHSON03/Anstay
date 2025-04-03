@@ -32,7 +32,7 @@ const Tour = () => {
           time: formatDuration(tour.durationDays),
           transportation: tour.transportation,
           hotel: tour.hotel,
-          price: tour.price * 1000,
+          price: tour.price, // Remove the *1000 multiplication
           discount: tour.discountPercent,
           area: tour.area,
           images: tour.images.map((img) => img.imageUrl) || [
@@ -130,7 +130,7 @@ const Tour = () => {
                 onClick={() => handleListingClick(listing.id)}
               >
                 <div className="listing-image">
-                  {listing.discount && (
+                  {listing.discount > 0 && (
                     <div className="discount-badge">-{listing.discount}%</div>
                   )}
                   <img
