@@ -117,7 +117,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
       <div className="footer-bottom">
-        <div>Công ty cổ phần Blue Kites Invest Việt Nam</div>
+        <div>CÔNG TY CỔ PHẦN ANSTAY VIỆT NAM</div>
         <div>
           Copyright 2025 ©
           <span style={{ fontWeight: 600 }}>Blue Kites Invest</span> All rights

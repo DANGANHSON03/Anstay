@@ -1,23 +1,53 @@
-import {useState,ChangeEvent,FormEvent}  from 'react'
-import './AboutContact.css';
-import { useForm } from 'react-hook-form';
+import { useState } from "react";
+import "./AboutContact.css";
+import { useForm } from "react-hook-form";
+import axios from "axios";
 
 interface FormData {
   name: string;
   email: string;
+  phone: string;
   message: string;
 }
+
 const AboutContact = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => {
-    console.log("Form submitted:", data);
+  const onSubmit = async (data: FormData) => {
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8085/api/contacts",
+        data
+      );
+      setSubmitStatus({
+        type: "success",
+        message: "Gửi thông tin liên hệ thành công!",
+      });
+      reset(); // Reset form after successful submission
+    } catch (error) {
+      setSubmitStatus({
+        type: "error",
+        message: "Có lỗi xảy ra, vui lòng thử lại sau.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
-    
+
   return (
     <div className="contact-container">
       <div className="contact-wrapper">
@@ -58,9 +88,16 @@ const AboutContact = () => {
             <p>📍 Tòa Star Lake DeaWoo, khu đô thị Tây Hồ Tây, Hà Nội</p>
           </div>
           <form onSubmit={handleSubmit(onSubmit)} className="contact-form">
+            {submitStatus.type && (
+              <div className={`submit-status ${submitStatus.type}`}>
+                {submitStatus.message}
+              </div>
+            )}
             <div className="form-group">
               <div className="error-message">
-                {errors.name && <p style={{margin:0}}>{errors.name.message}</p>}
+                {errors.name && (
+                  <p style={{ margin: 0 }}>{errors.name.message}</p>
+                )}
               </div>
               <input
                 type="text"
@@ -69,11 +106,12 @@ const AboutContact = () => {
                 placeholder="Nhập tên của bạn"
                 {...register("name", { required: "Tên không được để trống" })}
               />
-              
             </div>
-            <div className="form-group"> 
+            <div className="form-group">
               <div className="error-message">
-                {errors.email && <p style={{margin:0}}>{errors.email.message}</p>}
+                {errors.email && (
+                  <p style={{ margin: 0 }}>{errors.email.message}</p>
+                )}
               </div>
               <input
                 type="email"
@@ -88,11 +126,32 @@ const AboutContact = () => {
                   },
                 })}
               />
-             
             </div>
-            <div className="form-group">  
+            <div className="form-group">
               <div className="error-message">
-                {errors.message && <p style={{margin:0}}>{errors.message.message}</p>}
+                {errors.phone && (
+                  <p style={{ margin: 0 }}>{errors.phone.message}</p>
+                )}
+              </div>
+              <input
+                type="tel"
+                id="phone"
+                className="form-input"
+                placeholder="Nhập số điện thoại của bạn"
+                {...register("phone", {
+                  required: "Số điện thoại không được để trống",
+                  pattern: {
+                    value: /^[0-9]{10}$/,
+                    message: "Số điện thoại không hợp lệ",
+                  },
+                })}
+              />
+            </div>
+            <div className="form-group">
+              <div className="error-message">
+                {errors.message && (
+                  <p style={{ margin: 0 }}>{errors.message.message}</p>
+                )}
               </div>
               <textarea
                 rows={6}
@@ -101,18 +160,22 @@ const AboutContact = () => {
                 placeholder="Nhập thông tin liên hệ hoặc phản ánh"
                 {...register("message", { required: "Vui lòng nhập nội dung" })}
               ></textarea>
-            
             </div>
-            <button type="submit" className="submit-button">
-              <span className="button-text">GỬI NGAY</span>
+            <button
+              type="submit"
+              className="submit-button"
+              disabled={isSubmitting}
+            >
+              <span className="button-text">
+                {isSubmitting ? "ĐANG GỬI..." : "GỬI NGAY"}
+              </span>
               <div className="button-background" />
             </button>
           </form>
         </div>
       </div>
     </div>
-  )
-}
-
+  );
+};
 
 export default AboutContact;
