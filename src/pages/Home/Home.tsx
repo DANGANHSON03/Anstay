@@ -36,7 +36,6 @@ import ScrollToTopButton from "../../components/ScrollToTopButton/ScrollToTopBut
 import Should from "../../components/Should/Should";
 import Slide from "../../components/Slide/Slide";
 
-
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const [dates, setDates] = useState([dayjs(), dayjs().add(1, "day")]);
@@ -131,9 +130,28 @@ const Home: React.FC = () => {
       image: "https://i.ibb.co/JR3qW1Qj/8.jpg",
     },
   ];
+
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []); // This will run once when component mounts
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    window.scrollTo(0, 0); // Add this line to ensure scroll to top
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
+
   const guestMenu = (
     <div
       style={{
@@ -189,23 +207,9 @@ const Home: React.FC = () => {
   );
   const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
   return (
     <div className="main-home">
-      <Slide/>
+      <Slide />
       <Event />
       <Should />
       <Review />

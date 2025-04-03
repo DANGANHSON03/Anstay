@@ -202,6 +202,15 @@ const TravelDescription = () => {
     window.location.href = "/login";
   };
 
+  const formatTimeSlot = (timeSlot: string) => {
+    // Assuming timeSlot is in format "HH:mm:ss" or similar
+    const time = timeSlot.split(":");
+    if (time.length >= 2) {
+      return `${time[0]}:${time[1]}`; // Returns only HH:mm
+    }
+    return timeSlot; // Return original if can't parse
+  };
+
   if (!tour) {
     return <div>Loading...</div>;
   }
@@ -263,7 +272,8 @@ const TravelDescription = () => {
                 <div className="list-interary">
                   {schedule.details.map((detail) => (
                     <div key={detail.id} className="activity">
-                      <strong>{detail.timeSlot}</strong>: {detail.description}
+                      <strong>{formatTimeSlot(detail.timeSlot)}</strong>:{" "}
+                      {detail.description}
                     </div>
                   ))}
                 </div>
