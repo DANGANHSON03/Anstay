@@ -1,6 +1,6 @@
 .tour-detail-container {
   max-width: 1200px;
-  margin: 100px auto;
+  margin: 150px auto 20px auto;
   padding: 0 20px;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -28,7 +28,6 @@
 /* ...Sao chép các styles liên quan đến navigation và thumbnails từ Tour.css... */
 
 .tour-info {
-  margin-top: 24px;
   background: white;
   padding: 24px;
   border-radius: 12px;

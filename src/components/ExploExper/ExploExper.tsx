@@ -34,7 +34,7 @@ const ExploExper: React.FC = () => {
           </p>
           <button className="learn-more-btn">Tìm hiểu thêm</button>
         </div>
-        <img src="https://khachsanvietnam.com.vn/vnt_upload/news/08_2022/khach_san_Alacarte_da_nang_9.jpg" alt="Main Event" className="main-image" />
+        <img src="https://khachsanvietnam.com.vn/vnt_upload/news/08_2022/khach_san_Alacarte_da_nang_9.jpg" alt="Main Event" className="main-image1" />
       </div>
 
       {/* Lưới danh mục sự kiện */}

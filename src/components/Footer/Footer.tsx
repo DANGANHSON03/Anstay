@@ -120,7 +120,7 @@ const Footer: React.FC = () => {
         <div>CÔNG TY CỔ PHẦN ANSTAY VIỆT NAM</div>
         <div>
           Copyright 2025 ©
-          <span style={{ fontWeight: 600 }}>Blue Kites Invest</span> All rights
+          <span style={{ fontWeight: 600 }}>Anstay VN</span> All rights
           reserved
         </div>
       </div>
