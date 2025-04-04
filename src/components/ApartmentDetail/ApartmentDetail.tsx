@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
   Typography,
@@ -70,7 +70,7 @@ const ApartmentDetail = () => {
 
       try {
         const response = await fetch(
-          `http://localhost:8085/api/apartments/${id}`
+          `http://103.110.87.191:8085/api/apartments/${id}`
         );
         if (!response.ok) {
           throw new Error("Apartment not found");
@@ -133,7 +133,7 @@ const ApartmentDetail = () => {
       };
 
       const response = await fetch(
-        `http://localhost:8085/api/apartments/${id}/send-email`,
+        `http://103.110.87.191:8085/api/apartments/${id}/send-email`,
         {
           method: "POST",
           headers: {

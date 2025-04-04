@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { CircleHelp, Earth, BriefcaseBusiness, UserRound } from "lucide-react";
@@ -8,7 +8,13 @@ import { Dropdown, Space } from "antd";
 import LoginPopup from "../Login/LoginPopup";
 import { AuthContext } from "../../Context/AuthContext";
 
-const items: MenuProps["items"] = [
+type MenuItem = {
+  key: string;
+  label: string | React.ReactNode;
+  children?: MenuItem[];
+};
+
+const items: MenuItem[] = [
   {
     key: "1",
     label: "Ha Noi",
@@ -269,7 +275,7 @@ const Header: React.FC = () => {
                   </button>
                   {open && (
                     <ul className="dropdown-menu">
-                      {items.map((item) => (
+                      {items.map((item: MenuItem) => (
                         <li key={item.key} className="dropdown-item">
                           <button
                             className="dropdown-submenu-btn"
@@ -283,7 +289,7 @@ const Header: React.FC = () => {
                           </button>
                           {openSubMenu === item.key && (
                             <ul className="dropdown-submenu">
-                              {item.children?.map((subItem) => (
+                              {item.children?.map((subItem: MenuItem) => (
                                 <li
                                   key={subItem.key}
                                   className="dropdown-submenu-item"
@@ -314,10 +320,18 @@ const Header: React.FC = () => {
                 </Dropdown>
               )}
             </div>
-            <Link to="/coperate" onClick={() => setNavActive(false)}>Hợp tác</Link>
-            <Link to="/about-us" onClick={() => setNavActive(false)}>Thông tin về chúng tôi</Link>
-            <Link to="/food" onClick={() => setNavActive(false)}>Ẩm thực</Link>
-            <Link to="/explore&experience" onClick={() => setNavActive(false)}>Khám phá & Trải nghiệm</Link>
+            <Link to="/coperate" onClick={() => setNavActive(false)}>
+              Hợp tác
+            </Link>
+            <Link to="/about-us" onClick={() => setNavActive(false)}>
+              Thông tin về chúng tôi
+            </Link>
+            <Link to="/food" onClick={() => setNavActive(false)}>
+              Ẩm thực
+            </Link>
+            <Link to="/explore&experience" onClick={() => setNavActive(false)}>
+              Khám phá & Trải nghiệm
+            </Link>
           </div>
         </div>
       </div>

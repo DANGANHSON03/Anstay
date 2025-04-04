@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Apartment.css";
 
@@ -74,7 +74,7 @@ const Apartment = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `http://localhost:8085/api/apartments/by-area?area=${currentArea}`
+          `http://103.110.87.191:8085/api/apartments/by-area?area=${currentArea}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch apartments");
@@ -320,8 +320,9 @@ const Apartment = () => {
                       className="listing-price"
                       style={{ textAlign: "left", width: "100%" }}
                     >
-                      <div style={{textAlign:"center"}}>
-                        {listing.pricePerDay.toLocaleString()} ~{listing.pricePerMonth.toLocaleString()} VNĐ/Ngày
+                      <div style={{ textAlign: "center" }}>
+                        {listing.pricePerDay.toLocaleString()} ~
+                        {listing.pricePerMonth.toLocaleString()} VNĐ/Ngày
                       </div>
                     </div>
                   </div>

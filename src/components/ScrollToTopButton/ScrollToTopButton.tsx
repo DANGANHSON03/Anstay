@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./ScrollToTopButton.css";
 import { UpOutlined } from "@ant-design/icons";
 

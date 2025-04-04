@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import "./LoginPopup.css"; // Import file CSS
 import { AuthContext } from "../../Context/AuthContext";
 import axios from "axios";
@@ -42,7 +42,7 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onLoginSuccess }) => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      const response = await axios.get("http://localhost:8085/api/users");
+      const response = await axios.get("http://103.110.87.191:8085/api/users");
       const users: User[] = response.data;
 
       const user = users.find(
@@ -90,7 +90,9 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onLoginSuccess }) => {
 
     try {
       // Check for existing users
-      const existingUsers = await axios.get("http://localhost:8085/api/users");
+      const existingUsers = await axios.get(
+        "http://103.110.87.191:8085/api/users"
+      );
       const users: User[] = existingUsers.data;
 
       const existingEmail = users.find(
@@ -126,7 +128,7 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onLoginSuccess }) => {
 
       // If no duplicates, proceed with registration
       const response = await axios.post(
-        "http://localhost:8085/api/users/create",
+        "http://103.110.87.191:8085/api/users/create",
         {
           fullName: registerData.fullName,
           email: registerData.email,

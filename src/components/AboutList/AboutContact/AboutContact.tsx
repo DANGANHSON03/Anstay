@@ -30,7 +30,7 @@ const AboutContact = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8085/api/contacts",
+        "http://103.110.87.191:8085/api/contacts",
         data
       );
       setSubmitStatus({

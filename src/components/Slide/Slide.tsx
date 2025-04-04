@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
-import { Carousel } from 'antd';
-import './Slide.css';
+import { useRef } from "react";
+import { Carousel, CarouselRef } from "antd";
+import "./Slide.css";
 
 const images = [
   "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
@@ -9,18 +9,18 @@ const images = [
 ];
 
 const Slide = () => {
-    const carouselRef = useRef<Carousel>(null); // 👈 Khai báo kiểu dữ liệu đúng
+  const carouselRef = useRef<CarouselRef>(null); // 👈 Khai báo kiểu dữ liệu đúng
 
-    const next = () => {
-      carouselRef.current?.next(); // 👈 Kiểm tra null trước khi gọi phương thức
-    };
-  
-    const prev = () => {
-      carouselRef.current?.prev();
-    };
+  const next = () => {
+    carouselRef.current?.next(); // 👈 Kiểm tra null trước khi gọi phương thức
+  };
+
+  const prev = () => {
+    carouselRef.current?.prev();
+  };
 
   return (
-    <div className='slide-container'>
+    <div className="slide-container">
       <Carousel autoplay ref={carouselRef} dots={false}>
         {images.map((image, index) => (
           <div key={index} className="carousel-item">

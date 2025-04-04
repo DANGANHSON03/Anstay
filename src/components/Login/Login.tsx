@@ -1,18 +1,26 @@
 import { useNavigate } from "react-router-dom";
-import { Modal } from "antd";
+import { Modal, message } from "antd";
+
+interface LoginValues {
+  username: string;
+  password: string;
+}
 
 const Login = ({ onCancel }: { onCancel?: () => void }) => {
   const navigate = useNavigate();
 
-  const onFinish = async (values: any) => {
+  const onFinish = async (values: LoginValues) => {
     try {
-      const response = await fetch("http://localhost:8085/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
+      const response = await fetch(
+        "http://103.110.87.191:8085/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
@@ -39,6 +47,8 @@ const Login = ({ onCancel }: { onCancel?: () => void }) => {
       message.error("Có lỗi xảy ra");
     }
   };
+
+  return null; // Add return statement to comply with React component requirements
 };
 
 export default Login;

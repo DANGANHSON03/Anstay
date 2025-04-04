@@ -30,7 +30,7 @@ const DashBroad = () => {
       const parsedUser = JSON.parse(userData);
       setUserId(parsedUser.id);
 
-      fetch(`http://localhost:8085/api/users/${parsedUser.id}`)
+      fetch(`http://103.110.87.191:8085/api/users/${parsedUser.id}`)
         .then((response) => response.json())
         .then((data) => {
           setUserData(data);
@@ -85,7 +85,7 @@ const DashBroad = () => {
           gender: values.gender.toUpperCase(),
         };
 
-        fetch(`http://localhost:8085/api/users/update/${userId}`, {
+        fetch(`http://103.110.87.191:8085/api/users/update/${userId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -134,7 +134,7 @@ const DashBroad = () => {
       password: values.newPassword,
     };
 
-    fetch(`http://localhost:8085/api/users/update/${userId}`, {
+    fetch(`http://103.110.87.191:8085/api/users/update/${userId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

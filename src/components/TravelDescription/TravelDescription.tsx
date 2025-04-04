@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Tabs, Card, Form, Input, Button, message } from "antd";
 import "./TravelDescription.css";
@@ -93,7 +93,9 @@ const TravelDescription = () => {
   useEffect(() => {
     const fetchTourData = async () => {
       try {
-        const response = await fetch(`http://localhost:8085/api/tours/${id}`);
+        const response = await fetch(
+          `http://103.110.87.191:8085/api/tours/${id}`
+        );
         const data = await response.json();
         setTour(data[0]); // API returns array, we take first item
       } catch (error) {
@@ -109,13 +111,13 @@ const TravelDescription = () => {
   const fetchComments = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8085/api/comments/TOUR/${id}`
+        `http://103.110.87.191:8085/api/comments/TOUR/${id}`
       );
       const commentsData = await response.json();
       const commentsWithUser = await Promise.all(
         commentsData.map(async (comment: Comment) => {
           const userResponse = await fetch(
-            `http://localhost:8085/api/users/${comment.userId}`
+            `http://103.110.87.191:8085/api/users/${comment.userId}`
           );
           const userData = await userResponse.json();
           return { ...comment, user: userData };
@@ -152,7 +154,7 @@ const TravelDescription = () => {
     if (!user) return;
 
     try {
-      const response = await fetch("http://localhost:8085/api/comments", {
+      const response = await fetch("http://103.110.87.191:8085/api/comments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

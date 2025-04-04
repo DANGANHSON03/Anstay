@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Typography, Row, Col, Button, Form, Input, Modal } from "antd";
 import "./TourDetail.css";
@@ -42,7 +42,9 @@ const TourDetail = () => {
   useEffect(() => {
     const fetchTourData = async () => {
       try {
-        const response = await fetch(`http://localhost:8085/api/tours/${id}`);
+        const response = await fetch(
+          `http://103.110.87.191:8085/api/tours/${id}`
+        );
         const data = await response.json();
         setTourData(data[0]); // Assuming the API returns an array with one tour
       } catch (error) {
@@ -56,12 +58,14 @@ const TourDetail = () => {
   }, [id]);
 
   const handleNextImage = () => {
+    if (!tourData) return;
     setCurrentImageIndex((prev) =>
       prev === tourData.images.length - 1 ? 0 : prev + 1
     );
   };
 
   const handlePrevImage = () => {
+    if (!tourData) return;
     setCurrentImageIndex((prev) =>
       prev === 0 ? tourData.images.length - 1 : prev - 1
     );
@@ -79,7 +83,7 @@ const TourDetail = () => {
     setSubmitLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:8085/api/tours/${id}/contact`,
+        `http://103.110.87.191:8085/api/tours/${id}/contact`,
         {
           method: "POST",
           headers: {
@@ -128,7 +132,7 @@ const TourDetail = () => {
         <Col span={14} xs={24} md={14} className="col-tour-details">
           <div className="main-image-container">
             <img
-              src={tourData.images[currentImageIndex]?.imageUrl}
+              src={tourData?.images[currentImageIndex]?.imageUrl}
               alt={tourData.name}
               className="main-image"
             />
@@ -141,7 +145,7 @@ const TourDetail = () => {
           </div>
 
           <div className="thumbnail-container">
-            {tourData.images.map((image, index) => (
+            {tourData?.images.map((image, index) => (
               <div
                 key={index}
                 className={`thumbnail ${

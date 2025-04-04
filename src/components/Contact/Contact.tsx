@@ -15,7 +15,7 @@ const Contact: React.FC = () => {
 
   const onFinish = async (values: any) => {
     try {
-      await axios.post("http://localhost:8085/api/contacts", {
+      await axios.post("http://103.110.87.191:8085/api/contacts", {
         name: values.name,
         email: values.email,
         phone: values.phone,
