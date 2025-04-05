@@ -240,7 +240,7 @@ const Header: React.FC = () => {
                   )}
                 </div>
               ) : (
-                <button className="btn-login" onClick={handleSignInClick}>
+                <button className="btn-login" onClick={()=>{handleSignInClick(),setNavActive(false)}}> 
                   Đăng nhập
                 </button>
               )}

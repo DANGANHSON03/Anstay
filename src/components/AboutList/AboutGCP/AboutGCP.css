@@ -41,8 +41,8 @@
     font-size: 20px;
    }
   .info-grid {
-    display: grid;
-    grid-template-columns: auto 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 8px 20px;
     margin-top: 12px;
     color: #333;
@@ -78,7 +78,7 @@
     font-weight: bold;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     min-width: 150px; /* Ensure equal width for all labels */
   }
   
@@ -166,6 +166,9 @@
         max-width: 100%;
         padding: 10px;
     }
+    .company-info p {
+        font-size: 16px;
+    }
 
     .info-grid {
         grid-template-columns: 1fr;
@@ -173,7 +176,7 @@
     }
 
     .label {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .company-name {

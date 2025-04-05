@@ -166,6 +166,11 @@
   .main-image-container {
     width: 100%;
   }
+  .tour-detail-container{
+    margin: 30px 0;
+    max-width: 464px;
+    width: 100%;
+  }
 
   .thumbnail-container {
     display: flex;

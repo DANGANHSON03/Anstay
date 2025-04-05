@@ -6,6 +6,16 @@
   margin-top: 50px;
 }
 
+.foryou-card{
+          border-radius: 16px;
+          padding: 24px;
+          padding-right: 24px;
+          width: "110%"; 
+          max-width: 1200px; 
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+          border: "2px solid #f0f0f0";
+}
+
 .icon-grid-container {
   position: relative;
 }
@@ -87,10 +97,16 @@
 /* Mobile Nhỏ (Dưới 480px) */
 @media (max-width: 480px) {
   .foryou-container {
-    max-width: 390px;
+    max-width: 440px;
     width:100%;
-    margin: 20px 50px 10px 20px;
-
+  
+    box-sizing: border-box;
+  }
+  .foryou-card{
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+    max-width: 380px;
   }
 
    .icon-grid-container{

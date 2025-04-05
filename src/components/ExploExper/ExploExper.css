@@ -187,7 +187,7 @@
   .event-container2 {
     max-width: 480px;
     width: 100%;  /* Đảm bảo không bị ghi đè */
-    margin: 0px;
+    margin: 22px auto;
     padding: 0;
     
     

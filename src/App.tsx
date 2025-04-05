@@ -17,12 +17,15 @@ import { AuthProvider } from "./Context/AuthContext";
 import ExploExper from "./components/ExploExper/ExploExper";
 import DashBroad from "./components/DashBroad/DashBroad";
 import Food from "./components/Food/Food";
+import ScrollToTop from "./components/ScrollToTop/SrcollToTop";
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+         <ScrollToTop />
         <MainLayout>
           <Routes>
+            
             <Route path="/" element={<Home />} />
             <Route path="/apartment" element={<Apartment />} />
             <Route path="/apartment/:id" element={<ApartmentDetail />} />

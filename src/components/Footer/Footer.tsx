@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
                 <Link to="#">Đăng nhập</Link>
               </div>
               <div className="list-item">
-                <Link to="#">Đăng nhập</Link>
+                <Link to="#">Đăng ký</Link>
               </div>
             </div>
           </div>

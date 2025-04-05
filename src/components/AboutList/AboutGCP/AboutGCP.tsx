@@ -24,17 +24,17 @@ const AboutGCP = () => {
         </div>
         <div className="company-card">
           <div className="header1">
-            <h2 className="company-name">{companyInfo.name}</h2>
+            <h2 className="title">{companyInfo.name}</h2>
           </div>
           <div className="info-grid">
-            <div className="label">Thành lập :</div>{" "}
-            <div>{companyInfo.established}</div>
-            <div className="label">Kinh doanh :</div>{" "}
-            <div>{companyInfo.business}</div>
-            <div className="label">Trụ sở chính :</div>{" "}
-            <div>{companyInfo.headquarters}</div>
-            <div className="label">Văn phòng kinh doanh :</div>{" "}
-            <div className="bold">{companyInfo.offices}</div>
+            <div className="label"><div>Thành lập :</div><div>{companyInfo.established}</div></div>{" "}
+           
+            <div className="label"><div>Kinh doanh :</div><div>{companyInfo.business}</div></div>{" "}
+           
+            <div className="label"><div>Trụ sở chính :</div><div>{companyInfo.headquarters}</div> </div>{" "}
+           
+            <div className="label"><div>Văn phòng kinh doanh :</div><div className="bold">{companyInfo.offices}</div></div>{" "}
+            
           </div>
         </div>
       </div>

@@ -130,13 +130,15 @@
   .vtg-grid-container {
     grid-template-columns: repeat( minmax(200px, 1fr));
     gap: 5px;
-   margin-left: 20px;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 400px;
   }
 
   .vtg-feature-card {
-    height:200px;
-    width: 200px;
-  margin-bottom: 20px;
+    height:185px;
+    width: 195px;
+    margin-bottom: 5px;
   }
   .vtg-feature-card h3{
     font-size: 14px;

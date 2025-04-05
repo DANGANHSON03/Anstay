@@ -130,6 +130,10 @@
 
 /* Mobile nhỏ (dưới 480px) */
 @media (max-width: 480px) {
+  .footer-wrapper{
+    width: 100%;
+    max-width: 480px;
+  }
   .footer-main {
     width: 95%;
     flex-direction: column;

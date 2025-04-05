@@ -83,6 +83,8 @@
   font-size: 18px;
   font-weight: bold;
   width: 100px;
+  overflow: hidden; 
+  box-sizing: border-box;
 }
 
 .activity {

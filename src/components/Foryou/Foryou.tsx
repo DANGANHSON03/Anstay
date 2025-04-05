@@ -6,17 +6,7 @@ import { BedSingle, Tickets } from "lucide-react";
 const Foryou = () => {
   return (
     <div className="foryou-container">
-      <Card
-        style={{
-          borderRadius: 16,
-          padding: 24,
-          paddingRight: "24px",
-          width: "110%", // Điều chỉnh chiều rộng
-          maxWidth: "1200px", // Giới hạn chiều rộng tối đa
-          boxShadow: "0 4px 16px rgba(0, 0, 0, 0.1)",
-          border: "2px solid #f0f0f0",
-        }}
-      >
+      <Card className="foryou-card">
         <Row gutter={[16, 16]} align="middle">
           <Col xs={24} md={12} className="col-p1">
             <h2>Chào mừng bạn đến với Anstay</h2>

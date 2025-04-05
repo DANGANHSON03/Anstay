@@ -13,7 +13,7 @@ return (
      </div>
     </div>
     <div className="description-box" >
-    <Card title={<span style={{ fontSize: '24px' }}>CÔNG TY CỔ PHẦN ANSTAY VIỆT NAM</span>} bordered={false} style={{ width: 1000 }}>
+    <Card title={<span style={{ fontSize: '22px' }}>CÔNG TY CỔ PHẦN ANSTAY VIỆT NAM</span>} bordered={false} style={{ width: 1000 }}>
      <div className="info-pair">
        <Title level={5}>Thương hiệu</Title>
        <Text>ANSTAY VN</Text>
@@ -22,10 +22,12 @@ return (
 
      <div className="info-pair">
        <Title level={5}>Mô tả doanh nghiệp</Title>
-       <Text>
-         1. Cho thuê căn hộ và văn phòng dịch vụ<br />
-         2. Quản lý căn hộ<br />
-         3. Bất động sản 
+       <Text style={{ paddingLeft: 0, marginLeft: 0, textIndent: 0 }}>
+       1. Cho thuê căn hộ và văn phòng dịch vụ
+        <br/>
+        2. Quản lý căn hộ
+        <br/>
+        3. Bất động sản
        </Text>
      </div>
      <Divider />
@@ -51,7 +53,7 @@ return (
      <div className="info-pair">
        <Title level={5}>Trụ sở chính</Title>
        <Text>
-         Số 19, Ngách 107/3b/97, Đưỡng Lĩnh Nam, Phường Vĩnh Hưng, Quận Hoàng Mai, Thành Phố Hà Nội, Việt Nam<br />
+         Số 19, Ngách 107/3b/97, Đưỡng Lĩnh Nam, Phường Vĩnh Hưng, <br /> Quận Hoàng Mai, Thành Phố Hà Nội, Việt Nam<br />
          Điện thoại:  096 543 4556
        </Text>
      </div>
