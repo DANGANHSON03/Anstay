@@ -30,7 +30,7 @@ const DashBroad = () => {
       const parsedUser = JSON.parse(userData);
       setUserId(parsedUser.id);
 
-      fetch(`http://103.110.87.191:8085/api/users/${parsedUser.id}`)
+      fetch(`https://anstay.com.vn/api/users/${parsedUser.id}`)
         .then((response) => response.json())
         .then((data) => {
           setUserData(data);
@@ -85,7 +85,7 @@ const DashBroad = () => {
           gender: values.gender.toUpperCase(),
         };
 
-        fetch(`http://103.110.87.191:8085/api/users/update/${userId}`, {
+        fetch(`https://anstay.com.vn/api/users/update/${userId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -134,7 +134,7 @@ const DashBroad = () => {
       password: values.newPassword,
     };
 
-    fetch(`http://103.110.87.191:8085/api/users/update/${userId}`, {
+    fetch(`https://anstay.com.vn/api/users/update/${userId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

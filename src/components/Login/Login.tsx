@@ -11,16 +11,13 @@ const Login = ({ onCancel }: { onCancel?: () => void }) => {
 
   const onFinish = async (values: LoginValues) => {
     try {
-      const response = await fetch(
-        "http://103.110.87.191:8085/api/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(values),
-        }
-      );
+      const response = await fetch("https://anstay.com.vn/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
 
       if (response.ok) {
         const data = await response.json();

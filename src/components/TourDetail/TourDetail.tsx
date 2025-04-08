@@ -42,9 +42,7 @@ const TourDetail = () => {
   useEffect(() => {
     const fetchTourData = async () => {
       try {
-        const response = await fetch(
-          `http://103.110.87.191:8085/api/tours/${id}`
-        );
+        const response = await fetch(`https://anstay.com.vn/api/tours/${id}`);
         const data = await response.json();
         setTourData(data[0]); // Assuming the API returns an array with one tour
       } catch (error) {
@@ -83,7 +81,7 @@ const TourDetail = () => {
     setSubmitLoading(true);
     try {
       const response = await fetch(
-        `http://103.110.87.191:8085/api/tours/${id}/contact`,
+        `https://anstay.com.vn/api/tours/${id}/contact`,
         {
           method: "POST",
           headers: {

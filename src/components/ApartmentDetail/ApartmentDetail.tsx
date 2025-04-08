@@ -70,7 +70,7 @@ const ApartmentDetail = () => {
 
       try {
         const response = await fetch(
-          `http://103.110.87.191:8085/api/apartments/${id}`
+          `https://anstay.com.vn/api/apartments/${id}`
         );
         if (!response.ok) {
           throw new Error("Apartment not found");
@@ -133,7 +133,7 @@ const ApartmentDetail = () => {
       };
 
       const response = await fetch(
-        `http://103.110.87.191:8085/api/apartments/${id}/send-email`,
+        `https://anstay.com.vn/api/apartments/${id}/send-email`,
         {
           method: "POST",
           headers: {

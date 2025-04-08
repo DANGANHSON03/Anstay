@@ -30,7 +30,7 @@ const AboutContact = () => {
 
     try {
       const response = await axios.post(
-        "http://103.110.87.191:8085/api/contacts",
+        "https://anstay.com.vn/api/contacts",
         data
       );
       setSubmitStatus({

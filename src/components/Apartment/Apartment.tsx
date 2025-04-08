@@ -74,7 +74,7 @@ const Apartment = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `http://103.110.87.191:8085/api/apartments/by-area?area=${currentArea}`
+          `https://anstay.com.vn/api/apartments/by-area?area=${currentArea}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch apartments");

@@ -20,8 +20,8 @@ const Tour = () => {
     const fetchTours = async () => {
       try {
         const apiUrl = location.state?.location
-          ? `http://103.110.87.191:8085/api/tours/by-area?area=${location.state.location}`
-          : "http://103.110.87.191:8085/api/tours";
+          ? `https://anstay.com.vn/api/tours/by-area?area=${location.state.location}`
+          : "https://anstay.com.vn/api/tours";
 
         const response = await fetch(apiUrl);
         const data = await response.json();

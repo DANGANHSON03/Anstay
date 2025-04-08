@@ -94,7 +94,7 @@ const Help = () => {
 
   const onFinish = async (values: FormData) => {
     try {
-      const response = await fetch("http://103.110.87.191:8085/api/contacts", {
+      const response = await fetch("https://anstay.com.vn/api/contacts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
