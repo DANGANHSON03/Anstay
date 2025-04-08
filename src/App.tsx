@@ -18,14 +18,14 @@ import ExploExper from "./components/ExploExper/ExploExper";
 import DashBroad from "./components/DashBroad/DashBroad";
 import Food from "./components/Food/Food";
 import ScrollToTop from "./components/ScrollToTop/SrcollToTop";
+import Culture from "./components/AboutList/AboutCulture/Culture";
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-         <ScrollToTop />
+        <ScrollToTop />
         <MainLayout>
           <Routes>
-            
             <Route path="/" element={<Home />} />
             <Route path="/apartment" element={<Apartment />} />
             <Route path="/apartment/:id" element={<ApartmentDetail />} />
@@ -36,13 +36,12 @@ function App() {
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/about-us/company" element={<AboutCP />} />
             <Route path="/about-us/groupcompany" element={<AboutGCP />} />
+            <Route path="/about-us/culture" element={<Culture />} />
             <Route path="/about-us/contact" element={<AboutContact />} />
             <Route path="/coperate" element={<Coperate />} />
             <Route path="/explore&experience" element={<ExploExper />} />
             <Route path="/dashbroad" element={<DashBroad />} />
             <Route path="/food" element={<Food />} />
-
-            {/* Add more routes as needed */}
           </Routes>
         </MainLayout>
       </BrowserRouter>
