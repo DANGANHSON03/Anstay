@@ -193,7 +193,7 @@ function Support() {
                   {isTabOpen("2-3") && (
                     <div className="sub-accordion-content">
                       <img
-                        src="/images/maygiat.jpg"
+                        src="https://i.ibb.co/3y7TNhd6/maygiat.jpg"
                         alt="Hướng dẫn sử dụng máy giặt"
                         className="guide-image"
                       />
@@ -1559,26 +1559,37 @@ function Support() {
 
       {/* Popups for video guides */}
       {showPopup && (
-        <>
-          <div
-            className="popup-overlay"
-            onClick={() => setShowPopup(null)}
-          ></div>
-          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-            <iframe
-              width="800"
-              height="450"
-              src={getVideoUrl(showPopup)}
-              title="Hướng dẫn"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-            <button onClick={() => setShowPopup(null)} className="close-popup">
-              Đóng
-            </button>
-          </div>
-        </>
+     <>
+     <div
+       className="popup-overlay"
+       onClick={() => setShowPopup(null)}
+     >
+      <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+       <video
+         width="100%"
+         height="100%"
+         controls
+         autoPlay
+         style={{
+           opacity: 2,
+           filter: "none",
+           backdropFilter: "none",
+           zIndex: 9999,
+           position: "relative",
+           display: "block",
+           background: "#000",
+         }}
+       >
+         <source src={getVideoUrl(showPopup)} type="video/mp4" />
+       </video>
+
+       <button onClick={() => setShowPopup(null)} className="close-popup">
+         Đóng
+       </button>
+     </div>
+     </div>
+     
+   </>
       )}
 
       <div className="events-section">
@@ -1587,7 +1598,7 @@ function Support() {
           <>
             <div className="events-carousel">
               {events.slice(0, 3).map((event, index) => (
-                <div key={index} className="event-card">
+                <div key={index} className="event-cardSP">
                   <div className="event-image-container">
                     <img
                       src={
@@ -1622,7 +1633,7 @@ function Support() {
           <>
             <div className="events-grid">
               {events.map((event, index) => (
-                <div key={index} className="event-card">
+                <div key={index} className="event-cardSP">
                   <img
                     src={
                       event.imageUrl ||

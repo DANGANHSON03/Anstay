@@ -57,8 +57,14 @@
 }
 
 @media (max-width: 480px) {
+
+  .guide-container {
+    margin: 0 auto !important;
+  }
   .container-culture {
     margin: 30px auto 20px auto;
+    width: 100%;
+    max-width: 444px;
   }
   .description-culture {
     width: 100%;

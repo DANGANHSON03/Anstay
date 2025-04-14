@@ -5,7 +5,7 @@ import { RightOutlined } from "@ant-design/icons";
 
 
 const categories = [
-  { title: "Các buổi gặp gỡ gia đình", image: "https://cache.marriott.com/is/image/marriotts7prod/pdt-Family-enjoying-breakfast-478950141904961:Classic-Ver?wid=380&fit=constrain, https://cache.marriott.com/is/image/marriotts7prod/pdt-Family-enjoying-breakfast-478950141904961:Classic-Ver?wid=760&fit=constrain 2x" },
+  { title: "Các buổi gặp gỡ gia đình", image: "https://phanthietvn.com/wp-content/uploads/2020/04/de-co-bo-anh-gia-dinh-dep-khi-di-du-lich-mui-ne-6-819x1024.jpg" },
   { title: "Thức ăn và đồ uống", image: "https://www.kkday.com/vi/blog/wp-content/uploads/ban-do-am-thuc-ha-long-3.jpg" },
   { title: "Không gia và địa điểm", image: "https://zeimydinh.com/wp-content/uploads/2020/12/tien-ich-a-la-carte-ha-long-1.jpg" }
  

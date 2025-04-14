@@ -161,7 +161,7 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.9);
   display: flex;
-  justify-content: center;
+  justify-content:center;
   align-items: center;
   z-index: 1000;
 }
@@ -174,7 +174,7 @@
   background: black;
   width: 90vw;
   max-width: 1200px;
-  aspect-ratio: 16/9;
+  
 }
 
 .popup-content iframe {
@@ -314,7 +314,7 @@
   padding: 20px;
 }
 
-.event-card {
+.event-cardSP {
   width: 300px;
   height: 500px;
   overflow: hidden;
