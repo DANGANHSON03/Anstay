@@ -66,7 +66,11 @@ const Footer: React.FC = () => {
                 </a>
               </div>
               <div className="list-item">
-                <a href="#">
+                <a
+                  href="https://zalo.me/0916612772"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_of_Zalo.svg/2048px-Icon_of_Zalo.svg.png"
                     alt="face"
@@ -119,9 +123,8 @@ const Footer: React.FC = () => {
       <div className="footer-bottom">
         <div>CÔNG TY CỔ PHẦN ANSTAY VIỆT NAM</div>
         <div>
-          Copyright 2025 ©
-          <span style={{ fontWeight: 600 }}>Anstay VN</span> All rights
-          reserved
+          Copyright 2025 ©<span style={{ fontWeight: 600 }}>Anstay VN</span> All
+          rights reserved
         </div>
       </div>
     </div>

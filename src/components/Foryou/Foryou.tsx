@@ -20,21 +20,41 @@ const Foryou = () => {
               <div className="divider-vertical" />
               <div className="divider-horizontal" />
               <Row gutter={[16, 16]}>
-                <Col xs={12} md={12} style={{ textAlign: "center" }} className="col-p">
+                <Col
+                  xs={12}
+                  md={12}
+                  style={{ textAlign: "center" }}
+                  className="col-p"
+                >
                   <BedSingle style={{ fontSize: 32, color: "#ff6f61" }} />
-                  <p>Earn Free Nights</p>
+                  <p>Ưu đãi đặc biệt</p>
                 </Col>
-                <Col xs={12} md={12} style={{ textAlign: "center" }} className="col-p">
+                <Col
+                  xs={12}
+                  md={12}
+                  style={{ textAlign: "center" }}
+                  className="col-p"
+                >
                   <Tickets style={{ fontSize: 32, color: "#ff6f61" }} />
-                  <p>Member Rates</p>
+                  <p>Giá thành viên</p>
                 </Col>
-                <Col xs={12} md={12} style={{ textAlign: "center" }} className="col-p">
+                <Col
+                  xs={12}
+                  md={12}
+                  style={{ textAlign: "center" }}
+                  className="col-p"
+                >
                   <WifiOutlined style={{ fontSize: 32, color: "#ff6f61" }} />
-                  <p>Free Wi-Fi</p>
+                  <p>Wi-Fi Miễn Phí</p>
                 </Col>
-                <Col xs={12} md={12} style={{ textAlign: "center" }} className="col-p">
+                <Col
+                  xs={12}
+                  md={12}
+                  style={{ textAlign: "center" }}
+                  className="col-p"
+                >
                   <MobileOutlined style={{ fontSize: 32, color: "#ff6f61" }} />
-                  <p>Mobile Check-in</p>
+                  <p>Check-in Miễn Phí</p>
                 </Col>
               </Row>
             </div>

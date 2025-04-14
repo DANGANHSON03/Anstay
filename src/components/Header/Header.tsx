@@ -5,6 +5,7 @@ import { CircleHelp, Earth, BriefcaseBusiness, UserRound } from "lucide-react";
 import { DownOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Dropdown, Space } from "antd";
+import { HelpCircle } from "lucide-react";
 import LoginPopup from "../Login/LoginPopup";
 import { AuthContext } from "../../Context/AuthContext";
 
@@ -206,11 +207,11 @@ const Header: React.FC = () => {
               <Link to="#">Ngôn ngữ</Link>
             </div>
             <div className="select-nav">
-              <BriefcaseBusiness size={18} className="header-icon" />
-              <Link to="#">Chuyến đi của tôi</Link>
+              <HelpCircle size={19} color="#555" />
+              <Link to="/support">Hướng dẫn</Link>
             </div>
             <div
-              className={`user-menu ${userMenuActive ? "active" : ""}`} // Add active class when dropdown is open
+              className={`user-menu ${userMenuActive ? "active" : ""}`}
               ref={userMenuRef}
             >
               {loggedInFullname ? (
@@ -240,26 +241,18 @@ const Header: React.FC = () => {
                   )}
                 </div>
               ) : (
-                <button className="btn-login" onClick={()=>{handleSignInClick(),setNavActive(false)}}> 
+                <button
+                  className="btn-login"
+                  onClick={() => {
+                    handleSignInClick(), setNavActive(false);
+                  }}
+                >
                   Đăng nhập
                 </button>
               )}
             </div>
           </div>
           <div className="header-nav">
-            {/* <Dropdown
-              menu={{ items }}
-              overlayClassName="ant-dropdown" // Add a custom class for styling
-              trigger={["hover"]} // Change trigger to hover
-              placement="bottomLeft" // Ensure dropdown is placed below
-            >
-              <a>
-                <Space>
-                  Tour & Căn hộ
-                  <DownOutlined />
-                </Space>
-              </a>
-            </Dropdown> */}
             <div
               className={
                 isMobile ? "dropdown-container mobile" : "dropdown-container"

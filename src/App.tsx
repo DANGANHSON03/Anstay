@@ -19,31 +19,156 @@ import DashBroad from "./components/DashBroad/DashBroad";
 import Food from "./components/Food/Food";
 import ScrollToTop from "./components/ScrollToTop/SrcollToTop";
 import Culture from "./components/AboutList/AboutCulture/Culture";
+import Support from "./components/Support/Support";
+import Hiden from "./components/TestPage/Hiden";
+
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <ScrollToTop />
-        <MainLayout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/apartment" element={<Apartment />} />
-            <Route path="/apartment/:id" element={<ApartmentDetail />} />
-            <Route path="/tour" element={<Tour />} />
-            <Route path="/tour/:id" element={<TourDetail />} />
-            <Route path="/booking" element={<Booking />} />
-            <Route path="/help" element={<Help />} />
-            <Route path="/about-us" element={<AboutUs />} />
-            <Route path="/about-us/company" element={<AboutCP />} />
-            <Route path="/about-us/groupcompany" element={<AboutGCP />} />
-            <Route path="/about-us/culture" element={<Culture />} />
-            <Route path="/about-us/contact" element={<AboutContact />} />
-            <Route path="/coperate" element={<Coperate />} />
-            <Route path="/explore&experience" element={<ExploExper />} />
-            <Route path="/dashbroad" element={<DashBroad />} />
-            <Route path="/food" element={<Food />} />
-          </Routes>
-        </MainLayout>
+        <Routes>
+          {/* Route không dùng MainLayout */}
+          <Route path="/hiden" element={<Hiden />} />
+
+          {/* Các route dùng MainLayout */}
+          <Route
+            path="/"
+            element={
+              <MainLayout>
+                <Home />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/apartment"
+            element={
+              <MainLayout>
+                <Apartment />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/apartment/:id"
+            element={
+              <MainLayout>
+                <ApartmentDetail />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/tour"
+            element={
+              <MainLayout>
+                <Tour />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/tour/:id"
+            element={
+              <MainLayout>
+                <TourDetail />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/booking"
+            element={
+              <MainLayout>
+                <Booking />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/help"
+            element={
+              <MainLayout>
+                <Help />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/about-us"
+            element={
+              <MainLayout>
+                <AboutUs />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/about-us/company"
+            element={
+              <MainLayout>
+                <AboutCP />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/about-us/groupcompany"
+            element={
+              <MainLayout>
+                <AboutGCP />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/about-us/culture"
+            element={
+              <MainLayout>
+                <Culture />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/about-us/contact"
+            element={
+              <MainLayout>
+                <AboutContact />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/coperate"
+            element={
+              <MainLayout>
+                <Coperate />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/explore&experience"
+            element={
+              <MainLayout>
+                <ExploExper />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/dashbroad"
+            element={
+              <MainLayout>
+                <DashBroad />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/food"
+            element={
+              <MainLayout>
+                <Food />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/support"
+            element={
+              <MainLayout>
+                <Support />
+              </MainLayout>
+            }
+          />
+        </Routes>
       </BrowserRouter>
     </AuthProvider>
   );
