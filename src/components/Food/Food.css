@@ -27,19 +27,9 @@
     transform: scale(1.05);
   }
 
-  @media (max-width: 768px) {
-    .food-container {
-      grid-template-columns: repeat(2, 1fr); /* Chuyển thành 2 cột */
-    }
-  }
   
   /* Khi màn hình nhỏ hơn hoặc bằng 480px (mobile) */
-  @media (max-width: 480px) {
-    .food-container {
-      grid-template-columns: 1fr; /* Chuyển thành 1 cột */
-      margin-top: 60px; /* Giảm khoảng cách trên cho nhỏ hơn */
-    }
-  }
+  
   
   .food-column {
     display: flex;
@@ -58,6 +48,17 @@
   /* Hiệu ứng hover cho ảnh */
   .food-item img:hover {
     transform: scale(1.05);
+  }
+  @media screen and (max-width: 1024px) {
+    .food-container {
+      width: 100%;
+      max-width: 1000px;
+      grid-template-columns: repeat(3, 1fr); /* 3 cột trên tablet */
+    }
+    .food-item img {
+      height: 500px; /* Giảm chiều cao ảnh trên tablet */
+    }
+    
   }
 
   @media screen and (max-width: 768px) {

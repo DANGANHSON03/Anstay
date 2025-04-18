@@ -167,6 +167,7 @@
   .header-container {
     max-width: 100%;
     padding: 0 20px;
+    justify-content: space-between;
   }
 
   .header-nav {
@@ -179,7 +180,7 @@
   .header-select {
     width: auto;
     padding-left: 0;
-    justify-content: center;
+    justify-content: right;
   }
 }
 

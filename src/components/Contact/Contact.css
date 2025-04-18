@@ -68,7 +68,7 @@
   font-weight: bold;
   transition: all 0.3s ease;
   border-radius: 5px;
-  height: 70px !important;
+  height: 70px ;
   padding: 0 30px !important;
   font-size: 16px !important;
   min-width: 180px;
@@ -113,7 +113,26 @@
 }
 
 @media (max-width: 1024px) {
+  .form-contact {
+    height: 300px;
+    top: 53%;
+  }
+  
+
+.custom-form .ant-input{
+    height: 40px;
 }
+.send-button{
+  height: 54px;
+}
+.img-contact {
+ 
+  height: 111%;
+}
+  
+}
+
+
 
 @media (max-width: 768px) {
 }
@@ -129,7 +148,7 @@
   }
 
   .contact-left {
-    margin-top: 400px;
+    margin-top: 60px;
   }
   .contact-left p {
     font-size: 16px;

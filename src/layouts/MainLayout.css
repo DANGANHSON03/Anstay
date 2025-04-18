@@ -15,8 +15,8 @@
 
 @media (max-width: 1024px) {
   .main-content {
-    max-width: 90%; /* Đặt max-width để giới hạn chiều rộng tối đa */
-    margin-top: 100px;
+    max-width: 100%; /* Đặt max-width để giới hạn chiều rộng tối đa */
+    margin-top: 54px;
   }
 }
 

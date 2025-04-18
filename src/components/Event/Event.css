@@ -84,16 +84,18 @@
 @media (max-width: 1024px) {
   .event-wrapper {
     width: 100%;
-    padding: 0 20px;
+  
   }
 
   .event-container {
+    margin: 0 auto;
     max-width: 100%;
+    width: 1000px;
   }
 
   .event-image {
-    width: 280px;
-    height: 150px;
+    width: 330px;
+    height: 170px;
   }
 
   .event-title {

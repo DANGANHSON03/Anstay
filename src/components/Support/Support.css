@@ -529,3 +529,10 @@
     opacity: 1;
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .event-cardSP {
+    width: 286px;
+    
+  }
+}

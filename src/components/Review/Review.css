@@ -166,6 +166,7 @@
 
 @media (max-width: 1024px) {
   .event-wrapper1 {
+    max-width: 990px;
     width: 100%;
    
   }

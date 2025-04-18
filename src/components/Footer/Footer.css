@@ -77,9 +77,14 @@
   }
 
   .footer-left {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
   }
+  .row{
+    margin: 0 44px;
+  }
+ 
 
   .footer-right {
     padding-left: 0;

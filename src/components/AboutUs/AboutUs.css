@@ -45,7 +45,19 @@
     cursor: pointer;
 }
 
+@media (max-width: 1024px){
+  .container-about-us{
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 80px;
+  }
+  .item img {
+    width: 500px;
+   
+    height: 240px;
+}
 
+}
 @media (max-width: 768px) {
     .container-about-us {
       grid-template-columns: 1fr; /* Chuyển về 1 cột */

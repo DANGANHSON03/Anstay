@@ -141,6 +141,9 @@
         flex-direction: column;
         text-align: center;
         padding: 20px;
+        width: 100%;
+        margin: 0 auto;
+        max-width: 930px;
     }
 
     .event-info {
@@ -150,6 +153,15 @@
     .main-image {
         width: 100%;
     }
+    .event-grid{
+      width: 100%;
+      max-width: 980px;
+      margin: 13px auto;
+    }
+    .event-card-2 {
+      width: 480px;
+      height: 384px;
+    
 }
 
 @media screen and (max-width: 768px) {
