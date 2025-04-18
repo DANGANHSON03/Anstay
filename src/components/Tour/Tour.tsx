@@ -74,7 +74,7 @@ const Tour = () => {
     setActiveImages({ ...activeImages, [listingId]: newIndex });
   };
 
-  // Function to handle "Xem thêm" button click
+  // Function to handle "Xem thêm" button clixdavsa ác ck
   const handleLoadMore = () => {
     // Increase visible count by 9 or show all remaining items
     setVisibleCount((prev) => Math.min(prev + 9, listingData.length));
@@ -94,7 +94,7 @@ const Tour = () => {
         <div className="img-top-apart">
           <img
             src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b"
-            alt="tour banner"
+            alt="tour banner111"
           />
         </div>
         <div className="title-top-apart">
