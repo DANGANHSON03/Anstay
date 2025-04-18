@@ -2,7 +2,7 @@
 .event-container2 {
     max-width: 1200px;
     margin: 80px auto;
-    padding: 20px;
+
     text-align: center;
     
     
@@ -190,7 +190,7 @@
     max-width: 484px;
     width: 100%;  /* Đảm bảo không bị ghi đè */
     margin: 22px auto;
-    padding: 0;
+   
     
     
   }
@@ -204,8 +204,8 @@
     height: 600px;
   }
   .event-grid{
-    width: 448px;
-    padding: 0 16px;
+    width: 462px;
+    padding: 0 10px;
     grid-template-columns: 1fr;
     gap: 10px;
   }
@@ -238,4 +238,19 @@
         font-size: 14px;
         padding: 5px;
     }
+}
+
+@media screen and (max-width: 415px) {
+   .event-main{
+    max-width: 350px;
+   }
+   .event-grid{
+    width: 374px;
+   }
+   .event-container2 {
+    max-width: 386px;
+    width: 100%;
+    margin: 22px auto;
+   }
+  
 }

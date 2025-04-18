@@ -78,3 +78,26 @@
     padding: 10px;
   }
 }
+
+@media (max-width: 415px) {
+
+  .guide-container {
+    margin: 0 auto !important;
+  }
+  .container-culture {
+    margin: 30px auto 20px auto;
+    width: 100%;
+    max-width: 374px;
+  }
+  .description-culture {
+    width: 100%;
+  }
+  .title-value,
+  .list-value {
+    margin-left: 5px;
+    text-align: center;
+  }
+  .message-ceo {
+    padding: 10px;
+  }
+}

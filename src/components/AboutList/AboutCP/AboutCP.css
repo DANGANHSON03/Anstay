@@ -102,14 +102,40 @@
         flex-direction: row; /* Cột trên điện thoại */
         align-items: flex-start;
         gap: 5px;
+        /* Giữ khoảng cách đều giữa các phần tử */
     }
 
     .info-pair > .ant-typography {
-        font-size: 12px; /* Further reduce font size */
+        font-size: 16px; /* Further reduce font size */
     }
 
     .description-box {
         padding: 8px; /* Reduce padding */
-        text-align: center;
+        text-align: center; 
+      
     }
+   
+}
+@media screen   and (max-width: 415px) {
+   
+    .info-pair{
+        margin-left: 25px;
+        justify-content: space-around;
+    }
+    .banner-des{
+        margin: 0 15px;
+    }
+    .info-pair >  h5 {
+        width: 100px; /* Giảm kích thước chữ */
+        
+    }
+    .info-pair > span{
+        width: 300px;
+        padding-right: 24px ;
+    }
+    .description-box{
+        width: 100%;
+        max-width: 400px;
+    }
+    
 }

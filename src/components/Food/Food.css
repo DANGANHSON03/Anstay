@@ -6,7 +6,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    padding: 20px;
+   
   }
   
   .food-column {
@@ -58,4 +58,25 @@
   /* Hiệu ứng hover cho ảnh */
   .food-item img:hover {
     transform: scale(1.05);
+  }
+
+  @media screen and (max-width: 768px) {
+    .food-container {
+      width: 100%;
+      max-width: 700px;
+      grid-template-columns: repeat(2, 1fr); /* Chuyển thành 2 cột */
+      padding: 0 10px;
+    }
+    .food-item img {
+      height: 300px; /* Giảm chiều cao ảnh trên tablet */
+
+    }
+    
+  }
+  @media screen and (max-width: 480px) {
+    .food-container {
+      max-width: 360px;
+     
+      
+    }
   }

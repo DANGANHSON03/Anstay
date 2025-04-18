@@ -26,3 +26,10 @@
 
   }
 }
+
+@media (max-width: 376px) {
+  .map-cty-main {
+    margin-top: 400px;; /* Adjust margin for smaller screens */
+  }
+
+}
