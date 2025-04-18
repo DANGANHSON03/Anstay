@@ -1569,11 +1569,11 @@ function Hiden() {
               <div className="wifi-info-Hiden">
                 <div className="wifi-credential-Hiden">
                   <p className="wifi-label-Hiden">Tên Wi-Fi:</p>
-                  <p className="wifi-value-Hiden">AnStay_Guest</p>
+                  <p className="wifi-value-Hiden">Anstay Residence</p>
                 </div>
                 <div className="wifi-credential-Hiden">
                   <p className="wifi-label-Hiden">Mật khẩu:</p>
-                  <p className="wifi-value-Hiden">anstay@123</p>
+                  <p className="wifi-value-Hiden">0916612772</p>
                 </div>
               </div>
             </div>
