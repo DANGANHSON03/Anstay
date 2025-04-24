@@ -13,6 +13,9 @@
   .map-cty-main iframe {
     height: 300px;
   }
+  .map-cty-main {
+    margin-top: 100px; /* Adjust margin for smaller screens */
+  }
 }
 
 @media (max-width: 480px) {

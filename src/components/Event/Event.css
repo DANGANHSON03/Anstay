@@ -122,12 +122,13 @@
     margin-top: 30px;
     width: 100%;
     padding: 0;
+    max-width: 740px;
 
   }
 
   .event-image {
     width: 100%;
-    height: auto;
+   
   }
 
   .event-title {
@@ -154,6 +155,7 @@
   .ant-carousel .slick-list {
     margin: 0 -3px;
   }
+  
 }
 
 /* Mobile nhỏ (Dưới 480px) */

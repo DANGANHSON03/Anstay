@@ -1,0 +1,17 @@
+.tab-hiden{
+ margin-top: 10px;
+}
+.active{
+    background-color: #1666dd;
+    color: #f8f8f8;
+}
+.tab-hiden__language{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+.tab-hiden button{
+    width: 100%;
+}

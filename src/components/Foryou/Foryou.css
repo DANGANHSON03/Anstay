@@ -78,6 +78,9 @@
 @media (max-width: 768px) {
   .foryou-container {
     padding: 0 10px;
+    max-width: 730px;
+    width: 100%;
+    
   }
 
   .icon-grid-container {

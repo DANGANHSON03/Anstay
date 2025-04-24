@@ -20,7 +20,9 @@ import Food from "./components/Food/Food";
 import ScrollToTop from "./components/ScrollToTop/SrcollToTop";
 import Culture from "./components/AboutList/AboutCulture/Culture";
 import Support from "./components/Support/Support";
-import Hiden from "./components/TestPage/Hiden";
+import HidenViet from "./components/TestPage/Vietnam/Hiden";
+import HidenEn from "./components/TestPage/English/HidenEn";
+import HidenPage from "./pages/HidenPage/HidenPage";
 
 function App() {
   return (
@@ -29,7 +31,9 @@ function App() {
         <ScrollToTop />
         <Routes>
           {/* Route không dùng MainLayout */}
-          <Route path="/hiden" element={<Hiden />} />
+         < Route path="/hiden-page" element={<HidenPage />} />
+          {/* <Route path="/hidenVi" element={<HidenViet/>} />
+          <Route path="/hidenEn" element={<HidenEn/>}/> */}
 
           {/* Các route dùng MainLayout */}
           <Route

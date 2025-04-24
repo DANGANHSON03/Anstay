@@ -101,12 +101,23 @@
   }
 
   .vtg-feature-card {
-    height: 160px;
+    height: 184px;
     padding: 15px;
   }
 
   .vtg-icon {
     font-size: 24px;
+  }
+  .ant-card-body{
+    padding: 0 !important;
+  
+  }
+  .vtg-feature-title{
+    font-size: 16px;
+    height: 54px;
+  }
+  .vtg-feature-description{
+    height: 54px;
   }
 }
 

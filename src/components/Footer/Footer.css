@@ -78,7 +78,7 @@
 
   .footer-left {
     flex-direction: row;
-    align-items: center;
+
     justify-content: space-between;
   }
   .row{
@@ -117,6 +117,12 @@
   .footer-right-img {
     flex-wrap: wrap;
     gap: 10px;
+
+  }
+  .footer-right-img >img{
+    object-fit: contain;
+    width: 40px;
+    height: 40px;
   }
 
   .list-item {
@@ -130,6 +136,27 @@
   .footer-bottom {
     font-size: 14px;
     height: 50px;
+  }
+  .row-title h3{
+    font-size: 14px;
+    width: 153px;
+  }
+  .row{
+    margin: 0 15px;
+    width: 110px;
+ 
+    
+  }
+  .footer-left {
+    align-items: flex-start;
+    justify-content: space-around;
+  }
+  .row > div {
+    float: left;
+  }
+
+  .list-item{
+    justify-content: left;
   }
 }
 
@@ -152,7 +179,7 @@
     gap:10px;
   }
   .footer-left h3{
-    text-align: center;
+    text-align: left;
   }
 
   .footer-right {
@@ -169,8 +196,8 @@
   }
 
   .footer-right-img1 {
-    width: 30px;
-    height: 25px;
+    width: 50px;
+    height: 40px ;
   }
 
   .icon-fl {
@@ -180,7 +207,7 @@
 
   .list-item {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .list-item a {

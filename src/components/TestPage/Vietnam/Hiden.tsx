@@ -7,6 +7,10 @@ function Hiden() {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [showAllEvents, setShowAllEvents] = useState(false);
   const [showPopup, setShowPopup] = useState<string | null>(null);
+  const [language, setLanguage] = useState<'vi'|'en'>('vi');
+  const [showVideo, setShowVideo] = useState(false);
+  
+ 
 
   const getVideoUrl = (sectionId) => {
     const videos = {
@@ -18,8 +22,18 @@ function Hiden() {
     };
     return videos[sectionId] || "";
   };
+  const languagesTab = {
+    vi:{
+      label:'Tiếng Việt',
+      image: 'https://i.ibb.co/8gwnhXNq/z6529289427842-586904014edb822f940b80aae6f5681a.jpg'
+    },
+    en:{
+      label:'English',
+      image:'https://i.ibb.co/RGMYDynD/z6529289444099-805fa915dbdc9b5509ad1b0f26163c5c.jpg'
+    }
+  }
 
-  const [showVideo, setShowVideo] = useState(false);
+ 
 
   const toggleViewAll = () => {
     setShowAllEvents(!showAllEvents);
@@ -62,6 +76,12 @@ function Hiden() {
 
     return () => clearInterval(timer);
   }, [events.length]);
+  useEffect(() => {
+    Object.values(languagesTab).forEach(lang => {
+      const img = new Image();
+      img.src = lang.image;
+    });
+  }, []);
 
   const nextEvent = () => {
     setCurrentEventIndex((prevIndex) =>
@@ -103,9 +123,9 @@ function Hiden() {
           </button>
           {isTabOpen(1) && (
             <div className="accordion-content-Hiden">
-              <p>- Bạn sẽ nhận được mã mở cửa từ chủ nhà qua tin nhắn</p>
-              <p>- Nhập mã vào bảng phím số ở cửa, sau đó nhấn nút `#`</p>
-              <p>- Cửa sẽ tự động mở nếu mã đúng</p>
+
+             
+              <img src='https://i.ibb.co/8gwnhXNq/z6529289427842-586904014edb822f940b80aae6f5681a.jpg' className="guide-imagecheckin-Hiden" />
               <button
                 onClick={() => setShowPopup("1")}
                 className="guide-button-Hiden"
@@ -1569,11 +1589,11 @@ function Hiden() {
               <div className="wifi-info-Hiden">
                 <div className="wifi-credential-Hiden">
                   <p className="wifi-label-Hiden">Tên Wi-Fi:</p>
-                  <p className="wifi-value-Hiden">Anstay Residence</p>
+                  <p className="wifi-value-Hiden">bluekitesinvest</p>
                 </div>
                 <div className="wifi-credential-Hiden">
                   <p className="wifi-label-Hiden">Mật khẩu:</p>
-                  <p className="wifi-value-Hiden">0916612772</p>
+                  <p className="wifi-value-Hiden">bluekitesinvest</p>
                 </div>
               </div>
             </div>
@@ -1587,20 +1607,28 @@ function Hiden() {
           <div
             className="popup-overlay-Hiden"
             onClick={() => setShowPopup(null)}
-          ></div>
-          <div
+          >
+ <div
             className="popup-content-Hiden"
             onClick={(e) => e.stopPropagation()}
           >
-            <iframe
-              width="800"
-              height="450"
-              src={getVideoUrl(showPopup)}
-              title="Hướng dẫn"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+        <video
+         width="100%"
+         height="100%"
+         controls
+         autoPlay
+         style={{
+           opacity: 2,
+           filter: "none",
+           backdropFilter: "none",
+           zIndex: 9999,
+           position: "relative",
+           display: "block",
+           background: "#000",
+         }}
+       >
+         <source src={getVideoUrl(showPopup)} type="video/mp4" />
+       </video>
             <button
               onClick={() => setShowPopup(null)}
               className="close-popup-Hiden"
@@ -1608,6 +1636,8 @@ function Hiden() {
               Đóng
             </button>
           </div>
+          </div>
+         
         </>
       )}
 
