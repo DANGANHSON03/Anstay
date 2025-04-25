@@ -533,7 +533,7 @@
 .guide-container-Hiden {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+
 }
 
 .guide-title-Hiden {
@@ -803,6 +803,12 @@
   cursor: pointer;
 }
 
+.video-container-Hiden{
+  width: 1024px;
+ 
+  margin:10px auto;
+}
+
 .view-all-button-Hiden:hover {
   background-color: #0056b3;
 }
@@ -832,6 +838,20 @@
   font-size: 16px;
 }
 
+@media (max-width: 1024px){
+  .video-container-Hiden{
+    max-width:1000px;
+    width: 90%;
+    margin-top: 10px;
+  
+  }
+  .accordion-Hiden{
+    max-width:1000px;
+    width: 90%;
+    margin : 0 auto;
+  
+  }
+} 
 @media (max-width: 768px) {
   .popup-content-Hiden {
     width: 95%;
@@ -845,4 +865,39 @@
   .event-card-Hiden {
     width: 100%;
   }
+  .video-container-Hiden{
+    max-width:730px;
+    width: 90%;
+    
+    margin-top: 10px;
+  
+  }
 }
+@media (max-width: 480px){
+  .video-container-Hiden{
+    max-width: 380px;
+     width: 90%;
+    margin-top: 10px;
+  
+  }
+  h2{
+    font-size: 20px;
+  }
+  .accordion-Hiden{
+    max-width: 380px;
+  
+  }
+}
+
+@media (max-width: 375px) {
+  .video-container-Hiden{
+    max-width: 360px;
+     width: 100%;
+    margin-top: 10px;
+  
+  }
+  .accordion-Hiden{
+    max-width: 360px;
+  }
+}
+

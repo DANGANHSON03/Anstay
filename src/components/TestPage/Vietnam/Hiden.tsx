@@ -19,6 +19,7 @@ function Hiden() {
       "2-2": "/videos/huong-dan-bep.mp4",
       "2-3": "/videos/may-giat.mp4",
       "3": "/videos/huong-dan-thang-may.mp4",
+      "4": "/videos/nv16.mp4",
     };
     return videos[sectionId] || "";
   };
@@ -1641,79 +1642,38 @@ function Hiden() {
         </>
       )}
 
-      <div className="events-section-Hiden">
-        <h2 className="events-title-Hiden">Sự kiện sắp diễn ra</h2>
-        {!showAllEvents ? (
-          <>
-            <div className="events-carousel-Hiden">
-              {events.slice(0, 3).map((event, index) => (
-                <div key={index} className="event-card-Hiden">
-                  <div className="event-image-container-Hiden">
-                    <img
-                      src={
-                        event.imageUrl ||
-                        "https://via.placeholder.com/300x200?text=No+Image"
-                      }
-                      alt={event.title || "Event image"}
-                      className="event-image12-Hiden"
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src =
-                          "https://via.placeholder.com/300x200?text=No+Image";
-                      }}
-                    />
-                  </div>
-                  <div className="event-content-Hiden">
-                    <h3>{event.title}</h3>
-                    <p className="event-date-Hiden">{event.date}</p>
-                    <p className="event-location-Hiden">{event.location}</p>
-                    <p className="event-description-Hiden">
-                      {event.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            {events.length > 3 && (
-              <button className="view-all-button-Hiden" onClick={toggleViewAll}>
-                Xem tất cả sự kiện
-              </button>
-            )}
-          </>
+<div className="video-container-Hiden">
+      <h2>Video Giới Thiệu Về Tour Du Lịch</h2>
+      {
+        showVideo ?(
+      <video controls autoPlay width="100%" style={{ maxWidth: "1024px",maxHeight: "500px", margin: "0 auto", display: "block",objectFit: "contain" }}>
+        <source src={getVideoUrl("4")} type="video/mp4" />
+      </video>
         ) : (
-          <>
-            <div className="events-grid-Hiden">
-              {events.map((event, index) => (
-                <div key={index} className="event-card-Hiden">
-                  <img
-                    src={
-                      event.imageUrl ||
-                      "https://via.placeholder.com/300x200?text=No+Image"
-                    }
-                    alt={event.title || "Event image"}
-                    className="event-image13-Hiden"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src =
-                        "https://via.placeholder.com/300x200?text=No+Image";
-                    }}
-                  />
-                  <div className="event-content-Hiden">
-                    <h3>{event.title}</h3>
-                    <p className="event-date-Hiden">{event.date}</p>
-                    <p className="event-location-Hiden">{event.location}</p>
-                    <p className="event-description-Hiden">
-                      {event.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <button className="view-all-button-Hiden" onClick={toggleViewAll}>
-              Thu gọn
-            </button>
-          </>
-        )}
+          <div >
+          <img
+          src="https://i.ibb.co/Mykb5jVT/dao-ngoc-vung-1.jpg"
+          alt="Xem video"
+          style={{ cursor: 'pointer', width: '100%',maxWidth: "1024px",maxHeight: "700px" }} 
+          onClick={() => setShowVideo(true)}
+         />
+         <button
+            onClick={() => setShowVideo(true)}
+            style={{
+            
+              fontSize: '16px',
+              backgroundColor: '#1666dd',
+              color: '#fff',
+            
+            }}
+          >
+            ▶ Xem video
+          </button>
+          </div>
+       
+        )
+      }
+     
       </div>
     </div>
   );
