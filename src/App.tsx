@@ -23,6 +23,7 @@ import Support from "./components/Support/Support";
 import HidenViet from "./components/TestPage/Vietnam/Hiden";
 import HidenEn from "./components/TestPage/English/HidenEn";
 import HidenPage from "./pages/HidenPage/HidenPage";
+import FormQr from "./components/FormQr/FormQr";
 
 function App() {
   return (
@@ -31,7 +32,8 @@ function App() {
         <ScrollToTop />
         <Routes>
           {/* Route không dùng MainLayout */}
-         < Route path="/hiden-page" element={<HidenPage />} />
+          <Route path="/hiden-page" element={<HidenPage />} />
+          <Route path="/form-qr" element={<FormQr />} />
           {/* <Route path="/hidenVi" element={<HidenViet/>} />
           <Route path="/hidenEn" element={<HidenEn/>}/> */}
 
@@ -164,6 +166,7 @@ function App() {
               </MainLayout>
             }
           />
+
           <Route
             path="/support"
             element={
