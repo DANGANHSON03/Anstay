@@ -21,6 +21,7 @@ import ScrollToTop from "./components/ScrollToTop/SrcollToTop";
 import Culture from "./components/AboutList/AboutCulture/Culture";
 import Support from "./components/Support/Support";
 import HidenPage from "./pages/HidenPage/HidenPage";
+import FormQr from "./components/FormQr/FormQr";
 
 function App() {
   return (
@@ -30,7 +31,8 @@ function App() {
         <Routes>
           {/* Route không dùng MainLayout */}
          < Route path="/hiden-page" element={<HidenPage />} />
-         
+          {/* <Route path="/hidenVi" element={<HidenViet/>} />
+          <Route path="/hidenEn" element={<HidenEn/>}/> */}
 
           {/* Các route dùng MainLayout */}
           <Route
@@ -161,6 +163,7 @@ function App() {
               </MainLayout>
             }
           />
+
           <Route
             path="/support"
             element={
