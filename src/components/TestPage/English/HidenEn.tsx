@@ -7,10 +7,8 @@ function HidenEn() {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [showAllEvents, setShowAllEvents] = useState(false);
   const [showPopup, setShowPopup] = useState<string | null>(null);
-  const [language, setLanguage] = useState<'vi'|'en'>('vi');
+  const [language, setLanguage] = useState<"vi" | "en">("vi");
   const [showVideo, setShowVideo] = useState(false);
-  
- 
 
   const getVideoUrl = (sectionId) => {
     const videos = {
@@ -19,12 +17,10 @@ function HidenEn() {
       "2-2": "/videos/huong-dan-bep.mp4",
       "2-3": "/videos/may-giat.mp4",
       "3": "/videos/huong-dan-thang-may.mp4",
-      "4" :"/videos/nv16.mp4",
+      "4": "/videos/nv16.mp4",
     };
     return videos[sectionId] || "";
   };
- 
- 
 
   const toggleViewAll = () => {
     setShowAllEvents(!showAllEvents);
@@ -68,7 +64,6 @@ function HidenEn() {
     return () => clearInterval(timer);
   }, [events.length]);
 
-
   const nextEvent = () => {
     setCurrentEventIndex((prevIndex) =>
       prevIndex === events.length - 1 ? 0 : prevIndex + 1
@@ -99,1079 +94,1088 @@ function HidenEn() {
       <h2 className="guide-title-Hiden">Travel Guide</h2>
 
       <div className="accordion-Hiden">
-  <div className="accordion-item-Hiden">
-    <button
-      onClick={() => toggleTab(1)}
-      className="accordion-header-Hiden"
-      aria-expanded={isTabOpen(1)}
-    >
-      Opening Instructions
-    </button>
-    {isTabOpen(1) && (
-      <div className="accordion-content-Hiden">
-        <img src='https://i.ibb.co/RGMYDynD/z6529289444099-805fa915dbdc9b5509ad1b0f26163c5c.jpg' className="guide-imagecheckin-Hiden" />
-        <button
-          onClick={() => setShowPopup("1")}
-          className="guide-button-Hiden"
-        >
-          View Instructions
-        </button>
-      </div>
-    )}
-  </div>
+        <div className="accordion-item-Hiden">
+          <button
+            onClick={() => toggleTab(1)}
+            className="accordion-header-Hiden"
+            aria-expanded={isTabOpen(1)}
+          >
+            Opening Instructions
+          </button>
+          {isTabOpen(1) && (
+            <div className="accordion-content-Hiden">
+              <img
+                src="https://i.ibb.co/RGMYDynD/z6529289444099-805fa915dbdc9b5509ad1b0f26163c5c.jpg"
+                className="guide-imagecheckin-Hiden"
+              />
+              <button
+                onClick={() => setShowPopup("1")}
+                className="guide-button-Hiden"
+              >
+                View Instructions
+              </button>
+            </div>
+          )}
+        </div>
 
-  <div className="accordion-item-Hiden">
-    <button
-      onClick={() => toggleTab(2)}
-      className="accordion-header-Hiden"
-      aria-expanded={isTabOpen(2)}
-    >
-      Instructions for Electricity-Stove-Washing Machine
-    </button>
-    {isTabOpen(2) && (
-      <div className="accordion-content-Hiden">
-        <div className="sub-accordion-Hiden">
-          <div className="sub-accordion-item-Hiden">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleTab("2-1");
-              }}
-              className="sub-accordion-header-Hiden"
-              aria-expanded={isTabOpen("2-1")}
-            >
-              Instructions for turning on electricity
-            </button>
-            {isTabOpen("2-1") && (
-              <div className="sub-accordion-content-Hiden">
-                <p>- The main power switch is located next to the entrance door</p>
-                <p>- Turn on the main circuit breaker (if needed)</p>
-                <p>- Check that electrical devices are working</p>
-                <button
+        <div className="accordion-item-Hiden">
+          <button
+            onClick={() => toggleTab(2)}
+            className="accordion-header-Hiden"
+            aria-expanded={isTabOpen(2)}
+          >
+            Instructions for Electricity-Stove-Washing Machine
+          </button>
+          {isTabOpen(2) && (
+            <div className="accordion-content-Hiden">
+              <div className="sub-accordion-Hiden">
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("2-1");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("2-1")}
+                  >
+                    Instructions for turning on electricity
+                  </button>
+                  {isTabOpen("2-1") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <p>
+                        - The main power switch is located next to the entrance
+                        door
+                      </p>
+                      <p>- Turn on the main circuit breaker (if needed)</p>
+                      <p>- Check that electrical devices are working</p>
+                      {/* <button
                   onClick={() => setShowPopup("2-1")}
                   className="guide-button-Hiden"
                 >
                   View detailed instructions
-                </button>
-              </div>
-            )}
-          </div>
+                </button> */}
+                    </div>
+                  )}
+                </div>
 
-          <div className="sub-accordion-item-Hiden">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleTab("2-2");
-              }}
-              className="sub-accordion-header-Hiden"
-              aria-expanded={isTabOpen("2-2")}
-            >
-              Instructions for using the stove
-            </button>
-            {isTabOpen("2-2") && (
-              <div className="sub-accordion-content-Hiden">
-                <p>- Induction stove: Press the power button to turn on</p>
-                <p>- Adjust to appropriate temperature (levels 1-9)</p>
-                <p>- Remember to clean the stove after use</p>
-                <button
-                  onClick={() => setShowPopup("2-2")}
-                  className="guide-button-Hiden"
-                >
-                  View detailed instructions
-                </button>
-              </div>
-            )}
-          </div>
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("2-2");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("2-2")}
+                  >
+                    Instructions for using the stove
+                  </button>
+                  {isTabOpen("2-2") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <p>
+                        - Induction stove: Press the power button to turn on
+                      </p>
+                      <p>- Adjust to appropriate temperature (levels 1-9)</p>
+                      <p>- Remember to clean the stove after use</p>
+                      <button
+                        onClick={() => setShowPopup("2-2")}
+                        className="guide-button-Hiden"
+                      >
+                        View detailed instructions
+                      </button>
+                    </div>
+                  )}
+                </div>
 
-          <div className="sub-accordion-item-Hiden">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleTab("2-3");
-              }}
-              className="sub-accordion-header-Hiden"
-              aria-expanded={isTabOpen("2-3")}
-            >
-              Instructions for using the washing machine
-            </button>
-            {isTabOpen("2-3") && (
-              <div className="sub-accordion-content-Hiden">
-                <img
-                  src="/images/maygiat.jpg"
-                  alt="Instructions for using the washing machine"
-                  className="guide-image-Hiden"
-                />
-                <button
-                  onClick={() => setShowPopup("2-3")}
-                  className="guide-button-Hiden"
-                >
-                  View detailed instructions
-                </button>
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("2-3");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("2-3")}
+                  >
+                    Instructions for using the washing machine
+                  </button>
+                  {isTabOpen("2-3") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <img
+                        src="https://i.ibb.co/3y7TNhd6/maygiat.jpg"
+                        alt="Instructions for using the washing machine"
+                        className="guide-image-Hiden"
+                      />
+                      <button
+                        onClick={() => setShowPopup("2-3")}
+                        className="guide-button-Hiden"
+                      >
+                        View detailed instructions
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
-      </div>
-    )}
-  </div>
 
-  <div className="accordion-item-Hiden">
-    <button
-      onClick={() => toggleTab(3)}
-      className="accordion-header-Hiden"
-      aria-expanded={isTabOpen(3)}
-    >
-      Elevator Instructions
-    </button>
-    {isTabOpen(3) && (
-      <div className="accordion-content-Hiden">
-        <p>- Swipe your key card before selecting the floor</p>
-        <p>- Accessible floors: 1-20</p>
-        <p>- Red emergency button for assistance if needed</p>
-        <button
-          onClick={() => setShowPopup("3")}
-          className="guide-button-Hiden"
-        >
-          View usage instructions
-        </button>
-      </div>
-    )}
-  </div>
+        <div className="accordion-item-Hiden">
+          <button
+            onClick={() => toggleTab(3)}
+            className="accordion-header-Hiden"
+            aria-expanded={isTabOpen(3)}
+          >
+            Elevator Instructions
+          </button>
+          {isTabOpen(3) && (
+            <div className="accordion-content-Hiden">
+              <p>- Swipe your key card before selecting the floor</p>
+              <p>- Accessible floors: 1-20</p>
+              <p>- Red emergency button for assistance if needed</p>
+              <button
+                onClick={() => setShowPopup("3")}
+                className="guide-button-Hiden"
+              >
+                View usage instructions
+              </button>
+            </div>
+          )}
+        </div>
 
-  <div className="accordion-item-Hiden">
-    <button
-      onClick={() => toggleTab(4)}
-      className="accordion-header-Hiden"
-      aria-expanded={isTabOpen(4)}
-    >
-      Important Stay Information
-    </button>
-    {isTabOpen(4) && (
-      <div className="accordion-content-Hiden">
-        <p>
-          <strong>General Rules:</strong>
-        </p>
-        <p>- Check-in time: 14:00, check-out time: 12:00</p>
-        <p>- No smoking in the apartment</p>
-        <p>- No noise after 22:00</p>
-        <p>- No parties allowed</p>
-        <p>
-          <strong>Safety:</strong>
-        </p>
-        <p>- Ensure doors are locked when leaving</p>
-        <p>- Turn off electrical devices when not in use</p>
-        <p>- Emergency numbers: 114 (Police), 115 (Emergency Services)</p>
-      </div>
-    )}
-  </div>
+        <div className="accordion-item-Hiden">
+          <button
+            onClick={() => toggleTab(4)}
+            className="accordion-header-Hiden"
+            aria-expanded={isTabOpen(4)}
+          >
+            Important Stay Information
+          </button>
+          {isTabOpen(4) && (
+            <div className="accordion-content-Hiden">
+              <p>
+                <strong>General Rules:</strong>
+              </p>
+              <p>- Check-in time: 15:00, check-out time: 12:00</p>
+              <p>- No smoking in the apartment</p>
+              <p>- No noise after 22:00</p>
+              <p>- No parties allowed</p>
+              <p>
+                <strong>Safety:</strong>
+              </p>
+              <p>- Ensure doors are locked when leaving</p>
+              <p>- Turn off electrical devices when not in use</p>
+              <strong>Contact:</strong>+84 84 227 2772 (Reception) +84 38 494
+              5614 (Customer Service)
+            </div>
+          )}
+        </div>
 
-  <div className="accordion-item-Hiden">
-    <button
-      onClick={() => toggleTab(5)}
-      className="accordion-header-Hiden"
-      aria-expanded={isTabOpen(5)}
-    >
-      Equipment Information and Pricing
-    </button>
-    {isTabOpen(5) && (
-      <div className="accordion-content-Hiden">
-        <div className="sub-accordion-Hiden">
-          <div className="sub-accordion-item-Hiden">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleTab("5-1");
-              }}
-              className="sub-accordion-header-Hiden"
-              aria-expanded={isTabOpen("5-1")}
-            >
-              Porcelain Items Table
-            </button>
-            {isTabOpen("5-1") && (
-              <div className="sub-accordion-content-Hiden">
-                <table className="compensation-table-Hiden">
-                  <thead>
-                    <tr>
-                      <th>No.</th>
-                      <th>Product</th>
-                      <th>Unit</th>
-                      <th>Compensation Price (VND)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Rice bowl</td>
-                      <td>Once</td>
-                      <td>30,000</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Porcelain ashtray</td>
-                      <td>Once</td>
-                      <td>55,000</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Round plate F20</td>
-                      <td>Once</td>
-                      <td>55,000</td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>Round plate F25</td>
-                      <td>Once</td>
-                      <td>90,000</td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td>Tea cup saucer</td>
-                      <td>Once</td>
-                      <td>30,000</td>
-                    </tr>
-                    <tr>
-                      <td>6</td>
-                      <td>Soup bowl</td>
-                      <td>Once</td>
-                      <td>95,000</td>
-                    </tr>
-                    <tr>
-                      <td>7</td>
-                      <td>Dipping bowl</td>
-                      <td>Once</td>
-                      <td>25,000</td>
-                    </tr>
-                    <tr>
-                      <td>8</td>
-                      <td>Soup spoon</td>
-                      <td>Once</td>
-                      <td>100,000</td>
-                    </tr>
-                    <tr>
-                      <td>9</td>
-                      <td>Small coffee spoon</td>
-                      <td>Once</td>
-                      <td>90,000</td>
-                    </tr>
-                    <tr>
-                      <td>10</td>
-                      <td>Knife</td>
-                      <td>Once</td>
-                      <td>110,000</td>
-                    </tr>
-                    <tr>
-                      <td>11</td>
-                      <td>Fork</td>
-                      <td>Once</td>
-                      <td>100,000</td>
-                    </tr>
-                    <tr>
-                      <td>12</td>
-                      <td>Chopsticks</td>
-                      <td>Pair</td>
-                      <td>15,000</td>
-                    </tr>
-                    <tr>
-                      <td>13</td>
-                      <td>Room glass</td>
-                      <td>Once</td>
-                      <td>145,000</td>
-                    </tr>
-                    <tr>
-                      <td>14</td>
-                      <td>Tea cup</td>
-                      <td>Once</td>
-                      <td>65,000</td>
-                    </tr>
-                    <tr>
-                      <td>15</td>
-                      <td>Soup ladle</td>
-                      <td>Once</td>
-                      <td>60,000</td>
-                    </tr>
-                    <tr>
-                      <td>16</td>
-                      <td>Non-stick pan</td>
-                      <td>Once</td>
-                      <td>340,000</td>
-                    </tr>
-                    <tr>
-                      <td>17</td>
-                      <td>Stainless steel cookware set</td>
-                      <td>Once</td>
-                      <td>980,000</td>
-                    </tr>
-                    <tr>
-                      <td>18</td>
-                      <td>Rice cooker</td>
-                      <td>Once</td>
-                      <td>950,000</td>
-                    </tr>
-                    <tr>
-                      <td>19</td>
-                      <td>Plastic cutting board</td>
-                      <td>Once</td>
-                      <td>200,000</td>
-                    </tr>
-                    <tr>
-                      <td>20</td>
-                      <td>Wooden cutting board</td>
-                      <td>Once</td>
-                      <td>190,000</td>
-                    </tr>
-                    <tr>
-                      <td>21</td>
-                      <td>Room condiment set</td>
-                      <td>Set</td>
-                      <td>205,000</td>
-                    </tr>
-                    <tr>
-                      <td>22</td>
-                      <td>Cutting knife 22cm</td>
-                      <td>Once</td>
-                      <td>255,000</td>
-                    </tr>
-                    <tr>
-                      <td>23</td>
-                      <td>Cutting knife 24cm</td>
-                      <td>Once</td>
-                      <td>120,000</td>
-                    </tr>
-                    <tr>
-                      <td>24</td>
-                      <td>Cooking spatula</td>
-                      <td>Once</td>
-                      <td>90,000</td>
-                    </tr>
-                    <tr>
-                      <td>25</td>
-                      <td>Kitchen scissors</td>
-                      <td>Once</td>
-                      <td>70,000</td>
-                    </tr>
-                    <tr>
-                      <td>26</td>
-                      <td>Plastic basket</td>
-                      <td>Once</td>
-                      <td>80,000</td>
-                    </tr>
-                    <tr>
-                      <td>27</td>
-                      <td>Room basket</td>
-                      <td>Once</td>
-                      <td>190,000</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </div>
-
-          <div className="sub-accordion-item-Hiden">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleTab("5-2");
-              }}
-              className="sub-accordion-header-Hiden"
-              aria-expanded={isTabOpen("5-2")}
-            >
-              Porcelain Table
-            </button>
-            {isTabOpen("5-2") && (
-              <div className="sub-accordion-content-Hiden">
-                <table className="compensation-table-Hiden">
-                  <thead>
-                    <tr>
-                      <th>No.</th>
-                      <th>Product</th>
-                      <th>Unit</th>
-                      <th>Compensation Price (VND)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Bowl</td>
-                      <td>Piece</td>
-                      <td>30,000</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Porcelain ashtray</td>
-                      <td>Piece</td>
-                      <td>55,000</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Round disc F20</td>
-                      <td>Piece</td>
-                      <td>55,000</td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>Round disc F25</td>
-                      <td>Piece</td>
-                      <td>90,000</td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td>A plate with a cup of tea</td>
-                      <td>Piece</td>
-                      <td>30,000</td>
-                    </tr>
-                    <tr>
-                      <td>6</td>
-                      <td>Bowl of soup</td>
-                      <td>Piece</td>
-                      <td>95,000</td>
-                    </tr>
-                    <tr>
-                      <td>7</td>
-                      <td>Dipping bowl</td>
-                      <td>Piece</td>
-                      <td>25,000</td>
-                    </tr>
-                    <tr>
-                      <td>8</td>
-                      <td>Soup spoon</td>
-                      <td>Piece</td>
-                      <td>100,000</td>
-                    </tr>
-                    <tr>
-                      <td>9</td>
-                      <td>Small coffee spoon</td>
-                      <td>Piece</td>
-                      <td>90,000</td>
-                    </tr>
-                    <tr>
-                      <td>10</td>
-                      <td>Eating knife</td>
-                      <td>Piece</td>
-                      <td>110,000</td>
-                    </tr>
-                    <tr>
-                      <td>11</td>
-                      <td>Plate</td>
-                      <td>Piece</td>
-                      <td>100,000</td>
-                    </tr>
-                    <tr>
-                      <td>12</td>
-                      <td>Chopsticks</td>
-                      <td>Pair</td>
-                      <td>15,000</td>
-                    </tr>
-                    <tr>
-                      <td>13</td>
-                      <td>Room glass</td>
-                      <td>Piece</td>
-                      <td>45,000</td>
-                    </tr>
-                    <tr>
-                      <td>14</td>
-                      <td>Teacup</td>
-                      <td>Piece</td>
-                      <td>65,000</td>
-                    </tr>
-                    <tr>
-                      <td>15</td>
-                      <td>Soup ladle</td>
-                      <td>Piece</td>
-                      <td>60,000</td>
-                    </tr>
-                    <tr>
-                      <td>16</td>
-                      <td>Non-stick pan</td>
-                      <td>Piece</td>
-                      <td>340,000</td>
-                    </tr>
-                    <tr>
-                      <td>17</td>
-                      <td>Stainless steel pots and pans set</td>
-                      <td>Piece</td>
-                      <td>980,000</td>
-                    </tr>
-                    <tr>
-                      <td>18</td>
-                      <td>Electric cooker</td>
-                      <td>Piece</td>
-                      <td>950,000</td>
-                    </tr>
-                    <tr>
-                      <td>19</td>
-                      <td>Plastic cutting board in CH room</td>
-                      <td>Piece</td>
-                      <td>200,000</td>
-                    </tr>
-                    <tr>
-                      <td>20</td>
-                      <td>Wooden cutting board in CH's room</td>
-                      <td>Piece</td>
-                      <td>190,000</td>
-                    </tr>
-                    <tr>
-                      <td>21</td>
-                      <td>Spice set in the room</td>
-                      <td>Set</td>
-                      <td>205,000</td>
-                    </tr>
-                    <tr>
-                      <td>22</td>
-                      <td>Hair dryer</td>
-                      <td>Once</td>
-                      <td>254,000</td>
-                    </tr>
-                    <tr>
-                      <td>23</td>
-                      <td>Landline phone</td>
-                      <td>Once</td>
-                      <td>200,000</td>
-                    </tr>
-                    <tr>
-                      <td>24</td>
-                      <td>Room key</td>
-                      <td>Once</td>
-                      <td>100,000</td>
-                    </tr>
-                    <tr>
-                      <td>25</td>
-                      <td>TV 40 inch</td>
-                      <td>Once</td>
-                      <td>6,410,000</td>
-                    </tr>
-                    <tr>
-                      <td>26</td>
-                      <td>TV 45 inch</td>
-                      <td>Once</td>
-                      <td>8,114,000</td>
-                    </tr>
-                    <tr>
-                      <td>27</td>
-                      <td>Double sofa (1.6m or 1.8m)</td>
-                      <td>Once</td>
-                      <td>7,000,000</td>
-                    </tr>
-                    <tr>
-                      <td>28</td>
-                      <td>Sofa cushion</td>
-                      <td>Once</td>
-                      <td>1,000,000</td>
-                    </tr>
-                    <tr>
-                      <td>29</td>
-                      <td>Single wooden chair</td>
-                      <td>Once</td>
-                      <td>1,500,000</td>
-                    </tr>
-                    <tr>
-                      <td>30</td>
-                      <td>Round wooden table</td>
-                      <td>Once</td>
-                      <td>1,000,000</td>
-                    </tr>
-                    <tr>
-                      <td>31</td>
-                      <td>Glass surface</td>
-                      <td>Once</td>
-                      <td>1,000,000</td>
-                    </tr>
-                    <tr>
-                      <td>32</td>
-                      <td>Foot towel (45*80)</td>
-                      <td>Once</td>
-                      <td>140,000</td>
-                    </tr>
-                    <tr>
-                      <td>33</td>
-                      <td>Face towel (34*34)</td>
-                      <td>Once</td>
-                      <td>45,000</td>
-                    </tr>
-                    <tr>
-                      <td>34</td>
-                      <td>Bath towel (70*90)</td>
-                      <td>Once</td>
-                      <td>184,000</td>
-                    </tr>
-                    <tr>
-                      <td>35</td>
-                      <td>Wicker basket</td>
-                      <td>Once</td>
-                      <td>190,000</td>
-                    </tr>
-                    <tr>
-                      <td>36</td>
-                      <td>Lamp shade</td>
-                      <td>Once</td>
-                      <td>405,000</td>
-                    </tr>
-                    <tr>
-                      <td>37</td>
-                      <td>Floor lamp</td>
-                      <td>Once</td>
-                      <td>1,015,000</td>
-                    </tr>
-                    <tr>
-                      <td>38</td>
-                      <td>Wall painting (70*90)</td>
-                      <td>Once</td>
-                      <td>485,000</td>
-                    </tr>
-                    <tr>
-                      <td>39</td>
-                      <td>Wall painting (45*45)</td>
-                      <td>Once</td>
-                      <td>690,000</td>
-                    </tr>
-                    <tr>
-                      <td>40</td>
-                      <td>Wall painting (40*40)</td>
-                      <td>Once</td>
-                      <td>450,000</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </div>
-
-          <div className="sub-accordion-item-Hiden">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleTab("5-3");
-              }}
-              className="sub-accordion-header-Hiden"
-              aria-expanded={isTabOpen("5-3")}
-            >
-              Compensation Price List
-            </button>
-            {isTabOpen("5-3") && (
-              <div className="sub-accordion-content-Hiden">
-                <table className="compensation-table-Hiden">
-                  <thead>
-                    <tr>
-                      <th>No.</th>
-                      <th>Item Type (Species)</th>
-                      <th>Size</th>
-                      <th>Price (C&B) (VND)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>BED 110*200 (Shafts 3,5,11,12)</td>
-                      <td>110*200</td>
-                      <td>250,000</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Mattress protection</td>
-                      <td>190*280</td>
-                      <td>380,000</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Sheets</td>
-                      <td>180*235</td>
-                      <td>700,000</td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>Quilt cover</td>
-                      <td>180*235</td>
-                      <td>760,000</td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td>Blanket intestines</td>
-                      <td>180*235</td>
-                      <td>765,000</td>
-                    </tr>
-                    <tr>
-                      <td>6</td>
-                      <td>BED 160*200 (Axis 8,9,10)</td>
-                      <td>160*200</td>
-                      <td>340,000</td>
-                    </tr>
-                    <tr>
-                      <td>7</td>
-                      <td>Mattress protection</td>
-                      <td>230*235</td>
-                      <td>815,000</td>
-                    </tr>
-                    <tr>
-                      <td>8</td>
-                      <td>Quilt cover</td>
-                      <td>230*235</td>
-                      <td>890,000</td>
-                    </tr>
-                    <tr>
-                      <td>9</td>
-                      <td>Blanket intestines</td>
-                      <td>230*235</td>
-                      <td>890,000</td>
-                    </tr>
-                    <tr>
-                      <td>10</td>
-                      <td>BED 180*200 (Axis 1,2,6,7)</td>
-                      <td>180*200</td>
-                      <td>320,000</td>
-                    </tr>
-                    <tr>
-                      <td>11</td>
-                      <td>Mattress protection</td>
-                      <td>180*200</td>
-                      <td>320,000</td>
-                    </tr>
-                    <tr>
-                      <td>12</td>
-                      <td>Sheets</td>
-                      <td>260*280</td>
-                      <td>490,000</td>
-                    </tr>
-                    <tr>
-                      <td>13</td>
-                      <td>Quilt cover</td>
-                      <td>250*235</td>
-                      <td>925,000</td>
-                    </tr>
-                    <tr>
-                      <td>14</td>
-                      <td>Pillowcase</td>
-                      <td>50*70</td>
-                      <td>90,000</td>
-                    </tr>
-                    <tr>
-                      <td>15</td>
-                      <td>Blanket intestines</td>
-                      <td>250*235</td>
-                      <td>960,000</td>
-                    </tr>
-                    <tr>
-                      <td>16</td>
-                      <td>Gut pillow</td>
-                      <td>50*70</td>
-                      <td>210,000</td>
-                    </tr>
-                    <tr>
-                      <td>17</td>
-                      <td>Pillowcase</td>
-                      <td>60*80</td>
-                      <td>140,000</td>
-                    </tr>
-                    <tr>
-                      <td>18</td>
-                      <td>Gut pillow</td>
-                      <td>60*80</td>
-                      <td>200,000</td>
-                    </tr>
-                    <tr>
-                      <td>19</td>
-                      <td>Swimsuit</td>
-                      <td>-</td>
-                      <td>435,000</td>
-                    </tr>
-                    <tr>
-                      <td>20</td>
-                      <td>BED 220*200 (paired 3,5,11,12)</td>
-                      <td>200*200</td>
-                      <td>365,000</td>
-                    </tr>
-                    <tr>
-                      <td>21</td>
-                      <td>Mattress protection</td>
-                      <td>200*200</td>
-                      <td>365,000</td>
-                    </tr>
-                    <tr>
-                      <td>22</td>
-                      <td>Sheets</td>
-                      <td>300*280</td>
-                      <td>575,000</td>
-                    </tr>
-                    <tr>
-                      <td>23</td>
-                      <td>Quilt cover</td>
-                      <td>290*235</td>
-                      <td>1,015,000</td>
-                    </tr>
-                    <tr>
-                      <td>24</td>
-                      <td>Blanket intestines</td>
-                      <td>290*235</td>
-                      <td>1,115,000</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </div>
-
-          <div className="sub-accordion-item-Hiden">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleTab("5-4");
-              }}
-              className="sub-accordion-header-Hiden"
-              aria-expanded={isTabOpen("5-4")}
-            >
-              Tools and Equipment Table
-            </button>
-            {isTabOpen("5-4") && (
-              <div className="sub-accordion-content-Hiden">
-                <table className="compensation-table-Hiden">
-                  <thead>
-                    <tr>
-                      <th>No.</th>
-                      <th>Product</th>
-                      <th>Unit</th>
-                      <th>Compensation Price (VND)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Room trash can (metal)</td>
-                      <td>Once</td>
-                      <td>329,000</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Room trash can (leather)</td>
-                      <td>Once</td>
-                      <td>366,000</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Minibar tray</td>
-                      <td>Once</td>
-                      <td>569,000</td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>Tea/coffee tray</td>
-                      <td>Once</td>
-                      <td>283,000</td>
+        <div className="accordion-item-Hiden">
+          <button
+            onClick={() => toggleTab(5)}
+            className="accordion-header-Hiden"
+            aria-expanded={isTabOpen(5)}
+          >
+            Equipment Information and Pricing
+          </button>
+          {isTabOpen(5) && (
+            <div className="accordion-content-Hiden">
+              <div className="sub-accordion-Hiden">
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("5-1");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("5-1")}
+                  >
+                    Porcelain Items Table
+                  </button>
+                  {isTabOpen("5-1") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <table className="compensation-table-Hiden">
+                        <thead>
+                          <tr>
+                            <th>No.</th>
+                            <th>Product</th>
+                            <th>Unit</th>
+                            <th>Compensation Price (VND)</th>
                           </tr>
-                      <tr>
-                      <td>5</td>
-                      <td>Amenities tray</td>
-                      <td>Once</td>
-                      <td>200,000</td>
-                    </tr>
-                    <tr>
-                      <td>6</td>
-                      <td>Leather room service cover</td>
-                      <td>Once</td>
-                      <td>344,000</td>
-                    </tr>
-                    <tr>
-                      <td>7</td>
-                      <td>Leather note pad cover</td>
-                      <td>Once</td>
-                      <td>195,000</td>
-                    </tr>
-                    <tr>
-                      <td>8</td>
-                      <td>Cashier leather cover</td>
-                      <td>Once</td>
-                      <td>302,000</td>
-                    </tr>
-                    <tr>
-                      <td>9</td>
-                      <td>Menu leather cover</td>
-                      <td>Once</td>
-                      <td>405,000</td>
-                    </tr>
-                    <tr>
-                      <td>10</td>
-                      <td>Tissue box</td>
-                      <td>Once</td>
-                      <td>344,000</td>
-                    </tr>
-                    <tr>
-                      <td>11</td>
-                      <td>Leather door hanger</td>
-                      <td>Once</td>
-                      <td>165,000</td>
-                    </tr>
-                    <tr>
-                      <td>12</td>
-                      <td>Table clock</td>
-                      <td>Once</td>
-                      <td>473,000</td>
-                    </tr>
-                    <tr>
-                      <td>13</td>
-                      <td>Soap dish (black)</td>
-                      <td>Once</td>
-                      <td>50,000</td>
-                    </tr>
-                    <tr>
-                      <td>14</td>
-                      <td>TV remote</td>
-                      <td>Once</td>
-                      <td>300,000</td>
-                    </tr>
-                    <tr>
-                      <td>15</td>
-                      <td>Air conditioner remote</td>
-                      <td>Once</td>
-                      <td>1,000,000</td>
-                    </tr>
-                    <tr>
-                      <td>16</td>
-                      <td>Desk lamp</td>
-                      <td>Once</td>
-                      <td>245,000</td>
-                    </tr>
-                    <tr>
-                      <td>17</td>
-                      <td>Living room night lamp</td>
-                      <td>Once</td>
-                      <td>403,000</td>
-                    </tr>
-                    <tr>
-                      <td>18</td>
-                      <td>Floor lamp</td>
-                      <td>Once</td>
-                      <td>1,015,000</td>
-                    </tr>
-                    <tr>
-                      <td>19</td>
-                      <td>Wooden clothes hanger</td>
-                      <td>Once</td>
-                      <td>30,000</td>
-                    </tr>
-                    <tr>
-                      <td>20</td>
-                      <td>Clothes hanger with clips</td>
-                      <td>Once</td>
-                      <td>25,000</td>
-                    </tr>
-                    <tr>
-                      <td>21</td>
-                      <td>Electric kettle</td>
-                      <td>Once</td>
-                      <td>194,000</td>
-                    </tr>
-                    <tr>
-                      <td>22</td>
-                      <td>Hair dryer</td>
-                      <td>Once</td>
-                      <td>254,000</td>
-                    </tr>
-                    <tr>
-                      <td>23</td>
-                      <td>Landline phone</td>
-                      <td>Piece</td>
-                      <td>200,000</td>
-                    </tr>
-                    <tr>
-                      <td>24</td>
-                      <td>Room key</td>
-                      <td>Piece</td>
-                      <td>100,000</td>
-                    </tr>
-                    <tr>
-                      <td>25</td>
-                      <td>40 inch TV</td>
-                      <td>Piece</td>
-                      <td>6,410,000</td>
-                    </tr>
-                    <tr>
-                      <td>26</td>
-                      <td>45 inch TV</td>
-                      <td>Piece</td>
-                      <td>8,114,000</td>
-                    </tr>
-                    <tr>
-                      <td>27</td>
-                      <td>Double sofa (1.6m or 1.8m)</td>
-                      <td>Piece</td>
-                      <td>7,000,000</td>
-                    </tr>
-                    <tr>
-                      <td>28</td>
-                      <td>Sofa pillow</td>
-                      <td>Piece</td>
-                      <td>1,000,000</td>
-                    </tr>
-                    <tr>
-                      <td>29</td>
-                      <td>Single wooden chair</td>
-                      <td>Piece</td>
-                      <td>1,500,000</td>
-                    </tr>
-                    <tr>
-                      <td>30</td>
-                      <td>Round wooden table</td>
-                      <td>Piece</td>
-                      <td>1,000,000</td>
-                    </tr>
-                    <tr>
-                      <td>31</td>
-                      <td>Glass surface</td>
-                      <td>Piece</td>
-                      <td>1,000,000</td>
-                    </tr>
-                    <tr>
-                      <td>32</td>
-                      <td>Foot towel (45*80)</td>
-                      <td>Piece</td>
-                      <td>140,000</td>
-                    </tr>
-                    <tr>
-                      <td>33</td>
-                      <td>Washcloth (34*34)</td>
-                      <td>Piece</td>
-                      <td>45,000</td>
-                    </tr>
-                    <tr>
-                      <td>34</td>
-                      <td>Towel (70*90)</td>
-                      <td>Piece</td>
-                      <td>184,000</td>
-                    </tr>
-                    <tr>
-                      <td>35</td>
-                      <td>Basket</td>
-                      <td>Piece</td>
-                      <td>190,000</td>
-                    </tr>
-                    <tr>
-                      <td>36</td>
-                      <td>Lamp</td>
-                      <td>Piece</td>
-                      <td>405,000</td>
-                    </tr>
-                    <tr>
-                      <td>37</td>
-                      <td>Tree lights</td>
-                      <td>Piece</td>
-                      <td>1,015,000</td>
-                    </tr>
-                    <tr>
-                      <td>38</td>
-                      <td>Wall painting (70*90)</td>
-                      <td>Piece</td>
-                      <td>485,000</td>
-                    </tr>
-                    <tr>
-                      <td>39</td>
-                      <td>Wall painting (45*45)</td>
-                      <td>Piece</td>
-                      <td>690,000</td>
-                    </tr>
-                    <tr>
-                      <td>40</td>
-                      <td>Wall painting (40*40)</td>
-                      <td>Piece</td>
-                      <td>450,000</td>
-                    </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>Rice bowl</td>
+                            <td>Once</td>
+                            <td>30,000</td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td>Porcelain ashtray</td>
+                            <td>Once</td>
+                            <td>55,000</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Round plate F20</td>
+                            <td>Once</td>
+                            <td>55,000</td>
+                          </tr>
+                          <tr>
+                            <td>4</td>
+                            <td>Round plate F25</td>
+                            <td>Once</td>
+                            <td>90,000</td>
+                          </tr>
+                          <tr>
+                            <td>5</td>
+                            <td>Tea cup saucer</td>
+                            <td>Once</td>
+                            <td>30,000</td>
+                          </tr>
+                          <tr>
+                            <td>6</td>
+                            <td>Soup bowl</td>
+                            <td>Once</td>
+                            <td>95,000</td>
+                          </tr>
+                          <tr>
+                            <td>7</td>
+                            <td>Dipping bowl</td>
+                            <td>Once</td>
+                            <td>25,000</td>
+                          </tr>
+                          <tr>
+                            <td>8</td>
+                            <td>Soup spoon</td>
+                            <td>Once</td>
+                            <td>100,000</td>
+                          </tr>
+                          <tr>
+                            <td>9</td>
+                            <td>Small coffee spoon</td>
+                            <td>Once</td>
+                            <td>90,000</td>
+                          </tr>
+                          <tr>
+                            <td>10</td>
+                            <td>Knife</td>
+                            <td>Once</td>
+                            <td>110,000</td>
+                          </tr>
+                          <tr>
+                            <td>11</td>
+                            <td>Fork</td>
+                            <td>Once</td>
+                            <td>100,000</td>
+                          </tr>
+                          <tr>
+                            <td>12</td>
+                            <td>Chopsticks</td>
+                            <td>Pair</td>
+                            <td>15,000</td>
+                          </tr>
+                          <tr>
+                            <td>13</td>
+                            <td>Room glass</td>
+                            <td>Once</td>
+                            <td>145,000</td>
+                          </tr>
+                          <tr>
+                            <td>14</td>
+                            <td>Tea cup</td>
+                            <td>Once</td>
+                            <td>65,000</td>
+                          </tr>
+                          <tr>
+                            <td>15</td>
+                            <td>Soup ladle</td>
+                            <td>Once</td>
+                            <td>60,000</td>
+                          </tr>
+                          <tr>
+                            <td>16</td>
+                            <td>Non-stick pan</td>
+                            <td>Once</td>
+                            <td>340,000</td>
+                          </tr>
+                          <tr>
+                            <td>17</td>
+                            <td>Stainless steel cookware set</td>
+                            <td>Once</td>
+                            <td>980,000</td>
+                          </tr>
+                          <tr>
+                            <td>18</td>
+                            <td>Rice cooker</td>
+                            <td>Once</td>
+                            <td>950,000</td>
+                          </tr>
+                          <tr>
+                            <td>19</td>
+                            <td>Plastic cutting board</td>
+                            <td>Once</td>
+                            <td>200,000</td>
+                          </tr>
+                          <tr>
+                            <td>20</td>
+                            <td>Wooden cutting board</td>
+                            <td>Once</td>
+                            <td>190,000</td>
+                          </tr>
+                          <tr>
+                            <td>21</td>
+                            <td>Room condiment set</td>
+                            <td>Set</td>
+                            <td>205,000</td>
+                          </tr>
+                          <tr>
+                            <td>22</td>
+                            <td>Cutting knife 22cm</td>
+                            <td>Once</td>
+                            <td>255,000</td>
+                          </tr>
+                          <tr>
+                            <td>23</td>
+                            <td>Cutting knife 24cm</td>
+                            <td>Once</td>
+                            <td>120,000</td>
+                          </tr>
+                          <tr>
+                            <td>24</td>
+                            <td>Cooking spatula</td>
+                            <td>Once</td>
+                            <td>90,000</td>
+                          </tr>
+                          <tr>
+                            <td>25</td>
+                            <td>Kitchen scissors</td>
+                            <td>Once</td>
+                            <td>70,000</td>
+                          </tr>
+                          <tr>
+                            <td>26</td>
+                            <td>Plastic basket</td>
+                            <td>Once</td>
+                            <td>80,000</td>
+                          </tr>
+                          <tr>
+                            <td>27</td>
+                            <td>Room basket</td>
+                            <td>Once</td>
+                            <td>190,000</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </div>
+
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("5-2");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("5-2")}
+                  >
+                    Porcelain Table
+                  </button>
+                  {isTabOpen("5-2") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <table className="compensation-table-Hiden">
+                        <thead>
+                          <tr>
+                            <th>No.</th>
+                            <th>Product</th>
+                            <th>Unit</th>
+                            <th>Compensation Price (VND)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>Bowl</td>
+                            <td>Piece</td>
+                            <td>30,000</td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td>Porcelain ashtray</td>
+                            <td>Piece</td>
+                            <td>55,000</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Round disc F20</td>
+                            <td>Piece</td>
+                            <td>55,000</td>
+                          </tr>
+                          <tr>
+                            <td>4</td>
+                            <td>Round disc F25</td>
+                            <td>Piece</td>
+                            <td>90,000</td>
+                          </tr>
+                          <tr>
+                            <td>5</td>
+                            <td>A plate with a cup of tea</td>
+                            <td>Piece</td>
+                            <td>30,000</td>
+                          </tr>
+                          <tr>
+                            <td>6</td>
+                            <td>Bowl of soup</td>
+                            <td>Piece</td>
+                            <td>95,000</td>
+                          </tr>
+                          <tr>
+                            <td>7</td>
+                            <td>Dipping bowl</td>
+                            <td>Piece</td>
+                            <td>25,000</td>
+                          </tr>
+                          <tr>
+                            <td>8</td>
+                            <td>Soup spoon</td>
+                            <td>Piece</td>
+                            <td>100,000</td>
+                          </tr>
+                          <tr>
+                            <td>9</td>
+                            <td>Small coffee spoon</td>
+                            <td>Piece</td>
+                            <td>90,000</td>
+                          </tr>
+                          <tr>
+                            <td>10</td>
+                            <td>Eating knife</td>
+                            <td>Piece</td>
+                            <td>110,000</td>
+                          </tr>
+                          <tr>
+                            <td>11</td>
+                            <td>Plate</td>
+                            <td>Piece</td>
+                            <td>100,000</td>
+                          </tr>
+                          <tr>
+                            <td>12</td>
+                            <td>Chopsticks</td>
+                            <td>Pair</td>
+                            <td>15,000</td>
+                          </tr>
+                          <tr>
+                            <td>13</td>
+                            <td>Room glass</td>
+                            <td>Piece</td>
+                            <td>45,000</td>
+                          </tr>
+                          <tr>
+                            <td>14</td>
+                            <td>Teacup</td>
+                            <td>Piece</td>
+                            <td>65,000</td>
+                          </tr>
+                          <tr>
+                            <td>15</td>
+                            <td>Soup ladle</td>
+                            <td>Piece</td>
+                            <td>60,000</td>
+                          </tr>
+                          <tr>
+                            <td>16</td>
+                            <td>Non-stick pan</td>
+                            <td>Piece</td>
+                            <td>340,000</td>
+                          </tr>
+                          <tr>
+                            <td>17</td>
+                            <td>Stainless steel pots and pans set</td>
+                            <td>Piece</td>
+                            <td>980,000</td>
+                          </tr>
+                          <tr>
+                            <td>18</td>
+                            <td>Electric cooker</td>
+                            <td>Piece</td>
+                            <td>950,000</td>
+                          </tr>
+                          <tr>
+                            <td>19</td>
+                            <td>Plastic cutting board in CH room</td>
+                            <td>Piece</td>
+                            <td>200,000</td>
+                          </tr>
+                          <tr>
+                            <td>20</td>
+                            <td>Wooden cutting board in CH's room</td>
+                            <td>Piece</td>
+                            <td>190,000</td>
+                          </tr>
+                          <tr>
+                            <td>21</td>
+                            <td>Spice set in the room</td>
+                            <td>Set</td>
+                            <td>205,000</td>
+                          </tr>
+                          <tr>
+                            <td>22</td>
+                            <td>Hair dryer</td>
+                            <td>Once</td>
+                            <td>254,000</td>
+                          </tr>
+                          <tr>
+                            <td>23</td>
+                            <td>Landline phone</td>
+                            <td>Once</td>
+                            <td>200,000</td>
+                          </tr>
+                          <tr>
+                            <td>24</td>
+                            <td>Room key</td>
+                            <td>Once</td>
+                            <td>100,000</td>
+                          </tr>
+                          <tr>
+                            <td>25</td>
+                            <td>TV 40 inch</td>
+                            <td>Once</td>
+                            <td>6,410,000</td>
+                          </tr>
+                          <tr>
+                            <td>26</td>
+                            <td>TV 45 inch</td>
+                            <td>Once</td>
+                            <td>8,114,000</td>
+                          </tr>
+                          <tr>
+                            <td>27</td>
+                            <td>Double sofa (1.6m or 1.8m)</td>
+                            <td>Once</td>
+                            <td>7,000,000</td>
+                          </tr>
+                          <tr>
+                            <td>28</td>
+                            <td>Sofa cushion</td>
+                            <td>Once</td>
+                            <td>1,000,000</td>
+                          </tr>
+                          <tr>
+                            <td>29</td>
+                            <td>Single wooden chair</td>
+                            <td>Once</td>
+                            <td>1,500,000</td>
+                          </tr>
+                          <tr>
+                            <td>30</td>
+                            <td>Round wooden table</td>
+                            <td>Once</td>
+                            <td>1,000,000</td>
+                          </tr>
+                          <tr>
+                            <td>31</td>
+                            <td>Glass surface</td>
+                            <td>Once</td>
+                            <td>1,000,000</td>
+                          </tr>
+                          <tr>
+                            <td>32</td>
+                            <td>Foot towel (45*80)</td>
+                            <td>Once</td>
+                            <td>140,000</td>
+                          </tr>
+                          <tr>
+                            <td>33</td>
+                            <td>Face towel (34*34)</td>
+                            <td>Once</td>
+                            <td>45,000</td>
+                          </tr>
+                          <tr>
+                            <td>34</td>
+                            <td>Bath towel (70*90)</td>
+                            <td>Once</td>
+                            <td>184,000</td>
+                          </tr>
+                          <tr>
+                            <td>35</td>
+                            <td>Wicker basket</td>
+                            <td>Once</td>
+                            <td>190,000</td>
+                          </tr>
+                          <tr>
+                            <td>36</td>
+                            <td>Lamp shade</td>
+                            <td>Once</td>
+                            <td>405,000</td>
+                          </tr>
+                          <tr>
+                            <td>37</td>
+                            <td>Floor lamp</td>
+                            <td>Once</td>
+                            <td>1,015,000</td>
+                          </tr>
+                          <tr>
+                            <td>38</td>
+                            <td>Wall painting (70*90)</td>
+                            <td>Once</td>
+                            <td>485,000</td>
+                          </tr>
+                          <tr>
+                            <td>39</td>
+                            <td>Wall painting (45*45)</td>
+                            <td>Once</td>
+                            <td>690,000</td>
+                          </tr>
+                          <tr>
+                            <td>40</td>
+                            <td>Wall painting (40*40)</td>
+                            <td>Once</td>
+                            <td>450,000</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </div>
+
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("5-3");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("5-3")}
+                  >
+                    Compensation Price List
+                  </button>
+                  {isTabOpen("5-3") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <table className="compensation-table-Hiden">
+                        <thead>
+                          <tr>
+                            <th>No.</th>
+                            <th>Item Type (Species)</th>
+                            <th>Size</th>
+                            <th>Price (C&B) (VND)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>BED 110*200 (Shafts 3,5,11,12)</td>
+                            <td>110*200</td>
+                            <td>250,000</td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td>Mattress protection</td>
+                            <td>190*280</td>
+                            <td>380,000</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Sheets</td>
+                            <td>180*235</td>
+                            <td>700,000</td>
+                          </tr>
+                          <tr>
+                            <td>4</td>
+                            <td>Quilt cover</td>
+                            <td>180*235</td>
+                            <td>760,000</td>
+                          </tr>
+                          <tr>
+                            <td>5</td>
+                            <td>Blanket intestines</td>
+                            <td>180*235</td>
+                            <td>765,000</td>
+                          </tr>
+                          <tr>
+                            <td>6</td>
+                            <td>BED 160*200 (Axis 8,9,10)</td>
+                            <td>160*200</td>
+                            <td>340,000</td>
+                          </tr>
+                          <tr>
+                            <td>7</td>
+                            <td>Mattress protection</td>
+                            <td>230*235</td>
+                            <td>815,000</td>
+                          </tr>
+                          <tr>
+                            <td>8</td>
+                            <td>Quilt cover</td>
+                            <td>230*235</td>
+                            <td>890,000</td>
+                          </tr>
+                          <tr>
+                            <td>9</td>
+                            <td>Blanket intestines</td>
+                            <td>230*235</td>
+                            <td>890,000</td>
+                          </tr>
+                          <tr>
+                            <td>10</td>
+                            <td>BED 180*200 (Axis 1,2,6,7)</td>
+                            <td>180*200</td>
+                            <td>320,000</td>
+                          </tr>
+                          <tr>
+                            <td>11</td>
+                            <td>Mattress protection</td>
+                            <td>180*200</td>
+                            <td>320,000</td>
+                          </tr>
+                          <tr>
+                            <td>12</td>
+                            <td>Sheets</td>
+                            <td>260*280</td>
+                            <td>490,000</td>
+                          </tr>
+                          <tr>
+                            <td>13</td>
+                            <td>Quilt cover</td>
+                            <td>250*235</td>
+                            <td>925,000</td>
+                          </tr>
+                          <tr>
+                            <td>14</td>
+                            <td>Pillowcase</td>
+                            <td>50*70</td>
+                            <td>90,000</td>
+                          </tr>
+                          <tr>
+                            <td>15</td>
+                            <td>Blanket intestines</td>
+                            <td>250*235</td>
+                            <td>960,000</td>
+                          </tr>
+                          <tr>
+                            <td>16</td>
+                            <td>Gut pillow</td>
+                            <td>50*70</td>
+                            <td>210,000</td>
+                          </tr>
+                          <tr>
+                            <td>17</td>
+                            <td>Pillowcase</td>
+                            <td>60*80</td>
+                            <td>140,000</td>
+                          </tr>
+                          <tr>
+                            <td>18</td>
+                            <td>Gut pillow</td>
+                            <td>60*80</td>
+                            <td>200,000</td>
+                          </tr>
+                          <tr>
+                            <td>19</td>
+                            <td>Swimsuit</td>
+                            <td>-</td>
+                            <td>435,000</td>
+                          </tr>
+                          <tr>
+                            <td>20</td>
+                            <td>BED 220*200 (paired 3,5,11,12)</td>
+                            <td>200*200</td>
+                            <td>365,000</td>
+                          </tr>
+                          <tr>
+                            <td>21</td>
+                            <td>Mattress protection</td>
+                            <td>200*200</td>
+                            <td>365,000</td>
+                          </tr>
+                          <tr>
+                            <td>22</td>
+                            <td>Sheets</td>
+                            <td>300*280</td>
+                            <td>575,000</td>
+                          </tr>
+                          <tr>
+                            <td>23</td>
+                            <td>Quilt cover</td>
+                            <td>290*235</td>
+                            <td>1,015,000</td>
+                          </tr>
+                          <tr>
+                            <td>24</td>
+                            <td>Blanket intestines</td>
+                            <td>290*235</td>
+                            <td>1,115,000</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </div>
+
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("5-4");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("5-4")}
+                  >
+                    Tools and Equipment Table
+                  </button>
+                  {isTabOpen("5-4") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <table className="compensation-table-Hiden">
+                        <thead>
+                          <tr>
+                            <th>No.</th>
+                            <th>Product</th>
+                            <th>Unit</th>
+                            <th>Compensation Price (VND)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>Room trash can (metal)</td>
+                            <td>Once</td>
+                            <td>329,000</td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td>Room trash can (leather)</td>
+                            <td>Once</td>
+                            <td>366,000</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Minibar tray</td>
+                            <td>Once</td>
+                            <td>569,000</td>
+                          </tr>
+                          <tr>
+                            <td>4</td>
+                            <td>Tea/coffee tray</td>
+                            <td>Once</td>
+                            <td>283,000</td>
+                          </tr>
+                          <tr>
+                            <td>5</td>
+                            <td>Amenities tray</td>
+                            <td>Once</td>
+                            <td>200,000</td>
+                          </tr>
+                          <tr>
+                            <td>6</td>
+                            <td>Leather room service cover</td>
+                            <td>Once</td>
+                            <td>344,000</td>
+                          </tr>
+                          <tr>
+                            <td>7</td>
+                            <td>Leather note pad cover</td>
+                            <td>Once</td>
+                            <td>195,000</td>
+                          </tr>
+                          <tr>
+                            <td>8</td>
+                            <td>Cashier leather cover</td>
+                            <td>Once</td>
+                            <td>302,000</td>
+                          </tr>
+                          <tr>
+                            <td>9</td>
+                            <td>Menu leather cover</td>
+                            <td>Once</td>
+                            <td>405,000</td>
+                          </tr>
+                          <tr>
+                            <td>10</td>
+                            <td>Tissue box</td>
+                            <td>Once</td>
+                            <td>344,000</td>
+                          </tr>
+                          <tr>
+                            <td>11</td>
+                            <td>Leather door hanger</td>
+                            <td>Once</td>
+                            <td>165,000</td>
+                          </tr>
+                          <tr>
+                            <td>12</td>
+                            <td>Table clock</td>
+                            <td>Once</td>
+                            <td>473,000</td>
+                          </tr>
+                          <tr>
+                            <td>13</td>
+                            <td>Soap dish (black)</td>
+                            <td>Once</td>
+                            <td>50,000</td>
+                          </tr>
+                          <tr>
+                            <td>14</td>
+                            <td>TV remote</td>
+                            <td>Once</td>
+                            <td>300,000</td>
+                          </tr>
+                          <tr>
+                            <td>15</td>
+                            <td>Air conditioner remote</td>
+                            <td>Once</td>
+                            <td>1,000,000</td>
+                          </tr>
+                          <tr>
+                            <td>16</td>
+                            <td>Desk lamp</td>
+                            <td>Once</td>
+                            <td>245,000</td>
+                          </tr>
+                          <tr>
+                            <td>17</td>
+                            <td>Living room night lamp</td>
+                            <td>Once</td>
+                            <td>403,000</td>
+                          </tr>
+                          <tr>
+                            <td>18</td>
+                            <td>Floor lamp</td>
+                            <td>Once</td>
+                            <td>1,015,000</td>
+                          </tr>
+                          <tr>
+                            <td>19</td>
+                            <td>Wooden clothes hanger</td>
+                            <td>Once</td>
+                            <td>30,000</td>
+                          </tr>
+                          <tr>
+                            <td>20</td>
+                            <td>Clothes hanger with clips</td>
+                            <td>Once</td>
+                            <td>25,000</td>
+                          </tr>
+                          <tr>
+                            <td>21</td>
+                            <td>Electric kettle</td>
+                            <td>Once</td>
+                            <td>194,000</td>
+                          </tr>
+                          <tr>
+                            <td>22</td>
+                            <td>Hair dryer</td>
+                            <td>Once</td>
+                            <td>254,000</td>
+                          </tr>
+                          <tr>
+                            <td>23</td>
+                            <td>Landline phone</td>
+                            <td>Piece</td>
+                            <td>200,000</td>
+                          </tr>
+                          <tr>
+                            <td>24</td>
+                            <td>Room key</td>
+                            <td>Piece</td>
+                            <td>100,000</td>
+                          </tr>
+                          <tr>
+                            <td>25</td>
+                            <td>40 inch TV</td>
+                            <td>Piece</td>
+                            <td>6,410,000</td>
+                          </tr>
+                          <tr>
+                            <td>26</td>
+                            <td>45 inch TV</td>
+                            <td>Piece</td>
+                            <td>8,114,000</td>
+                          </tr>
+                          <tr>
+                            <td>27</td>
+                            <td>Double sofa (1.6m or 1.8m)</td>
+                            <td>Piece</td>
+                            <td>7,000,000</td>
+                          </tr>
+                          <tr>
+                            <td>28</td>
+                            <td>Sofa pillow</td>
+                            <td>Piece</td>
+                            <td>1,000,000</td>
+                          </tr>
+                          <tr>
+                            <td>29</td>
+                            <td>Single wooden chair</td>
+                            <td>Piece</td>
+                            <td>1,500,000</td>
+                          </tr>
+                          <tr>
+                            <td>30</td>
+                            <td>Round wooden table</td>
+                            <td>Piece</td>
+                            <td>1,000,000</td>
+                          </tr>
+                          <tr>
+                            <td>31</td>
+                            <td>Glass surface</td>
+                            <td>Piece</td>
+                            <td>1,000,000</td>
+                          </tr>
+                          <tr>
+                            <td>32</td>
+                            <td>Foot towel (45*80)</td>
+                            <td>Piece</td>
+                            <td>140,000</td>
+                          </tr>
+                          <tr>
+                            <td>33</td>
+                            <td>Washcloth (34*34)</td>
+                            <td>Piece</td>
+                            <td>45,000</td>
+                          </tr>
+                          <tr>
+                            <td>34</td>
+                            <td>Towel (70*90)</td>
+                            <td>Piece</td>
+                            <td>184,000</td>
+                          </tr>
+                          <tr>
+                            <td>35</td>
+                            <td>Basket</td>
+                            <td>Piece</td>
+                            <td>190,000</td>
+                          </tr>
+                          <tr>
+                            <td>36</td>
+                            <td>Lamp</td>
+                            <td>Piece</td>
+                            <td>405,000</td>
+                          </tr>
+                          <tr>
+                            <td>37</td>
+                            <td>Tree lights</td>
+                            <td>Piece</td>
+                            <td>1,015,000</td>
+                          </tr>
+                          <tr>
+                            <td>38</td>
+                            <td>Wall painting (70*90)</td>
+                            <td>Piece</td>
+                            <td>485,000</td>
+                          </tr>
+                          <tr>
+                            <td>39</td>
+                            <td>Wall painting (45*45)</td>
+                            <td>Piece</td>
+                            <td>690,000</td>
+                          </tr>
+                          <tr>
+                            <td>40</td>
+                            <td>Wall painting (40*40)</td>
+                            <td>Piece</td>
+                            <td>450,000</td>
+                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -1193,12 +1197,12 @@ function HidenEn() {
                     <div className="sub-accordion-content-Hiden">
                       <table className="compensation-table-Hiden">
                         <thead>
-                        <tr>
-                          <th>No.</th>
-                          <th>PRODUCT</th>
-                          <th>UNIT</th>
-                          <th>COMPENSATION PRICE</th>
-                        </tr>
+                          <tr>
+                            <th>No.</th>
+                            <th>PRODUCT</th>
+                            <th>UNIT</th>
+                            <th>COMPENSATION PRICE</th>
+                          </tr>
                         </thead>
                         <tbody>
                           <tr>
@@ -1449,109 +1453,118 @@ function HidenEn() {
               </div>
             </div>
           )}
-  </div>
+        </div>
 
-  <div className="accordion-item-Hiden">
-              <button
-                onClick={() => toggleTab(6)}
-                className="accordion-header-Hiden"
-                aria-expanded={isTabOpen(6)}
-              >
-                Hotel Map
-              </button>
-              {isTabOpen(6) && (
-                <div className="accordion-content-Hiden">
-                  <div className="hotel-map-Hiden">
-                    <div className="floor-plan-Hiden">
-                      <div className="floor-level-Hiden">
-                        <h3>Basement (B1–B2)</h3>
-                        <div className="floor-areas-Hiden">
-                          <div className="area-Hiden">
-                            Parking Area: For residents and hotel guests
-                          </div>
-                          <div className="area-Hiden">
-                            Technical Zone: Includes electrical, water, and security systems
-                          </div>
-                        </div>
+        <div className="accordion-item-Hiden">
+          <button
+            onClick={() => toggleTab(6)}
+            className="accordion-header-Hiden"
+            aria-expanded={isTabOpen(6)}
+          >
+            Hotel Map
+          </button>
+          {isTabOpen(6) && (
+            <div className="accordion-content-Hiden">
+              <div className="hotel-map-Hiden">
+                <div className="floor-plan-Hiden">
+                  <div className="floor-level-Hiden">
+                    <h3>Basement (B1–B2)</h3>
+                    <div className="floor-areas-Hiden">
+                      <div className="area-Hiden">
+                        Parking Area: For residents and hotel guests
                       </div>
-
-                      <div className="floor-level-Hiden">
-                        <h3>Ground Floor (1st Floor)</h3>
-                        <div className="floor-areas-Hiden">
-                          <div className="area-Hiden">
-                            Reception Lobby: A luxurious welcoming area for guests
-                          </div>
-                          <div className="area-Hiden">
-                            Front Desk: Where check-in and check-out procedures are handled
-                          </div>
-                          <div className="area-Hiden">
-                            Waiting Area: Comfortable seating space for waiting guests
-                          </div>
-                          <div className="area-Hiden">
-                            Security Post: Ensures 24/7 safety and monitoring
-                          </div>
-                        </div>
+                      <div className="area-Hiden">
+                        Technical Zone: Includes electrical, water, and security
+                        systems
                       </div>
+                    </div>
+                  </div>
 
-                      <div className="floor-level-Hiden">
-                        <h3>Floors 2–5</h3>
-                        <div className="floor-areas-Hiden">
-                          <div className="area-Hiden">
-                            Meeting and Conference Rooms: Fully equipped with modern facilities
-                          </div>
-                          <div className="area-Hiden">
-                            Gym: Fitness and exercise area
-                          </div>
-                          <div className="area-Hiden">
-                            Common Area: A relaxing and socializing space
-                          </div>
-                        </div>
+                  <div className="floor-level-Hiden">
+                    <h3>Ground Floor (1st Floor)</h3>
+                    <div className="floor-areas-Hiden">
+                      <div className="area-Hiden">
+                        Reception Lobby: A luxurious welcoming area for guests
                       </div>
-
-                      <div className="floor-level-Hiden">
-                        <h3>Floors 6–10</h3>
-                        <div className="floor-areas-Hiden">
-                          <div className="area-Hiden">
-                            Deluxe Rooms: 40–56 sqm with balconies and views of the city or sea
-                          </div>
-                          <div className="area-Hiden">
-                            BBQ Area: Outdoor grilling and event hosting space
-                          </div>
-                        </div>
+                      <div className="area-Hiden">
+                        Front Desk: Where check-in and check-out procedures are
+                        handled
                       </div>
-
-                      <div className="floor-level-Hiden">
-                        <h3>Floors 11–40</h3>
-                        <div className="floor-areas-Hiden">
-                          <div className="area-Hiden">
-                            Hotel Apartments: 1–2 bedroom units, 44–83 sqm, fully furnished with kitchenette, washing machine, and balcony
-                          </div>
-                          <div className="area-Hiden">
-                            Executive Suites: Larger units with panoramic views of Ha Long Bay
-                          </div>
-                        </div>
+                      <div className="area-Hiden">
+                        Waiting Area: Comfortable seating space for waiting
+                        guests
                       </div>
+                      <div className="area-Hiden">
+                        Security Post: Ensures 24/7 safety and monitoring
+                      </div>
+                    </div>
+                  </div>
 
-                      <div className="floor-level-Hiden">
-                        <h3>Rooftop (41st Floor)</h3>
-                        <div className="floor-areas-Hiden">
-                          <div className="area-Hiden">
-                            Infinity Pool: Located at the top level with sweeping views of Ha Long Bay
-                          </div>
-                          <div className="area-Hiden">
-                            Sky Bar: Outdoor bar serving drinks and hosting events
-                          </div>
-                          <div className="area-Hiden">
-                            Relaxation Zone: Loungers and greenery for leisure and rest
-                          </div>
-                        </div>
+                  <div className="floor-level-Hiden">
+                    <h3>Floors 2–5</h3>
+                    <div className="floor-areas-Hiden">
+                      <div className="area-Hiden">
+                        Meeting and Conference Rooms: Fully equipped with modern
+                        facilities
+                      </div>
+                      <div className="area-Hiden">
+                        Gym: Fitness and exercise area
+                      </div>
+                      <div className="area-Hiden">
+                        Common Area: A relaxing and socializing space
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="floor-level-Hiden">
+                    <h3>Floors 6–10</h3>
+                    <div className="floor-areas-Hiden">
+                      <div className="area-Hiden">
+                        Deluxe Rooms: 40–56 sqm with balconies and views of the
+                        city or sea
+                      </div>
+                      <div className="area-Hiden">
+                        BBQ Area: Outdoor grilling and event hosting space
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="floor-level-Hiden">
+                    <h3>Floors 11–40</h3>
+                    <div className="floor-areas-Hiden">
+                      <div className="area-Hiden">
+                        Hotel Apartments: 1–2 bedroom units, 44–83 sqm, fully
+                        furnished with kitchenette, washing machine, and balcony
+                      </div>
+                      <div className="area-Hiden">
+                        Executive Suites: Larger units with panoramic views of
+                        Ha Long Bay
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="floor-level-Hiden">
+                    <h3>Rooftop (41st Floor)</h3>
+                    <div className="floor-areas-Hiden">
+                      <div className="area-Hiden">
+                        Infinity Pool: Located at the top level with sweeping
+                        views of Ha Long Bay
+                      </div>
+                      <div className="area-Hiden">
+                        Sky Bar: Outdoor bar serving drinks and hosting events
+                      </div>
+                      <div className="area-Hiden">
+                        Relaxation Zone: Loungers and greenery for leisure and
+                        rest
                       </div>
                     </div>
                   </div>
                 </div>
-              )}
-  </div>
-  <div className="accordion-item-Hiden">
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="accordion-item-Hiden">
           <button
             onClick={() => toggleTab(7)}
             className="accordion-header-Hiden"
@@ -1573,8 +1586,8 @@ function HidenEn() {
               </div>
             </div>
           )}
-  </div>
-</div>
+        </div>
+      </div>
 
       {/* Popups for video guides */}
       {showPopup && (
@@ -1583,73 +1596,80 @@ function HidenEn() {
             className="popup-overlay-Hiden"
             onClick={() => setShowPopup(null)}
           >
- <div
-            className="popup-content-Hiden"
-            onClick={(e) => e.stopPropagation()}
-          >
-        <video
-         width="100%"
-         height="100%"
-         controls
-         autoPlay
-         style={{
-           opacity: 2,
-           filter: "none",
-           backdropFilter: "none",
-           zIndex: 9999,
-           position: "relative",
-           display: "block",
-           background: "#000",
-         }}
-       >
-         <source src={getVideoUrl(showPopup)} type="video/mp4" />
-       </video>
-            <button
-              onClick={() => setShowPopup(null)}
-              className="close-popup-Hiden"
+            <div
+              className="popup-content-Hiden"
+              onClick={(e) => e.stopPropagation()}
             >
-              Close
-            </button>
+              <video
+                width="100%"
+                height="100%"
+                controls
+                autoPlay
+                style={{
+                  opacity: 2,
+                  filter: "none",
+                  backdropFilter: "none",
+                  zIndex: 9999,
+                  position: "relative",
+                  display: "block",
+                  background: "#000",
+                }}
+              >
+                <source src={getVideoUrl(showPopup)} type="video/mp4" />
+              </video>
+              <button
+                onClick={() => setShowPopup(null)}
+                className="close-popup-Hiden"
+              >
+                Close
+              </button>
+            </div>
           </div>
-          </div>
-         
         </>
       )}
       <div className="video-container-Hiden">
-      <h2>Tour Introduction Video</h2>
-      {
-        showVideo ?(
-      <video controls autoPlay width="100%" style={{ maxWidth: "1024px",maxHeight: "500px", margin: "0 auto", display: "block",objectFit: "contain" }}>
-        <source src={getVideoUrl("4")} type="video/mp4" />
-      </video>
-        ) : (
-          <div >
-          <img
-          src="https://i.ibb.co/Mykb5jVT/dao-ngoc-vung-1.jpg"
-          alt="Xem video"
-          style={{ cursor: 'pointer', width: '100%',maxWidth: "1024px",maxHeight: "700px" }} 
-          onClick={() => setShowVideo(true)}
-         />
-         <button
-            onClick={() => setShowVideo(true)}
+        <h2>Tour Introduction Video</h2>
+        {showVideo ? (
+          <video
+            controls
+            autoPlay
+            width="100%"
             style={{
-            
-              fontSize: '16px',
-              backgroundColor: '#1666dd',
-              color: '#fff',
-            
+              maxWidth: "1024px",
+              maxHeight: "500px",
+              margin: "0 auto",
+              display: "block",
+              objectFit: "contain",
             }}
           >
-            ▶ Watch video
-          </button>
+            <source src={getVideoUrl("4")} type="video/mp4" />
+          </video>
+        ) : (
+          <div>
+            <img
+              src="https://i.ibb.co/Mykb5jVT/dao-ngoc-vung-1.jpg"
+              alt="Xem video"
+              style={{
+                cursor: "pointer",
+                width: "100%",
+                maxWidth: "1024px",
+                maxHeight: "700px",
+              }}
+              onClick={() => setShowVideo(true)}
+            />
+            <button
+              onClick={() => setShowVideo(true)}
+              style={{
+                fontSize: "16px",
+                backgroundColor: "#1666dd",
+                color: "#fff",
+              }}
+            >
+              ▶ Watch video
+            </button>
           </div>
-       
-        )
-      }
-     
+        )}
       </div>
-
-
     </div>
   );
 }

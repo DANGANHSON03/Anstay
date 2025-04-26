@@ -7,10 +7,8 @@ function Hiden() {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [showAllEvents, setShowAllEvents] = useState(false);
   const [showPopup, setShowPopup] = useState<string | null>(null);
-  const [language, setLanguage] = useState<'vi'|'en'>('vi');
+  const [language, setLanguage] = useState<"vi" | "en">("vi");
   const [showVideo, setShowVideo] = useState(false);
-  
- 
 
   const getVideoUrl = (sectionId) => {
     const videos = {
@@ -24,17 +22,17 @@ function Hiden() {
     return videos[sectionId] || "";
   };
   const languagesTab = {
-    vi:{
-      label:'Tiếng Việt',
-      image: 'https://i.ibb.co/8gwnhXNq/z6529289427842-586904014edb822f940b80aae6f5681a.jpg'
+    vi: {
+      label: "Tiếng Việt",
+      image:
+        "https://i.ibb.co/8gwnhXNq/z6529289427842-586904014edb822f940b80aae6f5681a.jpg",
     },
-    en:{
-      label:'English',
-      image:'https://i.ibb.co/RGMYDynD/z6529289444099-805fa915dbdc9b5509ad1b0f26163c5c.jpg'
-    }
-  }
-
- 
+    en: {
+      label: "English",
+      image:
+        "https://i.ibb.co/RGMYDynD/z6529289444099-805fa915dbdc9b5509ad1b0f26163c5c.jpg",
+    },
+  };
 
   const toggleViewAll = () => {
     setShowAllEvents(!showAllEvents);
@@ -78,7 +76,7 @@ function Hiden() {
     return () => clearInterval(timer);
   }, [events.length]);
   useEffect(() => {
-    Object.values(languagesTab).forEach(lang => {
+    Object.values(languagesTab).forEach((lang) => {
       const img = new Image();
       img.src = lang.image;
     });
@@ -124,9 +122,10 @@ function Hiden() {
           </button>
           {isTabOpen(1) && (
             <div className="accordion-content-Hiden">
-
-             
-              <img src='https://i.ibb.co/8gwnhXNq/z6529289427842-586904014edb822f940b80aae6f5681a.jpg' className="guide-imagecheckin-Hiden" />
+              <img
+                src="https://i.ibb.co/8gwnhXNq/z6529289427842-586904014edb822f940b80aae6f5681a.jpg"
+                className="guide-imagecheckin-Hiden"
+              />
               <button
                 onClick={() => setShowPopup("1")}
                 className="guide-button-Hiden"
@@ -164,12 +163,12 @@ function Hiden() {
                       <p>- Công tắc điện chính nằm bên cạnh cửa ra vào</p>
                       <p>- Bật cầu dao tổng (nếu cần)</p>
                       <p>- Kiểm tra các thiết bị điện hoạt động</p>
-                      <button
-                        onClick={() => setShowPopup("2-1")}
-                        className="guide-button-Hiden"
-                      >
-                        Xem hướng dẫn chi tiết
-                      </button>
+                      {/* <button
+                          onClick={() => setShowPopup("2-1")}
+                          className="guide-button-Hiden"
+                        >
+                          Xem hướng dẫn chi tiết
+                        </button> */}
                     </div>
                   )}
                 </div>
@@ -214,7 +213,7 @@ function Hiden() {
                   {isTabOpen("2-3") && (
                     <div className="sub-accordion-content-Hiden">
                       <img
-                        src="/images/maygiat.jpg"
+                        src="https://i.ibb.co/3y7TNhd6/maygiat.jpg"
                         alt="Hướng dẫn sử dụng máy giặt"
                         className="guide-image-Hiden"
                       />
@@ -268,7 +267,7 @@ function Hiden() {
               <p>
                 <strong>Quy định chung:</strong>
               </p>
-              <p>- Giờ nhận phòng: 14:00, trả phòng: 12:00</p>
+              <p>- Giờ nhận phòng: 15:00, trả phòng: 12:00</p>
               <p>- Không hút thuốc trong căn hộ</p>
               <p>- Không gây ồn sau 22:00</p>
               <p>- Không tổ chức tiệc tùng</p>
@@ -277,7 +276,8 @@ function Hiden() {
               </p>
               <p>- Kiểm tra đã khóa cửa khi ra ngoài</p>
               <p>- Tắt các thiết bị điện khi không sử dụng</p>
-              <p>- Số điện thoại khẩn cấp: 114 (Cảnh sát), 115 (Cấp cứu)</p>
+              <strong>Liên hệ :</strong> +84 84 227 2772 ( lễ tân ) +84 38 494
+              5614 ( cskh )
             </div>
           )}
         </div>
@@ -1609,71 +1609,80 @@ function Hiden() {
             className="popup-overlay-Hiden"
             onClick={() => setShowPopup(null)}
           >
- <div
-            className="popup-content-Hiden"
-            onClick={(e) => e.stopPropagation()}
-          >
-        <video
-         width="100%"
-         height="100%"
-         controls
-         autoPlay
-         style={{
-           opacity: 2,
-           filter: "none",
-           backdropFilter: "none",
-           zIndex: 9999,
-           position: "relative",
-           display: "block",
-           background: "#000",
-         }}
-       >
-         <source src={getVideoUrl(showPopup)} type="video/mp4" />
-       </video>
-            <button
-              onClick={() => setShowPopup(null)}
-              className="close-popup-Hiden"
+            <div
+              className="popup-content-Hiden"
+              onClick={(e) => e.stopPropagation()}
             >
-              Đóng
-            </button>
+              <video
+                width="100%"
+                height="100%"
+                controls
+                autoPlay
+                style={{
+                  opacity: 2,
+                  filter: "none",
+                  backdropFilter: "none",
+                  zIndex: 9999,
+                  position: "relative",
+                  display: "block",
+                  background: "#000",
+                }}
+              >
+                <source src={getVideoUrl(showPopup)} type="video/mp4" />
+              </video>
+              <button
+                onClick={() => setShowPopup(null)}
+                className="close-popup-Hiden"
+              >
+                Đóng
+              </button>
+            </div>
           </div>
-          </div>
-         
         </>
       )}
 
-<div className="video-container-Hiden">
-      <h2>Video Giới Thiệu Về Tour Du Lịch</h2>
-      {
-        showVideo ?(
-      <video controls autoPlay width="100%" style={{ maxWidth: "1024px",maxHeight: "500px", margin: "0 auto", display: "block",objectFit: "contain" }}>
-        <source src={getVideoUrl("4")} type="video/mp4" />
-      </video>
-        ) : (
-          <div >
-          <img
-          src="https://i.ibb.co/Mykb5jVT/dao-ngoc-vung-1.jpg"
-          alt="Xem video"
-          style={{ cursor: 'pointer', width: '100%',maxWidth: "1024px",maxHeight: "700px" }} 
-          onClick={() => setShowVideo(true)}
-         />
-         <button
-            onClick={() => setShowVideo(true)}
+      <div className="video-container-Hiden">
+        <h2>Video Giới Thiệu Về Tour Du Lịch</h2>
+        {showVideo ? (
+          <video
+            controls
+            autoPlay
+            width="100%"
             style={{
-            
-              fontSize: '16px',
-              backgroundColor: '#1666dd',
-              color: '#fff',
-            
+              maxWidth: "1024px",
+              maxHeight: "500px",
+              margin: "0 auto",
+              display: "block",
+              objectFit: "contain",
             }}
           >
-            ▶ Xem video
-          </button>
+            <source src={getVideoUrl("4")} type="video/mp4" />
+          </video>
+        ) : (
+          <div>
+            <img
+              src="https://i.ibb.co/Mykb5jVT/dao-ngoc-vung-1.jpg"
+              alt="Xem video"
+              style={{
+                cursor: "pointer",
+                width: "100%",
+                maxWidth: "1024px",
+                maxHeight: "700px",
+              }}
+              onClick={() => setShowVideo(true)}
+            />
+            <button
+              onClick={() => setShowVideo(true)}
+              style={{
+                fontSize: "16px",
+                backgroundColor: "#1666dd",
+                color: "#fff",
+              }}
+            >
+              ▶ Xem video
+            </button>
           </div>
-       
-        )
-      }
-     
+        )}
       </div>
     </div>
   );
