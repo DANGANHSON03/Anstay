@@ -16,7 +16,7 @@ import Coperate from "./components/Coperate/Coperate";
 import { AuthProvider } from "./Context/AuthContext";
 import ExploExper from "./components/ExploExper/ExploExper";
 import DashBroad from "./components/DashBroad/DashBroad";
-import Food from "./components/Food/Food";
+import Blog from "./components/Blog/Blog.tsx";
 import ScrollToTop from "./components/ScrollToTop/SrcollToTop";
 import Culture from "./components/AboutList/AboutCulture/Culture";
 import Support from "./components/Support/Support";
@@ -158,10 +158,10 @@ function App() {
             }
           />
           <Route
-            path="/food"
+            path="/blog"
             element={
               <MainLayout>
-                <Food />
+                <Blog />
               </MainLayout>
             }
           />

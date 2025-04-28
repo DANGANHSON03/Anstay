@@ -319,8 +319,8 @@ const Header: React.FC = () => {
             <Link to="/about-us" onClick={() => setNavActive(false)}>
               Thông tin về chúng tôi
             </Link>
-            <Link to="/food" onClick={() => setNavActive(false)}>
-              Ẩm thực
+            <Link to="/blog" onClick={() => setNavActive(false)}>
+              Blog
             </Link>
             <Link to="/explore&experience" onClick={() => setNavActive(false)}>
               Khám phá & Trải nghiệm
