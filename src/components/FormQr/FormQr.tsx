@@ -19,6 +19,7 @@ const FormQr = () => {
     fullName: "",
     email: "",
   });
+
   const [notification, setNotification] = useState({
     show: false,
     message: "",
@@ -42,10 +43,13 @@ const FormQr = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate form
     const newErrors = {
-      fullName: formData.fullName.trim() ? "" : "Vui lòng nhập họ và tên",
-      email: formData.email.trim() ? "" : "Vui lòng nhập email",
+      fullName: formData.fullName.trim()
+        ? ""
+        : "Vui lòng nhập họ và tên / Please enter your full name",
+      email: formData.email.trim()
+        ? ""
+        : "Vui lòng nhập email / Please enter your email",
     };
     setErrors(newErrors);
 
@@ -76,7 +80,7 @@ const FormQr = () => {
       setNotification({
         show: true,
         message:
-          "Cảm ơn bạn đã gửi thông tin! Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.",
+          "Cảm ơn bạn đã gửi thông tin! Chúng tôi sẽ liên hệ với bạn sớm nhất có thể. / Thank you for submitting! We will contact you as soon as possible.",
         type: "success",
       });
       setTimeout(() => navigate("/hiden-page"), 3000);
@@ -85,7 +89,7 @@ const FormQr = () => {
       setNotification({
         show: true,
         message:
-          "Có lỗi xảy ra khi gửi thông tin. Xin vui lòng thử lại sau hoặc liên hệ với chúng tôi qua số điện thoại.",
+          "Có lỗi xảy ra khi gửi thông tin. Xin vui lòng thử lại sau hoặc liên hệ với chúng tôi qua số điện thoại. / An error occurred. Please try again later or contact us by phone.",
         type: "error",
       });
     }
@@ -104,18 +108,23 @@ const FormQr = () => {
         <form onSubmit={handleSubmit}>
           <div className="form-header">
             <h1 className="form-titleqr">Thông tin khách hàng</h1>
+            <h3>Customer Information</h3>
             <div className="form-divider" />
             <div className="form-description">
               <p className="light-text">
                 Vui lòng điền thông tin để chúng tôi hỗ trợ bạn tour hoặc căn hộ
                 nhanh chóng và chính xác.
               </p>
+              <p className="light-text">
+                Please fill in the information so we can assist you with tours
+                or apartments quickly and accurately.
+              </p>
             </div>
           </div>
 
           <div className="form-field">
             <label htmlFor="fullName">
-              Họ và tên : <span className="required">*</span>
+              Họ và tên / Full Name: <span className="required">*</span>
             </label>
             <input
               type="text"
@@ -123,7 +132,6 @@ const FormQr = () => {
               name="fullName"
               value={formData.fullName}
               onChange={handleChange}
-              placeholder="Vui lòng nhập họ và tên"
               required
             />
             {errors.fullName && (
@@ -133,7 +141,7 @@ const FormQr = () => {
 
           <div className="form-field">
             <label htmlFor="email">
-              Email : <span className="required">*</span>
+              Email / Email Address: <span className="required">*</span>
             </label>
             <input
               type="email"
@@ -141,7 +149,6 @@ const FormQr = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="Vui lòng nhập email"
               required
             />
             {errors.email && (
@@ -150,19 +157,20 @@ const FormQr = () => {
           </div>
 
           <div className="form-field">
-            <label htmlFor="phoneNumber">Số điện thoại :</label>
+            <label htmlFor="phoneNumber">
+              Số điện thoại / Phone Number/We Chat:
+            </label>
             <input
               type="tel"
               id="phoneNumber"
               name="phoneNumber"
               value={formData.phoneNumber}
               onChange={handleChange}
-              placeholder="Vui lòng nhập số điện thoại"
             />
           </div>
 
           <button type="submit" className="submit-button">
-            Gửi
+            Gửi / Submit
           </button>
         </form>
       </div>
