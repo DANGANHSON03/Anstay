@@ -161,69 +161,6 @@ const FormQr = () => {
             />
           </div>
 
-          {/* <div className="form-field">
-            <label id="cleaning-label">Bạn có muốn dọn phòng không?</label>
-            <div
-              className="radio-group"
-              role="radiogroup"
-              aria-labelledby="cleaning-label"
-            >
-              <label className="radio-label">
-                <input
-                  type="radio"
-                  name="wantsCleaning"
-                  value="yes"
-                  checked={formData.wantsCleaning === "yes"}
-                  onChange={handleChange}
-                  aria-label="Có"
-                />
-                <span>Có</span>
-              </label>
-              <label className="radio-label">
-                <input
-                  type="radio"
-                  name="wantsCleaning"
-                  value="no"
-                  checked={formData.wantsCleaning === "no"}
-                  onChange={handleChange}
-                  aria-label="Không"
-                />
-                <span>Không</span>
-              </label>
-            </div>
-          </div> */}
-
-          {formData.wantsCleaning === "yes" && (
-            <>
-              <div className="form-field">
-                <label htmlFor="cleaningTimeRange">Thời gian dọn phòng :</label>
-                <select
-                  id="cleaningTimeRange"
-                  name="cleaningTimeRange"
-                  value={formData.cleaningTimeRange}
-                  onChange={handleChange}
-                >
-                  <option value="">Chọn thời gian</option>
-                  <option value="9:00-11:00">9:00 - 11:00 sáng</option>
-                  <option value="14:00-16:00">14:00 - 16:00 chiều</option>
-                  <option value="16:00-18:00">16:00 - 18:00 chiều</option>
-                </select>
-              </div>
-
-              <div className="form-field">
-                <label htmlFor="cleaningNote">Ghi chú dọn phòng :</label>
-                <textarea
-                  id="cleaningNote"
-                  name="cleaningNote"
-                  value={formData.cleaningNote}
-                  onChange={handleChange}
-                  placeholder="Nhập yêu cầu đặc biệt về dọn phòng (nếu có)"
-                  rows={3}
-                />
-              </div>
-            </>
-          )}
-
           <button type="submit" className="submit-button">
             Gửi
           </button>

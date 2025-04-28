@@ -137,10 +137,11 @@ input {
   outline: none;
   transition: all 0.3s ease;
   background: transparent;
+  color: #000;
 }
 
 input::placeholder {
-  color: #94a3b8;
+  color: #000;
 }
 
 input:focus {
@@ -292,6 +293,7 @@ select:focus {
   input {
     font-size: 14px;
     padding: 8px 0;
+    color: #000;
   }
 
   .submit-button {
