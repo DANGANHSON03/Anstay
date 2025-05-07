@@ -200,7 +200,7 @@ const Header: React.FC = () => {
           <div className="header-select">
             <div className="select-nav">
               <CircleHelp size={18} className="header-icon" />
-              <Link to="help">Trợ giúp</Link>
+              <Link to="/help">Trợ giúp</Link>
             </div>
             <div className="select-nav">
               <Earth size={18} className="header-icon" />

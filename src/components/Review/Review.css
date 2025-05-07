@@ -265,6 +265,8 @@
 @media (max-width: 480px) {
   .event-wrapper1 {
     width: 100%;
+    max-width: 480px;
+    padding: 0 30px;
     
   }
 
@@ -308,4 +310,7 @@
   .review-title p {
     font-size: 12px;
   }
+.event-slide1{
+  padding-right: 0px;
+}
 }

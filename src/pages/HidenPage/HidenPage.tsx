@@ -12,8 +12,8 @@ const HidenPage = () => {
   return (
     <div className='tab-hiden'>
          <div className='tab-hiden__language'>
-            <button onClick={()=>{setLanguage('vi');handleClick()}} className={Clicked ? 'active':''}>Tiếng Việt</button>
-            <button onClick={()=>{setLanguage('en');handleClick()}} className={!Clicked? 'active':''}>English</button>
+            <button onClick={()=>{setLanguage('vi');handleClick()}} className={Clicked ? 'active1':''}>Tiếng Việt</button>
+            <button onClick={()=>{setLanguage('en');handleClick()}} className={!Clicked? 'active1':''}>English</button>
          </div>
          {language === 'vi' ? <HidenViet/> : <HidenEn/>}
     </div>

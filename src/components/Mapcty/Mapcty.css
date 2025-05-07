@@ -20,7 +20,7 @@
 
 @media (max-width: 480px) {
   .map-cty-main {
-    margin-top: 380px; /* Adjust margin for smaller screens */
+    margin-top: 450px; /* Adjust margin for smaller screens */
   }
 
   .map-cty-main iframe {

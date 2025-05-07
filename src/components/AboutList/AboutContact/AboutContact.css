@@ -324,3 +324,9 @@
     width: 100%;
   }
 }
+
+@media (max-width: 480px) {
+  .contact-wrapper{
+    margin-bottom: 178px;
+  }
+}

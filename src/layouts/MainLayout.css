@@ -11,6 +11,9 @@
   flex: 1;
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 @media (max-width: 1024px) {
@@ -30,7 +33,10 @@
   .main-content {
     max-width: 100%; /* Đặt max-width để giới hạn chiều rộng tối đa */
     margin-top: 80px;
+    width: 100%;
+   
   }
+
 }
 
 /* body {

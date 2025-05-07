@@ -1,8 +1,7 @@
 /* Tổng thể trang */
 .event-container2 {
   max-width: 1200px;
-  margin: 80px auto;
-
+  margin: 110px auto;
   text-align: center;
 }
 
@@ -167,6 +166,12 @@
   .event-header h2 {
     font-size: 24px;
   }
+  .event-container2{
+    max-width: 768px;
+    width: 100%;
+    margin: 40px auto;
+    padding: 0 10px;
+  }
 
   .event-header p {
     font-size: 14px;
@@ -201,6 +206,9 @@
     max-width: 484px;
     width: 100%; /* Đảm bảo không bị ghi đè */
     margin: 22px auto;
+  }
+  .event-header{
+    padding: 0 30px;
   }
   .event-main {
     flex-direction: column-reverse;
@@ -256,7 +264,7 @@
     width: 374px;
   }
   .event-container2 {
-    max-width: 386px;
+    max-width:415px;
     width: 100%;
     margin: 22px auto;
   }

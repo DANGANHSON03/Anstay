@@ -114,7 +114,7 @@
   }
   .vtg-feature-title{
     font-size: 16px;
-    height: 54px;
+    height: 36px;
   }
   .vtg-feature-description{
     height: 54px;
@@ -144,11 +144,12 @@
     width: 100%;
     margin: 0 auto;
     max-width: 400px;
+    place-items: center;
   }
 
   .vtg-feature-card {
-    height:185px;
-    width: 195px;
+    height: 184px;
+    width: 184px;
     margin-bottom: 5px;
   }
   .vtg-feature-card h3{
@@ -166,8 +167,8 @@
 
 @media (max-width: 376px) {
   .vtg-feature-card{
-    height:195px;
-    width: 165px;
+    height: 184px;
+    width: 173px;
   }
   .vtg-grid-container{
     place-items: center;

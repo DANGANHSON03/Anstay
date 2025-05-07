@@ -4,9 +4,11 @@
   margin-top: 50px;
 }
 
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  
 }
 
 /* Filters */
@@ -498,6 +500,10 @@
   .container-wrapper {
     margin-top: 10px;
     padding: 0 10px; /* Thêm padding để tránh sát mép màn hình */
+  }
+  .container{
+    width: 100%;
+    max-width: 480px;
   }
 
   .listing-content {

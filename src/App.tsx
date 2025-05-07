@@ -18,7 +18,7 @@ import ExploExper from "./components/ExploExper/ExploExper";
 import DashBroad from "./components/DashBroad/DashBroad";
 import Blog from "./components/Blog/Blog.tsx";
 import ScrollToTop from "./components/ScrollToTop/SrcollToTop";
-import Culture from "./components/AboutList/AboutCulture/Culture";
+import Culture from "./components/AboutList/Aboutculture/Culture";
 import Support from "./components/Support/Support";
 import HidenPage from "./pages/HidenPage/HidenPage";
 import FormQr from "./components/FormQr/FormQr.tsx";

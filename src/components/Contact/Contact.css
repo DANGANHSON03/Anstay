@@ -135,6 +135,10 @@
 
 
 @media (max-width: 768px) {
+  .form-contact {
+ 
+    top: 40%;
+}
 }
 
 @media (max-width: 480px) {
@@ -157,9 +161,16 @@
     font-size: 28px;
   }
   .img-contact {
-    height: 614px;
+    height: 644px
   }
   .custom-form .ant-input {
     height: 35px;
+  }
+}
+
+@media (max-width: 375px) {
+ .main-contact{
+    height: 27vh;
+    margin-bottom: 458px;
   }
 }

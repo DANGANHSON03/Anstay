@@ -74,6 +74,10 @@ const Blog = () => {
   const totalPages = Math.ceil(blogs.length / blogsPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const ScrollToTop = () => {
+    window.scrollTo({top: 0, behavior: 'smooth' });
+  };
   return (
     <div className="blog-page">
     <h1>Trải Nghiệm Tour Du Lịch</h1>
@@ -98,7 +102,7 @@ const Blog = () => {
         {[...Array(totalPages)].map((_, index) => (
           <button
             key={index}
-            onClick={() => paginate(index + 1)}
+            onClick={() => (paginate(index + 1), ScrollToTop())}
             className={currentPage === index + 1 ? 'active' : ''}
           >
             {index + 1}

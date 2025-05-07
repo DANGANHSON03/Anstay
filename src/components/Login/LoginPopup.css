@@ -117,3 +117,9 @@
  .option-child  a{
    padding-left: 10px ;
  }
+ @media (max-width:480px){
+  .popup-container{
+    width: 100%;
+    max-width: 360px;
+  }
+ }

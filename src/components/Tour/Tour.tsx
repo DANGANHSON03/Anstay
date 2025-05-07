@@ -89,7 +89,7 @@ const Tour = () => {
   };
 
   return (
-    <div>
+      <>
       <div className="apart-top">
         <div className="img-top-apart">
           <img
@@ -205,7 +205,7 @@ const Tour = () => {
           )}
         </div>
       </div>
-    </div>
+      </>
   );
 };
 
