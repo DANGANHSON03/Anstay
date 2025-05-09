@@ -168,6 +168,23 @@ const FormQr = () => {
               onChange={handleChange}
             />
           </div>
+          <div className="form-field">
+            <label htmlFor="email">
+              Căn hộ đang lưu trú / Apartment currently staying: <span className="required">*</span>
+            </label>
+            <input
+              type="text"
+              id="text"
+              name="text"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            {errors.email && (
+              <span className="error-message">{errors.email}</span>
+            )}
+          </div>
+
 
           <button type="submit" className="submit-button">
             Gửi / Submit

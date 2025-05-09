@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
+import FloattingContactBt from "../components/FloatingContactBt/FloattingContactBt";
 import "./MainLayout.css";
 const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
@@ -8,6 +9,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <Header />
       <main className="main-content">{children}</main>
       <Footer />
+      <FloattingContactBt/>
     </div>
   );
 };
