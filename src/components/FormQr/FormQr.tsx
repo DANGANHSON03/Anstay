@@ -4,16 +4,14 @@ import "./FormQr.css";
 import Notification from "../Notification/Notification";
 
 const SHEET_API_URL =
-  "https://script.google.com/macros/s/AKfycbzdtykmmhIN2G04brK8XiaHJMDEBCZee4i-g-2ClnS-Y9Ps3-_uLKMnBAkTOKt-TlYX/exec";
+  "https://script.google.com/macros/s/AKfycbzLY4ndgNSjQXwoq7xTdwZCgjHr1J2NSVCATORS8dOXSrnckk48BisZ3eHHxNGvt2hT/exec";
 
 const FormQr = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     phoneNumber: "",
-    wantsCleaning: "",
-    cleaningTimeRange: "",
-    cleaningNote: "",
+    apartment: "",
   });
   const [errors, setErrors] = useState({
     fullName: "",
@@ -60,9 +58,7 @@ const FormQr = () => {
       fullName: formData.fullName,
       email: formData.email,
       phoneNumber: formData.phoneNumber,
-      wantsCleaning: formData.wantsCleaning,
-      cleaningTimeRange: formData.cleaningTimeRange,
-      cleaningNote: formData.cleaningNote,
+      apartment: formData.apartment,
     };
 
     console.log("Form data being sent:", payload);
@@ -83,7 +79,11 @@ const FormQr = () => {
           "Cảm ơn bạn đã gửi thông tin! Chúng tôi sẽ liên hệ với bạn sớm nhất có thể. / Thank you for submitting! We will contact you as soon as possible.",
         type: "success",
       });
-      setTimeout(() => navigate("/hiden-page"), 3000);
+      setTimeout(
+        () =>
+          navigate("/hiden-page", { state: { apartment: formData.apartment } }),
+        3000
+      );
     } catch (error) {
       console.error("Lỗi khi gửi:", error);
       setNotification({
@@ -169,22 +169,19 @@ const FormQr = () => {
             />
           </div>
           <div className="form-field">
-            <label htmlFor="email">
-              Căn hộ đang lưu trú / Apartment currently staying: <span className="required">*</span>
+            <label htmlFor="apartment">
+              Căn hộ đang lưu trú / Apartment currently staying:{" "}
+              <span className="required">*</span>
             </label>
             <input
               type="text"
-              id="text"
-              name="text"
-              value={formData.email}
+              id="apartment"
+              name="apartment"
+              value={formData.apartment}
               onChange={handleChange}
               required
             />
-            {errors.email && (
-              <span className="error-message">{errors.email}</span>
-            )}
           </div>
-
 
           <button type="submit" className="submit-button">
             Gửi / Submit

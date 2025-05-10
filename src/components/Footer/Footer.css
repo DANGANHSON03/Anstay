@@ -35,8 +35,22 @@
   padding-top: 15px;
 }
 .footer-right-img1 {
-  width: 40px;
+  width: 80px;
   height: 30px;
+}
+.footer-right-img2 {
+  width: 85px;
+  height: 50px;
+  padding-bottom: 20px;
+}
+.footer-right-img3 {
+  width: 30px;
+  height: 30px;
+}
+.footer-right-img4 {
+  width: 43px;
+  height: 43px;
+  padding-bottom: 10px;
 }
 .icon-fl {
   width: 24px;
@@ -81,10 +95,9 @@
 
     justify-content: space-between;
   }
-  .row{
+  .row {
     margin: 0 44px;
   }
- 
 
   .footer-right {
     padding-left: 0;
@@ -117,9 +130,8 @@
   .footer-right-img {
     flex-wrap: wrap;
     gap: 10px;
-
   }
-  .footer-right-img >img{
+  .footer-right-img > img {
     object-fit: contain;
     width: 40px;
     height: 40px;
@@ -137,15 +149,13 @@
     font-size: 14px;
     height: 50px;
   }
-  .row-title h3{
+  .row-title h3 {
     font-size: 14px;
     width: 153px;
   }
-  .row{
+  .row {
     margin: 0 15px;
     width: 110px;
- 
-    
   }
   .footer-left {
     align-items: flex-start;
@@ -155,17 +165,16 @@
     float: left;
   }
 
-  .list-item{
+  .list-item {
     justify-content: left;
   }
 }
 
 /* Mobile nhỏ (dưới 480px) */
 @media (max-width: 480px) {
-  .footer-wrapper{
+  .footer-wrapper {
     width: 100%;
     max-width: 480px;
-    
   }
   .footer-main {
     width: 95%;
@@ -175,11 +184,11 @@
   }
 
   .footer-left {
-    display:grid;
-    grid-template-columns: repeat(2,1fr);
-    gap:10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
-  .footer-left h3{
+  .footer-left h3 {
     text-align: left;
   }
 
@@ -198,7 +207,7 @@
 
   .footer-right-img1 {
     width: 50px;
-    height: 40px ;
+    height: 40px;
   }
 
   .icon-fl {
@@ -220,7 +229,7 @@
     height: 45px;
     padding: 5px;
   }
-  .ftr-2{
+  .ftr-2 {
     display: flex;
     flex-direction: row;
   }

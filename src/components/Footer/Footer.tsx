@@ -98,24 +98,24 @@ const Footer: React.FC = () => {
           </div>
           <div className="footer-right-img ftr-2">
             <img
-              src="https://i.ibb.co/1JQm30kz/logo-tp-bank.jpg"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Logo_TPBank.svg/2560px-Logo_TPBank.svg.png"
               alt="tpbank"
               className="footer-right-img1"
             />
             <img
-              src="https://i.ibb.co/7tPFpkTj/huong-dan-dang-ky-tai-khoan-paypal-1024x512.jpg"
+              src="https://i.ibb.co/8nrFMDmd/huong-dan-dang-ky-tai-khoan-paypal-1024x512-removebg-preview.png"
               alt="tpbank"
-              className="footer-right-img1"
+              className="footer-right-img2"
             />
             <img
-              src="https://i.ibb.co/PGR3tdx9/1200x630wa.png"
+              src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-MoMo-Square.png"
               alt="tpbank"
-              className="footer-right-img1"
+              className="footer-right-img3"
             />
             <img
-              src="https://i.ibb.co/Hfnd0MDc/tether-usdt-logo-png-seeklogo-323175.png"
+              src="https://i.ibb.co/xqwC41Nm/tether-usdt-logo-png-seeklogo-323175-removebg-preview.png"
               alt="tpbank"
-              className="footer-right-img1"
+              className="footer-right-img4"
             />
           </div>
         </div>

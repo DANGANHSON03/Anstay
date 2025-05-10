@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../Vietnam/Hiden.css";
+import { useLocation } from "react-router-dom";
 
 function HidenEn() {
   const [openTabs, setOpenTabs] = useState([]);
@@ -9,6 +10,8 @@ function HidenEn() {
   const [showPopup, setShowPopup] = useState<string | null>(null);
   const [language, setLanguage] = useState<"vi" | "en">("vi");
   const [showVideo, setShowVideo] = useState(false);
+  const location = useLocation();
+  const apartment = location.state?.apartment;
 
   const getVideoUrl = (sectionId) => {
     const videos = {
@@ -1577,11 +1580,14 @@ function HidenEn() {
               <div className="wifi-info-Hiden">
                 <div className="wifi-credential-Hiden">
                   <p className="wifi-label-Hiden">Wi-Fi:</p>
-                  <p className="wifi-value-Hiden">bluekitesinvest</p>
+                  <p className="wifi-value-Hiden">
+                    {" "}
+                    Welcome to Anstay - {apartment}
+                  </p>
                 </div>
                 <div className="wifi-credential-Hiden">
                   <p className="wifi-label-Hiden">Password:</p>
-                  <p className="wifi-value-Hiden">bluekitesinvest</p>
+                  <p className="wifi-value-Hiden">Anstaycamon</p>
                 </div>
               </div>
             </div>
