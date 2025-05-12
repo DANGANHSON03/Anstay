@@ -22,6 +22,7 @@ import Culture from "./components/AboutList/Aboutculture/Culture";
 import Support from "./components/Support/Support";
 import HidenPage from "./pages/HidenPage/HidenPage";
 import FormQr from "./components/FormQr/FormQr.tsx";
+import SearchResults from "./pages/SearchResults/SearchResults";
 
 function App() {
   return (
@@ -174,7 +175,14 @@ function App() {
               </MainLayout>
             }
           />
-        
+          <Route
+            path="/search-results"
+            element={
+              <MainLayout>
+                <SearchResults />
+              </MainLayout>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

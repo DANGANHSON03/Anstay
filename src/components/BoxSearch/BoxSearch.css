@@ -1,0 +1,111 @@
+.boxsearch-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100px;
+  width: 1600px;
+  margin: 0 auto;
+}
+
+.search-item {
+  position: relative;
+  flex: 1;
+  min-width: 120px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+.search-item select,
+.search-item input,
+.counter-select {
+  width: 100%;
+  padding: 8px 32px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.search-item input[type="date"] {
+  padding-right: 8px;
+}
+
+.counter-select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.counter-controls {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.counter-controls button {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.counter-controls button:hover {
+  background-color: #f5f5f5;
+}
+
+.counter-controls span {
+  padding: 0 12px;
+}
+
+.search-button1 {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.search-button1:hover {
+  background-color: #357abd;
+}
+
+@media (max-width: 768px) {
+  .boxsearch-wrapper {
+    flex-direction: column;
+  }
+
+  .search-item {
+    width: 100%;
+  }
+}

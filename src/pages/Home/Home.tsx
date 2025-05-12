@@ -35,6 +35,7 @@ import Mapcty from "../../components/Mapcty/Mapcty";
 import ScrollToTopButton from "../../components/ScrollToTopButton/ScrollToTopButton";
 import Should from "../../components/Should/Should";
 import Slide from "../../components/Slide/Slide";
+import BoxSearch from "../../components/BoxSearch/BoxSearch";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -210,6 +211,7 @@ const Home: React.FC = () => {
   return (
     <div className="main-home">
       <Slide />
+      <BoxSearch />
       <Event />
       <Should />
       <Review />
