@@ -17,6 +17,19 @@ const SearchResults = () => {
     return diff;
   };
 
+  const mockData = [
+  {
+    name: "SAZIHOME LE THANH TONG HANOI",
+    address: "No.9 Alley 6 Le Thanh Tong street, Hoan Kiem district, Hanoi, Vietnam",
+    stars: 5,
+    images: [
+      "https://link-to-img1.jpg",
+      "https://link-to-img2.jpg",
+      "https://link-to-img3.jpg"
+    ]
+  },
+  ]
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     navigate("/search-results", {
