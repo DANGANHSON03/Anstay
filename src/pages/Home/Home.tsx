@@ -1,25 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import {
-  Carousel,
-  Input,
   DatePicker,
-  Select,
   Button,
-  Card,
-  Dropdown,
   Space,
   List,
 } from "antd";
 import {
-  SearchOutlined,
   UserOutlined,
   PlusOutlined,
   MinusOutlined,
-  CalendarOutlined,
-  ClockCircleOutlined,
-  EnvironmentOutlined,
-  LeftOutlined,
-  RightOutlined,
 } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
