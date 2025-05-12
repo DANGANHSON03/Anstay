@@ -1,110 +1,227 @@
-.slide-container {
-  margin-top: 100px;
-  max-width: 1920px;
-  width: 100%;
-  height: 800px;
+.slider-container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;   
   margin: 0 auto;
   overflow: hidden;
-  position: relative;
- 
+  margin-top: 44px;
 }
 
-.background-main {
-  width: 100%;
-  height: 800px;
-  display: block;
-  margin: 0 auto;
-  object-fit: cover;
-}
-
-.carousel-item {
-  position: relative;
+.slider-image {
   width: 100%;
   height: 100%;
+  background-size:cover;
+  background-position: center;
+  transition: background-image 0.8s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
-.custom-arrow {
+.slider-dark-overlay {
   position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+ 
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* tối hơn */
+  z-index: 1;
+}
+
+.slider-overlay {
+  position: absolute;
+  
+
+
+  padding: 0 5%;
+  max-width: 600px;
+  color: white;
+  text-align: left;
+  z-index: 2;
+}
+
+.slider-subtitle {
+  font-size: 20px;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.slider-title {
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 30px;
+}
+
+.slider-buttons .btn {
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  margin-right: 15px;
+  font-size: 16px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Hover hiệu ứng trượt trái -> phải */
+.btn.primary {
+  background-color: #1cb9f3;
+  color: white;
+}
+
+.btn.primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: -1;
+  transition: left 0.4s ease;
+}
+
+.btn.primary:hover::before {
+  left: 0;
+}
+
+.btn.primary:hover {
+  color: #1cb9f3;
+}
+
+.btn.secondary {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.btn.secondary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: -1;
+  transition: left 0.4s ease;
+}
+
+.btn.secondary:hover::before {
+  left: 0;
+}
+
+.btn.secondary:hover {
+  color: #1cb9f3;
+}
+
+/* Scroll controls */
+.scroll-controls {
+  position: absolute;
+  right: 30px;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 2;
-  font-size: 50px;
-  color: white;
-  background-color: rgba(12, 8, 8, 0.7); /* Add transparency */
-  border-radius: 10%;
-  padding: 10px;
-  cursor: pointer;
-  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+}
+
+.scroll-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.4);
   border: none;
-  transition: opacity 0.3s ease; /* Smooth transition for hover effect */
-  opacity: 0.7; /* Default opacity */
+  font-size: 20px;
+  margin: 10px 0;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: white;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  padding: 0;
+  line-height: 1;
 }
 
-.custom-arrow:hover {
-  opacity: 1; /* Fully visible on hover */
+/* Scroll line - chia 3 khúc */
+.scroll-line {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  margin: 8px 0;
 }
 
-.custom-prev {
-  left: 20px;
+.scroll-segment {
+  width: 4px;
+  height: 16px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 2px;
+  transition: background-color 0.3s, height 0.3s;
 }
 
-.custom-next {
-  right: 20px;
+.scroll-segment.active {
+  background-color: #ffffff;
+  height: 20px;
 }
 
-@media screen and (max-width: 1024px) {
-  .slide-container {
-    margin-top: 32px;
-    width: 100%;
-    height: 400px; /* Giảm chiều cao cho phù hợp với điện thoại */
+@media (max-width: 1024px) {
+  .slider-container{
+    height: 40vh;
+  }
+  .slider-title{
+  font-size: 28px;
   }
 
-  .background-main {
-    height: 400px;
-  }
-
-  .custom-arrow {
-    font-size: 30px; /* Giảm kích thước mũi tên */
-    padding: 8px;
-  }
-
-  .custom-prev {
-    left: 10px;
-  }
-
-  .custom-next {
-    right: 10px;
-  }
 }
 
-@media screen and (max-width: 768px) {
-  .slide-container {
-    height: 300px; /* Nhỏ hơn cho điện thoại */
+@media (max-width: 768px) {
+  .slider-container{
+    margin-top: 30px;
+    
+    height: 40vh ;
   }
-
-  .background-main {
-    height: 300px;
+  .slider-title{
+  font-size: 24px;
   }
-
-  .custom-arrow {
-    font-size: 25px;
-    padding: 6px;
+  .slider-subtitle{
+    font-size: 16px;
   }
+   .scroll-controls{
+    display: none;
+  }
+ 
 }
-
-@media screen and (max-width: 480px) {
-  .slide-container {
-    margin-top: 8px;
-    height: 250px;
+@media (max-width: 480px) {
+  .slider-container{
+    margin-top: 20px;
   }
-
-  .background-main {
-    height: 250px;
+ 
+  .slider-title{
+  font-size: 20px;
   }
-
-  .custom-arrow {
-   display: none;
-  } 
-
-
+  .slider-subtitle{
+    font-size: 14px;
+  }
+  .slider-buttons {
+    display: flex;
+    flex-direction: column;
+  }
+  .slider-buttons .btn {
+     max-width: 135px;
+     margin-bottom: 5px;
+     font-size: 12px;
+  }
 }
