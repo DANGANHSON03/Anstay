@@ -22,7 +22,7 @@ const AboutUs = () => {
       link: "/about-us/culture",
     },
     {
-      title: "Liên Hệ",
+      title: "Câu chuyện Anstay",
       image: "https://crm.flesta.vn//uploads/about_us/Contact-Us.png",
       link: "/about-us/contact",
     },

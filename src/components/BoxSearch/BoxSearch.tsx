@@ -116,7 +116,7 @@ const BoxSearch = () => {
 
   return (
     <div className="boxsearch-wrapper">
-      <div className="search-item">
+      <div className="search-item search-location">
         <FaMapMarkerAlt className="search-icon" />
         <select
           value={selectedLocation}
@@ -131,27 +131,26 @@ const BoxSearch = () => {
         </select>
       </div>
 
-      <div className="search-item">
-        <FaCalendarAlt className="search-icon" />
-        <input
-          type="date"
-          value={checkInDate}
-          onChange={(e) => setCheckInDate(e.target.value)}
-          min={new Date().toISOString().split("T")[0]}
-          placeholder="Ngày đến"
-        />
-      </div>
+      <div className="search-item search-date">
+      <input
+        type="date"
+        value={checkInDate}
+        onChange={(e) => setCheckInDate(e.target.value)}
+        className="search-date-input"
+        min={new Date().toISOString().split("T")[0]}
+      />
+    </div>
 
-      <div className="search-item">
-        <FaCalendarAlt className="search-icon" />
-        <input
-          type="date"
-          value={checkOutDate}
-          onChange={(e) => setCheckOutDate(e.target.value)}
-          min={checkInDate || new Date().toISOString().split("T")[0]}
-          placeholder="Ngày đi"
-        />
-      </div>
+    <div className="search-item search-date">
+      <input
+        type="date"
+        value={checkOutDate}
+        onChange={(e) => setCheckOutDate(e.target.value)}
+        className="search-date-input"
+        min={checkInDate || new Date().toISOString().split("T")[0]}
+      />
+    </div>
+
 
       <div className="search-item">
         <FaBed className="search-icon" />
@@ -231,7 +230,6 @@ const BoxSearch = () => {
       </div>
 
       <button className="search-button1" onClick={handleSearch}>
-        <FaSearch className="search-icon" />
         Tìm phòng
       </button>
     </div>
