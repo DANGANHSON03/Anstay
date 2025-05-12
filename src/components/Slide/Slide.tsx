@@ -1,13 +1,12 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
 import './Slide.css'
+import  img1 from '../../assets/Images/N009584.jpg'
+import  img2 from '../../assets/Images/N009585.jpg'
+import  img3 from '../../assets/Images/N009586.jpg'
 
 
-const images = [
-  "https://i.ibb.co/WNqjq4qy/N009584.jpg", 
-  "https://i.ibb.co/wN4qSSGC/N009584.jpg",
-  "https://i.ibb.co/1GjTbNzD/v-nh-H-Long.jpg",
-];
+const images = [img1, img2, img3 ];
 
 const Slide= () => {
   const [currentIndex, setCurrentIndex] = useState(0);
