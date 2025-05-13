@@ -186,7 +186,9 @@ const Apartment = () => {
         .toLowerCase()
         .replace(/\s+/g, "-")
         .replace(/[^a-z0-9-]/g, "");
-      navigate(`${baseUrl}/${urlFriendlyName}/view`);
+      navigate(`${baseUrl}/${urlFriendlyName}/view`, {
+        state: { listingId: listing.id },
+      });
     }
   };
 

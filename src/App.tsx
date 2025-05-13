@@ -41,6 +41,38 @@ function App() {
             }
           />
           <Route
+            path="/tour-ha-noi"
+            element={
+              <MainLayout>
+                <Tour />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/tour-ha-long"
+            element={
+              <MainLayout>
+                <Tour />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/tour-ha-noi/:tourName/view"
+            element={
+              <MainLayout>
+                <TourDetail />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/tour-ha-long/:tourName/view"
+            element={
+              <MainLayout>
+                <TourDetail />
+              </MainLayout>
+            }
+          />
+          <Route
             path="/apartment-ha-noi"
             element={
               <MainLayout>

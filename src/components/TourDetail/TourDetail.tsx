@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Typography, Row, Col, Button, Form, Input, Modal } from "antd";
 import "./TourDetail.css";
 import TravelDescription from "../TravelDescription/TravelDescription";
+import { useLocation } from "react-router-dom";
 
 const { Title, Text } = Typography;
 
@@ -30,6 +31,9 @@ interface TourDataType {
 
 const TourDetail = () => {
   const { id } = useParams();
+  const location = useLocation();
+  const listingId = location.state?.listingId;
+  console.log("listingId:", listingId);
   const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isContactModalVisible, setIsContactModalVisible] = useState(false);
@@ -42,7 +46,9 @@ const TourDetail = () => {
   useEffect(() => {
     const fetchTourData = async () => {
       try {
-        const response = await fetch(`https://anstay.com.vn/api/tours/${id}`);
+        const response = await fetch(
+          `https://anstay.com.vn/api/tours/${listingId}`
+        );
         const data = await response.json();
         setTourData(data[0]); // Assuming the API returns an array with one tour
       } catch (error) {
@@ -71,6 +77,7 @@ const TourDetail = () => {
 
   const handleBooking = () => {
     navigate(`/booking`);
+    ``;
   };
 
   const showContactModal = () => {
@@ -81,7 +88,7 @@ const TourDetail = () => {
     setSubmitLoading(true);
     try {
       const response = await fetch(
-        `https://anstay.com.vn/api/tours/${id}/contact`,
+        `https://anstay.com.vn/api/tours/${listingId}/contact`,
         {
           method: "POST",
           headers: {

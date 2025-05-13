@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import {
   Typography,
   Row,
@@ -8,7 +8,6 @@ import {
   Form,
   Input,
   DatePicker,
-  Checkbox,
   InputNumber,
   notification,
 } from "antd";
@@ -51,8 +50,9 @@ interface Apartment {
 }
 
 const ApartmentDetail = () => {
-  const { id } = useParams<{ id: string }>();
   const location = window.location.pathname;
+  const location1 = useLocation();
+  const listingId = location1.state?.listingId;
   const pathParts = location.split("/");
   const rawApartmentName = pathParts[2]; // Get the apartment name from the URL
   const apartmentName = rawApartmentName
@@ -60,6 +60,7 @@ const ApartmentDetail = () => {
     .replace(/-/g, " ")
     .trim();
   console.log("Apartment Name1:", apartmentName);
+  console.log("ID:", listingId);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [apartment, setApartment] = useState<Apartment | null>(null);
@@ -95,27 +96,24 @@ const ApartmentDetail = () => {
         const data = await response.json();
         console.log("Raw API Response:", data);
 
-        if (!data) {
-          throw new Error("Empty response received");
-        }
+        // Check if data is an array and has items
+        if (Array.isArray(data) && data.length > 0) {
+          const apartment = data[0]; // Get first matching apartment
 
-        if (!data.id) {
-          console.error("Invalid apartment data - missing ID:", data);
-          notification.error({
-            message: "Lỗi dữ liệu",
-            description: "Không tìm thấy thông tin căn hộ",
-            duration: 3,
+          if (!apartment.id) {
+            throw new Error("Invalid apartment data - missing ID");
+          }
+
+          console.log("Valid apartment data received:", {
+            id: apartment.id,
+            name: apartment.name,
           });
-          return;
+
+          setApartment(apartment);
+          setTotalPrice(apartment.pricePerDay);
+        } else {
+          throw new Error("No apartment found");
         }
-
-        console.log("Valid apartment data received:", {
-          id: data.id,
-          name: data.name,
-        });
-
-        setApartment(data);
-        setTotalPrice(data.pricePerDay);
       } catch (error) {
         console.error("Error fetching apartment:", error);
         notification.error({
@@ -161,9 +159,6 @@ const ApartmentDetail = () => {
       return;
     }
 
-    console.log("Apartment ID:", apartment.id);
-    console.log("Full apartment object:", apartment);
-
     try {
       const payload = {
         fullName: values.fullName,
@@ -177,9 +172,8 @@ const ApartmentDetail = () => {
         pricePerNight: apartment.pricePerDay,
         totalPrice: totalPrice,
       };
-
       const response = await fetch(
-        `https://anstay.com.vn/api/apartments/${apartment.id}/send-email`,
+        `https://anstay.com.vn/api/apartments/${listingId}/send-email`,
         {
           method: "POST",
           headers: {
