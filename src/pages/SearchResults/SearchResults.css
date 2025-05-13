@@ -169,3 +169,104 @@ label {
 .home-button:hover {
   background-color: #1557b0;
 }
+
+.carousel-wrapper {
+  max-width: 1200px;
+  margin-top: 30px;
+  margin: auto;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  padding: 20px 0;
+  position: relative;
+}
+
+.carousel-slide {
+  padding: 0 10px;
+  height: 450px; /* Chiều cao cố định như ảnh bạn gửi */
+}
+
+.image-wrapper {
+  height: 100%;
+ 
+  overflow: hidden;
+  position: relative;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Tuỳ chỉnh nút mũi tên giống ảnh bạn gửi */
+.slick-prev,
+.slick-next {
+ z-index: 10;
+  width: 44px !important;
+  height: 44px !important;
+  background: rgba(60, 60, 60, 0.8) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  border: none !important;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  
+}
+
+/* Icon mũi tên trắng */
+.slick-prev:before,
+.slick-next:before {
+  color: #fff;
+  font-size: 18px;
+  opacity: 1;
+}
+.slick-prev:before {
+  content: "🡐" !important;
+}
+
+.slick-next:before {
+  content: "🡒" !important ;
+}
+
+/* Vị trí trái/phải */
+.slick-prev {
+  left: 50px !important;
+}
+
+.slick-next {
+  right: 50px !important;
+}
+
+.carousel-info {
+  padding: 12px 16px;
+  background-color: #fff;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  align-items:flex-start;
+  flex-direction: column;
+  display: flex;
+}
+
+.carousel-title {
+  font-size: 27px;
+  font-weight: 700;
+  margin: 4px 0;
+  color: #1696d1;
+}
+
+.carousel-stars {
+  color: #f7c948;
+  font-size: 36px;
+  margin-bottom: 4px;
+}
+
+.carousel-address {
+  color: #666;
+  font-size: 18px;
+  font-weight:700 ;
+}
