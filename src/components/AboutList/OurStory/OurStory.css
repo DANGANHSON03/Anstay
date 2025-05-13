@@ -12,24 +12,33 @@
 }
 
 .about-title {
-  margin-top: 80px;
-  font-size: 2.4rem;
+  margin-top: 60px;
+  font-size: 3.6rem;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: 2.5rem;
   text-align: center;
-  color: #2563eb;
+  line-height: 1.15;
+  color: #182d56;
+  background: linear-gradient(90deg, #17336f 40%, #6187b1 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-text-stroke: 1px #17336f;
+  text-shadow: 2px 4px 16px rgba(37, 99, 235, 0.18), 0 2px 8px rgba(96, 165, 250, 0.12);
 }
 
 .about-intro {
-  font-size: 1.1rem;
+  font-size: 1.10rem;
   text-align: center;
+  margin-top: 0.5rem;
   margin-bottom: 2.5rem;
   color: #334155;
 }
 
 .about-section h2 {
-  font-size: 1.5rem;
-  color: #2563eb;
+  font-size: 1.8rem;
+  color: #142548;
   margin-top: 2rem;
 }
 
@@ -40,7 +49,7 @@
 
 .about-section p,
 .about-section li {
-  font-size: 1.05rem;
+  font-size: 1.10rem;
   margin-top: 0.8rem;
   color: #475569;
 }

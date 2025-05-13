@@ -11,7 +11,7 @@ import Help from "./components/Help/Help";
 import AboutUs from "./components/AboutUs/AboutUs";
 import AboutCP from "./components/AboutList/AboutCP/AboutCP";
 import AboutGCP from "./components/AboutList/AboutGCP/AboutGCP";
-import AboutContact from "./components/AboutList/AboutContact/AboutContact";
+import OurStory from "./components/AboutList/OurStory/OurStory.tsx";
 import Coperate from "./components/Coperate/Coperate";
 import { AuthProvider } from "./Context/AuthContext";
 import ExploExper from "./components/ExploExper/ExploExper";
@@ -122,10 +122,10 @@ function App() {
             }
           />
           <Route
-            path="/about-us/contact"
+            path="/about-us/our-story"
             element={
               <MainLayout>
-                <AboutContact />
+                <OurStory />
               </MainLayout>
             }
           />
