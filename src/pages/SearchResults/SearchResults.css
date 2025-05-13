@@ -228,6 +228,16 @@ label {
 .slick-prev:before {
   content: "🡐" !important;
 }
+.star {
+  font-size: 40px;
+  margin-right: 8px;
+  color: #ccc;          /* màu sao chưa chọn */
+  stroke: white;        /* viền trắng */
+  stroke-width: 1.5px;
+}
+.star.filled {
+  color: gold;          /* màu sao được chọn */
+}
 
 .slick-next:before {
   content: "🡒" !important ;
