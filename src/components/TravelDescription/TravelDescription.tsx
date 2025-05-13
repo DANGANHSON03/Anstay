@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Tabs, Card, Form, Input, Button, message } from "antd";
 import "./TravelDescription.css";
 import { Avatar, List } from "antd";
+import { useLocation } from "react-router-dom";
 const { TabPane } = Tabs;
 import dayjs from "dayjs";
 
@@ -89,27 +90,32 @@ const TravelDescription = () => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [form] = Form.useForm();
   const navigate = useNavigate();
+  const location1 = useLocation();
+  const listingId = location1.state?.listingId;
+  console.log("listingId111111111:", listingId); // Add console log
 
   useEffect(() => {
     const fetchTourData = async () => {
       try {
-        const response = await fetch(`https://anstay.com.vn/api/tours/${id}`);
+        const response = await fetch(
+          `https://anstay.com.vn/api/tours/${listingId}`
+        );
         const data = await response.json();
-        setTour(data[0]); // API returns array, we take first item
+        setTour(data[0]);
       } catch (error) {
         console.error("Error fetching tour data:", error);
       }
     };
 
-    if (id) {
+    if (listingId) {
       fetchTourData();
     }
-  }, [id]);
+  }, [listingId]);
 
   const fetchComments = async () => {
     try {
       const response = await fetch(
-        `https://anstay.com.vn/api/comments/TOUR/${id}`
+        `https://anstay.com.vn/api/comments/TOUR/${listingId}`
       );
       const commentsData = await response.json();
       const commentsWithUser = await Promise.all(
@@ -133,10 +139,10 @@ const TravelDescription = () => {
   };
 
   useEffect(() => {
-    if (id) {
+    if (listingId) {
       fetchComments();
     }
-  }, [id]);
+  }, [listingId]);
 
   const checkAuth = () => {
     const userJson = localStorage.getItem("user");

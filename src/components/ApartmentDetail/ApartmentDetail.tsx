@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import {
   Typography,
   Row,
@@ -8,7 +8,6 @@ import {
   Form,
   Input,
   DatePicker,
-  Checkbox,
   InputNumber,
   notification,
 } from "antd";
@@ -51,7 +50,18 @@ interface Apartment {
 }
 
 const ApartmentDetail = () => {
-  const { id } = useParams<{ id: string }>();
+  const location = window.location.pathname;
+  const location1 = useLocation();
+  const listingId = location1.state?.listingId;
+  const pathParts = location.split("/");
+  const rawApartmentName = pathParts[2]; // Get the apartment name from the URL
+  const apartmentName = rawApartmentName
+    ?.replace(/[^\w\s-]/g, "")
+    .replace(/-/g, " ")
+    .trim();
+  console.log("Apartment Name1:", apartmentName);
+  console.log("ID:", listingId);
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [apartment, setApartment] = useState<Apartment | null>(null);
   const [numNights, setNumNights] = useState(1);
@@ -66,25 +76,56 @@ const ApartmentDetail = () => {
 
   useEffect(() => {
     const fetchApartment = async () => {
-      if (!id) return;
+      if (!apartmentName) {
+        console.error("No apartment name provided");
+        return;
+      }
 
       try {
+        console.log("Fetching apartment with name:", apartmentName);
         const response = await fetch(
-          `https://anstay.com.vn/api/apartments/${id}`
+          `http://localhost:8085/api/apartments/search?name=${encodeURIComponent(
+            apartmentName
+          )}`
         );
+
         if (!response.ok) {
-          throw new Error("Apartment not found");
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
+
         const data = await response.json();
-        setApartment(data);
-        setTotalPrice(data.pricePerDay);
+        console.log("Raw API Response:", data);
+
+        // Check if data is an array and has items
+        if (Array.isArray(data) && data.length > 0) {
+          const apartment = data[0]; // Get first matching apartment
+
+          if (!apartment.id) {
+            throw new Error("Invalid apartment data - missing ID");
+          }
+
+          console.log("Valid apartment data received:", {
+            id: apartment.id,
+            name: apartment.name,
+          });
+
+          setApartment(apartment);
+          setTotalPrice(apartment.pricePerDay);
+        } else {
+          throw new Error("No apartment found");
+        }
       } catch (error) {
         console.error("Error fetching apartment:", error);
+        notification.error({
+          message: "Lỗi",
+          description: "Không thể tìm thấy thông tin căn hộ",
+          duration: 3,
+        });
       }
     };
 
     fetchApartment();
-  }, [id]);
+  }, [apartmentName]);
 
   const handlePrevImage = () => {
     setCurrentImageIndex((prev) =>
@@ -131,9 +172,8 @@ const ApartmentDetail = () => {
         pricePerNight: apartment.pricePerDay,
         totalPrice: totalPrice,
       };
-
       const response = await fetch(
-        `https://anstay.com.vn/api/apartments/${id}/send-email`,
+        `https://anstay.com.vn/api/apartments/${listingId}/send-email`,
         {
           method: "POST",
           headers: {

@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import "./Tour.css";
 
 const Tour = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { tourName } = useParams(); // Extract URL parameter
   const [listingData, setListingData] = useState([]);
 
   const formatDuration = (days) => {
@@ -16,7 +17,19 @@ const Tour = () => {
     return `${days} ngày ${nights} đêm`;
   };
 
+  const removeVietnameseTones = (str) => {
+    str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+    str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+    str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+    str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+    str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+    str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+    str = str.replace(/đ/g, "d");
+    return str;
+  };
+
   useEffect(() => {
+    console.log("Tour name from URL:", tourName); // Log the URL parameter
     const fetchTours = async () => {
       try {
         const apiUrl = location.state?.location
@@ -32,11 +45,11 @@ const Tour = () => {
           time: formatDuration(tour.durationDays),
           transportation: tour.transportation,
           hotel: tour.hotel,
-          price: tour.price, // Remove the *1000 multiplication
+          price: tour.price,
           discount: tour.discountPercent,
           area: tour.area,
           images: tour.images.map((img) => img.imageUrl) || [
-            "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b", // fallback image
+            "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b",
           ],
           schedules: tour.schedules,
         }));
@@ -74,7 +87,7 @@ const Tour = () => {
     setActiveImages({ ...activeImages, [listingId]: newIndex });
   };
 
-  // Function to handle "Xem thêm" button clixdavsa ác ck
+  // Function to handle "Xem thêm" button click
   const handleLoadMore = () => {
     // Increase visible count by 9 or show all remaining items
     setVisibleCount((prev) => Math.min(prev + 9, listingData.length));
@@ -83,13 +96,26 @@ const Tour = () => {
   // Get visible listings
   const visibleListings = listingData.slice(0, visibleCount);
 
-  // Thay thế hàm openPopup bằng hàm navigate
-  const handleListingClick = (listingId) => {
-    navigate(`/tour/${listingId}`);
+  const handleListingClick = (listing) => {
+    if (listing.status !== "OCCUPIED") {
+      let baseUrl = "/tour";
+      if (location.state?.location === "HA_LONG") {
+        baseUrl = "/tour-ha-long";
+      } else if (location.state?.location === "HA_NOI") {
+        baseUrl = "/tour-ha-noi";
+      }
+      const urlFriendlyName = removeVietnameseTones(listing.title)
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9-]/g, "");
+      navigate(`${baseUrl}/${urlFriendlyName}/view`, {
+        state: { listingId: listing.id },
+      });
+    }
   };
 
   return (
-      <>
+    <>
       <div className="apart-top">
         <div className="img-top-apart">
           <img
@@ -127,7 +153,7 @@ const Tour = () => {
               <div
                 key={listing.id}
                 className="listing-card"
-                onClick={() => handleListingClick(listing.id)}
+                onClick={() => handleListingClick(listing)}
               >
                 <div className="listing-image">
                   {listing.discount > 0 && (
@@ -205,7 +231,7 @@ const Tour = () => {
           )}
         </div>
       </div>
-      </>
+    </>
   );
 };
 

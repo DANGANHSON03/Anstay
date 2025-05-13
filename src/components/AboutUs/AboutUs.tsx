@@ -24,7 +24,7 @@ const AboutUs = () => {
     {
       title: "Câu chuyện Anstay",
       image: "https://crm.flesta.vn//uploads/about_us/Contact-Us.png",
-      link: "/about-us/contact",
+      link: "/about-us/our-story",
     },
   ];
 

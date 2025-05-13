@@ -1,6 +1,6 @@
-import "./AboutContact.css";
+import "./OurStory.css";
 
-const AboutContact = () => {
+const OurStory = () => {
   return (
     <div className="about-story-container">
       <div className="about-story-wrapper">
@@ -137,4 +137,4 @@ const AboutContact = () => {
   );
 };
 
-export default AboutContact;
+export default OurStory;

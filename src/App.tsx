@@ -11,7 +11,7 @@ import Help from "./components/Help/Help";
 import AboutUs from "./components/AboutUs/AboutUs";
 import AboutCP from "./components/AboutList/AboutCP/AboutCP";
 import AboutGCP from "./components/AboutList/AboutGCP/AboutGCP";
-import AboutContact from "./components/AboutList/AboutContact/AboutContact";
+import OurStory from "./components/AboutList/OurStory/OurStory.tsx";
 import Coperate from "./components/Coperate/Coperate";
 import { AuthProvider } from "./Context/AuthContext";
 import ExploExper from "./components/ExploExper/ExploExper";
@@ -30,14 +30,8 @@ function App() {
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
-          {/* Route không dùng MainLayout */}
           <Route path="/hiden-page" element={<HidenPage />} />
           <Route path="/form-qr" element={<FormQr />} />
-
-          {/* <Route path="/hidenVi" element={<HidenViet/>} />
-          <Route path="/hidenEn" element={<HidenEn/>}/> */}
-
-          {/* Các route dùng MainLayout */}
           <Route
             path="/"
             element={
@@ -47,23 +41,7 @@ function App() {
             }
           />
           <Route
-            path="/apartment"
-            element={
-              <MainLayout>
-                <Apartment />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/apartment/:id"
-            element={
-              <MainLayout>
-                <ApartmentDetail />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/tour"
+            path="/tour-ha-noi"
             element={
               <MainLayout>
                 <Tour />
@@ -71,13 +49,62 @@ function App() {
             }
           />
           <Route
-            path="/tour/:id"
+            path="/tour-ha-long"
+            element={
+              <MainLayout>
+                <Tour />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/tour-ha-noi/:tourName/view"
             element={
               <MainLayout>
                 <TourDetail />
               </MainLayout>
             }
           />
+          <Route
+            path="/tour-ha-long/:tourName/view"
+            element={
+              <MainLayout>
+                <TourDetail />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/apartment-ha-noi"
+            element={
+              <MainLayout>
+                <Apartment />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/apartment-ha-long"
+            element={
+              <MainLayout>
+                <Apartment />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/apartment-ha-noi/:apartmentName/view"
+            element={
+              <MainLayout>
+                <ApartmentDetail />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/apartment-ha-long/:apartmentName/view"
+            element={
+              <MainLayout>
+                <ApartmentDetail />
+              </MainLayout>
+            }
+          />
+
           <Route
             path="/booking"
             element={
@@ -127,10 +154,10 @@ function App() {
             }
           />
           <Route
-            path="/about-us/contact"
+            path="/about-us/our-story"
             element={
               <MainLayout>
-                <AboutContact />
+                <OurStory />
               </MainLayout>
             }
           />

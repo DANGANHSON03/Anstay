@@ -23,7 +23,7 @@ const items: MenuItem[] = [
       {
         key: "1-1",
         label: (
-          <Link to="/tour" state={{ location: "HA_NOI" }}>
+          <Link to="/tour-ha-noi" state={{ location: "HA_NOI" }}>
             Tour Hà Nội
           </Link>
         ),
@@ -31,7 +31,7 @@ const items: MenuItem[] = [
       {
         key: "1-2",
         label: (
-          <Link to="/apartment" state={{ location: "HA_NOI" }}>
+          <Link to="/apartment-ha-noi" state={{ location: "HA_NOI" }}>
             Căn hộ Hà Nội
           </Link>
         ),
@@ -45,7 +45,7 @@ const items: MenuItem[] = [
       {
         key: "2-1",
         label: (
-          <Link to="/tour" state={{ location: "HA_LONG" }}>
+          <Link to="/tour-ha-long" state={{ location: "HA_LONG" }}>
             Tour Hạ Long
           </Link>
         ),
@@ -53,7 +53,7 @@ const items: MenuItem[] = [
       {
         key: "2-2",
         label: (
-          <Link to="/apartment" state={{ location: "HA_LONG" }}>
+          <Link to="/apartment-ha-long" state={{ location: "HA_LONG" }}>
             Căn hộ Hạ Long
           </Link>
         ),
