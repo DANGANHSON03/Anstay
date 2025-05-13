@@ -6,7 +6,8 @@ import img3 from '../../assets/Images/N009586.jpg'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import {FaStar} from 'react-icons/fa';
+import RoomCard from '../../components/RoomCard/RoomCard'
 
  
 
@@ -29,17 +30,38 @@ const SearchResults = () => {
   };
   const propertyData = {
   name: "SAZIHOME LE THANH TONG HANOI",
-  rating: 5,
+  rating: 4,
   address: "No.9 Alley 6 Le Thanh Tong street, Hoan Kiem district, Hanoi, Vietnam",
    images : [
  'https://i.ibb.co/35J3zmZn/3.jpg',img2,img3
   ],
+  };
 
-};
+  const rooms = [
+  {
+    id: 1,
+    name: "CĂN BỒN TẮM GỖ",
+    image: img2,
+    imageCount: "1/17",
+    guests: 2,
+    beds: 1,
+    children: 0,
+    size: "25 m²",
+    bedType: "Queen-size",
+    price: "3,674,430",
+    priceOriginal: "3,951,000",
+    nights: 7,
+    roomsLeft: 2,
+    promotions: ["SALE OFF", "1WEEKOFF"],
+    discountText: "1WEEKOFF (-₫276,570)",
+    policy: [
+      "Full payment is required on the day of booking.",
+      "Free cancellation if you cancel 5 days before check-in. After that, 50% fee."
+    ]
+  },
+  // Add more rooms here...
+];
 
-
-
-  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -141,12 +163,20 @@ const SearchResults = () => {
         {/* PHẦN THÔNG TIN BÊN DƯỚI */}
         <div className="carousel-info">
           <h3 className="carousel-title">{propertyData.name}</h3>
-          <div className="carousel-stars">{Array(propertyData.rating).fill("⭐").join(" ")}</div>
+          <div className="carousel-stars"> {[...Array(5)].map((_, i) => (
+              <FaStar key={i} className={`star ${i < propertyData.rating ? "filled" : ""}`} />
+            ))}</div>
           <div className="carousel-address">
             🗺️ {propertyData.address}
           </div>
         </div>
     </div>
+    <div>
+      {rooms.map((room) => (
+        <RoomCard key={room.id} data={room} />
+      ))}
+    </div>
+
     </div>
   );
 };
