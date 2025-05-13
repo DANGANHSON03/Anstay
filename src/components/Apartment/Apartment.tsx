@@ -108,6 +108,19 @@ const Apartment = () => {
     );
   }, [currentArea]);
 
+  useEffect(() => {
+    // Log current URL
+    console.log("Current URL:", window.location.pathname);
+
+    // Determine area from URL
+    const path = window.location.pathname;
+    if (path.includes("apartment-ha-noi")) {
+      setCurrentArea("HA_NOI");
+    } else if (path.includes("apartment-ha-long")) {
+      setCurrentArea("HA_LONG");
+    }
+  }, []);
+
   // Modify handleAreaChange to use navigate
   const handleAreaChange = (area: string) => {
     navigate("/apartment", { state: { location: area } });
@@ -163,7 +176,17 @@ const Apartment = () => {
   // Thay thế hàm openPopup bằng hàm navigate
   const handleListingClick = (listing: Apartment) => {
     if (listing.status !== "OCCUPIED") {
-      navigate(`/apartment/${listing.id}`);
+      let baseUrl = "/apartment";
+      if (currentArea === "HA_LONG") {
+        baseUrl = "/apartment-ha-long";
+      } else if (currentArea === "HA_NOI") {
+        baseUrl = "/apartment-ha-noi";
+      }
+      const urlFriendlyName = listing.name
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9-]/g, "");
+      navigate(`${baseUrl}/${urlFriendlyName}/view`);
     }
   };
 
@@ -185,25 +208,7 @@ const Apartment = () => {
       </div>
       <div className="container-wrapper">
         <div className="container">
-          {/* Add area selector */}
           <div className="filters">
-            {/* <span>Khu vực:</span>
-            <div className="filter-item">
-              <select
-                className="filter-select"
-                value={currentArea}
-                onChange={(e) => handleAreaChange(e.target.value)}
-              >
-                <option value="HA_NOI">Hà Nội</option>
-                <option value="HA_LONG">Hạ Long</option>
-                <option value="DA_NANG">Đà Nẵng</option>
-                <option value="NHA_TRANG">Nha Trang</option>
-                <option value="DA_LAT">Đà Lạt</option>
-                <option value="HO_CHI_MINH">Hồ Chí Minh</option>
-                <option value="PHU_QUOC">Phú Quốc</option>
-              </select>
-            </div> */}
-            {/* Filters */}
             <span>Sắp xếp theo:</span>
             <div className="filter-item">
               <select className="filter-select">

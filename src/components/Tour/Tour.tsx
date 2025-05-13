@@ -74,7 +74,7 @@ const Tour = () => {
     setActiveImages({ ...activeImages, [listingId]: newIndex });
   };
 
-  // Function to handle "Xem thêm" button clixdavsa ác ck
+  // Function to handle "Xem thêm" button click
   const handleLoadMore = () => {
     // Increase visible count by 9 or show all remaining items
     setVisibleCount((prev) => Math.min(prev + 9, listingData.length));
@@ -83,13 +83,19 @@ const Tour = () => {
   // Get visible listings
   const visibleListings = listingData.slice(0, visibleCount);
 
-  // Thay thế hàm openPopup bằng hàm navigate
   const handleListingClick = (listingId) => {
-    navigate(`/tour/${listingId}`);
+    const locationMap = {
+      HA_NOI: "ha-noi",
+      HA_LONG: "ha-long",
+    };
+    const currentLocation = location.state?.location;
+    const formattedLocation = locationMap[currentLocation] || "";
+    const urlPath = formattedLocation ? `tour-${formattedLocation}` : "tour";
+    navigate(`/${urlPath}/${listingId}/view`);
   };
 
   return (
-      <>
+    <>
       <div className="apart-top">
         <div className="img-top-apart">
           <img
@@ -205,7 +211,7 @@ const Tour = () => {
           )}
         </div>
       </div>
-      </>
+    </>
   );
 };
 

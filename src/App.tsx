@@ -30,14 +30,8 @@ function App() {
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
-          {/* Route không dùng MainLayout */}
           <Route path="/hiden-page" element={<HidenPage />} />
           <Route path="/form-qr" element={<FormQr />} />
-
-          {/* <Route path="/hidenVi" element={<HidenViet/>} />
-          <Route path="/hidenEn" element={<HidenEn/>}/> */}
-
-          {/* Các route dùng MainLayout */}
           <Route
             path="/"
             element={
@@ -47,7 +41,7 @@ function App() {
             }
           />
           <Route
-            path="/apartment"
+            path="/apartment-ha-noi"
             element={
               <MainLayout>
                 <Apartment />
@@ -55,7 +49,15 @@ function App() {
             }
           />
           <Route
-            path="/apartment/:id"
+            path="/apartment-ha-long"
+            element={
+              <MainLayout>
+                <Apartment />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/apartment-ha-noi/:apartmentName/view"
             element={
               <MainLayout>
                 <ApartmentDetail />
@@ -63,21 +65,14 @@ function App() {
             }
           />
           <Route
-            path="/tour"
+            path="/apartment-ha-long/:apartmentName/view"
             element={
               <MainLayout>
-                <Tour />
+                <ApartmentDetail />
               </MainLayout>
             }
           />
-          <Route
-            path="/tour/:id"
-            element={
-              <MainLayout>
-                <TourDetail />
-              </MainLayout>
-            }
-          />
+
           <Route
             path="/booking"
             element={
