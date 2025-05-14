@@ -315,7 +315,6 @@ function Hiden() {
           {isTabOpen(3) && (
             <div className="accordion-content-Hiden">
               <p>- Quẹt thẻ từ trước khi chọn tầng</p>
-              <p>- Các tầng có thể truy cập: 1-20</p>
               <p>- Nút khẩn cấp màu đỏ trong trường hợp cần hỗ trợ</p>
               <button
                 onClick={() => setShowPopup("3")}
@@ -325,6 +324,11 @@ function Hiden() {
               </button>
             </div>
           )}
+        </div>
+        <div className="accordion-item-Hiden">
+          <button className="accordion-header-Hiden">
+            Hướng dẫn sử dụng thang thoát hiểm
+          </button>
         </div>
 
         <div className="accordion-item-Hiden">
@@ -343,7 +347,9 @@ function Hiden() {
               <p>- Giờ nhận phòng: 15:00, trả phòng: 12:00</p>
               <p>- Không hút thuốc trong căn hộ</p>
               <p>- Không gây ồn sau 22:00</p>
-              <p>- Không tổ chức tiệc tùng</p>
+              <p>- Ko nấu đồ hải sản, k sd mắm tôm sầu riêng trong phòng</p>
+              <p>- Không làm bẩn sofa</p>
+              <p>- Nghiêm cấm sử dụng chất trái phép ma túy</p>
               <p>
                 <strong>An toàn:</strong>
               </p>
