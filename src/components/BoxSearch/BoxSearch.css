@@ -20,9 +20,29 @@
 }
 
 .search-item.search-location {
-  flex: 0 0 280px;
-  max-width: 280px;
+  position: relative;
 }
+.search-item.search-location .search-icon {
+  position: absolute;
+  left: 16px;
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  font-size: 18px;
+  pointer-events: none;
+  z-index: 2;
+  display: block;
+}
+
+/* Địa điểm: chữ đậm và màu tối hơn */
+.search-item.search-location select,
+.search-item.search-location .react-select__single-value,
+.search-item.search-location .react-select__placeholder {
+  color: #222831 !important;
+  font-weight: 700 !important;
+}
+
 .search-item.search-date {
   position: relative;
   flex: 1;
@@ -58,11 +78,6 @@
   color: #64748b;
   font-size: 18px;
   pointer-events: none;
-}
-
-.search-item.search-location {
-  flex: 0 0 330px;
-  max-width: 450px;
 }
 
 .search-item select {
@@ -208,30 +223,18 @@ input[type="date"] {
   .boxsearch-wrapper {
     flex-direction: column;
     align-items: stretch;
-    padding: 1rem;
-    gap: 0.7rem;
+    padding: 0.7rem;
+    gap: 0.5rem;
     border-radius: 14px;
     margin: 18px 0;
-    box-sizing: border-box;
     width: 100%;
-    gap: 0.3rem; /* Giảm gap giữa các box */
-    padding: 0.7rem; /* Giảm padding tổng thể */
-    gap: 0.1rem; /* Giảm gap tối đa giữa các box */
-    padding: 0.5rem 0.5rem 0.5rem 0.5rem; /* Giảm padding tổng thể */
-    gap: 0 !important; /* Không còn khoảng cách giữa các box */
-    padding: 0.3rem !important;
+    box-sizing: border-box;
   }
 
   .search-item {
     width: 100%;
-    min-width: 0;
-    max-width: 100%;
-    margin-bottom: 8px;
-    box-sizing: border-box;
+    margin-bottom: 4px;
     position: relative;
-    margin-bottom: 4px; /* Giảm margin giữa các item */
-    margin-bottom: 2px !important; /* Giảm margin giữa các item */
-    margin-bottom: 0 !important; /* Không còn margin giữa các item */
   }
 
   .search-item select,
@@ -243,24 +246,42 @@ input[type="date"] {
     box-sizing: border-box;
   }
 
-  /* Fix input có icon bên trái */
-  .search-date-input-left {
-    padding: 12px 12px 12px 44px !important;
-    font-size: 15px;
+  /* Icon trái (location) hoặc phải (calendar) */
+  .search-icon,
+  .calendar-icon-left,
+  .calendar-icon-right {
+    position: absolute;
+    font-size: 17px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 2;
+    color: #64748b;
   }
-  /* Fix input có icon bên phải */
-  .search-date-input {
+
+  .calendar-icon-left,
+  .calendar-icon-right,
+  .search-icon {
+    right: 25px;
+    left: auto;
+  }
+
+  .search-item.search-location .search-icon {
+    left: 16px !important;
+    right: auto;
+  }
+
+  .search-date-input,
+  .search-date-input-left,
+  .search-item input[type="date"] {
     padding: 12px 44px 12px 12px !important;
     font-size: 15px;
   }
 
-  .calendar-icon-left {
-    left: 12px;
-    font-size: 17px;
-  }
-  .calendar-icon-right {
-    right: 12px;
-    font-size: 17px;
+  .search-item.search-location select,
+  .search-item.search-location .react-select__control {
+    padding-left: 49px !important;
+    padding-right: 16px !important;
   }
 
   .search-button1 {
@@ -268,278 +289,96 @@ input[type="date"] {
     font-size: 1rem;
     padding: 12px;
     margin-top: 8px;
-    border-radius: 8px;
-  }
-
-  .counter-controls {
-    flex-direction: column;
-    gap: 8px;
-    left: 0;
-    right: 0;
-    min-width: 0;
-    width: 100%;
-    max-width: 100%;
     border-radius: 10px;
-    padding: 10px;
-    margin-top: 4px;
-    z-index: 2000;
-    box-sizing: border-box;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    background: linear-gradient(135deg, #6366f1, #3b82f6);
+    color: white;
+    border: none;
+    cursor: pointer;
   }
 
-  /* Tất cả input có icon trái/phải đều padding phải lớn hơn */
-  .search-date-input-left,
-  .search-date-input {
-    padding: 12px 44px 12px 12px !important;
-    font-size: 15px;
+  /* ---- COUNTER BOX FIXED ---- */
+  .counter-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 200px;
+    height: 55px;
+    padding: 0 12px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 14px;
+    background-color: #f9fafb;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.04);
   }
 
-  /* Đưa icon trái về bên phải trên mobile */
-  .calendar-icon-left,
-  .calendar-icon-right {
-    left: auto !important;
-    right: 12px !important;
-    font-size: 17px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
-
-  /* Đảm bảo icon location luôn nằm trong input */
-  .search-icon {
-    left: auto !important;
-    right: 12px !important;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 18px;
-    pointer-events: none;
-    z-index: 2;
-    height: auto;
-    display: block;
-  }
-  /* Tăng padding phải cho select location để không bị đè icon */
-  .search-item.search-location select {
-    padding-right: 40px !important;
-    padding-left: 12px !important;
-  }
-
-  /* Input có icon lịch bên phải */
-  .search-date-input,
-  .search-date-input-left,
-  .search-item input[type="date"] {
-    padding-right: 44px !important;
-    padding-left: 12px !important;
-    font-size: 15px;
-  }
-
-  /* Đưa icon lịch về phải */
-  .calendar-icon-left,
-  .calendar-icon-right {
-    left: auto !important;
-    right: 12px !important;
-    font-size: 17px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    z-index: 2;
-  }
-
-  /* Đảm bảo icon địa điểm nằm trong box chọn địa điểm */
-  .search-item.search-location {
-    margin-bottom: 2px !important;
-    padding: 0;
-    position: relative;
-    margin-bottom: 0 !important;
-  }
-  .search-item.search-location select {
-    padding-right: 38px !important;
-    padding-left: 12px !important;
-    min-height: 40px;
-  }
-  .search-icon {
-    left: auto !important;
-    right: 12px !important;
-    top: 50% !important;
-    transform: translateY(-50%);
-    font-size: 18px;
-    pointer-events: none;
-    z-index: 3;
-    position: absolute;
-    height: auto;
-    display: block;
-  }
-}
-
-@media (max-width: 576px) {
-  .boxsearch-wrapper {
-    padding: 1.5rem;
-    gap: 0.8rem;
-  }
-
-  .search-item select,
-  .search-item input {
-    font-size: 15px;
-    padding: 12px 40px;
-  }
-
-  .search-button1 {
-    font-size: 0.95rem;
-    padding: 12px;
-  }
-
-  .calendar-icon-right,
-  .calendar-icon-left {
+  .counter-icon {
     font-size: 16px;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .counter-box-content {
+    display: inline-flex;
+    align-items: 40px;
+    justify-content: center;
+    gap: 6px;
+    margin: 40px;
+    width: fit-content;
+    transform: translateX(-10px);
+  }
+
+  .counter-btn {
+    background-color: #e0e7ef;
+    border: none;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+  }
+
+  .counter-box span {
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .counter-btn:hover {
+    background-color: #cbd5e1;
+    color: #1e3a8a;
+  }
+
+  .react-select__menu {
+    z-index: 10 !important;
   }
 }
 
 @media (max-width: 480px) {
-  .boxsearch-wrapper {
-    padding: 0.7rem;
-    gap: 0.4rem;
-    border-radius: 8px;
-    margin: 10px 0;
-    box-sizing: border-box;
-    width: 100%;
-    gap: 0.2rem; /* Giảm gap hơn nữa cho mobile nhỏ */
-    padding: 0.4rem;
-    gap: 0.05rem;
-    padding: 0.2rem 0.2rem 0.2rem 0.2rem;
-    gap: 0 !important;
-    padding: 0.1rem !important;
-  }
-
-  .search-item {
-    margin-bottom: 6px;
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-    box-sizing: border-box;
-    position: relative;
-    margin-bottom: 2px;
-    margin-bottom: 1px !important;
-    margin-bottom: 0 !important;
-  }
-
-  .search-item select,
-  .search-item input,
-  .counter-select {
-    font-size: 13px;
-    padding: 10px 10px;
-    border-radius: 7px;
-    box-sizing: border-box;
-  }
-
-  /* Fix input có icon bên trái */
-  .search-date-input-left {
-    padding: 10px 10px 10px 38px !important;
-    font-size: 13px;
-  }
-  /* Fix input có icon bên phải */
-  .search-date-input {
-    padding: 10px 38px 10px 10px !important;
-    font-size: 13px;
-  }
-
-  .calendar-icon-left {
-    left: 8px;
-    font-size: 15px;
-  }
+  .search-item.search-location .search-icon,
+  .search-icon,
   .calendar-icon-right {
-    right: 8px;
-    font-size: 15px;
-  }
-
-  .search-button1 {
-    font-size: 0.95rem;
-    padding: 10px;
-    border-radius: 7px;
-    width: 100%;
-  }
-
-  .counter-controls {
-    padding: 7px;
-    border-radius: 7px;
-    font-size: 13px;
-    width: 100%;
-    max-width: 100%;
-    left: 0;
-    right: 0;
-    box-sizing: border-box;
-  }
-
-  .search-date-input-left,
-  .search-date-input {
-    padding: 10px 38px 10px 10px !important;
-    font-size: 13px;
-  }
-
-  .calendar-icon-left,
-  .calendar-icon-right {
-    left: auto !important;
-    right: 8px !important;
-    font-size: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
-
-  .search-icon {
-    left: auto !important;
-    right: 8px !important;
+    left: 18px !important;
+    right: auto !important;
     font-size: 16px;
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
     z-index: 2;
-    height: auto;
-    display: block;
   }
-  .search-item.search-location select {
-    padding-right: 34px !important;
-    padding-left: 8px !important;
-  }
-
-  .search-date-input,
-  .search-date-input-left,
-  .search-item input[type="date"] {
-    padding-right: 38px !important;
-    padding-left: 8px !important;
-    font-size: 13px;
-  }
-
-  .calendar-icon-left,
-  .calendar-icon-right {
-    left: auto !important;
-    right: 8px !important;
-    font-size: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    z-index: 2;
-  }
-
-  .search-item.search-location {
-    margin-bottom: 1px !important;
-    padding: 0;
-    position: relative;
-    margin-bottom: 0 !important;
-  }
-  .search-item.search-location select {
-    padding-right: 32px !important;
-    padding-left: 8px !important;
-    min-height: 36px;
-  }
-  .search-icon {
-    left: auto !important;
-    right: 10px !important;
-    top: 50% !important;
-    transform: translateY(-50%);
-    font-size: 16px;
-    pointer-events: none;
-    z-index: 3;
-    position: absolute;
-    height: auto;
-    display: block;
+  .search-item.search-location select,
+  .search-item.search-location .react-select__control {
+    padding-left: 48px !important;
+    padding-right: 8px !important;
   }
 }
 
@@ -605,4 +444,187 @@ input[type="date"] {
   font-size: 18px;
   color: #64748b;
   cursor: pointer;
+}
+/* React Select giống input thường, chữ căn trái */
+.react-select__control {
+  min-height: 52px;
+  border-radius: 14px !important; /* Bo góc lớn giống input */
+  border: 1.5px solid #d1d5db;
+  background-color: #f9fafb;
+  color: #03060c;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: inherit;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.04);
+  padding-left: 44px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.react-select__control--is-focused {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.13);
+  background-color: #f1f5ff;
+}
+
+.react-select__placeholder,
+.react-select__single-value {
+  color: #4b5563;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: inherit;
+  line-height: 1.5;
+  margin-left: 0;
+  text-align: left;
+  width: 100%;
+  display: block;
+}
+
+.react-select__input-container {
+  color: #4b5563;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.react-select__value-container {
+  padding: 0;
+  text-align: left;
+}
+
+.react-select__menu {
+  border-radius: 14px !important;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.08);
+  text-align: left;
+}
+
+.react-select__option {
+  color: #222;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  padding: 10px 16px;
+  text-align: left;
+}
+
+.react-select__option--is-selected {
+  background: #e0e7ef;
+  color: #6366f1;
+}
+
+.react-select__option--is-focused {
+  background: #f1f5ff;
+  color: #6366f1;
+}
+
+.react-select__indicator-separator {
+  display: none;
+}
+
+/* Căn icon bên trái box */
+.search-item.search-location {
+  position: relative;
+  padding-left: 0px;
+}
+.search-item.search-location .search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  font-size: 18px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Thêm đúng selector cho search-room, không lồng trong .search-item.search-location .search-icon */
+.search-item.search-room {
+  position: relative;
+  padding-left: 0;
+}
+
+.search-item.search-room .react-select__control {
+  padding-left: 44px !important; /* đảm bảo đủ khoảng trống cho icon */
+  position: relative;
+  z-index: 2;
+}
+
+/* Làm chữ trong box chọn phòng đậm và màu xanh */
+.search-item.search-location select,
+.search-item.search-location .react-select__single-value,
+.search-item.search-location .react-select__placeholder {
+  color: #313943 !important;
+  font-weight: 600 !important;
+}
+
+/*phần css của bõ người lớn và trẻ em */
+.counter-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 200px; /* tăng chiều rộng tối thiểu */
+  height: 55px; /* tăng chiều cao */
+  padding: 0 12px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 14px;
+  background-color: #f9fafb;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.04);
+}
+
+.counter-box-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+.counter-box span {
+  font-size: 16px;
+  font-weight: 500;
+  color: #334155;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.counter-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: #1e293b;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.counter-btn:hover {
+  color: #6366f1;
+}
+
+.counter-icon {
+  margin-right: 6px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+/* Đặt màu chữ và độ đậm chung cho toàn bộ box */
+.boxsearch-wrapper,
+.boxsearch-wrapper * {
+  color: #222831 !important; /* Màu chữ bạn muốn */
+  font-weight: 600 !important; /* Độ đậm bạn muốn */
+}
+
+/* Nếu muốn icon cũng đổi màu */
+.boxsearch-wrapper svg {
+  color: #222831 !important;
 }

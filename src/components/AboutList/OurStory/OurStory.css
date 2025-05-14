@@ -349,12 +349,13 @@ html {
 }
 
 .image-content img {
-  width: 100%;
-  height: auto;
-  border-radius: 16px;
+  max-width: 100%;
+  width: 500px;
+  height: 300px;
   object-fit: cover;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
 }
 
 .image-content img:hover {
@@ -381,7 +382,7 @@ html {
   text-align: center;
 }
 
-/* Giữ lại duy nhất đoạn này để ảnh to bằng các ảnh khác */
+
 .core-values-section .image-content img {
   width: 100%;
   height: auto;
