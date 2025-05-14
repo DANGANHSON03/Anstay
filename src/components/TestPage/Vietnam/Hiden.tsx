@@ -143,7 +143,7 @@ function Hiden() {
       <div
         className="door-password-section"
         style={{
-          marginBottom: "20px",
+          margin: "20px",
           padding: "15px",
           backgroundColor: "#f5f5f5",
           borderRadius: "8px",
@@ -196,7 +196,7 @@ function Hiden() {
             className="accordion-header-Hiden"
             aria-expanded={isTabOpen(2)}
           >
-            Hướng dẫn Bật Điện-Bếp-Máy Giặt
+            Hướng dẫn Bật Điện-Bếp-Máy Giặt- Bình Nóng Lạnh
           </button>
           {isTabOpen(2) && (
             <div className="accordion-content-Hiden">
@@ -274,6 +274,77 @@ function Hiden() {
                     </div>
                   )}
                 </div>
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("2-4");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("2-4")}
+                  >
+                    Hướng dẫn sử dụng bình nước nóng
+                  </button>
+                  {isTabOpen("2-4") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <p>- Bật lên và chờ 30 phút </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="accordion-item-Hiden">
+          <button
+            onClick={() => toggleTab(8)}
+            className="accordion-header-Hiden"
+            aria-expanded={isTabOpen(8)}
+          >
+            Hướng dẫn sử dụng thiết bị điện
+          </button>
+          {isTabOpen(8) && (
+            <div className="accordion-content-Hiden">
+              <div className="sub-accordion-Hiden">
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("8-1");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("8")}
+                  >
+                    Hướng dẫn sử dụng bồn tắm, rèm điện
+                  </button>
+                  {isTabOpen("8-1") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <button
+                        // onClick={() => setShowPopup("")}
+                        className="guide-button-Hiden"
+                      >
+                        Xem hướng dẫn chi tiết
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("8-2");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("8-2")}
+                  >
+                    Hướng dẫn sửa lỗi TV
+                  </button>
+                  {isTabOpen("8-2") && (
+                    <div className="sub-accordion-content-Hiden"></div>
+                  )}
+                </div>
               </div>
             </div>
           )}
@@ -326,9 +397,23 @@ function Hiden() {
           )}
         </div>
         <div className="accordion-item-Hiden">
-          <button className="accordion-header-Hiden">
+          <button
+            className="accordion-header-Hiden"
+            onClick={() => toggleTab(9)}
+            aria-expanded={isTabOpen(9)}
+          >
             Hướng dẫn sử dụng thang thoát hiểm
           </button>
+          {isTabOpen(9) && (
+            <div className="accordion-content-Hiden">
+              <button
+                onClick={() => setShowPopup("3")}
+                className="guide-button-Hiden"
+              >
+                Xem hướng dẫn sử dụng
+              </button>
+            </div>
+          )}
         </div>
 
         <div className="accordion-item-Hiden">

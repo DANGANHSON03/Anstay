@@ -166,11 +166,11 @@
   .event-header h2 {
     font-size: 24px;
   }
-  .event-container2{
+  .event-container2 {
     max-width: 768px;
     width: 100%;
     margin: 40px auto;
-    padding: 0 10px;
+    padding: 0 24px;
   }
 
   .event-header p {
@@ -205,9 +205,9 @@
   .event-container2 {
     max-width: 484px;
     width: 100%; /* Đảm bảo không bị ghi đè */
-    margin: 22px auto;
+    margin: 110px auto 20px auto;
   }
-  .event-header{
+  .event-header {
     padding: 0 30px;
   }
   .event-main {
@@ -220,8 +220,8 @@
     height: 600px;
   }
   .event-grid {
-    width: 462px;
-    padding: 0 10px;
+    max-width: 480px;
+    width: 100%;
     grid-template-columns: 1fr;
     gap: 10px;
   }
@@ -260,12 +260,9 @@
   .event-main {
     max-width: 350px;
   }
-  .event-grid {
-    width: 374px;
-  }
+
   .event-container2 {
-    max-width:415px;
+    max-width: 415px;
     width: 100%;
-    margin: 22px auto;
   }
 }
