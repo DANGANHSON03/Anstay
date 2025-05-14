@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../Vietnam/Hiden.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 function HidenEn() {
   const [openTabs, setOpenTabs] = useState([]);
@@ -11,7 +11,7 @@ function HidenEn() {
   const [language, setLanguage] = useState<"vi" | "en">("vi");
   const [showVideo, setShowVideo] = useState(false);
   const location = useLocation();
-  const apartment = location.state?.apartment;
+  const apartment = location.pathname.split("/").pop(); // Get apartment code from URL path
 
   const getVideoUrl = (sectionId) => {
     const videos = {

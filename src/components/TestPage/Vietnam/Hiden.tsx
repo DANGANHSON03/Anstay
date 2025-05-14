@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./Hiden.css";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
 function Hiden() {
+  const { apartment } = useParams();
   const [openTabs, setOpenTabs] = useState([]);
   const [events, setEvents] = useState([]);
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
@@ -9,8 +11,6 @@ function Hiden() {
   const [showPopup, setShowPopup] = useState<string | null>(null);
   const [language, setLanguage] = useState<"vi" | "en">("vi");
   const [showVideo, setShowVideo] = useState(false);
-  const location = useLocation();
-  const apartment = location.state?.apartment;
 
   const getVideoUrl = (sectionId) => {
     const videos = {
