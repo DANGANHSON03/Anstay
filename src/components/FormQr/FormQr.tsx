@@ -53,7 +53,6 @@ const FormQr = () => {
 
     if (newErrors.fullName || newErrors.email) return;
 
-    // Prepare data payload
     const payload = {
       fullName: formData.fullName,
       email: formData.email,
@@ -61,29 +60,20 @@ const FormQr = () => {
       apartment: formData.apartment,
     };
 
-    console.log("Form data being sent:", payload);
-
     try {
-      await fetch(SHEET_API_URL.trim(), {
+      navigate("/hiden-page", { state: { apartment: formData.apartment } });
+
+      // Send data after navigation starts
+      fetch(SHEET_API_URL.trim(), {
         method: "POST",
         mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
+      }).catch((error) => {
+        console.error("Lỗi khi gửi:", error);
       });
-
-      setNotification({
-        show: true,
-        message:
-          "Cảm ơn bạn đã gửi thông tin! Chúng tôi sẽ liên hệ với bạn sớm nhất có thể. / Thank you for submitting! We will contact you as soon as possible.",
-        type: "success",
-      });
-      setTimeout(
-        () =>
-          navigate("/hiden-page", { state: { apartment: formData.apartment } }),
-        3000
-      );
     } catch (error) {
       console.error("Lỗi khi gửi:", error);
       setNotification({

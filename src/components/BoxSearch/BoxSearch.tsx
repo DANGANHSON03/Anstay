@@ -39,16 +39,29 @@ const BoxSearch = () => {
   const childSelectorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const fakeLocations = [
-      { id: 1, name: "SAZIHOME LÊ THÁNH TÔNG" },
-      { id: 2, name: "SAZIHOME NGUYỄN DU" },
-    ];
+    const fetchLocations = async () => {
+      try {
+        const response = await fetch("http://localhost:8085/api/apartments");
+        const data = await response.json();
+        const apartmentLocations = data.map((apartment: any) => ({
+          id: apartment.id,
+          name: apartment.name,
+        }));
+        setLocations(apartmentLocations);
+      } catch (error) {
+        console.error("Error fetching locations:", error);
+      }
+    };
+
+    fetchLocations();
+
     const fakeRooms = [
       { id: 1, label: "1 phòng" },
       { id: 2, label: "2 phòng" },
+      { id: 3, label: "3 phòng" },
+      { id: 4, label: "4 phòng" },
+      { id: 5, label: "5 phòng" },
     ];
-
-    setLocations(fakeLocations);
     setRooms(fakeRooms);
   }, []);
 
@@ -102,16 +115,16 @@ const BoxSearch = () => {
       return;
     }
 
-    const searchParams = {
+    const queryParams = new URLSearchParams({
       location: selectedLocation,
       checkIn: checkInDate,
       checkOut: checkOutDate,
       room: selectedRoom,
-      adults: selectedAdults,
-      children: selectedChildren,
-    };
+      adults: selectedAdults.toString(),
+      children: selectedChildren.toString(),
+    }).toString();
 
-    navigate("/search-results", { state: searchParams });
+    navigate(`/search-results?${queryParams}`);
   };
 
   return (
@@ -124,7 +137,7 @@ const BoxSearch = () => {
         >
           <option value="">Chọn địa điểm</option>
           {locations.map((loc) => (
-            <option key={loc.id} value={loc.id}>
+            <option key={loc.id} value={loc.name}>
               {loc.name}
             </option>
           ))}
@@ -132,25 +145,24 @@ const BoxSearch = () => {
       </div>
 
       <div className="search-item search-date">
-      <input
-        type="date"
-        value={checkInDate}
-        onChange={(e) => setCheckInDate(e.target.value)}
-        className="search-date-input"
-        min={new Date().toISOString().split("T")[0]}
-      />
-    </div>
+        <input
+          type="date"
+          value={checkInDate}
+          onChange={(e) => setCheckInDate(e.target.value)}
+          className="search-date-input"
+          min={new Date().toISOString().split("T")[0]}
+        />
+      </div>
 
-    <div className="search-item search-date">
-      <input
-        type="date"
-        value={checkOutDate}
-        onChange={(e) => setCheckOutDate(e.target.value)}
-        className="search-date-input"
-        min={checkInDate || new Date().toISOString().split("T")[0]}
-      />
-    </div>
-
+      <div className="search-item search-date">
+        <input
+          type="date"
+          value={checkOutDate}
+          onChange={(e) => setCheckOutDate(e.target.value)}
+          className="search-date-input"
+          min={checkInDate || new Date().toISOString().split("T")[0]}
+        />
+      </div>
 
       <div className="search-item">
         <FaBed className="search-icon" />

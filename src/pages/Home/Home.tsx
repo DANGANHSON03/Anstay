@@ -1,15 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import {
-  DatePicker,
-  Button,
-  Space,
-  List,
-} from "antd";
-import {
-  UserOutlined,
-  PlusOutlined,
-  MinusOutlined,
-} from "@ant-design/icons";
+import { DatePicker, Button, Space, List } from "antd";
+import { UserOutlined, PlusOutlined, MinusOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 

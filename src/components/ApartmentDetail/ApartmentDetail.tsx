@@ -84,7 +84,7 @@ const ApartmentDetail = () => {
       try {
         console.log("Fetching apartment with name:", apartmentName);
         const response = await fetch(
-          `http://localhost:8085/api/apartments/search?name=${encodeURIComponent(
+          `https://anstay.com.vn/api/apartments/search?name=${encodeURIComponent(
             apartmentName
           )}`
         );

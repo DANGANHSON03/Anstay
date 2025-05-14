@@ -23,6 +23,34 @@ function Hiden() {
     };
     return videos[sectionId] || "";
   };
+
+  const getDoorCode = (apartment) => {
+    if (!apartment) return "không có mã";
+    const normalizedApartment = apartment.toUpperCase();
+    const doorCodes = {
+      B516: "737373#",
+      B712: "919191#",
+      B802: "828282#",
+      B901: "919191#",
+      B1006: "828282#",
+      B1114: "919191#",
+      A1509: "Thẻ",
+      B1904: "737373#",
+      B2006: "828282#",
+      B2112: "828282#",
+      B2105: "919191#",
+      B2106: "393939#",
+      B2205: "828282#",
+      B2806: "828282#",
+      B2811: "828282#",
+      B2907: "919191#",
+      B3406: "53397647#",
+      B3409: "81384700#",
+      B3509: "61956091#",
+    };
+    return doorCodes[normalizedApartment] || "8668";
+  };
+
   const languagesTab = {
     vi: {
       label: "Tiếng Việt",
@@ -112,6 +140,30 @@ function Hiden() {
   return (
     <div className="guide-container-Hiden">
       <h2 className="guide-title-Hiden">Hướng Dẫn Du Lịch</h2>
+      <div
+        className="door-password-section"
+        style={{
+          marginBottom: "20px",
+          padding: "15px",
+          backgroundColor: "#f5f5f5",
+          borderRadius: "8px",
+          border: "1px solid #ddd",
+        }}
+      >
+        <h2
+          style={{
+            marginBottom: "10px",
+            color: "#333",
+            fontSize: "35px",
+            textTransform: "uppercase",
+          }}
+        >
+          Mật khẩu cửa phòng {apartment} : {getDoorCode(apartment)}
+        </h2>
+        <p style={{ color: "#666", fontStyle: "italic" }}>
+          Vui lòng không chia sẻ mật khẩu với người khác !!!
+        </p>
+      </div>
 
       <div className="accordion-Hiden">
         <div className="accordion-item-Hiden">
@@ -165,12 +217,6 @@ function Hiden() {
                       <p>- Công tắc điện chính nằm bên cạnh cửa ra vào</p>
                       <p>- Bật cầu dao tổng (nếu cần)</p>
                       <p>- Kiểm tra các thiết bị điện hoạt động</p>
-                      {/* <button
-                          onClick={() => setShowPopup("2-1")}
-                          className="guide-button-Hiden"
-                        >
-                          Xem hướng dẫn chi tiết
-                        </button> */}
                     </div>
                   )}
                 </div>
@@ -227,6 +273,31 @@ function Hiden() {
                       </button>
                     </div>
                   )}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="accordion-item-Hiden">
+          <button
+            onClick={() => toggleTab(7)}
+            className="accordion-header-Hiden"
+            aria-expanded={isTabOpen(7)}
+          >
+            Thông tin Wi-Fi
+          </button>
+          {isTabOpen(7) && (
+            <div className="accordion-content-Hiden">
+              <div className="wifi-info-Hiden">
+                <div className="wifi-credential-Hiden">
+                  <p className="wifi-label-Hiden">Tên Wi-Fi:</p>
+                  <p className="wifi-value-Hiden">
+                    Welcome to Anstay - {apartment?.toUpperCase()}
+                  </p>
+                </div>
+                <div className="wifi-credential-Hiden">
+                  <p className="wifi-label-Hiden">Mật khẩu:</p>
+                  <p className="wifi-value-Hiden">Anstaycamon</p>
                 </div>
               </div>
             </div>
@@ -1573,32 +1644,6 @@ function Hiden() {
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div className="accordion-item-Hiden">
-          <button
-            onClick={() => toggleTab(7)}
-            className="accordion-header-Hiden"
-            aria-expanded={isTabOpen(7)}
-          >
-            Thông tin Wi-Fi
-          </button>
-          {isTabOpen(7) && (
-            <div className="accordion-content-Hiden">
-              <div className="wifi-info-Hiden">
-                <div className="wifi-credential-Hiden">
-                  <p className="wifi-label-Hiden">Tên Wi-Fi:</p>
-                  <p className="wifi-value-Hiden">
-                    Welcome to Anstay - {apartment}
-                  </p>
-                </div>
-                <div className="wifi-credential-Hiden">
-                  <p className="wifi-label-Hiden">Mật khẩu:</p>
-                  <p className="wifi-value-Hiden">Anstaycamon</p>
                 </div>
               </div>
             </div>
