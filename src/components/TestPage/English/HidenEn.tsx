@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../Vietnam/Hiden.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 function HidenEn() {
   const [openTabs, setOpenTabs] = useState([]);
@@ -11,7 +11,7 @@ function HidenEn() {
   const [language, setLanguage] = useState<"vi" | "en">("vi");
   const [showVideo, setShowVideo] = useState(false);
   const location = useLocation();
-  const apartment = location.state?.apartment;
+  const apartment = location.pathname.split("/").pop(); // Get apartment code from URL path
 
   const getVideoUrl = (sectionId) => {
     const videos = {
@@ -29,7 +29,7 @@ function HidenEn() {
     setShowAllEvents(!showAllEvents);
   };
   const getDoorCode = (apartment) => {
-    if (!apartment) return "không có mã";
+    if (!apartment) return "No door code";
     const normalizedApartment = apartment.toUpperCase();
     const doorCodes = {
       B516: "737373#",
@@ -177,7 +177,7 @@ function HidenEn() {
             className="accordion-header-Hiden"
             aria-expanded={isTabOpen(2)}
           >
-            Instructions for Electricity-Stove-Washing Machine
+            Instructions for Electricity-Stove-Washing Machine-Water Heater
           </button>
           {isTabOpen(2) && (
             <div className="accordion-content-Hiden">
@@ -260,11 +260,80 @@ function HidenEn() {
                     </div>
                   )}
                 </div>
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("2-4");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("2-4")}
+                  >
+                    User manual – water heater
+                  </button>
+                  {isTabOpen("2-4") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <p>- Turn it on and wait for 30 minutes </p>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           )}
         </div>
+        <div className="accordion-item-Hiden">
+          <button
+            onClick={() => toggleTab(8)}
+            className="accordion-header-Hiden"
+            aria-expanded={isTabOpen(8)}
+          >
+            Electrical Device User Guide
+          </button>
+          {isTabOpen(8) && (
+            <div className="accordion-content-Hiden">
+              <div className="sub-accordion-Hiden">
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("8-1");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("8")}
+                  >
+                    User manual for the bathtub and electric curtains.
+                  </button>
+                  {isTabOpen("8-1") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <button
+                        // onClick={() => setShowPopup("")}
+                        className="guide-button-Hiden"
+                      >
+                        View usage instructions
+                      </button>
+                    </div>
+                  )}
+                </div>
 
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("8-2");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("8-2")}
+                  >
+                    TV Troubleshooting Guide
+                  </button>
+                  {isTabOpen("8-2") && (
+                    <div className="sub-accordion-content-Hiden"></div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
         <div className="accordion-item-Hiden">
           <button
             onClick={() => toggleTab(7)}
@@ -303,7 +372,6 @@ function HidenEn() {
           {isTabOpen(3) && (
             <div className="accordion-content-Hiden">
               <p>- Swipe your key card before selecting the floor</p>
-              <p>- Accessible floors: 1-20</p>
               <p>- Red emergency button for assistance if needed</p>
               <button
                 onClick={() => setShowPopup("3")}
@@ -314,7 +382,32 @@ function HidenEn() {
             </div>
           )}
         </div>
-
+        <div className="accordion-item-Hiden">
+          <button
+            className="accordion-header-Hiden"
+            onClick={() => toggleTab(9)}
+            aria-expanded={isTabOpen(9)}
+          >
+            Emergency Ladder User Guide
+          </button>
+          {isTabOpen(9) && (
+            <div className="accordion-content-Hiden">
+              <div className="sub-accordion-Hiden">
+                <div className="sub-accordion-item-Hiden">
+                  <p>Locate the ladder near the window or balcony.</p>
+                  <p>Secure the hooks firmly to the window ledge or railing.</p>
+                  <p>Carefully lower the ladder down the building wall.</p>
+                  <button
+                    onClick={() => setShowPopup("3")}
+                    className="guide-button-Hiden"
+                  >
+                    View usage instructions
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
         <div className="accordion-item-Hiden">
           <button
             onClick={() => toggleTab(4)}
@@ -331,7 +424,12 @@ function HidenEn() {
               <p>- Check-in time: 15:00, check-out time: 12:00</p>
               <p>- No smoking in the apartment</p>
               <p>- No noise after 22:00</p>
-              <p>- No parties allowed</p>
+              <p>
+                - Do not cook seafood or use strong-smelling items such as
+                shrimp paste or durian in the room.
+              </p>
+              <p>- Do not stain or damage the sofa.</p>
+              <p>- Strictly no use of illegal drugs or substances.</p>
               <p>
                 <strong>Safety:</strong>
               </p>

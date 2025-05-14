@@ -6,7 +6,6 @@ import img3 from "../../assets/Images/N009586.jpg";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FaStar } from "react-icons/fa";
 import RoomCard from "../../components/RoomCard/RoomCard";
 
 const SearchResults = () => {
@@ -39,9 +38,7 @@ const SearchResults = () => {
 
       try {
         const response = await fetch(
-          `${
-            import.meta.env.VITE_API_URL
-          }/apartments/search?location=${locationParam}`
+          `https://anstay.com.vn/api/apartments/search?name=${locationParam}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -64,37 +61,46 @@ const SearchResults = () => {
     return diff;
   };
 
-  const propertyData = {
-    name: "SAZIHOME LE THANH TONG HANOI",
-    rating: 4,
-    address:
-      "No.9 Alley 6 Le Thanh Tong street, Hoan Kiem district, Hanoi, Vietnam",
-    images: ["https://i.ibb.co/35J3zmZn/3.jpg", img2, img3],
-  };
+  const propertyData = searchResults[0]
+    ? {
+        name: searchResults[0].name,
+        rating: searchResults[0].description,
+        address: searchResults[0].location,
+        images: searchResults[0].images.map((img) => img.imageUrl) || [],
+      }
+    : {
+        name: "",
+        rating: 0,
+        address: "",
+        images: [],
+      };
 
-  const rooms = [
-    {
-      id: 1,
-      name: "CĂN BỒN TẮM GỖ",
-      image: img2,
-      imageCount: "1/17",
-      guests: 2,
-      beds: 1,
-      children: 0,
-      size: "25 m²",
+  const rooms = searchResults.map((result) => {
+    console.log("Description data:", result.description);
+    return {
+      id: result.id,
+      name: result.name,
+      description: result.description,
+      image: result.images[0]?.imageUrl || img2,
+      imageCount: `1/${result.images.length}`,
+      guests: result.maxAdults || 2,
+      beds: result.max_bed || 1,
+      children: result.maxChildren || 0,
+      size: result.acreage ? `${result.acreage} m²` : "chưa rõ",
       bedType: "Queen-size",
-      price: "3,674,430",
-      priceOriginal: "3,951,000",
-      nights: 7,
-      roomsLeft: 2,
-      promotions: ["SALE OFF", "1WEEKOFF"],
-      discountText: "1WEEKOFF (-₫276,570)",
+      price: result.pricePerDay?.toLocaleString() || "",
+      priceOriginal: result.pricePerMonth?.toLocaleString() || "",
+      nights: getNights(),
+      roomsLeft: Number(result.numRooms) || 1,
+      promotions: result.discountPercent > 0 ? ["SALE OFF"] : [],
+      discountText:
+        result.discountPercent > 0 ? `Discount ${result.discountPercent}%` : "",
       policy: [
         "Full payment is required on the day of booking.",
         "Free cancellation if you cancel 5 days before check-in. After that, 50% fee.",
       ],
-    },
-  ];
+    };
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -204,48 +210,15 @@ const SearchResults = () => {
         {/* PHẦN THÔNG TIN BÊN DƯỚI */}
         <div className="carousel-info">
           <h3 className="carousel-title">{searchParams.get("location")}</h3>
-          <div className="carousel-stars">
-            {" "}
-            {[...Array(5)].map((_, i) => (
-              <FaStar
-                key={i}
-                className={`star ${i < propertyData.rating ? "filled" : ""}`}
-              />
-            ))}
-          </div>
+
           <div className="carousel-address">🗺️ {propertyData.address}</div>
+          <div className="carousel-address">💬 {propertyData.rating}</div>
         </div>
       </div>
       <div>
         {rooms.map((room) => (
           <RoomCard key={room.id} data={room} />
         ))}
-      </div>
-      <div className="recommendation-section">
-        {searchResults.length === 0 ? (
-          <div className="no-results">
-            <h3>Không tìm thấy kết quả phù hợp</h3>
-            <p>Vui lòng thử lại với điều kiện tìm kiếm khác</p>
-          </div>
-        ) : (
-          <div className="recommendation-carousel">
-            <Slider {...settings}>
-              {searchResults.map((apartment) => (
-                <div key={apartment.id}>
-                  <RoomCard
-                    imageUrl={apartment.images[0]?.imageUrl || ""}
-                    title={apartment.name}
-                    rating={4.5}
-                    description={apartment.description}
-                    price={apartment.pricePerDay}
-                    location={apartment.location}
-                    maxGuests={apartment.maxAdults + apartment.maxChildren}
-                  />
-                </div>
-              ))}
-            </Slider>
-          </div>
-        )}
       </div>
     </div>
   );

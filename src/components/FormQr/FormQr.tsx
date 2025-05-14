@@ -61,7 +61,7 @@ const FormQr = () => {
     };
 
     try {
-      navigate("/hiden-page", { state: { apartment: formData.apartment } });
+      navigate(`/hiden-page/${formData.apartment}`);
 
       // Send data after navigation starts
       fetch(SHEET_API_URL.trim(), {

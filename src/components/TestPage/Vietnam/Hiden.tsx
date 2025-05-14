@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./Hiden.css";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
 function Hiden() {
+  const { apartment } = useParams();
   const [openTabs, setOpenTabs] = useState([]);
   const [events, setEvents] = useState([]);
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
@@ -9,8 +11,6 @@ function Hiden() {
   const [showPopup, setShowPopup] = useState<string | null>(null);
   const [language, setLanguage] = useState<"vi" | "en">("vi");
   const [showVideo, setShowVideo] = useState(false);
-  const location = useLocation();
-  const apartment = location.state?.apartment;
 
   const getVideoUrl = (sectionId) => {
     const videos = {
@@ -143,7 +143,7 @@ function Hiden() {
       <div
         className="door-password-section"
         style={{
-          marginBottom: "20px",
+          margin: "20px",
           padding: "15px",
           backgroundColor: "#f5f5f5",
           borderRadius: "8px",
@@ -196,7 +196,7 @@ function Hiden() {
             className="accordion-header-Hiden"
             aria-expanded={isTabOpen(2)}
           >
-            Hướng dẫn Bật Điện-Bếp-Máy Giặt
+            Hướng dẫn Bật Điện-Bếp-Máy Giặt- Bình Nóng Lạnh
           </button>
           {isTabOpen(2) && (
             <div className="accordion-content-Hiden">
@@ -274,6 +274,77 @@ function Hiden() {
                     </div>
                   )}
                 </div>
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("2-4");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("2-4")}
+                  >
+                    Hướng dẫn sử dụng bình nước nóng
+                  </button>
+                  {isTabOpen("2-4") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <p>- Bật lên và chờ 30 phút </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="accordion-item-Hiden">
+          <button
+            onClick={() => toggleTab(8)}
+            className="accordion-header-Hiden"
+            aria-expanded={isTabOpen(8)}
+          >
+            Hướng dẫn sử dụng thiết bị điện
+          </button>
+          {isTabOpen(8) && (
+            <div className="accordion-content-Hiden">
+              <div className="sub-accordion-Hiden">
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("8-1");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("8")}
+                  >
+                    Hướng dẫn sử dụng bồn tắm, rèm điện
+                  </button>
+                  {isTabOpen("8-1") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <button
+                        // onClick={() => setShowPopup("")}
+                        className="guide-button-Hiden"
+                      >
+                        Xem hướng dẫn chi tiết
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("8-2");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("8-2")}
+                  >
+                    Hướng dẫn sửa lỗi TV
+                  </button>
+                  {isTabOpen("8-2") && (
+                    <div className="sub-accordion-content-Hiden"></div>
+                  )}
+                </div>
               </div>
             </div>
           )}
@@ -315,8 +386,26 @@ function Hiden() {
           {isTabOpen(3) && (
             <div className="accordion-content-Hiden">
               <p>- Quẹt thẻ từ trước khi chọn tầng</p>
-              <p>- Các tầng có thể truy cập: 1-20</p>
               <p>- Nút khẩn cấp màu đỏ trong trường hợp cần hỗ trợ</p>
+              <button
+                onClick={() => setShowPopup("3")}
+                className="guide-button-Hiden"
+              >
+                Xem hướng dẫn sử dụng
+              </button>
+            </div>
+          )}
+        </div>
+        <div className="accordion-item-Hiden">
+          <button
+            className="accordion-header-Hiden"
+            onClick={() => toggleTab(9)}
+            aria-expanded={isTabOpen(9)}
+          >
+            Hướng dẫn sử dụng thang thoát hiểm
+          </button>
+          {isTabOpen(9) && (
+            <div className="accordion-content-Hiden">
               <button
                 onClick={() => setShowPopup("3")}
                 className="guide-button-Hiden"
@@ -343,7 +432,9 @@ function Hiden() {
               <p>- Giờ nhận phòng: 15:00, trả phòng: 12:00</p>
               <p>- Không hút thuốc trong căn hộ</p>
               <p>- Không gây ồn sau 22:00</p>
-              <p>- Không tổ chức tiệc tùng</p>
+              <p>- Ko nấu đồ hải sản, k sd mắm tôm sầu riêng trong phòng</p>
+              <p>- Không làm bẩn sofa</p>
+              <p>- Nghiêm cấm sử dụng chất trái phép ma túy</p>
               <p>
                 <strong>An toàn:</strong>
               </p>

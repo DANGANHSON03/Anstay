@@ -30,7 +30,7 @@ function App() {
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
-          <Route path="/hiden-page" element={<HidenPage />} />
+          <Route path="/hiden-page/:apartment" element={<HidenPage />} />
           <Route path="/form-qr" element={<FormQr />} />
           <Route
             path="/"
