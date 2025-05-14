@@ -186,7 +186,7 @@ label {
 
 .image-wrapper {
   height: 100%;
- 
+
   overflow: hidden;
   position: relative;
 }
@@ -203,7 +203,7 @@ label {
 /* Tuỳ chỉnh nút mũi tên giống ảnh bạn gửi */
 .slick-prev,
 .slick-next {
- z-index: 10;
+  z-index: 10;
   width: 44px !important;
   height: 44px !important;
   background: rgba(60, 60, 60, 0.8) !important;
@@ -215,7 +215,6 @@ label {
   transform: translateY(-50%) !important;
   border: none !important;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
-  
 }
 
 /* Icon mũi tên trắng */
@@ -231,12 +230,12 @@ label {
 .star {
   font-size: 40px;
   margin-right: 8px;
-  color: #ccc;          /* màu sao chưa chọn */
-  stroke: white;        /* viền trắng */
+  color: #ccc; /* màu sao chưa chọn */
+  stroke: white; /* viền trắng */
   stroke-width: 1.5px;
 }
 .star.filled {
-  color: gold;          /* màu sao được chọn */
+  color: gold; /* màu sao được chọn */
 }
 
 .slick-next:before {
@@ -257,7 +256,7 @@ label {
   background-color: #fff;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  align-items:flex-start;
+  align-items: flex-start;
   flex-direction: column;
   display: flex;
 }
@@ -278,5 +277,12 @@ label {
 .carousel-address {
   color: #666;
   font-size: 18px;
-  font-weight:700 ;
+  font-weight: 700;
+}
+
+.description {
+  color: #333;
+  font-size: 20px;
+  margin: 8px 0;
+  font-weight: 400;
 }
