@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { CircleHelp, Earth, BriefcaseBusiness, UserRound } from "lucide-react";
 import { DownOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
+import { useLocation } from "react-router-dom";
 import { Dropdown, Space } from "antd";
 import { HelpCircle } from "lucide-react";
 import LoginPopup from "../Login/LoginPopup";
@@ -72,6 +73,7 @@ const Header: React.FC = () => {
   const userMenuRef = useRef<HTMLDivElement>(null); // Ref for user-menu dropdown
   const [userName, setUserName] = useState<string>("");
   const [loggedInUser, setLoggedInUser] = useState<any>(null);
+  const location = useLocation();
 
   if (!auth) return null;
 
@@ -229,7 +231,6 @@ const Header: React.FC = () => {
                         </button>
                       </Link>
                       <Link to="#">
-                        {" "}
                         <button
                           onClick={handleLogout}
                           className="btn-login logout-btn"
@@ -313,16 +314,36 @@ const Header: React.FC = () => {
                 </Dropdown>
               )}
             </div>
-            <Link to="/coperate" onClick={() => setNavActive(false)}>
+
+            {/* Links có hiệu ứng active */}
+            <Link
+              to="/coperate"
+              onClick={() => setNavActive(false)}
+              className={location.pathname === "/coperate" ? "active" : ""}
+            >
               Hợp tác
             </Link>
-            <Link to="/about-us" onClick={() => setNavActive(false)}>
+            <Link
+              to="/about-us"
+              onClick={() => setNavActive(false)}
+              className={location.pathname === "/about-us" ? "active" : ""}
+            >
               Thông tin về chúng tôi
             </Link>
-            <Link to="/blog" onClick={() => setNavActive(false)}>
+            <Link
+              to="/blog"
+              onClick={() => setNavActive(false)}
+              className={location.pathname === "/blog" ? "active" : ""}
+            >
               Blog
             </Link>
-            <Link to="/explore&experience" onClick={() => setNavActive(false)}>
+            <Link
+              to="/explore&experience"
+              onClick={() => setNavActive(false)}
+              className={
+                location.pathname === "/explore&experience" ? "active" : ""
+              }
+            >
               Khám phá & Trải nghiệm
             </Link>
           </div>
