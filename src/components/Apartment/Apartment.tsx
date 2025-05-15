@@ -63,7 +63,7 @@ const Apartment = () => {
       case "HO_CHI_MINH":
         return "HỒ CHÍ MINH";
       case "PHU_QUOC":
-        return "PHÚ QUỐC";
+        return "PHÚ QUỐCx";
       default:
         return areaCode;
     }
