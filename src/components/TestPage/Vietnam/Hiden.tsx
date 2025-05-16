@@ -18,8 +18,14 @@ function Hiden() {
       "2-1": "/videos/huong-dan-bat-dien.mp4",
       "2-2": "/videos/huong-dan-bep.mp4",
       "2-3": "/videos/may-giat.mp4",
+      "2-4": "", //video bình nước lóng
       "3": "/videos/huong-dan-thang-may.mp4",
       "4": "/videos/nv16.mp4",
+      "8-1": "", // video bồn tắm
+      "8-2": "", // video rèm điện
+      "8-3": "", //video hướng dẫn sửa tv
+      "9": "", //video thang thoát hiểm
+      "11": "", //video phòng đổ rác
     };
     return videos[sectionId] || "";
   };
@@ -288,6 +294,16 @@ function Hiden() {
                   {isTabOpen("2-4") && (
                     <div className="sub-accordion-content-Hiden">
                       <p>- Bật lên và chờ 30 phút </p>
+                      {isTabOpen("2-4") && (
+                        <div className="sub-accordion-content-Hiden">
+                          <button
+                            onClick={() => setShowPopup("2-4")}
+                            className="guide-button-Hiden"
+                          >
+                            Xem hướng dẫn chi tiết
+                          </button>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
@@ -316,12 +332,34 @@ function Hiden() {
                     className="sub-accordion-header-Hiden"
                     aria-expanded={isTabOpen("8")}
                   >
-                    Hướng dẫn sử dụng bồn tắm, rèm điện
+                    Hướng dẫn sử dụng bồn tắm
                   </button>
                   {isTabOpen("8-1") && (
                     <div className="sub-accordion-content-Hiden">
                       <button
-                        // onClick={() => setShowPopup("")}
+                        onClick={() => setShowPopup("8-1")}
+                        className="guide-button-Hiden"
+                      >
+                        Xem hướng dẫn chi tiết
+                      </button>
+                    </div>
+                  )}
+                </div>
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("8-2");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("8")}
+                  >
+                    Hướng dẫn sử dụng rèm điện <span>(Chỉ có bên tòa A)</span>
+                  </button>
+                  {isTabOpen("8-2") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <button
+                        onClick={() => setShowPopup("8-2")}
                         className="guide-button-Hiden"
                       >
                         Xem hướng dẫn chi tiết
@@ -334,15 +372,22 @@ function Hiden() {
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      toggleTab("8-2");
+                      toggleTab("8-3");
                     }}
                     className="sub-accordion-header-Hiden"
-                    aria-expanded={isTabOpen("8-2")}
+                    aria-expanded={isTabOpen("8")}
                   >
                     Hướng dẫn sửa lỗi TV
                   </button>
-                  {isTabOpen("8-2") && (
-                    <div className="sub-accordion-content-Hiden"></div>
+                  {isTabOpen("8-3") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <button
+                        onClick={() => setShowPopup("8-3")}
+                        className="guide-button-Hiden"
+                      >
+                        Xem hướng dẫn chi tiết
+                      </button>
+                    </div>
                   )}
                 </div>
               </div>
@@ -406,8 +451,29 @@ function Hiden() {
           </button>
           {isTabOpen(9) && (
             <div className="accordion-content-Hiden">
+              <p>- Không cần thẻ để sử dụng</p>
               <button
-                onClick={() => setShowPopup("3")}
+                onClick={() => setShowPopup("9")}
+                className="guide-button-Hiden"
+              >
+                Xem hướng dẫn sử dụng
+              </button>
+            </div>
+          )}
+        </div>
+        <div className="accordion-item-Hiden">
+          <button
+            className="accordion-header-Hiden"
+            onClick={() => toggleTab(11)}
+            aria-expanded={isTabOpen(11)}
+          >
+            Hướng dẫn tìm phòng đổ rác
+          </button>
+          {isTabOpen(11) && (
+            <div className="accordion-content-Hiden">
+              <p>- Không cần thẻ để sử dụng</p>
+              <button
+                onClick={() => setShowPopup("11")}
                 className="guide-button-Hiden"
               >
                 Xem hướng dẫn sử dụng
@@ -432,16 +498,37 @@ function Hiden() {
               <p>- Giờ nhận phòng: 15:00, trả phòng: 12:00</p>
               <p>- Không hút thuốc trong căn hộ</p>
               <p>- Không gây ồn sau 22:00</p>
-              <p>- Ko nấu đồ hải sản, k sd mắm tôm sầu riêng trong phòng</p>
+              <p>
+                - Không nấu đồ hải sản, không sử dụng mắm tôm sầu riêng trong
+                phòng
+              </p>
               <p>- Không làm bẩn sofa</p>
               <p>- Nghiêm cấm sử dụng chất trái phép ma túy</p>
+              <p>- Không xả rác xuống cống, bồn cầu, bồn rửa bát</p>
               <p>
+                <p>
+                  <span>VI PHẠM PHẠT 500.000đ</span>
+                </p>
+                <p>
+                  - Trong thời gian lưu trú thêm khăn tắm, túi rác vui lòng liên
+                  hệ với lễ tân để được hỗ trợ
+                </p>
                 <strong>An toàn:</strong>
               </p>
               <p>- Kiểm tra đã khóa cửa khi ra ngoài</p>
               <p>- Tắt các thiết bị điện khi không sử dụng</p>
-              <strong>Liên hệ :</strong> +84 84 227 2772 ( lễ tân ) +84 38 494
-              5614 ( cskh )
+              <strong>Liên hệ :</strong>
+              <p>
+                +84 84 227 2772 ( lễ tân ) <br />
+                <span>Hỗ trợ giải đáp thắc mắc trong thời gian lưu trú</span>
+              </p>
+              <p>
+                +84 38 494 5614 (CSKH) <br />
+                <span>
+                  Tiếp nhận/phản ánh khiếu nại từ khách hàng trong thời gian lưu
+                  trú
+                </span>
+              </p>
             </div>
           )}
         </div>
@@ -1645,6 +1732,16 @@ function Hiden() {
               <div className="hotel-map-Hiden">
                 <div className="floor-plan-Hiden">
                   <div className="floor-level-Hiden">
+                    <h3>Ảnh sơ đồ khách sạn</h3>
+                    <div className="floor-areas-Hiden">
+                      <img
+                        style={{ width: "70vw" }}
+                        src="https://i.ibb.co/HfPXRbX9/image-1.png"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                  <div className="floor-level-Hiden">
                     <h3>Tầng hầm (B1–B2)</h3>
                     <div className="floor-areas-Hiden">
                       <div className="area-Hiden">
@@ -1685,41 +1782,16 @@ function Hiden() {
                         Phòng gym: Khu vực tập luyện thể dục thể thao
                       </div>
                       <div className="area-Hiden">
+                        <span> Tầng 3: khu vui chơi trẻ em (Free)</span>
+                      </div>
+                      <div className="area-Hiden">
                         Khu vực sinh hoạt chung: Không gian thư giãn và giao lưu
                       </div>
                     </div>
                   </div>
 
                   <div className="floor-level-Hiden">
-                    <h3>Tầng 6–10</h3>
-                    <div className="floor-areas-Hiden">
-                      <div className="area-Hiden">
-                        Phòng nghỉ Deluxe: Diện tích khoảng 40–56 m², có ban
-                        công, tầm nhìn ra thành phố hoặc biển
-                      </div>
-                      <div className="area-Hiden">
-                        Khu vực BBQ: Nơi tổ chức tiệc nướng ngoài trời
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="floor-level-Hiden">
-                    <h3>Tầng 11–40</h3>
-                    <div className="floor-areas-Hiden">
-                      <div className="area-Hiden">
-                        Căn hộ khách sạn: Gồm các loại phòng từ 1 đến 2 phòng
-                        ngủ, diện tích từ 44–83 m², đầy đủ tiện nghi như bếp
-                        nhỏ, máy giặt, và ban công
-                      </div>
-                      <div className="area-Hiden">
-                        Phòng Executive Suite: Diện tích lớn hơn, tầm nhìn toàn
-                        cảnh Vịnh Hạ Long
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="floor-level-Hiden">
-                    <h3>Tầng 41 (Tầng mái)</h3>
+                    <h3>Tầng 40 (Tầng mái)</h3>
                     <div className="floor-areas-Hiden">
                       <div className="area-Hiden">
                         Hồ bơi vô cực: Nằm trên tầng cao nhất với tầm nhìn bao
@@ -1735,6 +1807,52 @@ function Hiden() {
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="accordion-item-Hiden">
+          <button
+            onClick={() => toggleTab(10)}
+            className="accordion-header-Hiden"
+            aria-expanded={isTabOpen(10)}
+          >
+            Nhóm hỗ trợ thuê xe máy, ăn uống ship 24/24
+          </button>
+          {isTabOpen(10) && (
+            <div className="accordion-content-Hiden">
+              <div className="sub-accordion-Hiden">
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("10-1");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("10-1")}
+                  >
+                    Bạn cần xe để di chuyển ?
+                  </button>
+                  {isTabOpen("10-1") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <img
+                        style={{ width: "74vw" }}
+                        src="https://i.ibb.co/chPHm58X/image-2.png"
+                        alt=""
+                      />
+                    </div>
+                  )}
+                </div>
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    className="sub-accordion-header-Hiden"
+                    onClick={() =>
+                      window.open("https://zalo.me/g/xxtjfp354", "_blank")
+                    }
+                  >
+                    Zalo đặt đồ ăn ship tận phòng 24/24
+                  </button>
                 </div>
               </div>
             </div>

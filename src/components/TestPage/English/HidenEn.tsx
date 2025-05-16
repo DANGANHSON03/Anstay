@@ -8,7 +8,7 @@ function HidenEn() {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [showAllEvents, setShowAllEvents] = useState(false);
   const [showPopup, setShowPopup] = useState<string | null>(null);
-  const [language, setLanguage] = useState<"vi" | "en">("vi");
+
   const [showVideo, setShowVideo] = useState(false);
   const location = useLocation();
   const apartment = location.pathname.split("/").pop(); // Get apartment code from URL path
@@ -124,7 +124,7 @@ function HidenEn() {
       <div
         className="door-password-section"
         style={{
-          marginBottom: "20px",
+          margin: "20px",
           padding: "15px",
           backgroundColor: "#f5f5f5",
           borderRadius: "8px",
@@ -269,11 +269,21 @@ function HidenEn() {
                     className="sub-accordion-header-Hiden"
                     aria-expanded={isTabOpen("2-4")}
                   >
-                    User manual – water heater
+                    Water Heater Usage Instructions
                   </button>
                   {isTabOpen("2-4") && (
                     <div className="sub-accordion-content-Hiden">
-                      <p>- Turn it on and wait for 30 minutes </p>
+                      <p>- Turn it on and wait 30 minutes</p>
+                      {isTabOpen("2-4") && (
+                        <div className="sub-accordion-content-Hiden">
+                          <button
+                            onClick={() => setShowPopup("2-4")}
+                            className="guide-button-Hiden"
+                          >
+                            View detailed instructions
+                          </button>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
@@ -301,15 +311,38 @@ function HidenEn() {
                     className="sub-accordion-header-Hiden"
                     aria-expanded={isTabOpen("8")}
                   >
-                    User manual for the bathtub and electric curtains.
+                    Bathtub Usage Instructions
                   </button>
                   {isTabOpen("8-1") && (
                     <div className="sub-accordion-content-Hiden">
                       <button
-                        // onClick={() => setShowPopup("")}
+                        onClick={() => setShowPopup("8-1")}
                         className="guide-button-Hiden"
                       >
-                        View usage instructions
+                        View detailed instructions
+                      </button>
+                    </div>
+                  )}
+                </div>
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("8-2");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("8")}
+                  >
+                    Electric Curtain Usage Instructions{" "}
+                    <span>(Only in Tower A)</span>
+                  </button>
+                  {isTabOpen("8-2") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <button
+                        onClick={() => setShowPopup("8-2")}
+                        className="guide-button-Hiden"
+                      >
+                        View detailed instructions
                       </button>
                     </div>
                   )}
@@ -319,15 +352,22 @@ function HidenEn() {
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      toggleTab("8-2");
+                      toggleTab("8-3");
                     }}
                     className="sub-accordion-header-Hiden"
-                    aria-expanded={isTabOpen("8-2")}
+                    aria-expanded={isTabOpen("8")}
                   >
-                    TV Troubleshooting Guide
+                    TV Troubleshooting Instructions
                   </button>
-                  {isTabOpen("8-2") && (
-                    <div className="sub-accordion-content-Hiden"></div>
+                  {isTabOpen("8-3") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <button
+                        onClick={() => setShowPopup("8-3")}
+                        className="guide-button-Hiden"
+                      >
+                        View detailed instructions
+                      </button>
+                    </div>
                   )}
                 </div>
               </div>
@@ -392,22 +432,37 @@ function HidenEn() {
           </button>
           {isTabOpen(9) && (
             <div className="accordion-content-Hiden">
-              <div className="sub-accordion-Hiden">
-                <div className="sub-accordion-item-Hiden">
-                  <p>Locate the ladder near the window or balcony.</p>
-                  <p>Secure the hooks firmly to the window ledge or railing.</p>
-                  <p>Carefully lower the ladder down the building wall.</p>
-                  <button
-                    onClick={() => setShowPopup("3")}
-                    className="guide-button-Hiden"
-                  >
-                    View usage instructions
-                  </button>
-                </div>
-              </div>
+              <p>- No card required for use</p>
+              <button
+                onClick={() => setShowPopup("9")}
+                className="guide-button-Hiden"
+              >
+                View usage instructions
+              </button>
             </div>
           )}
         </div>
+        <div className="accordion-item-Hiden">
+          <button
+            className="accordion-header-Hiden"
+            onClick={() => toggleTab(11)}
+            aria-expanded={isTabOpen(11)}
+          >
+            Instructions to Locate the Trash Disposal Room
+          </button>
+          {isTabOpen(11) && (
+            <div className="accordion-content-Hiden">
+              <p>- No card required for use</p>
+              <button
+                onClick={() => setShowPopup("11")}
+                className="guide-button-Hiden"
+              >
+                View usage instructions
+              </button>
+            </div>
+          )}
+        </div>
+
         <div className="accordion-item-Hiden">
           <button
             onClick={() => toggleTab(4)}
@@ -431,12 +486,29 @@ function HidenEn() {
               <p>- Do not stain or damage the sofa.</p>
               <p>- Strictly no use of illegal drugs or substances.</p>
               <p>
+                <span>VIOLATION FINE: 500,000 VND</span>
+              </p>
+              <p>
+                - During your stay, if you need additional towels or trash bags,
+                please contact the reception for assistance.
+              </p>
+
+              <p>
                 <strong>Safety:</strong>
               </p>
               <p>- Ensure doors are locked when leaving</p>
               <p>- Turn off electrical devices when not in use</p>
-              <strong>Contact:</strong>+84 84 227 2772 (Reception) +84 38 494
-              5614 (Customer Service)
+              <strong>Contact:</strong>
+              <p>
+                +84 84 227 2772 (Reception) <br />
+                <span>Support for inquiries during your stay</span>
+              </p>
+              <p>
+                +84 38 494 5614 (Customer Service) <br />
+                <span>
+                  Receiving and handling customer complaints during the stay
+                </span>
+              </p>
             </div>
           )}
         </div>
@@ -1640,6 +1712,17 @@ function HidenEn() {
               <div className="hotel-map-Hiden">
                 <div className="floor-plan-Hiden">
                   <div className="floor-level-Hiden">
+                    <h3>Hotel Floor Plan Image</h3>
+                    <div className="floor-areas-Hiden">
+                      <img
+                        style={{ width: "70vw" }}
+                        src="https://i.ibb.co/HfPXRbX9/image-1.png"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+
+                  <div className="floor-level-Hiden">
                     <h3>Basement (B1–B2)</h3>
                     <div className="floor-areas-Hiden">
                       <div className="area-Hiden">
@@ -1683,40 +1766,17 @@ function HidenEn() {
                         Gym: Fitness and exercise area
                       </div>
                       <div className="area-Hiden">
+                        <span> Floor 3: Children’s Play Area (Free)</span>
+                      </div>
+
+                      <div className="area-Hiden">
                         Common Area: A relaxing and socializing space
                       </div>
                     </div>
                   </div>
 
                   <div className="floor-level-Hiden">
-                    <h3>Floors 6–10</h3>
-                    <div className="floor-areas-Hiden">
-                      <div className="area-Hiden">
-                        Deluxe Rooms: 40–56 sqm with balconies and views of the
-                        city or sea
-                      </div>
-                      <div className="area-Hiden">
-                        BBQ Area: Outdoor grilling and event hosting space
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="floor-level-Hiden">
-                    <h3>Floors 11–40</h3>
-                    <div className="floor-areas-Hiden">
-                      <div className="area-Hiden">
-                        Hotel Apartments: 1–2 bedroom units, 44–83 sqm, fully
-                        furnished with kitchenette, washing machine, and balcony
-                      </div>
-                      <div className="area-Hiden">
-                        Executive Suites: Larger units with panoramic views of
-                        Ha Long Bay
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="floor-level-Hiden">
-                    <h3>Rooftop (41st Floor)</h3>
+                    <h3>Rooftop (40st Floor)</h3>
                     <div className="floor-areas-Hiden">
                       <div className="area-Hiden">
                         Infinity Pool: Located at the top level with sweeping
@@ -1731,6 +1791,52 @@ function HidenEn() {
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="accordion-item-Hiden">
+          <button
+            onClick={() => toggleTab(10)}
+            className="accordion-header-Hiden"
+            aria-expanded={isTabOpen(10)}
+          >
+            Support Group for Motorbike Rental & 24/7 Food Delivery
+          </button>
+          {isTabOpen(10) && (
+            <div className="accordion-content-Hiden">
+              <div className="sub-accordion-Hiden">
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("10-1");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("10-1")}
+                  >
+                    Need a motorbike to get around?
+                  </button>
+                  {isTabOpen("10-1") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <img
+                        style={{ width: "74vw" }}
+                        src="https://i.ibb.co/chPHm58X/image-2.png"
+                        alt=""
+                      />
+                    </div>
+                  )}
+                </div>
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    className="sub-accordion-header-Hiden"
+                    onClick={() =>
+                      window.open("https://zalo.me/g/xxtjfp354", "_blank")
+                    }
+                  >
+                    Zalo – Order Food Delivered to Your Room 24/7
+                  </button>
                 </div>
               </div>
             </div>
