@@ -7,6 +7,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import RoomCard from "../../components/RoomCard/RoomCard";
+import { useRef } from "react";
 
 const SearchResults = () => {
   const [searchResults, setSearchResults] = useState([]);
@@ -21,6 +22,15 @@ const SearchResults = () => {
   const [room, setRoom] = useState(1);
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
+  const sliderRef = useRef<any>(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (sliderRef.current) {
+        sliderRef.current.slickGoTo(0);
+      }
+    }, 300);
+  }, []);
 
   useEffect(() => {
     const fetchSearchResults = async () => {
@@ -131,16 +141,14 @@ const SearchResults = () => {
 
   const settings = {
     infinite: true,
-    speed: 600,
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
-    centerPadding: "250px",
-    centerMode: true,
-
+    centerMode: false, //Tắt centerMode ở mobile
     responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 2 } },
-      { breakpoint: 600, settings: { slidesToShow: 1 } },
+      { breakpoint: 1024, settings: { slidesToShow: 1 } },
+      { breakpoint: 600, settings: { slidesToShow: 1, centerMode: false } },
     ],
   };
 
@@ -209,7 +217,7 @@ const SearchResults = () => {
       </form>
 
       <div className="carousel-wrapper">
-        <Slider {...settings}>
+        <Slider ref={sliderRef} {...settings}>
           {propertyData.images.map((src, i) => (
             <div key={i} className="carousel-slide">
               <div className="image-wrapper">
