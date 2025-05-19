@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 
 function Hiden() {
   const { apartment } = useParams();
+  const normalizedApartment = apartment?.trim();
+
   const [openTabs, setOpenTabs] = useState([]);
   const [events, setEvents] = useState([]);
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
@@ -18,14 +20,14 @@ function Hiden() {
       "2-1": "/videos/huong-dan-bat-dien.mp4",
       "2-2": "/videos/huong-dan-bep.mp4",
       "2-3": "/videos/may-giat.mp4",
-      "2-4": "", //video bình nước lóng
+      "2-4": "/videos/sudungnuocnong.mp4", //video bình nước nóng chưa co
       "3": "/videos/huong-dan-thang-may.mp4",
       "4": "/videos/nv16.mp4",
-      "8-1": "", // video bồn tắm
-      "8-2": "", // video rèm điện
+      "8-1": "/videos/sudungnuocnong.mp4", // video bồn tắm
+      "8-2": "/videos/keodemcua.mp4", // video rèm điện
       "8-3": "", //video hướng dẫn sửa tv
-      "9": "", //video thang thoát hiểm
-      "11": "", //video phòng đổ rác
+      "9": "/videos/thoathiem.mp4", //video thang thoát hiểm
+      "11": "/videos/dorac.mp4", //video phòng đổ rác
     };
     return videos[sectionId] || "";
   };
@@ -164,7 +166,8 @@ function Hiden() {
             textTransform: "uppercase",
           }}
         >
-          Mật khẩu cửa phòng {apartment} : {getDoorCode(apartment)}
+          Mật khẩu cửa phòng {normalizedApartment} :{" "}
+          {getDoorCode(normalizedApartment)}
         </h2>
         <p style={{ color: "#666", fontStyle: "italic" }}>
           Vui lòng không chia sẻ mật khẩu với người khác !!!

@@ -16,6 +16,8 @@ const FormQr = () => {
   const [errors, setErrors] = useState({
     fullName: "",
     email: "",
+    phoneNumber: "",
+    apartment: "",
   });
 
   const [notification, setNotification] = useState({
@@ -28,13 +30,24 @@ const FormQr = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (name === "apartment") {
+      const firstChar = value.charAt(0);
+      if (value && !/^[A-Za-z]/.test(value)) {
+        setErrors((prev) => ({
+          ...prev,
+          apartment:
+            "Căn hộ phải bắt đầu bằng chữ cái / Apartment must start with a letter",
+        }));
+      } else {
+        setErrors((prev) => ({
+          ...prev,
+          apartment: "",
+        }));
+      }
+    }
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
-      // Reset cleaning time if user selects "No" for cleaning
-      ...(name === "wantsCleaning" && value === "no"
-        ? { cleaningTimeRange: "", cleaningNote: "" }
-        : {}),
     }));
   };
 
@@ -45,13 +58,31 @@ const FormQr = () => {
       fullName: formData.fullName.trim()
         ? ""
         : "Vui lòng nhập họ và tên / Please enter your full name",
-      email: formData.email.trim()
-        ? ""
-        : "Vui lòng nhập email / Please enter your email",
+      email: !formData.email.trim()
+        ? "Vui lòng nhập email / Please enter your email"
+        : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)
+        ? "Email không hợp lệ / Invalid email format"
+        : "",
+      phoneNumber: !formData.phoneNumber.trim()
+        ? "Vui lòng nhập số điện thoại / Please enter your phone number"
+        : "",
+      apartment: !formData.apartment.trim()
+        ? "Vui lòng nhập số căn hộ / Please enter apartment number"
+        : !/^[A-Za-z]/.test(formData.apartment)
+        ? "Căn hộ phải bắt đầu bằng chữ cái / Apartment must start with a letter"
+        : "",
     };
     setErrors(newErrors);
 
-    if (newErrors.fullName || newErrors.email) return;
+    if (Object.values(newErrors).some((error) => error !== "")) {
+      setNotification({
+        show: true,
+        message:
+          "Vui lòng điền đầy đủ thông tin / Please fill in all required information",
+        type: "error",
+      });
+      return;
+    }
 
     const payload = {
       fullName: formData.fullName,
@@ -149,6 +180,7 @@ const FormQr = () => {
           <div className="form-field">
             <label htmlFor="phoneNumber">
               Số điện thoại / Phone Number/We Chat:
+              <span className="required">*</span>
             </label>
             <input
               type="tel"
@@ -156,11 +188,15 @@ const FormQr = () => {
               name="phoneNumber"
               value={formData.phoneNumber}
               onChange={handleChange}
+              required
             />
+            {errors.phoneNumber && (
+              <span className="error-message">{errors.phoneNumber}</span>
+            )}
           </div>
           <div className="form-field">
             <label htmlFor="apartment">
-              Căn hộ đang lưu trú / Apartment currently staying:{" "}
+              Căn hộ đang lưu trú / Apartment currently staying:
               <span className="required">*</span>
             </label>
             <input
@@ -171,6 +207,9 @@ const FormQr = () => {
               onChange={handleChange}
               required
             />
+            {errors.apartment && (
+              <span className="error-message">{errors.apartment}</span>
+            )}
           </div>
 
           <button type="submit" className="submit-button">

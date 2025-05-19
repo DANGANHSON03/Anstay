@@ -5,16 +5,16 @@
   border-radius: 8px;
   max-width: 1200px;
   margin: 16px auto;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   background: #fff;
   overflow: hidden;
   font-family: sans-serif;
 }
-.body-card{
-    display: flex;
-    gap: 8px ;
-    flex-direction: row;
-    justify-content: space-around;
+.body-card {
+  display: flex;
+  gap: 8px;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 /* Info block (ảnh + tiêu đề + icon) */
@@ -23,7 +23,6 @@
   padding: 16px;
   flex-direction: column;
   gap: 16px;
-  
 }
 
 .room-image {
@@ -35,7 +34,6 @@
   width: 250px;
   height: 150px;
   object-fit: cover;
-  
 }
 
 .room-image-count {
@@ -63,10 +61,10 @@
   margin-bottom: 8px;
 }
 .room-icons {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .room-icons span {
@@ -74,9 +72,9 @@
   color: #333;
   font-size: 16px;
 }
-.room-icons h4{
-    margin: 5px 0 ;
-    font-size: 18px;
+.room-icons h4 {
+  margin: 5px 0;
+  font-size: 18px;
 }
 
 .room-size,
@@ -89,7 +87,6 @@
 
 /* Pricing section */
 .room-pricing {
-  
   border-top: 1px solid #eee;
 }
 
@@ -108,11 +105,11 @@
   color: #444;
   margin: 6px 0;
 }
-.room-policy{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+.room-policy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .room-policy ul {
@@ -143,11 +140,11 @@
   margin-right: 6px;
   margin-top: 4px;
 }
-.room-promotions{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+.room-promotions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .room-price {
@@ -256,4 +253,99 @@
   font-weight: bold;
   color: #1a237e;
   background: transparent;
+}
+.date-control {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.date-control label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+}
+.date-picker-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.date-input {
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.night-info {
+  background-color: #f8f8f8;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  border: 1px solid #ddd;
+}
+.night-info {
+  background-color: #f8f8f8;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  border: 1px solid #ddd;
+}
+.night-info {
+  background-color: #f8f8f8;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  border: 1px solid #ddd;
+}
+.night-info {
+  background-color: #fefefe;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  color: #333;
+}
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #444;
+  color: #fff;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  font-size: 16px;
+}
+
+.bottom-bar-info {
+  font-weight: 500;
+}
+
+.bottom-bar-price {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.btn-book-now {
+  background: #1e88e5;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
 }

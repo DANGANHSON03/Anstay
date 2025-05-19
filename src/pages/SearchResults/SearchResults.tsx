@@ -15,6 +15,7 @@ const SearchResults = () => {
 
   const [index, setIndex] = useState(0);
   const navigate = useNavigate();
+  const [id, setId] = useState("");
   const [checkIn, setCheckIn] = useState("2025-05-10");
   const [checkOut, setCheckOut] = useState("2025-05-11");
   const [room, setRoom] = useState(1);
@@ -29,6 +30,16 @@ const SearchResults = () => {
       const roomParam = searchParams.get("room");
       const adultsParam = searchParams.get("adults");
       const childrenParam = searchParams.get("children");
+
+      console.log("Search Parameters:", {
+        location: locationParam,
+        checkIn: checkInParam,
+        checkOut: checkOutParam,
+        room: roomParam,
+        adults: adultsParam,
+        children: childrenParam,
+      });
+
       // Update state with URL parameters
       if (checkInParam) setCheckIn(checkInParam);
       if (checkOutParam) setCheckOut(checkOutParam);
@@ -38,12 +49,13 @@ const SearchResults = () => {
 
       try {
         const response = await fetch(
-          `https://anstay.com.vn/api/apartments/search?name=${locationParam}`
+          `http://localhost:8085/api/apartments/search?name=${locationParam}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
+        console.log("API Response Data:", data);
         setSearchResults(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Error fetching search results:", error);
@@ -99,6 +111,7 @@ const SearchResults = () => {
         "Full payment is required on the day of booking.",
         "Free cancellation if you cancel 5 days before check-in. After that, 50% fee.",
       ],
+      name_room: result.name_apartment,
     };
   });
 
@@ -106,6 +119,7 @@ const SearchResults = () => {
     e.preventDefault();
     navigate("/search-results", {
       state: {
+        id,
         checkIn,
         checkOut,
         room,
@@ -136,9 +150,6 @@ const SearchResults = () => {
 
   return (
     <div>
-      <button className="home-button" onClick={handleHomeClick}>
-        Về trang chủ
-      </button>
       <form className="search-bar" onSubmit={handleSubmit}>
         <div className="section dates">
           <div className="date-header">

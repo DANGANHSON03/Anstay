@@ -23,6 +23,7 @@ import Support from "./components/Support/Support";
 import HidenPage from "./pages/HidenPage/HidenPage";
 import FormQr from "./components/FormQr/FormQr.tsx";
 import SearchResults from "./pages/SearchResults/SearchResults";
+import BookingPage from "./components/BookingPage/BookingPage.tsx";
 
 function App() {
   return (
@@ -207,6 +208,14 @@ function App() {
             element={
               <MainLayout>
                 <SearchResults />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/booking-page"
+            element={
+              <MainLayout>
+                <BookingPage />
               </MainLayout>
             }
           />

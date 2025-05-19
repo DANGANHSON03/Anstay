@@ -11,7 +11,7 @@ function HidenEn() {
 
   const [showVideo, setShowVideo] = useState(false);
   const location = useLocation();
-  const apartment = location.pathname.split("/").pop(); // Get apartment code from URL path
+  const apartment = location.pathname.split("/").pop()?.trim(); // Get apartment code from URL path and trim whitespace
 
   const getVideoUrl = (sectionId) => {
     const videos = {
@@ -19,8 +19,14 @@ function HidenEn() {
       "2-1": "/videos/huong-dan-bat-dien.mp4",
       "2-2": "/videos/huong-dan-bep.mp4",
       "2-3": "/videos/may-giat.mp4",
+      "2-4": "/videos/sudungnuocnong.mp4", //video bình nước nóng chưa co
       "3": "/videos/huong-dan-thang-may.mp4",
       "4": "/videos/nv16.mp4",
+      "8-1": "/videos/sudungnuocnong.mp4", // video bồn tắm
+      "8-2": "/videos/keodemcua.mp4", // //video hướng dẫn sửa t video rèm điện
+      "8-3": "", //bo
+      "9": "/videos/thoathiem.mp4", //video thang thoát hiểm
+      "11": "/videos/dorac.mp4",
     };
     return videos[sectionId] || "";
   };
@@ -30,7 +36,7 @@ function HidenEn() {
   };
   const getDoorCode = (apartment) => {
     if (!apartment) return "No door code";
-    const normalizedApartment = apartment.toUpperCase();
+    const normalizedApartment = apartment.trim().toUpperCase(); // Trim whitespace before normalizing
     const doorCodes = {
       B516: "737373#",
       B712: "919191#",
