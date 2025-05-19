@@ -161,7 +161,7 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.9);
   display: flex;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
   z-index: 1000;
 }
@@ -174,7 +174,6 @@
   background: black;
   width: 90vw;
   max-width: 1200px;
-  
 }
 
 .popup-content iframe {
@@ -533,6 +532,10 @@
 @media screen and (max-width: 1024px) {
   .event-cardSP {
     width: 286px;
-    
+  }
+}
+@media (max-width: 768px) {
+  .guide-container {
+    margin: 100px auto 20px auto;
   }
 }

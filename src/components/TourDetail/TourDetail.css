@@ -1,7 +1,7 @@
 .tour-detail-container {
   max-width: 1200px;
   margin: 150px auto 20px auto;
-  padding: 0 16px;
+  padding: 0 8px;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
@@ -120,11 +120,44 @@
 .schedule-detail-item {
   display: none;
 }
+@media (max-width: 1024px) {
+  .tour-detail-container {
+    margin: 70px auto;
+    padding: 0 16px;
+  }
+
+  .main-image-container {
+    height: 400px; /* Giảm chiều cao ảnh */
+  }
+
+  .tour-info {
+    position: sticky;
+    top: 80px; /* Giảm khoảng cách sticky */
+    padding: 16px;
+  }
+
+  .tour-details {
+    padding: 10px; /* Giảm padding */
+  }
+
+  .tour-details div {
+    font-size: 14px; /* Giảm kích thước font */
+  }
+
+  .tour-price {
+    font-size: 18px !important;
+  }
+
+  .booking-button,
+  .contact-button {
+    height: 45px;
+    font-size: 16px;
+  }
+}
 
 @media (max-width: 768px) {
   .tour-detail-container {
-    margin: 16px auto;
-    
+    margin: 40px auto;
   }
 
   .main-image-container {
@@ -141,6 +174,9 @@
     padding: 15px; /* Giảm padding */
   }
 
+  .tour-details > h2 {
+    font-size: 18px;
+  }
   .tour-details div {
     font-size: 14px; /* Giảm kích thước font */
   }
@@ -166,9 +202,10 @@
   .main-image-container {
     width: 100%;
   }
-  .tour-detail-container{
-    margin: 30px 0;
+  .tour-detail-container {
+    margin: 110px auto 20px auto;
     max-width: 464px;
+    padding: 0 8px;
     width: 100%;
   }
 
@@ -182,22 +219,19 @@
     flex: 0 0 100% !important;
     max-width: 100% !important;
   } */
-  .ant-modal-content{
+  .ant-modal-content {
     width: 400px;
-    margin: 0  auto;
+    margin: 0 auto;
   }
 }
 
 @media (max-width: 414px) {
-  
   .tour-detail-container {
     max-width: 384px;
-    
-}
-.ant-modal-content{
-  width: 90%;
-}
-
+  }
+  .ant-modal-content {
+    width: 90%;
+  }
 }
 
 .ant-typography {

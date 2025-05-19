@@ -11,7 +11,7 @@ const AboutGCP = () => {
     website: "anstay.com.vn",
   };
   return (
-    <div>
+    <>
       <div className="aboutgcp">
         <div className="banner">
           <div className="banner-img1">
@@ -27,14 +27,22 @@ const AboutGCP = () => {
             <h2 className="title">{companyInfo.name}</h2>
           </div>
           <div className="info-grid">
-            <div className="label"><div>Thành lập :</div><div>{companyInfo.established}</div></div>{" "}
-           
-            <div className="label"><div>Kinh doanh :</div><div>{companyInfo.business}</div></div>{" "}
-           
-            <div className="label"><div>Trụ sở chính :</div><div>{companyInfo.headquarters}</div> </div>{" "}
-           
-            <div className="label"><div>Văn phòng kinh doanh :</div><div className="bold">{companyInfo.offices}</div></div>{" "}
-            
+            <div className="label">
+              <div>Thành lập :</div>
+              <div>{companyInfo.established}</div>
+            </div>{" "}
+            <div className="label">
+              <div>Kinh doanh :</div>
+              <div>{companyInfo.business}</div>
+            </div>{" "}
+            <div className="label">
+              <div>Trụ sở chính :</div>
+              <div>{companyInfo.headquarters}</div>{" "}
+            </div>{" "}
+            <div className="label">
+              <div>Văn phòng kinh doanh :</div>
+              <div className="bold">{companyInfo.offices}</div>
+            </div>{" "}
           </div>
         </div>
       </div>
@@ -97,7 +105,7 @@ const AboutGCP = () => {
           trong từng dịch vụ.
         </p>
       </div>
-    </div>
+    </>
   );
 };
 

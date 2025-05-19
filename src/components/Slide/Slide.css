@@ -1,7 +1,7 @@
 .slider-container {
   position: relative;
   height: 100vh;
-  width: 100vw;   
+  width: 100vw;
   margin: 0 auto;
   overflow: hidden;
   margin-top: 44px;
@@ -10,7 +10,7 @@
 .slider-image {
   width: 100%;
   height: 100%;
-  background-size:cover;
+  background-size: cover;
   background-position: center;
   transition: background-image 0.8s ease-in-out;
   display: flex;
@@ -26,7 +26,7 @@
   width: 100%;
   display: flex;
   align-items: center;
- 
+
   height: 100%;
   background: rgba(0, 0, 0, 0.4); /* tối hơn */
   z-index: 1;
@@ -34,8 +34,6 @@
 
 .slider-overlay {
   position: absolute;
-  
-
 
   padding: 0 5%;
   max-width: 600px;
@@ -178,41 +176,39 @@
 }
 
 @media (max-width: 1024px) {
-  .slider-container{
+  .slider-container {
     height: 40vh;
   }
-  .slider-title{
-  font-size: 28px;
+  .slider-title {
+    font-size: 28px;
   }
-
 }
 
 @media (max-width: 768px) {
-  .slider-container{
+  .slider-container {
     margin-top: 30px;
-    
-    height: 40vh ;
+
+    height: 40vh;
   }
-  .slider-title{
-  font-size: 24px;
+  .slider-title {
+    font-size: 24px;
   }
-  .slider-subtitle{
+  .slider-subtitle {
     font-size: 16px;
   }
-   .scroll-controls{
+  .scroll-controls {
     display: none;
   }
- 
 }
 @media (max-width: 480px) {
-  .slider-container{
-    margin-top: 20px;
+  .slider-container {
+    margin-top: 100px;
   }
- 
-  .slider-title{
-  font-size: 20px;
+
+  .slider-title {
+    font-size: 20px;
   }
-  .slider-subtitle{
+  .slider-subtitle {
     font-size: 14px;
   }
   .slider-buttons {
@@ -220,8 +216,8 @@
     flex-direction: column;
   }
   .slider-buttons .btn {
-     max-width: 135px;
-     margin-bottom: 5px;
-     font-size: 12px;
+    max-width: 135px;
+    margin-bottom: 5px;
+    font-size: 12px;
   }
 }

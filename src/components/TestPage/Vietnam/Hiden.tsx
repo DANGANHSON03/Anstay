@@ -151,7 +151,7 @@ function Hiden() {
       <div
         className="door-password-section"
         style={{
-          margin: "20px",
+          marginBottom: "10px",
           padding: "15px",
           backgroundColor: "#f5f5f5",
           borderRadius: "8px",

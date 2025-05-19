@@ -34,9 +34,9 @@ const AboutUs = () => {
         <Link to={item.link} className="item">
           <img src={item.image} alt="" />
           <div className="description">
-            <div>{item.title}</div>
+            <div className="des-title">{item.title}</div>
             <div className="des-icon">
-              <CircleChevronRight size={36} />
+              <CircleChevronRight size={30} color="white" />
             </div>
           </div>
         </Link>

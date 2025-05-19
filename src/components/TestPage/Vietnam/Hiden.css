@@ -1,8 +1,8 @@
-.guide-container {
+/* .guide-container {
   max-width: 1200px;
   margin: 100px auto;
   padding: 20px;
-}
+} */
 span {
   font-weight: 600;
 }
@@ -117,6 +117,10 @@ span {
   border: 1px solid #e9ecef;
   border-top: none;
   margin-bottom: 10px;
+}
+.door-password-section {
+  width: 100%;
+  margin: 0 auto;
 }
 
 .sub-accordion-header {
@@ -843,6 +847,11 @@ span {
     max-width: 1000px;
     width: 90%;
     margin-top: 10px;
+  }
+  .door-password-section {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
   }
   .accordion-Hiden {
     max-width: 1000px;

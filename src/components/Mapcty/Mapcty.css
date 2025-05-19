@@ -1,7 +1,6 @@
 .map-cty-main {
   margin-top: 50px;
   position: relative;
- 
 }
 
 .map-cty-main iframe {
@@ -14,25 +13,23 @@
     height: 300px;
   }
   .map-cty-main {
-    margin-top: 100px; /* Adjust margin for smaller screens */
+    margin-top: 10px; /* Adjust margin for smaller screens */
   }
 }
 
 @media (max-width: 480px) {
   .map-cty-main {
-    margin-top: 450px; /* Adjust margin for smaller screens */
+    margin-top: 40px; /* Adjust margin for smaller screens */
   }
 
   .map-cty-main iframe {
     height: 250px;
     margin-top: 20px; /* Reduce margin for better spacing */
-
   }
 }
 
 @media (max-width: 376px) {
   .map-cty-main {
-    margin-top: 400px;; /* Adjust margin for smaller screens */
+    margin-top: 400px; /* Adjust margin for smaller screens */
   }
-
 }

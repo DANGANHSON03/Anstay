@@ -26,7 +26,6 @@
 
 @media (max-width: 1024px) {
   .container-culture {
-    
     max-width: 990px;
   }
   .description-culture {
@@ -58,12 +57,8 @@
 }
 
 @media (max-width: 480px) {
-
-  .guide-container {
-    margin: 0 auto !important;
-  }
   .container-culture {
-    margin: 30px auto 20px auto;
+    margin: 110px auto 20px auto;
     width: 100%;
     max-width: 444px;
   }
@@ -81,14 +76,9 @@
 }
 
 @media (max-width: 415px) {
-
-  .guide-container {
-    margin: 0 auto !important;
-  }
   .container-culture {
-    margin: 30px auto 20px auto;
     width: 100%;
-    max-width:415px;
+    max-width: 415px;
   }
   .description-culture {
     width: 100%;

@@ -38,7 +38,11 @@ const HidenPage = () => {
           }}
           className={Clicked ? "active1" : ""}
         >
-          Tiếng Việt
+          <img
+            src="https://hatscripts.github.io/circle-flags/flags/vn.svg"
+            width="24"
+          />
+          <span>Tiếng Việt</span>
         </button>
         <button
           onClick={() => {
@@ -47,7 +51,11 @@ const HidenPage = () => {
           }}
           className={!Clicked ? "active1" : ""}
         >
-          English
+          <img
+            src="https://hatscripts.github.io/circle-flags/flags/gb.svg"
+            width="24"
+          />
+          <span>English</span>
         </button>
       </div>
       {language === "vi" ? <HidenViet /> : <HidenEn />}

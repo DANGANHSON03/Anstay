@@ -1,17 +1,23 @@
-.tab-hiden{
- margin-top: 10px;
+.tab-hiden {
+  margin-top: 10px;
 }
-.active1{
-    background-color: #1666dd;
-    color: #f8f8f8;
+.active1 {
+  background-color: #1666dd;
+  color: #f8f8f8;
 }
-.tab-hiden__language{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    margin-bottom: 20px;
+.tab-hiden__language {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  margin-bottom: 20px;
 }
-.tab-hiden button{
-    width: 100%;
+.tab-hiden button {
+  width: 100%;
+}
+
+.tab-hiden__language > button {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
 }

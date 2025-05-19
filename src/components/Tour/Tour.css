@@ -4,11 +4,9 @@
   margin-top: 50px;
 }
 
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  
 }
 
 /* Filters */
@@ -443,55 +441,54 @@
 }
 @media (max-width: 1024px) {
   .listings-grid {
-      grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .filters {
-      flex-wrap: wrap;
-      justify-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
 /* Dưới 768px: Chuyển từ 2 cột thành 1 cột */
 @media (max-width: 768px) {
-  .filters span{
+  .filters span {
     text-align: left;
   }
   .filter-select {
-    
     font-size: 14px;
     padding: 10px;
   }
 
-  .apart-top{
-   margin-top: 0;
+  .apart-top {
+    margin-top: 0;
   }
   .listings-grid {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
   }
 
   .filters {
-      flex-direction: column;
-      align-items: stretch;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .filter-item {
-      width: 100%;
-      justify-content: center;
+    width: 100%;
+    justify-content: center;
   }
 
   .filter-select,
   .pagination {
-      width: 100%;
-      text-align: center;
+    width: 100%;
+    text-align: center;
   }
 
   .apart-top {
-      height: 40vh; /* Điều chỉnh chiều cao */
+    height: 40vh; /* Điều chỉnh chiều cao */
   }
 
   .title-top-apart {
-      font-size: 1.5rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -499,9 +496,9 @@
 @media (max-width: 480px) {
   .container-wrapper {
     margin-top: 10px;
-    padding: 0 10px; /* Thêm padding để tránh sát mép màn hình */
+    padding: 0 20px; /* Thêm padding để tránh sát mép màn hình */
   }
-  .container{
+  .container {
     width: 100%;
     max-width: 480px;
   }
