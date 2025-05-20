@@ -349,3 +349,167 @@
   font-weight: bold;
   cursor: pointer;
 }
+@media (max-width: 768px) {
+  .room-card {
+    margin: 12px 12px;
+    max-width: 100%;
+    margin: 8px 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .room-actions {
+    display: flow;
+  }
+  .body-card {
+    margin: 0 12px;
+    flex-direction: column;
+    gap: 0;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+  .room-info {
+    padding: 8px;
+    gap: 8px;
+  }
+  .room-image img {
+    width: 100%;
+    height: 140px;
+  }
+  .room-title {
+    font-size: 18px;
+  }
+  .room-icons {
+    font-size: 13px;
+    gap: 8px;
+    display: flex;
+    justify-content: center; /* căn giữa theo chiều ngang */
+    align-items: center;
+    margin-top: -20px;
+    transform: scale(0.9);
+  }
+  .room-ic {
+    display: contents;
+    gap: 5px;
+  }
+  .room-details {
+    flex-grow: 1;
+    display: flow;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .room-size {
+    display: inline-block;
+  }
+  .room-standard-rate {
+    font-size: 16px;
+  }
+  .room-policy ul,
+  .room-promotions {
+    font-size: 12px;
+  }
+  .room-promotions {
+    margin-top: -8px;
+  }
+
+  .room-price-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    justify-content: flex-start; /* giữ mặc định cho mobile */
+  }
+  .room-price {
+    font-size: 18px;
+  }
+  .room-icons.compact {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* căn giữa toàn bộ */
+    gap: 8px; /* khoảng cách giữa các dòng */
+    text-align: center;
+    padding: 12px 0;
+  }
+
+  .room-icons.compact h4 {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0;
+  }
+  .room-policy strong {
+    font-size: 20px;
+  }
+  .room-policy ul {
+    font-weight: bold;
+    background-color: #d7d2d2;
+    font-size: 14px;
+  }
+  .room-promotions strong {
+    font-size: 20px;
+  }
+
+  .discount-tag {
+    background-color: #e74c3c;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    display: inline-block;
+  }
+
+  .room-ic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .room-ic span {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #111;
+    gap: 4px; /* giữa icon và số */
+  }
+
+  .price-strike {
+    font-size: 12px;
+  }
+  .btns {
+    display: flex;
+    flex-direction: row; /* xếp ngang */
+    gap: 8px; /* khoảng cách rõ ràng giữa nút */
+    margin-top: 10px;
+  }
+
+  .btns button {
+    flex: 1; /* mỗi nút rộng bằng nhau */
+    padding: 10px 0;
+    font-size: 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  }
+  .btns button,
+  .btn-book,
+  .btn-select {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+  .qty-control {
+    width: 90px;
+  }
+  .date-control,
+  .date-picker-container {
+    gap: 4px;
+    margin-bottom: 6px;
+  }
+  .night-info {
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  .react-datepicker-wrapper {
+    display: flex;
+  }
+}
