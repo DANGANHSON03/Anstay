@@ -72,13 +72,12 @@ const RoomCard = ({ data }: { data: RoomData }) => {
 
   const filterDate = (date: Date) => {
     const isBooked = bookedDates.some(
-      (period) => date >= period.start && date <= period.end
+      (d) => d.toDateString() === date.toDateString()
     );
     if (isBooked) return false;
     if (startDate && !endDate) {
-      return !bookedDates.some(
-        (period) => startDate <= period.end && date >= period.start
-      );
+      const nextBooked = bookedDates.find((d) => d > startDate);
+      return !nextBooked || date < nextBooked;
     }
     return true;
   };
@@ -101,10 +100,13 @@ const RoomCard = ({ data }: { data: RoomData }) => {
             <div className="body-card">
               <div className="room-info">
                 <div className="room-image">
-                  <img src="https://placeholder.com/300x200" alt={room.name} />
+                  <img
+                    src="https://i.ibb.co/KxTdBVH9/kayak-HL.jpg"
+                    alt="B516"
+                  />
                 </div>
                 <div className="room-details">
-                  <div className="room-icons">
+                  <div className="room-ic">
                     <span>
                       <FaUser /> x {room.maxAdults}
                     </span>
@@ -127,7 +129,7 @@ const RoomCard = ({ data }: { data: RoomData }) => {
                   <div className="discount-tag">
                     Giảm giá {discount > 0 ? discount : 0}%
                   </div>
-                  <div>
+                  <div className="room-ic">
                     <span>
                       <FaUser /> x {room.maxAdults}
                     </span>
@@ -299,48 +301,7 @@ const RoomCard = ({ data }: { data: RoomData }) => {
                 : 0}{" "}
               VND
             </strong>
-            <button
-              className="btn-book-now"
-              onClick={() => {
-                if (startDate && endDate && rooms.length > 0) {
-                  const room = rooms[0];
-                  const price = Number(room.price) || 0;
-                  const discount = Number(room.discount) || 0;
-                  const pricePerNight = Math.round(
-                    price * (1 - discount / 100)
-                  );
-                  const totalOriginal = price * totalNights * quantity;
-                  const totalDiscounted =
-                    pricePerNight * totalNights * quantity;
-                  const amountSaved = totalOriginal - totalDiscounted;
-
-                  const params = new URLSearchParams({
-                    id: room.id.toString(),
-                    roomName: room.name,
-                    startDate: startDate.toISOString(),
-                    endDate: endDate.toISOString(),
-                    quantity: quantity.toString(),
-                    totalDiscounted: totalDiscounted.toString(),
-                    maxRooms: room.maxRooms.toString(),
-                    maxAdults: room.maxAdults.toString(),
-                    maxChildren: room.maxChildren.toString(),
-                    capacity: room.capacity.toString(),
-                    pricePerNight: pricePerNight.toString(),
-                    priceOriginalPerNight: price.toString(),
-                    discountPercent: discount.toString(),
-                    totalNights: totalNights.toString(),
-                    totalOriginal: totalOriginal.toString(),
-                    amountSaved: amountSaved.toString(),
-                    location: locationParam || "",
-                  });
-                  navigate(`/booking-page?${params.toString()}`);
-                } else {
-                  alert("Vui lòng chọn ngày trước khi đặt phòng");
-                }
-              }}
-            >
-              BOOK NOW
-            </button>
+            <button className="btn-book-now">BOOK NOW</button>
           </div>
         </div>
       )}
