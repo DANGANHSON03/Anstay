@@ -1,28 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./RoomCard.css";
 import { FaUser, FaBed, FaChild, FaRulerCombined, FaTag } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface RoomData {
   id: number;
-  roomsLeft: number;
-  name_room: string;
-  image: string;
-  guests: number;
-  beds: number;
-  children: number;
-  size: string;
-  bedType: string;
-  price: string; // dạng "1.200.000" - giá gốc
-  priceOriginal: string;
-  nights: number;
-  policy: string[];
-  promotions: string[];
-  discountText?: string;
-  discountPercentage?: number;
-  imageCount?: number;
+  apartmentId: number;
+  name: string;
+  description: string | null;
+  capacity: number;
+  price: number;
+  maxRooms: number;
+  maxAdults: number;
+  maxChildren: number;
+  discount?: number; // Thêm discount cho chắc chắn!
 }
 
 const RoomCard = ({ data }: { data: RoomData }) => {
@@ -31,27 +24,42 @@ const RoomCard = ({ data }: { data: RoomData }) => {
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [selected, setSelected] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const locationParam = searchParams.get("location");
+  const [rooms, setRooms] = useState<RoomData[]>([]);
 
-  console.log("Room ID:", data.id);
+  useEffect(() => {
+    console.log("Location parameter:", locationParam);
+    const fetchData = async () => {
+      try {
+        const apartmentResponse = await fetch(
+          `http://localhost:8085/api/apartments/search?name=${locationParam}`
+        );
+        const apartmentData = await apartmentResponse.json();
+        if (apartmentData && apartmentData.length > 0) {
+          const apartmentId = apartmentData[0].id;
+          const roomsResponse = await fetch(
+            `http://localhost:8085/api/rooms/apartment/${apartmentId}`
+          );
+          const roomsData: RoomData[] = await roomsResponse.json();
+          setRooms(roomsData);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    if (locationParam) {
+      fetchData();
+    }
+  }, [locationParam]);
 
   const bookedDates = [
     new Date("2025-05-21"),
     new Date("2025-05-22"),
     new Date("2025-05-25"),
   ];
-
-  const priceOriginalPerNight = parseInt(data.price.replace(/\./g, ""), 10);
-  console.log("Original price per night:", priceOriginalPerNight);
-
-  const discountPercent =
-    data.discountPercentage ??
-    parseInt(data.discountText?.match(/\d+/)?.[0] || "0", 10);
-  console.log("Discount percent:", discountPercent);
-
-  const pricePerNight = Math.round(
-    priceOriginalPerNight * (1 - discountPercent / 100)
-  );
-  console.log("Discounted price per night:", pricePerNight);
 
   const getNightCount = () => {
     if (startDate && endDate) {
@@ -61,222 +69,214 @@ const RoomCard = ({ data }: { data: RoomData }) => {
     }
     return 0;
   };
-
   const totalNights = getNightCount();
-  console.log("Total nights:", totalNights);
-
-  const totalOriginal = priceOriginalPerNight * totalNights;
-  const totalDiscounted = pricePerNight * totalNights;
-  console.log("Total original:", totalOriginal);
-  console.log("Total discounted:", totalDiscounted);
-  const amountSaved = totalOriginal - totalDiscounted;
 
   const filterDate = (date: Date) => {
     const isBooked = bookedDates.some(
       (d) => d.toDateString() === date.toDateString()
     );
     if (isBooked) return false;
-
     if (startDate && !endDate) {
       const nextBooked = bookedDates.find((d) => d > startDate);
       return !nextBooked || date < nextBooked;
     }
-
     return true;
-  };
-
-  const handleDecrease = () => {
-    if (quantity > 1) setQuantity(quantity - 1);
-  };
-
-  const handleIncrease = () => {
-    setQuantity(quantity + 1);
   };
 
   return (
     <>
-      <div className="room-card">
-        <div className="name-card">
-          <h3 className="room-title">{data.name_room}</h3>
-        </div>
+      {rooms.map((room) => {
+        const price = Number(room.price) || 0;
+        const discount = Number(room.discount) || 0;
+        const pricePerNight = Math.round(price * (1 - discount / 100));
+        const totalOriginal = price * totalNights * quantity;
+        const totalDiscounted = pricePerNight * totalNights * quantity;
+        const amountSaved = totalOriginal - totalDiscounted;
 
-        <div className="body-card">
-          <div className="room-info">
-            <div className="room-image">
-              <img src={data.image} alt={data.name_room} />
-              <div className="room-image-count">{data.imageCount}</div>
+        return (
+          <div className="room-card" key={room.id}>
+            <div className="name-card">
+              <h3 className="room-title">{room.name}</h3>
             </div>
-
-            <div className="room-details">
-              <div className="room-icons">
-                <span>
-                  <FaUser /> x {data.guests}
-                </span>
-                <span>
-                  <FaBed /> x {data.beds}
-                </span>
-                <span>
-                  <FaChild /> x {data.children}
-                </span>
-              </div>
-              <div className="room-size">
-                <FaRulerCombined /> {data.size}
-              </div>
-            </div>
-          </div>
-
-          <div className="room-pricing">
-            <div className="room-icons compact">
-              <h4>Standard Rate</h4>
-              <div className="discount-tag">{data.discountText}</div>
-              <div>
-                <span>
-                  <FaUser /> x {data.guests}
-                </span>
-                <span>
-                  <FaBed /> x {data.beds}
-                </span>
-                <span>
-                  <FaChild /> x {data.children}
-                </span>
-              </div>
-            </div>
-
-            <div className="room-policy">
-              <strong>Payment & Cancellation Policy:</strong>
-              <ul>
-                {data.policy.map((item, idx) => (
-                  <li key={idx}>{item}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="room-promotions">
-              <strong>Other promotions and discounts:</strong>
-              {data.promotions.map((promo, idx) => (
-                <div className="badge purple" key={idx}>
-                  <FaTag /> {promo}
+            <div className="body-card">
+              <div className="room-info">
+                <div className="room-image">
+                  <img src="https://placeholder.com/300x200" alt={room.name} />
                 </div>
-              ))}
-            </div>
-          </div>
+                <div className="room-details">
+                  <div className="room-icons">
+                    <span>
+                      <FaUser /> x {room.maxAdults}
+                    </span>
+                    <span>
+                      <FaBed /> x {room.maxRooms}
+                    </span>
+                    <span>
+                      <FaChild /> x {room.maxChildren}
+                    </span>
+                  </div>
+                  <div className="room-size">
+                    <FaRulerCombined /> {room.capacity} m²
+                  </div>
+                </div>
+              </div>
 
-          <div className="room-actions">
-            <div className="date-picker-container">
-              <div className="night-info">
-                <p>
-                  Giá mỗi đêm:{" "}
-                  <span
-                    style={{ textDecoration: "line-through", color: "#888" }}
-                  >
-                    {priceOriginalPerNight.toLocaleString("vi-VN")} VND
-                  </span>{" "}
-                  →{" "}
-                  <span style={{ color: "#e60023", fontWeight: "bold" }}>
-                    {pricePerNight.toLocaleString("vi-VN")} VND
-                  </span>
-                </p>
-                {startDate && endDate && (
-                  <>
-                    <p>Số đêm: {totalNights}</p>
+              <div className="room-pricing">
+                <div className="room-icons compact">
+                  <h4>Standard Rate</h4>
+                  <div className="discount-tag">
+                    Giảm giá {discount > 0 ? discount : 0}%
+                  </div>
+                  <div>
+                    <span>
+                      <FaUser /> x {room.maxAdults}
+                    </span>
+                    <span>
+                      <FaBed /> x {room.maxRooms}
+                    </span>
+                    <span>
+                      <FaChild /> x {room.maxChildren}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="room-policy">
+                  <strong>Payment & Cancellation Policy:</strong>
+                  <ul>
+                    <li>Thanh toán khi nhận phòng</li>
+                    <li>Hủy phòng trước 24h</li>
+                  </ul>
+                </div>
+
+                <div className="room-promotions">
+                  <strong>Other promotions and discounts:</strong>
+                  <div className="badge purple">
+                    <FaTag /> Giảm giá {discount > 0 ? discount : 0}% cho đặt
+                    phòng sớm
+                  </div>
+                </div>
+              </div>
+
+              <div className="room-actions">
+                <div className="date-picker-container">
+                  <div className="night-info">
                     <p>
-                      Tổng giá:{" "}
+                      Giá mỗi đêm:
                       <span
                         style={{
                           textDecoration: "line-through",
                           color: "#888",
                         }}
                       >
-                        {totalOriginal.toLocaleString("vi-VN")} VND
-                      </span>{" "}
-                      →{" "}
+                        {price.toLocaleString("vi-VN")} VND
+                      </span>
+                      {" → "}
                       <span style={{ color: "#e60023", fontWeight: "bold" }}>
-                        {totalDiscounted.toLocaleString("vi-VN")} VND
+                        {pricePerNight.toLocaleString("vi-VN")} VND
                       </span>
                     </p>
-                    <p>
-                      Tiết kiệm:{" "}
-                      <span style={{ color: "green", fontWeight: 600 }}>
-                        {amountSaved.toLocaleString("vi-VN")} VND (
-                        {discountPercent}%)
-                      </span>
-                    </p>
-                  </>
-                )}
+                    {startDate && endDate && (
+                      <>
+                        <p>Số đêm: {totalNights}</p>
+                        <p>
+                          Tổng giá:
+                          <span
+                            style={{
+                              textDecoration: "line-through",
+                              color: "#888",
+                            }}
+                          >
+                            {totalOriginal.toLocaleString("vi-VN")} VND
+                          </span>{" "}
+                          →
+                          <span
+                            style={{ color: "#e60023", fontWeight: "bold" }}
+                          >
+                            {totalDiscounted.toLocaleString("vi-VN")} VND
+                          </span>
+                        </p>
+                        <p>
+                          Tiết kiệm:{" "}
+                          <span style={{ color: "green", fontWeight: 600 }}>
+                            {amountSaved.toLocaleString("vi-VN")} VND (
+                            {discount}%)
+                          </span>
+                        </p>
+                      </>
+                    )}
+                  </div>
+                  <label>Chọn ngày:</label>
+                  <DatePicker
+                    selectsRange
+                    startDate={startDate}
+                    endDate={endDate}
+                    onChange={(dates: [Date | null, Date | null]) => {
+                      const [start, end] = dates;
+                      setStartDate(start);
+                      setEndDate(end);
+                    }}
+                    locale="vi"
+                    dateFormat="dd/MM/yyyy"
+                    placeholderText="Chọn khoảng ngày"
+                    excludeDates={bookedDates}
+                    filterDate={filterDate}
+                    minDate={new Date()}
+                    className="date-input"
+                    isClearable
+                  />
+                </div>
+                <div className="btns">
+                  <button
+                    className="btn-select"
+                    onClick={() => {
+                      if (startDate && endDate) {
+                        setSelected(true);
+                      } else {
+                        alert(
+                          "Vui lòng chọn ngày đến và đi trước khi chọn phòng"
+                        );
+                      }
+                    }}
+                  >
+                    SELECT
+                  </button>
+                  <button
+                    className="btn-book"
+                    onClick={() => {
+                      if (startDate && endDate) {
+                        const params = new URLSearchParams({
+                          id: room.id.toString(),
+                          roomName: room.name,
+                          startDate: startDate.toISOString(),
+                          endDate: endDate.toISOString(),
+                          quantity: quantity.toString(),
+                          totalDiscounted: totalDiscounted.toString(),
+                          maxRooms: room.maxRooms.toString(),
+                          maxAdults: room.maxAdults.toString(),
+                          maxChildren: room.maxChildren.toString(),
+                          capacity: room.capacity.toString(),
+                          pricePerNight: pricePerNight.toString(),
+                          priceOriginalPerNight: price.toString(),
+                          discountPercent: discount.toString(),
+                          totalNights: totalNights.toString(),
+                          totalOriginal: totalOriginal.toString(),
+                          amountSaved: amountSaved.toString(),
+                          location: locationParam || "",
+                        });
+                        navigate(`/booking-page?${params.toString()}`);
+                      } else {
+                        alert("Vui lòng chọn ngày trước khi đặt phòng");
+                      }
+                    }}
+                  >
+                    BOOK NOW
+                  </button>
+                </div>
               </div>
-
-              <label>Chọn ngày:</label>
-              <DatePicker
-                selectsRange
-                startDate={startDate}
-                endDate={endDate}
-                onChange={(dates: [Date | null, Date | null]) => {
-                  const [start, end] = dates;
-                  setStartDate(start);
-                  setEndDate(end);
-                }}
-                locale="vi"
-                dateFormat="dd/MM/yyyy"
-                placeholderText="Chọn khoảng ngày"
-                excludeDates={bookedDates}
-                filterDate={filterDate}
-                minDate={new Date()}
-                className="date-input"
-                isClearable
-              />
-            </div>
-
-            <div className="btns">
-              <button
-                className="btn-select"
-                onClick={() => {
-                  if (startDate && endDate) {
-                    setSelected(true);
-                  } else {
-                    alert("Vui lòng chọn ngày đến và đi trước khi chọn phòng");
-                  }
-                }}
-              >
-                SELECT
-              </button>
-
-              <button
-                className="btn-book"
-                onClick={() => {
-                  if (startDate && endDate) {
-                    const params = new URLSearchParams({
-                      id: data.id.toString(),
-                      roomName: data.name_room,
-                      startDate: startDate.toISOString(),
-                      endDate: endDate.toISOString(),
-                      quantity: quantity.toString(),
-                      totalDiscounted: totalDiscounted.toString(),
-                      roomsLeft: data.roomsLeft.toString(),
-                      bedType: data.bedType,
-                      guests: data.guests.toString(),
-                      children: data.children.toString(),
-                      size: data.size,
-                      pricePerNight: pricePerNight.toString(),
-                      priceOriginalPerNight: priceOriginalPerNight.toString(),
-                      discountPercent: discountPercent.toString(),
-                      totalNights: totalNights.toString(),
-                      totalOriginal: totalOriginal.toString(),
-                      amountSaved: amountSaved.toString(),
-                      image: data.image,
-                    });
-                    navigate(`/booking-page?${params.toString()}`);
-                  } else {
-                    alert("Vui lòng chọn ngày trước khi đặt phòng");
-                  }
-                }}
-              >
-                BOOK NOW
-              </button>
             </div>
           </div>
-        </div>
-      </div>
-
+        );
+      })}
       {selected && (
         <div className="bottom-bar">
           <div className="bottom-bar-info">
@@ -287,7 +287,18 @@ const RoomCard = ({ data }: { data: RoomData }) => {
             </strong>
           </div>
           <div className="bottom-bar-price">
-            <strong>{totalDiscounted.toLocaleString("vi-VN")} VND</strong>
+            <strong>
+              {/* Tổng tiền sau giảm ở phòng đầu tiên (tuỳ bạn muốn show chỗ này thế nào) */}
+              {rooms.length > 0
+                ? Math.round(
+                    Number(rooms[0].price) *
+                      (1 - (Number(rooms[0].discount) || 0) / 100) *
+                      totalNights *
+                      quantity
+                  ).toLocaleString("vi-VN")
+                : 0}{" "}
+              VND
+            </strong>
             <button className="btn-book-now">BOOK NOW</button>
           </div>
         </div>
