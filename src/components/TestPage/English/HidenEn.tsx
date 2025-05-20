@@ -12,6 +12,11 @@ function HidenEn() {
   const [showVideo, setShowVideo] = useState(false);
   const location = useLocation();
   const apartment = location.pathname.split("/").pop()?.trim(); // Get apartment code from URL path and trim whitespace
+  const [showImg, setShowImg] = useState<"A" | "B">("B");
+  const [Clicked, setClicked] = useState(true);
+  const handleClick = () => {
+    setClicked(!Clicked);
+  };
 
   const getVideoUrl = (sectionId) => {
     const videos = {
@@ -163,10 +168,42 @@ function HidenEn() {
           </button>
           {isTabOpen(1) && (
             <div className="accordion-content-Hiden">
-              <img
-                src="https://i.ibb.co/RGMYDynD/z6529289444099-805fa915dbdc9b5509ad1b0f26163c5c.jpg"
-                className="guide-imagecheckin-Hiden"
-              />
+              <div className="guide-button-open">
+                <button
+                  onClick={() => {
+                    setShowImg("B");
+                    handleClick();
+                  }}
+                  className={Clicked ? "active2" : ""}
+                >
+                  Tower A
+                </button>
+                <button
+                  onClick={() => {
+                    setShowImg("A");
+                    handleClick();
+                  }}
+                  className={!Clicked ? "active2" : ""}
+                >
+                  Tower B
+                </button>
+              </div>
+
+              {showImg === "A" && (
+                <img
+                  src="https://i.ibb.co/rKTC3DMh/4.jpg"
+                  alt="Guide to unlock the door with password"
+                  className="guide-image-Hiden"
+                />
+              )}
+              {showImg === "B" && (
+                <img
+                  src="https://i.ibb.co/Yms6NWC/3.jpg"
+                  alt="Guide to unlock the door with card"
+                  className="guide-image-Hiden"
+                />
+              )}
+
               <button
                 onClick={() => setShowPopup("1")}
                 className="guide-button-Hiden"
@@ -280,16 +317,11 @@ function HidenEn() {
                   {isTabOpen("2-4") && (
                     <div className="sub-accordion-content-Hiden">
                       <p>- Turn it on and wait 30 minutes</p>
-                      {isTabOpen("2-4") && (
-                        <div className="sub-accordion-content-Hiden">
-                          <button
-                            onClick={() => setShowPopup("2-4")}
-                            className="guide-button-Hiden"
-                          >
-                            View detailed instructions
-                          </button>
-                        </div>
-                      )}
+                      <img
+                        src="https://i.ibb.co/ZRywD02k/2.jpg"
+                        alt=""
+                        className="guide-image-Hiden"
+                      />
                     </div>
                   )}
                 </div>

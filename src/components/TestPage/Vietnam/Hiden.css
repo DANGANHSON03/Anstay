@@ -7,6 +7,9 @@ span {
   font-weight: 600;
 }
 
+.guide-container-Hiden {
+  color: black;
+}
 .guide-title {
   text-align: center;
   margin-bottom: 30px;
@@ -121,6 +124,21 @@ span {
 .door-password-section {
   width: 100%;
   margin: 0 auto;
+}
+.guide-button-open {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+  justify-content: center;
+}
+.guide-button-open > button {
+  flex: 1;
+  padding: 8px 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.active2 {
+  background-color: #007bff;
+  color: white;
 }
 
 .sub-accordion-header {
@@ -624,8 +642,9 @@ span {
 
 .guide-image-Hiden {
   max-width: 100%;
-  height: auto;
-  margin: 10px 0;
+  height: 60vh;
+  object-fit: cover;
+  margin: 5px 0;
 }
 
 .hotel-map-Hiden {
@@ -864,6 +883,10 @@ span {
     width: 95%;
     padding: 10px;
   }
+  .guide-button-open > button {
+    max-width: 200px;
+    width: 100%;
+  }
 
   .events-carousel-Hiden {
     flex-direction: column;
@@ -890,6 +913,12 @@ span {
   }
   .accordion-Hiden {
     max-width: 380px;
+  }
+}
+@media (max-width: 480px) {
+  .guide-button-open > button {
+    max-width: 174px;
+    width: 100%;
   }
 }
 

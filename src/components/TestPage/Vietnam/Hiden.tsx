@@ -13,6 +13,8 @@ function Hiden() {
   const [showPopup, setShowPopup] = useState<string | null>(null);
   const [language, setLanguage] = useState<"vi" | "en">("vi");
   const [showVideo, setShowVideo] = useState(false);
+  const [showImg, setShowImg] = useState<"A" | "B">("B");
+  const [Clicked, setClicked] = useState(true);
 
   const getVideoUrl = (sectionId) => {
     const videos = {
@@ -30,6 +32,9 @@ function Hiden() {
       "11": "/videos/dorac.mp4", //video phòng đổ rác
     };
     return videos[sectionId] || "";
+  };
+  const handleClick = () => {
+    setClicked(!Clicked);
   };
 
   const getDoorCode = (apartment) => {
@@ -70,10 +75,6 @@ function Hiden() {
       image:
         "https://i.ibb.co/RGMYDynD/z6529289444099-805fa915dbdc9b5509ad1b0f26163c5c.jpg",
     },
-  };
-
-  const toggleViewAll = () => {
-    setShowAllEvents(!showAllEvents);
   };
 
   useEffect(() => {
@@ -185,10 +186,40 @@ function Hiden() {
           </button>
           {isTabOpen(1) && (
             <div className="accordion-content-Hiden">
-              <img
-                src="https://i.ibb.co/8gwnhXNq/z6529289427842-586904014edb822f940b80aae6f5681a.jpg"
-                className="guide-imagecheckin-Hiden"
-              />
+              <div className="guide-button-open">
+                <button
+                  onClick={() => {
+                    setShowImg("B");
+                    handleClick();
+                  }}
+                  className={Clicked ? "active2" : ""}
+                >
+                  Tòa A
+                </button>
+                <button
+                  onClick={() => {
+                    setShowImg("A");
+                    handleClick();
+                  }}
+                  className={!Clicked ? "active2" : ""}
+                >
+                  Tòa B
+                </button>
+              </div>
+              {showImg === "A" && (
+                <img
+                  src="https://i.ibb.co/ccWfmNb4/z6619229521484-9f0e843b4a1ea0c54dc0ec51438160aa.jpg"
+                  alt="Hướng dẫn mở cửa bằng mật khẩu"
+                  className="guide-image-Hiden"
+                />
+              )}
+              {showImg === "B" && (
+                <img
+                  src="https://i.ibb.co/VcSJVQVr/z6619229521564-70e04130a1408101f50d612fcee5dfd7.jpg"
+                  alt=""
+                  className="guide-image-Hiden"
+                />
+              )}
               <button
                 onClick={() => setShowPopup("1")}
                 className="guide-button-Hiden"
@@ -297,16 +328,11 @@ function Hiden() {
                   {isTabOpen("2-4") && (
                     <div className="sub-accordion-content-Hiden">
                       <p>- Bật lên và chờ 30 phút </p>
-                      {isTabOpen("2-4") && (
-                        <div className="sub-accordion-content-Hiden">
-                          <button
-                            onClick={() => setShowPopup("2-4")}
-                            className="guide-button-Hiden"
-                          >
-                            Xem hướng dẫn chi tiết
-                          </button>
-                        </div>
-                      )}
+                      <img
+                        src="https://i.ibb.co/ZRywD02k/2.jpg"
+                        alt=""
+                        className="guide-image-Hiden"
+                      />
                     </div>
                   )}
                 </div>
