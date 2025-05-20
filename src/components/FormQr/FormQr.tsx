@@ -198,6 +198,12 @@ const FormQr = () => {
             <label htmlFor="apartment">
               Căn hộ đang lưu trú / Apartment currently staying:
               <span className="required">*</span>
+              <p style={{ fontSize: "10px", fontStyle: "italic" }}>
+                Vui lòng nhập đúng toà A hoặc B (VD B516, B1002...)
+              </p>
+              <p style={{ fontSize: "10px", fontStyle: "italic" }}>
+                Please enter a valid block A or B (e.g., B516, B1002...)
+              </p>
             </label>
             <input
               type="text"

@@ -189,21 +189,21 @@ function Hiden() {
               <div className="guide-button-open">
                 <button
                   onClick={() => {
-                    setShowImg("B");
-                    handleClick();
-                  }}
-                  className={Clicked ? "active2" : ""}
-                >
-                  Tòa A
-                </button>
-                <button
-                  onClick={() => {
                     setShowImg("A");
                     handleClick();
                   }}
                   className={!Clicked ? "active2" : ""}
                 >
                   Tòa B
+                </button>
+                <button
+                  onClick={() => {
+                    setShowImg("B");
+                    handleClick();
+                  }}
+                  className={Clicked ? "active2" : ""}
+                >
+                  Tòa A
                 </button>
               </div>
               {showImg === "A" && (
@@ -220,12 +220,12 @@ function Hiden() {
                   className="guide-image-Hiden"
                 />
               )}
-              <button
+              {/* <button
                 onClick={() => setShowPopup("1")}
                 className="guide-button-Hiden"
               >
                 Xem hướng dẫn
-              </button>
+              </button> */}
             </div>
           )}
         </div>
@@ -397,7 +397,7 @@ function Hiden() {
                   )}
                 </div>
 
-                <div className="sub-accordion-item-Hiden">
+                {/* <div className="sub-accordion-item-Hiden">
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -418,7 +418,7 @@ function Hiden() {
                       </button>
                     </div>
                   )}
-                </div>
+                </div> */}
               </div>
             </div>
           )}
@@ -540,7 +540,7 @@ function Hiden() {
                 </p>
                 <p>
                   - Trong thời gian lưu trú thêm khăn tắm, túi rác vui lòng liên
-                  hệ với lễ tân để được hỗ trợ
+                  hệ với lễ tân để được hỗ trợ miễn phí.
                 </p>
                 <strong>An toàn:</strong>
               </p>

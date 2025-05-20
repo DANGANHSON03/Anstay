@@ -97,8 +97,6 @@ const BookingPage = () => {
       .toString()
       .padStart(2, "0")}`;
   };
-
-  // Remove the unsafe console.log and use bookingData instead of hardcoded apartment
   const apartment = bookingData || {
     name: "",
     address: "",
@@ -114,7 +112,7 @@ const BookingPage = () => {
   const firstLocation = apartments[0]?.location || "";
   const updateGuestCount = (type, increment) => {
     if (modifiedGuestType && modifiedGuestType !== type) {
-      return; // Prevent changes to other types
+      return;
     }
 
     setGuestCounts((prev) => {
@@ -178,7 +176,7 @@ const BookingPage = () => {
                   : "Chưa chọn"}
               </p>
               <p>
-                Ngày trả phòng:{" "}
+                Ngày trả phòng:
                 {apartment?.checkOut
                   ? new Date(apartment.checkOut).toLocaleDateString("vi-VN")
                   : "Chưa chọn"}

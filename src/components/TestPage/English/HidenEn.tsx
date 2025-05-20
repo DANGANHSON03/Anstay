@@ -171,21 +171,21 @@ function HidenEn() {
               <div className="guide-button-open">
                 <button
                   onClick={() => {
-                    setShowImg("B");
-                    handleClick();
-                  }}
-                  className={Clicked ? "active2" : ""}
-                >
-                  Tower A
-                </button>
-                <button
-                  onClick={() => {
                     setShowImg("A");
                     handleClick();
                   }}
                   className={!Clicked ? "active2" : ""}
                 >
                   Tower B
+                </button>
+                <button
+                  onClick={() => {
+                    setShowImg("B");
+                    handleClick();
+                  }}
+                  className={Clicked ? "active2" : ""}
+                >
+                  Tower A
                 </button>
               </div>
 
@@ -204,12 +204,12 @@ function HidenEn() {
                 />
               )}
 
-              <button
+              {/* <button
                 onClick={() => setShowPopup("1")}
                 className="guide-button-Hiden"
               >
                 View Instructions
-              </button>
+              </button> */}
             </div>
           )}
         </div>
@@ -386,7 +386,7 @@ function HidenEn() {
                   )}
                 </div>
 
-                <div className="sub-accordion-item-Hiden">
+                {/* <div className="sub-accordion-item-Hiden">
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -407,7 +407,7 @@ function HidenEn() {
                       </button>
                     </div>
                   )}
-                </div>
+                </div> */}
               </div>
             </div>
           )}
@@ -528,7 +528,7 @@ function HidenEn() {
               </p>
               <p>
                 - During your stay, if you need additional towels or trash bags,
-                please contact the reception for assistance.
+                please contact the reception for assistance(free).
               </p>
 
               <p>

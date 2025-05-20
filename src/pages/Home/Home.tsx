@@ -191,7 +191,7 @@ const Home: React.FC = () => {
   return (
     <div className="main-home">
       <Slide />
-      {/* <BoxSearch /> */}
+      <BoxSearch />
       <Event />
       <Should />
       <Review />
