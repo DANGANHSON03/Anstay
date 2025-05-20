@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./RoomCard.css";
 import { FaUser, FaBed, FaChild, FaRulerCombined, FaTag } from "react-icons/fa";
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate, useLocation } from "react-router-dom";
+import vi from "date-fns/locale/vi";
+
+registerLocale("vi", vi);
 
 interface RoomData {
   id: number;
@@ -15,14 +18,21 @@ interface RoomData {
   maxRooms: number;
   maxAdults: number;
   maxChildren: number;
-  discount?: number; // Thêm discount cho chắc chắn!
+  discount?: number;
 }
 
-const RoomCard = ({ data }: { data: RoomData }) => {
+interface DateRange {
+  startDate: Date | null;
+  endDate: Date | null;
+}
+
+const RoomCard = () => {
   const [quantity, setQuantity] = useState(1);
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
-  const [selected, setSelected] = useState(false);
+  const [dateRanges, setDateRanges] = useState<{ [roomId: number]: DateRange }>(
+    {}
+  );
+  const [selectedRoomId, setSelectedRoomId] = useState<number | null>(null);
+
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -30,7 +40,6 @@ const RoomCard = ({ data }: { data: RoomData }) => {
   const [rooms, setRooms] = useState<RoomData[]>([]);
 
   useEffect(() => {
-    console.log("Location parameter:", locationParam);
     const fetchData = async () => {
       try {
         const apartmentResponse = await fetch(
@@ -60,27 +69,58 @@ const RoomCard = ({ data }: { data: RoomData }) => {
     { start: new Date("2025-05-25"), end: new Date("2025-05-27") },
   ];
 
-  const getNightCount = () => {
-    if (startDate && endDate) {
+  const getExcludedDates = useCallback(() => {
+    const dates: Date[] = [];
+    bookedDates.forEach(({ start, end }) => {
+      let current = new Date(start);
+      while (current <= end) {
+        dates.push(new Date(current));
+        current.setDate(current.getDate() + 1);
+      }
+    });
+    return dates;
+  }, [bookedDates]);
+
+  const excludedDates = getExcludedDates();
+
+  const getNightCount = (roomId: number) => {
+    const range = dateRanges[roomId];
+    if (range && range.startDate && range.endDate) {
       return Math.ceil(
-        (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
+        (range.endDate.getTime() - range.startDate.getTime()) /
+          (1000 * 60 * 60 * 24)
       );
     }
     return 0;
   };
-  const totalNights = getNightCount();
 
   const filterDate = (date: Date) => {
     const isBooked = bookedDates.some(
       (period) => date >= period.start && date <= period.end
     );
     if (isBooked) return false;
-    if (startDate && !endDate) {
-      return !bookedDates.some(
-        (period) => startDate <= period.end && date >= period.start
-      );
-    }
     return true;
+  };
+
+  const pad = (num: number) => String(num).padStart(2, "0");
+
+  const formatDate = (date: Date | null) => {
+    if (!date) return "";
+    const year = date.getFullYear();
+    const month = pad(date.getMonth() + 1);
+    const day = pad(date.getDate());
+    return `${year}-${month}-${day}`;
+  };
+
+  const handleDateChange = (
+    roomId: number,
+    dates: [Date | null, Date | null]
+  ) => {
+    const [start, end] = dates;
+    setDateRanges((prev) => ({
+      ...prev,
+      [roomId]: { startDate: start, endDate: end },
+    }));
   };
 
   return (
@@ -88,6 +128,8 @@ const RoomCard = ({ data }: { data: RoomData }) => {
       {rooms.map((room) => {
         const price = Number(room.price) || 0;
         const discount = Number(room.discount) || 0;
+        const range = dateRanges[room.id] || { startDate: null, endDate: null };
+        const totalNights = getNightCount(room.id);
         const pricePerNight = Math.round(price * (1 - discount / 100));
         const totalOriginal = price * totalNights * quantity;
         const totalDiscounted = pricePerNight * totalNights * quantity;
@@ -161,7 +203,7 @@ const RoomCard = ({ data }: { data: RoomData }) => {
                 <div className="date-picker-container">
                   <div className="night-info">
                     <p>
-                      Giá mỗi đêm:
+                      Giá mỗi đêm:{" "}
                       <span
                         style={{
                           textDecoration: "line-through",
@@ -169,17 +211,17 @@ const RoomCard = ({ data }: { data: RoomData }) => {
                         }}
                       >
                         {price.toLocaleString("vi-VN")} VND
-                      </span>
-                      {" → "}
+                      </span>{" "}
+                      →{" "}
                       <span style={{ color: "#e60023", fontWeight: "bold" }}>
                         {pricePerNight.toLocaleString("vi-VN")} VND
                       </span>
                     </p>
-                    {startDate && endDate && (
+                    {range.startDate && range.endDate && (
                       <>
                         <p>Số đêm: {totalNights}</p>
                         <p>
-                          Tổng giá:
+                          Tổng giá:{" "}
                           <span
                             style={{
                               textDecoration: "line-through",
@@ -188,7 +230,7 @@ const RoomCard = ({ data }: { data: RoomData }) => {
                           >
                             {totalOriginal.toLocaleString("vi-VN")} VND
                           </span>{" "}
-                          →
+                          →{" "}
                           <span
                             style={{ color: "#e60023", fontWeight: "bold" }}
                           >
@@ -199,7 +241,8 @@ const RoomCard = ({ data }: { data: RoomData }) => {
                           Tiết kiệm:{" "}
                           <span style={{ color: "green", fontWeight: 600 }}>
                             {amountSaved.toLocaleString("vi-VN")} VND (
-                            {discount}%)
+                            {discount}
+                            %)
                           </span>
                         </p>
                       </>
@@ -208,29 +251,28 @@ const RoomCard = ({ data }: { data: RoomData }) => {
                   <label>Chọn ngày:</label>
                   <DatePicker
                     selectsRange
-                    startDate={startDate}
-                    endDate={endDate}
-                    onChange={(dates: [Date | null, Date | null]) => {
-                      const [start, end] = dates;
-                      setStartDate(start);
-                      setEndDate(end);
-                    }}
+                    startDate={range.startDate}
+                    endDate={range.endDate}
+                    onChange={(dates: [Date | null, Date | null]) =>
+                      handleDateChange(room.id, dates)
+                    }
                     locale="vi"
                     dateFormat="dd/MM/yyyy"
                     placeholderText="Chọn khoảng ngày"
-                    excludeDates={bookedDates}
+                    excludeDates={excludedDates}
                     filterDate={filterDate}
                     minDate={new Date()}
                     className="date-input"
                     isClearable
                   />
                 </div>
+
                 <div className="btns">
                   <button
                     className="btn-select"
                     onClick={() => {
-                      if (startDate && endDate) {
-                        setSelected(true);
+                      if (range.startDate && range.endDate) {
+                        setSelectedRoomId(room.id);
                       } else {
                         alert(
                           "Vui lòng chọn ngày đến và đi trước khi chọn phòng"
@@ -243,12 +285,12 @@ const RoomCard = ({ data }: { data: RoomData }) => {
                   <button
                     className="btn-book"
                     onClick={() => {
-                      if (startDate && endDate) {
+                      if (range.startDate && range.endDate) {
                         const params = new URLSearchParams({
                           id: room.id.toString(),
                           roomName: room.name,
-                          startDate: startDate.toISOString(),
-                          endDate: endDate.toISOString(),
+                          startDate: formatDate(range.startDate),
+                          endDate: formatDate(range.endDate),
                           quantity: quantity.toString(),
                           totalDiscounted: totalDiscounted.toString(),
                           maxRooms: room.maxRooms.toString(),
@@ -277,23 +319,29 @@ const RoomCard = ({ data }: { data: RoomData }) => {
           </div>
         );
       })}
-      {selected && (
+      {selectedRoomId !== null && (
         <div className="bottom-bar">
           <div className="bottom-bar-info">
             🛒 Your selections include:{" "}
             <strong>
-              {quantity} Room{quantity > 1 ? "s" : ""}, {totalNights} Night
-              {totalNights > 1 ? "s" : ""}
+              {quantity} Room{quantity > 1 ? "s" : ""},{" "}
+              {getNightCount(selectedRoomId)} Night
+              {getNightCount(selectedRoomId) > 1 ? "s" : ""}
             </strong>
           </div>
           <div className="bottom-bar-price">
             <strong>
-              {/* Tổng tiền sau giảm ở phòng đầu tiên (tuỳ bạn muốn show chỗ này thế nào) */}
-              {rooms.length > 0
+              {rooms.length > 0 && dateRanges[selectedRoomId]
                 ? Math.round(
-                    Number(rooms[0].price) *
-                      (1 - (Number(rooms[0].discount) || 0) / 100) *
-                      totalNights *
+                    Number(
+                      rooms.find((r) => r.id === selectedRoomId)?.price || 0
+                    ) *
+                      (1 -
+                        (Number(
+                          rooms.find((r) => r.id === selectedRoomId)?.discount
+                        ) || 0) /
+                          100) *
+                      getNightCount(selectedRoomId) *
                       quantity
                   ).toLocaleString("vi-VN")
                 : 0}{" "}
@@ -302,40 +350,44 @@ const RoomCard = ({ data }: { data: RoomData }) => {
             <button
               className="btn-book-now"
               onClick={() => {
-                if (startDate && endDate && rooms.length > 0) {
-                  const room = rooms[0];
-                  const price = Number(room.price) || 0;
-                  const discount = Number(room.discount) || 0;
-                  const pricePerNight = Math.round(
-                    price * (1 - discount / 100)
-                  );
-                  const totalOriginal = price * totalNights * quantity;
-                  const totalDiscounted =
-                    pricePerNight * totalNights * quantity;
-                  const amountSaved = totalOriginal - totalDiscounted;
+                if (selectedRoomId !== null) {
+                  const room = rooms.find((r) => r.id === selectedRoomId);
+                  const range = dateRanges[selectedRoomId];
+                  if (room && range && range.startDate && range.endDate) {
+                    const price = Number(room.price) || 0;
+                    const discount = Number(room.discount) || 0;
+                    const pricePerNight = Math.round(
+                      price * (1 - discount / 100)
+                    );
+                    const totalNights = getNightCount(selectedRoomId);
+                    const totalOriginal = price * totalNights * quantity;
+                    const totalDiscounted =
+                      pricePerNight * totalNights * quantity;
+                    const amountSaved = totalOriginal - totalDiscounted;
 
-                  const params = new URLSearchParams({
-                    id: room.id.toString(),
-                    roomName: room.name,
-                    startDate: startDate.toISOString(),
-                    endDate: endDate.toISOString(),
-                    quantity: quantity.toString(),
-                    totalDiscounted: totalDiscounted.toString(),
-                    maxRooms: room.maxRooms.toString(),
-                    maxAdults: room.maxAdults.toString(),
-                    maxChildren: room.maxChildren.toString(),
-                    capacity: room.capacity.toString(),
-                    pricePerNight: pricePerNight.toString(),
-                    priceOriginalPerNight: price.toString(),
-                    discountPercent: discount.toString(),
-                    totalNights: totalNights.toString(),
-                    totalOriginal: totalOriginal.toString(),
-                    amountSaved: amountSaved.toString(),
-                    location: locationParam || "",
-                  });
-                  navigate(`/booking-page?${params.toString()}`);
-                } else {
-                  alert("Vui lòng chọn ngày trước khi đặt phòng");
+                    const params = new URLSearchParams({
+                      id: room.id.toString(),
+                      roomName: room.name,
+                      startDate: formatDate(range.startDate),
+                      endDate: formatDate(range.endDate),
+                      quantity: quantity.toString(),
+                      totalDiscounted: totalDiscounted.toString(),
+                      maxRooms: room.maxRooms.toString(),
+                      maxAdults: room.maxAdults.toString(),
+                      maxChildren: room.maxChildren.toString(),
+                      capacity: room.capacity.toString(),
+                      pricePerNight: pricePerNight.toString(),
+                      priceOriginalPerNight: price.toString(),
+                      discountPercent: discount.toString(),
+                      totalNights: totalNights.toString(),
+                      totalOriginal: totalOriginal.toString(),
+                      amountSaved: amountSaved.toString(),
+                      location: locationParam || "",
+                    });
+                    navigate(`/booking-page?${params.toString()}`);
+                  } else {
+                    alert("Vui lòng chọn ngày trước khi đặt phòng");
+                  }
                 }
               }}
             >
