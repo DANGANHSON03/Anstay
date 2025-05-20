@@ -2,7 +2,7 @@
   margin-top: 10px;
 }
 .active1 {
-  background-color: #1666dd;
+  background-color: #1666dd !important;
   color: #f8f8f8;
 }
 .tab-hiden__language {
@@ -20,4 +20,6 @@
   display: flex;
   justify-content: center;
   gap: 5px;
+  background-color: white;
+  border: 1px solid rgb(150, 150, 150);
 }

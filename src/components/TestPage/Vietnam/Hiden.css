@@ -8,7 +8,7 @@ span {
 }
 
 .guide-container-Hiden {
-  color: black;
+  color: black !important;
 }
 .guide-title {
   text-align: center;
@@ -576,6 +576,10 @@ span {
   border: 1px solid #ddd;
   border-radius: 5px;
   overflow: hidden;
+  color: black !important;
+}
+button {
+  color: black !important;
 }
 .accordion-content-Hiden {
   display: flex;
