@@ -56,9 +56,8 @@ const RoomCard = ({ data }: { data: RoomData }) => {
   }, [locationParam]);
 
   const bookedDates = [
-    new Date("2025-05-21"),
-    new Date("2025-05-22"),
-    new Date("2025-05-25"),
+    { start: new Date("2025-05-21"), end: new Date("2025-05-22") },
+    { start: new Date("2025-05-25"), end: new Date("2025-05-27") },
   ];
 
   const getNightCount = () => {
@@ -73,12 +72,13 @@ const RoomCard = ({ data }: { data: RoomData }) => {
 
   const filterDate = (date: Date) => {
     const isBooked = bookedDates.some(
-      (d) => d.toDateString() === date.toDateString()
+      (period) => date >= period.start && date <= period.end
     );
     if (isBooked) return false;
     if (startDate && !endDate) {
-      const nextBooked = bookedDates.find((d) => d > startDate);
-      return !nextBooked || date < nextBooked;
+      return !bookedDates.some(
+        (period) => startDate <= period.end && date >= period.start
+      );
     }
     return true;
   };
@@ -299,7 +299,48 @@ const RoomCard = ({ data }: { data: RoomData }) => {
                 : 0}{" "}
               VND
             </strong>
-            <button className="btn-book-now">BOOK NOW</button>
+            <button
+              className="btn-book-now"
+              onClick={() => {
+                if (startDate && endDate && rooms.length > 0) {
+                  const room = rooms[0];
+                  const price = Number(room.price) || 0;
+                  const discount = Number(room.discount) || 0;
+                  const pricePerNight = Math.round(
+                    price * (1 - discount / 100)
+                  );
+                  const totalOriginal = price * totalNights * quantity;
+                  const totalDiscounted =
+                    pricePerNight * totalNights * quantity;
+                  const amountSaved = totalOriginal - totalDiscounted;
+
+                  const params = new URLSearchParams({
+                    id: room.id.toString(),
+                    roomName: room.name,
+                    startDate: startDate.toISOString(),
+                    endDate: endDate.toISOString(),
+                    quantity: quantity.toString(),
+                    totalDiscounted: totalDiscounted.toString(),
+                    maxRooms: room.maxRooms.toString(),
+                    maxAdults: room.maxAdults.toString(),
+                    maxChildren: room.maxChildren.toString(),
+                    capacity: room.capacity.toString(),
+                    pricePerNight: pricePerNight.toString(),
+                    priceOriginalPerNight: price.toString(),
+                    discountPercent: discount.toString(),
+                    totalNights: totalNights.toString(),
+                    totalOriginal: totalOriginal.toString(),
+                    amountSaved: amountSaved.toString(),
+                    location: locationParam || "",
+                  });
+                  navigate(`/booking-page?${params.toString()}`);
+                } else {
+                  alert("Vui lòng chọn ngày trước khi đặt phòng");
+                }
+              }}
+            >
+              BOOK NOW
+            </button>
           </div>
         </div>
       )}
