@@ -139,6 +139,7 @@
   margin: 0; /* Remove any default margin */
   line-height: 1; /* Ensure consistent height */
   vertical-align: middle; /* Align with other elements */
+  color: black;
 }
 
 .btn-login:hover {

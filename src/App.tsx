@@ -82,6 +82,7 @@ function App() {
               </MainLayout>
             }
           />
+
           <Route
             path="/apartment-ha-long"
             element={
@@ -90,6 +91,7 @@ function App() {
               </MainLayout>
             }
           />
+
           <Route
             path="/apartment-ha-noi/:apartmentName/view"
             element={
