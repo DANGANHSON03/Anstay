@@ -211,7 +211,7 @@
   border: none;
 }
 button {
-  color: white !important;
+  color: white;
 }
 .btn-select {
   background: #198ec8;
@@ -534,6 +534,6 @@ button {
     text-align: center;
   }
   button {
-    color: white !important;
+    color: white;
   }
 }

@@ -189,21 +189,21 @@ function Hiden() {
               <div className="guide-button-open">
                 <button
                   onClick={() => {
-                    setShowImg("A");
-                    handleClick();
-                  }}
-                  className={!Clicked ? "active2" : ""}
-                >
-                  Tòa B
-                </button>
-                <button
-                  onClick={() => {
                     setShowImg("B");
                     handleClick();
                   }}
                   className={Clicked ? "active2" : ""}
                 >
                   Tòa A
+                </button>
+                <button
+                  onClick={() => {
+                    setShowImg("A");
+                    handleClick();
+                  }}
+                  className={!Clicked ? "active2" : ""}
+                >
+                  Tòa B
                 </button>
               </div>
               {showImg === "A" && (
@@ -599,163 +599,163 @@ function Hiden() {
                           <tr>
                             <td>1</td>
                             <td>Bát ăn cơm</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>30,000</td>
                           </tr>
                           <tr>
                             <td>2</td>
                             <td>Gạt tàn sứ</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>55,000</td>
                           </tr>
                           <tr>
                             <td>3</td>
                             <td>Đĩa tròn F20</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>55,000</td>
                           </tr>
                           <tr>
                             <td>4</td>
                             <td>Đĩa tròn F25</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>90,000</td>
                           </tr>
                           <tr>
                             <td>5</td>
                             <td>Đĩa kê tách trà</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>30,000</td>
                           </tr>
                           <tr>
                             <td>6</td>
                             <td>Tô canh</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>95,000</td>
                           </tr>
                           <tr>
                             <td>7</td>
                             <td>Bát chấm</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>25,000</td>
                           </tr>
                           <tr>
                             <td>8</td>
                             <td>Thìa soup</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>100,000</td>
                           </tr>
                           <tr>
                             <td>9</td>
                             <td>Thìa café nhỏ</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>90,000</td>
                           </tr>
                           <tr>
                             <td>10</td>
                             <td>Dao ăn</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>110,000</td>
                           </tr>
                           <tr>
                             <td>11</td>
                             <td>Dĩa ăn</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>100,000</td>
                           </tr>
                           <tr>
                             <td>12</td>
-                            <td>Dĩa ăn</td>
-                            <td>Pair</td>
+                            <td>Đũa ăn</td>
+                            <td>Đôi</td>
                             <td>15,000</td>
                           </tr>
                           <tr>
                             <td>13</td>
                             <td>Ly đặt phòng</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>145,000</td>
                           </tr>
                           <tr>
                             <td>14</td>
                             <td>Tách trà</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>65,000</td>
                           </tr>
                           <tr>
                             <td>15</td>
                             <td>Muôi múc canh</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>60,000</td>
                           </tr>
                           <tr>
                             <td>16</td>
                             <td>Chảo chống dính</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>340,000</td>
                           </tr>
                           <tr>
                             <td>17</td>
                             <td>Bộ xoong nồi inox</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>980,000</td>
                           </tr>
                           <tr>
                             <td>18</td>
                             <td>Nồi cơm điện</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>950,000</td>
                           </tr>
                           <tr>
                             <td>19</td>
                             <td>Thớt nhựa trong phòng CH</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>200,000</td>
                           </tr>
                           <tr>
                             <td>20</td>
                             <td>Thớt gỗ trong phòng CH</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>190,000</td>
                           </tr>
                           <tr>
                             <td>21</td>
                             <td>Bộ gia vị đựng trong phòng</td>
-                            <td>Set</td>
+                            <td>Bộ</td>
                             <td>205,000</td>
                           </tr>
                           <tr>
                             <td>22</td>
                             <td>Dao thái 22cm</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>255,000</td>
                           </tr>
                           <tr>
                             <td>23</td>
                             <td>Dao thái 24cm</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>120,000</td>
                           </tr>
                           <tr>
                             <td>24</td>
                             <td>Xẻng nấu ăn</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>90,000</td>
                           </tr>
                           <tr>
                             <td>25</td>
                             <td>Kéo nấu ăn trong phòng căn hộ</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>70,000</td>
                           </tr>
                           <tr>
                             <td>26</td>
                             <td>Rổ nhựa</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>80,000</td>
                           </tr>
                           <tr>
                             <td>27</td>
                             <td>Giỏ máy đặt phòng</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>190,000</td>
                           </tr>
                         </tbody>
@@ -773,7 +773,7 @@ function Hiden() {
                     className="sub-accordion-header-Hiden"
                     aria-expanded={isTabOpen("5-2")}
                   >
-                    Porcelain Table
+                    Ceramic Tableware Price List
                   </button>
                   {isTabOpen("5-2") && (
                     <div className="sub-accordion-content-Hiden">
@@ -916,115 +916,115 @@ function Hiden() {
                           <tr>
                             <td>22</td>
                             <td>Máy sấy tóc</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>254,000</td>
                           </tr>
                           <tr>
                             <td>23</td>
                             <td>Điện thoại bàn</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>200,000</td>
                           </tr>
                           <tr>
                             <td>24</td>
                             <td>Key phòng</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>100,000</td>
                           </tr>
                           <tr>
                             <td>25</td>
                             <td>Tivi 40 inch</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>6,410,000</td>
                           </tr>
                           <tr>
                             <td>26</td>
                             <td>Tivi 45 inch</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>8,114,000</td>
                           </tr>
                           <tr>
                             <td>27</td>
                             <td>Ghế sofa đôi (1.6m or 1.8m)</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>7,000,000</td>
                           </tr>
                           <tr>
                             <td>28</td>
                             <td>Gối ghế sofa</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>1,000,000</td>
                           </tr>
                           <tr>
                             <td>29</td>
                             <td>Ghế gỗ đơn</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>1,500,000</td>
                           </tr>
                           <tr>
                             <td>30</td>
                             <td>Bàn gỗ tròn</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>1,000,000</td>
                           </tr>
                           <tr>
                             <td>31</td>
                             <td>Mặt kính</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>1,000,000</td>
                           </tr>
                           <tr>
                             <td>32</td>
                             <td>Khăn chân (45*80)</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>140,000</td>
                           </tr>
                           <tr>
                             <td>33</td>
                             <td>Khăn mặt (34*34)</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>45,000</td>
                           </tr>
                           <tr>
                             <td>34</td>
                             <td>Khăn tắm (70*90)</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>184,000</td>
                           </tr>
                           <tr>
                             <td>35</td>
                             <td>Giỏ mây</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>190,000</td>
                           </tr>
                           <tr>
                             <td>36</td>
                             <td>Đèn chụp</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>405,000</td>
                           </tr>
                           <tr>
                             <td>37</td>
                             <td>Đèn cây</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>1,015,000</td>
                           </tr>
                           <tr>
                             <td>38</td>
                             <td>Tranh treo tường (70*90)</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>485,000</td>
                           </tr>
                           <tr>
                             <td>39</td>
                             <td>Tranh treo tường (45*45)</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>690,000</td>
                           </tr>
                           <tr>
                             <td>40</td>
                             <td>Tranh treo tường (40*40)</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>450,000</td>
                           </tr>
                         </tbody>
@@ -1232,133 +1232,133 @@ function Hiden() {
                           <tr>
                             <td>1</td>
                             <td>Thùng rác trong phòng (sắt)</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>329,000</td>
                           </tr>
                           <tr>
                             <td>2</td>
                             <td>Thùng rác trong phòng (da)</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>366,000</td>
                           </tr>
                           <tr>
                             <td>3</td>
                             <td>Khay đựng Minibar</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>569,000</td>
                           </tr>
                           <tr>
                             <td>4</td>
                             <td>Khay đựng trà/café</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>283,000</td>
                           </tr>
                           <tr>
                             <td>5</td>
                             <td>Khay đựng Amenities</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>200,000</td>
                           </tr>
                           <tr>
                             <td>6</td>
                             <td>Bìa da phục vụ phòng</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>344,000</td>
                           </tr>
                           <tr>
                             <td>7</td>
                             <td>Bìa da note pad</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>195,000</td>
                           </tr>
                           <tr>
                             <td>8</td>
                             <td>Bìa da thu ngân</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>302,000</td>
                           </tr>
                           <tr>
                             <td>9</td>
                             <td>Bìa da menu</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>405,000</td>
                           </tr>
                           <tr>
                             <td>10</td>
                             <td>Hộp giấy ăn</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>344,000</td>
                           </tr>
                           <tr>
                             <td>11</td>
                             <td>Biển treo cửa đa</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>165,000</td>
                           </tr>
                           <tr>
                             <td>12</td>
                             <td>Đồng hồ để bàn</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>473,000</td>
                           </tr>
                           <tr>
                             <td>13</td>
                             <td>Đĩa đựng xà bông (màu đen)</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>50,000</td>
                           </tr>
                           <tr>
                             <td>14</td>
                             <td>Điều khiển tivi</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>300,000</td>
                           </tr>
                           <tr>
                             <td>15</td>
                             <td>Điều khiển điều hòa</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>1,000,000</td>
                           </tr>
                           <tr>
                             <td>16</td>
                             <td>Đèn bàn làm việc</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>245,000</td>
                           </tr>
                           <tr>
                             <td>17</td>
                             <td>Đèn ngủ phòng khách</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>403,000</td>
                           </tr>
                           <tr>
                             <td>18</td>
                             <td>Đèn cây trong phòng</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>1,015,000</td>
                           </tr>
                           <tr>
                             <td>19</td>
                             <td>Móc treo quần áo gỗ</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>30,000</td>
                           </tr>
                           <tr>
                             <td>20</td>
                             <td>Móc treo quần áo có kẹp</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>25,000</td>
                           </tr>
                           <tr>
                             <td>21</td>
                             <td>Ấm siêu tốc</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>194,000</td>
                           </tr>
                           <tr>
                             <td>22</td>
                             <td>Máy sấy tóc</td>
-                            <td>Once</td>
+                            <td>1</td>
                             <td>254,000</td>
                           </tr>
                           <tr>
@@ -1865,6 +1865,8 @@ function Hiden() {
                   </button>
                   {isTabOpen("10-1") && (
                     <div className="sub-accordion-content-Hiden">
+                      <p>Zalo/Whatsapp: 0936.486.890</p>
+                      <p>Số điện thoại: 0982.461.015</p>
                       <img
                         style={{ width: "74vw" }}
                         src="https://i.ibb.co/chPHm58X/image-2.png"
