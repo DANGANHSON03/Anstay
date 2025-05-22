@@ -23,7 +23,8 @@ import Support from "./components/Support/Support";
 import HidenPage from "./pages/HidenPage/HidenPage";
 import FormQr from "./components/FormQr/FormQr.tsx";
 import SearchResults from "./pages/SearchResults/SearchResults";
-import BookingPage from "./components/BookingPage/BookingPage.tsx";
+import ApartmentList from "./pages/ApartmentList/ApartmentList";
+import Header from "./components/Header/Header";
 
 function App() {
   return (
@@ -212,10 +213,30 @@ function App() {
             }
           />
           <Route
-            path="/booking-page"
+            path="/apartment-detail/:apartmentId"
+            element={<ApartmentDetail />}
+          />
+          <Route
+            path="/apartments/ha-noi"
             element={
               <MainLayout>
-                <BookingPage />
+                <ApartmentList />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/apartments/ha-long"
+            element={
+              <MainLayout>
+                <ApartmentList />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/apartments/:locationSlug"
+            element={
+              <MainLayout>
+                <ApartmentList />
               </MainLayout>
             }
           />

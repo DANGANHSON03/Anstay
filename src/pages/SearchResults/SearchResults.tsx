@@ -157,64 +157,69 @@ const SearchResults = () => {
   };
 
   return (
-    <div>
-      <form className="search-bar" onSubmit={handleSubmit}>
-        <div className="section dates">
-          <div className="date-header">
-            <label>Ngày</label>
-            <span className="nights">
-              {getNights()} Đêm{getNights() > 1 ? "" : ""}
-            </span>
-          </div>
-          <div className="date-display">
-            <div>
-              <span className="date-number">
-                {checkIn ? new Date(checkIn).getDate() : ""}
+    <div className={location.state?.hideSearchBar ? "no-searchbar" : ""}>
+      {/* Ẩn search bar nếu location.state?.hideSearchBar là true */}
+      {!location.state?.hideSearchBar && (
+        <form className="search-bar" onSubmit={handleSubmit}>
+          <div className="section dates">
+            <div className="date-header">
+              <label>Ngày</label>
+              <span className="nights">
+                {getNights()} Đêm{getNights() > 1 ? "" : ""}
               </span>
-              <div className="date-info">
-                <small>
-                  {checkIn
-                    ? new Date(checkIn).toLocaleString("vi-VN", {
-                        month: "short",
-                      })
-                    : ""}
-                </small>
-                <small>{checkIn ? new Date(checkIn).getFullYear() : ""}</small>
+            </div>
+            <div className="date-display">
+              <div>
+                <span className="date-number">
+                  {checkIn ? new Date(checkIn).getDate() : ""}
+                </span>
+                <div className="date-info">
+                  <small>
+                    {checkIn
+                      ? new Date(checkIn).toLocaleString("vi-VN", {
+                          month: "short",
+                        })
+                      : ""}
+                  </small>
+                  <small>
+                    {checkIn ? new Date(checkIn).getFullYear() : ""}
+                  </small>
+                </div>
+              </div>
+              <div>
+                <span className="date-number">
+                  {checkOut ? new Date(checkOut).getDate() : ""}
+                </span>
+                <div className="date-info">
+                  <small>
+                    {checkOut
+                      ? new Date(checkOut).toLocaleString("vi-VN", {
+                          month: "short",
+                        })
+                      : ""}
+                  </small>
+                  <small>
+                    {checkOut ? new Date(checkOut).getFullYear() : ""}
+                  </small>
+                </div>
               </div>
             </div>
-            <div>
-              <span className="date-number">
-                {checkOut ? new Date(checkOut).getDate() : ""}
-              </span>
-              <div className="date-info">
-                <small>
-                  {checkOut
-                    ? new Date(checkOut).toLocaleString("vi-VN", {
-                        month: "short",
-                      })
-                    : ""}
-                </small>
-                <small>
-                  {checkOut ? new Date(checkOut).getFullYear() : ""}
-                </small>
-              </div>
-            </div>
           </div>
-        </div>
-        <div className="section">
-          <label>PHÒNG</label>
-          <span className="value-display">{room}</span>
-        </div>
-        <div className="section">
-          <label>NGƯỜI LỚN</label>
-          <span className="value-display">{adults}</span>
-        </div>
-        <div className="section">
-          <label>TRẺ EM</label>
-          <span className="value-display">{children}</span>
-        </div>
-        <button type="submit">Tìm kiếm</button>
-      </form>
+          <div className="section">
+            <label>PHÒNG</label>
+            <span className="value-display">{room}</span>
+          </div>
+          <div className="section">
+            <label>NGƯỜI LỚN</label>
+            <span className="value-display">{adults}</span>
+          </div>
+          <div className="section">
+            <label>TRẺ EM</label>
+            <span className="value-display">{children}</span>
+          </div>
+          <button type="submit">Tìm kiếm</button>
+        </form>
+      )}
 
       <div className="carousel-wrapper">
         <Slider ref={sliderRef} {...settings}>
@@ -229,7 +234,6 @@ const SearchResults = () => {
         {/* PHẦN THÔNG TIN BÊN DƯỚI */}
         <div className="carousel-info">
           <h3 className="carousel-title">{searchParams.get("location")}</h3>
-
           <div className="carousel-address">🗺️ {propertyData.address}</div>
           <div className="carousel-address">💬 {propertyData.rating}</div>
         </div>

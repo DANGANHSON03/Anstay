@@ -50,10 +50,21 @@ const ApartmentList = () => {
 
         if (Array.isArray(data)) {
           const filtered = data.filter((apt) => {
-            const aptSlug = normalizeToSlug(apt.location || "");
-            const targetSlug = locationSlug || "ha-noi";
-
-            return aptSlug.includes(targetSlug);
+            const aptLocation = (apt.location || "").toLowerCase();
+            if (locationSlug === "ha-long") {
+              return (
+                aptLocation.includes("hạ long") ||
+                aptLocation.includes("ha long") ||
+                aptLocation.includes("quảng ninh") ||
+                aptLocation.includes("quang ninh")
+              );
+            }
+            if (locationSlug === "ha-noi") {
+              return (
+                aptLocation.includes("hà nội") || aptLocation.includes("ha noi")
+              );
+            }
+            return false;
           });
 
           setApartments(filtered);
