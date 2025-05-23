@@ -15,13 +15,23 @@ const BookingPage = () => {
   const [timeLeft, setTimeLeft] = useState(600);
   const [holdResult, setHoldResult] = useState(null);
   const [roomHeld, setRoomHeld] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // Loading state
+  const [isLoading, setIsLoading] = useState(false);
 
   const animationFrameIdRef = useRef(null);
   const endTimeRef = useRef(null);
   const holdTimeoutRef = useRef(null);
 
-  // Bắt đầu hoặc reset bộ đếm 10 phút
+  // ===== Thông tin khách vãng lai (input controlled) =====
+  const [guestInfo, setGuestInfo] = useState({
+    guestName: "",
+    guestPhone: "",
+    guestEmail: "",
+    guestIdentityNumber: "",
+    guestBirthday: "",
+    guestNationality: "Việt Nam",
+  });
+
+  // ================== ĐỒNG HỒ ĐẶT PHÒNG ==================
   const startCountdown = () => {
     if (animationFrameIdRef.current) {
       cancelAnimationFrame(animationFrameIdRef.current);
@@ -47,7 +57,6 @@ const BookingPage = () => {
     animationFrameIdRef.current = requestAnimationFrame(updateTime);
   };
 
-  // Khi mount, load đồng hồ nếu có hoặc bắt đầu mới
   useEffect(() => {
     const storedEndTime = localStorage.getItem("bookingEndTime");
     if (storedEndTime) {
@@ -74,7 +83,6 @@ const BookingPage = () => {
     };
   }, []);
 
-  // Reset bộ đếm khi bookingData thay đổi (ví dụ đổi ngày)
   useEffect(() => {
     if (bookingData) {
       startCountdown();
@@ -83,7 +91,7 @@ const BookingPage = () => {
     }
   }, [bookingData]);
 
-  // Lấy params URL, gồm roomId, location, các thông tin booking
+  // ================== LẤY DATA BOOKING & PHÒNG ==================
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const roomIdParam = params.get("id");
@@ -109,13 +117,10 @@ const BookingPage = () => {
     });
 
     if (locationParam) {
-      // Use http instead of https for local API to avoid SSL errors
       fetch(`http://localhost:8085/api/apartments/search?name=${locationParam}`)
         .then((res) => res.json())
         .then((data) => setApartments(data))
         .catch((err) => {
-          console.error("Error fetching apartments:", err);
-          // Set fallback apartment data if fetch fails
           setApartments([
             {
               id: 1,
@@ -125,7 +130,6 @@ const BookingPage = () => {
           ]);
         });
     } else {
-      // Set fallback apartment data if no location param
       setApartments([
         {
           id: 1,
@@ -136,29 +140,23 @@ const BookingPage = () => {
     }
   }, []);
 
-  // Modified function to hold room with better error handling
+  // ================== GIỮ PHÒNG ==================
   const holdRoom = async () => {
     if (!bookingData || roomHeld || isLoading) return;
-
     setIsLoading(true);
 
     let selectedApartment = null;
     let selectedRoomId = bookingData.roomId;
-
-    // Find the apartment that has the room
     for (const apt of apartments) {
       if (apt.rooms && apt.rooms.some((r) => r.id === selectedRoomId)) {
         selectedApartment = apt;
         break;
       }
     }
-
-    // If apartment not found, use the first one or create a default
     if (!selectedApartment) {
       selectedApartment = apartments[0] || { id: 1 };
       selectedRoomId = selectedApartment?.rooms?.[0]?.id || selectedRoomId || 1;
     }
-
     const bookingPayload = {
       userId: null,
       apartmentId: selectedApartment?.id || 1,
@@ -167,126 +165,86 @@ const BookingPage = () => {
       checkOut: bookingData.checkOut,
       totalPrice: (bookingData.price || 0) + calculateSurcharge(),
       status: "HOLD",
-      guestName: "",
-      guestPhone: "",
-      guestEmail: "",
-      guestIdentityNumber: "",
-      guestBirthday: "",
-      guestNationality: "Việt Nam",
+      guestName: guestInfo.guestName,
+      guestPhone: guestInfo.guestPhone,
+      guestEmail: guestInfo.guestEmail,
+      guestIdentityNumber: guestInfo.guestIdentityNumber,
+      guestBirthday: guestInfo.guestBirthday,
+      guestNationality: guestInfo.guestNationality,
     };
 
-    console.log("Sending booking payload:", bookingPayload);
-
     try {
-      // Try the local endpoint first with http (not https)
-      const response = await axios({
-        method: "post",
-        url: "http://localhost:8085/api/apartment-bookings",
-        data: bookingPayload,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        timeout: 8000, // 8 second timeout
-        withCredentials: false,
-      });
-
-      console.log("Booking success:", response.data);
+      await axios.post(
+        "http://localhost:8085/api/apartment-bookings",
+        bookingPayload,
+        {
+          headers: { "Content-Type": "application/json" },
+          timeout: 8000,
+        }
+      );
       setRoomHeld(true);
       setHoldResult({ success: true, message: "Giữ phòng thành công!" });
-    } catch (localErr) {
-      console.error("Local booking error:", localErr);
-
-      try {
-        // If local endpoint fails, try the remote endpoint
-        console.log("Trying remote endpoint...");
-        const response = await axios({
-          method: "post",
-          url: "https://anstayapi.onrender.com/api/apartment-bookings",
-          data: bookingPayload,
-          headers: {
-            "Content-Type": "application/json",
-          },
-          timeout: 10000, // 10 second timeout for Render (which might be slow to wake up)
-          withCredentials: false,
-        });
-
-        console.log("Remote booking success:", response.data);
-        setRoomHeld(true);
-        setHoldResult({ success: true, message: "Giữ phòng thành công!" });
-      } catch (remoteErr) {
-        console.error("Remote booking error:", remoteErr);
-
-        // Try one more time with a direct XMLHttpRequest fallback
-        try {
-          console.log("Trying XMLHttpRequest fallback...");
-          const xhrResult = await new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            xhr.open("POST", "http://localhost:8085/api/apartment-bookings");
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.timeout = 5000; // 5 second timeout
-
-            xhr.onload = function () {
-              if (xhr.status >= 200 && xhr.status < 300) {
-                resolve(JSON.parse(xhr.responseText));
-              } else {
-                reject(new Error(`XHR Error: ${xhr.statusText}`));
-              }
-            };
-
-            xhr.onerror = function () {
-              reject(new Error("Network Error in XHR"));
-            };
-
-            xhr.ontimeout = function () {
-              reject(new Error("XHR Timeout"));
-            };
-
-            xhr.send(JSON.stringify(bookingPayload));
-          });
-
-          console.log("XHR booking success:", xhrResult);
-          setRoomHeld(true);
-          setHoldResult({ success: true, message: "Giữ phòng thành công!" });
-        } catch (xhrErr) {
-          console.error("All booking attempts failed");
-          let errorMsg = "Có lỗi xảy ra khi đặt phòng! Vui lòng thử lại sau.";
-
-          // Extract error message from the error chain
-          if (remoteErr.response?.data) {
-            errorMsg =
-              typeof remoteErr.response.data === "object"
-                ? remoteErr.response.data.message ||
-                  JSON.stringify(remoteErr.response.data)
-                : remoteErr.response.data;
-          } else if (remoteErr.message) {
-            errorMsg = `Lỗi: ${remoteErr.message}`;
-          } else if (localErr.message) {
-            errorMsg = `Lỗi: ${localErr.message}`;
-          }
-
-          setHoldResult({ success: false, message: errorMsg });
-        }
-      }
+    } catch (err) {
+      setHoldResult({
+        success: false,
+        message: "Có lỗi xảy ra khi đặt phòng! Vui lòng thử lại sau.",
+      });
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Modified effect to call holdRoom
   useEffect(() => {
     if (!bookingData || apartments.length === 0 || roomHeld) return;
     if (holdTimeoutRef.current) clearTimeout(holdTimeoutRef.current);
-
     holdTimeoutRef.current = setTimeout(() => {
       holdRoom();
     }, 1500);
-
     return () => {
       if (holdTimeoutRef.current) clearTimeout(holdTimeoutRef.current);
     };
   }, [bookingData, apartments, roomHeld]);
 
-  // Format thời gian đếm ngược thành mm:ss
+  // ================== THANH TOÁN MOMO ==================
+  const handleMomoPayment = async () => {
+    if (!roomHeld) {
+      alert("Bạn phải giữ phòng thành công trước khi thanh toán!");
+      return;
+    }
+    // Có thể validate thêm info khách tại đây
+
+    const paymentData = {
+      bookingType: "APARTMENT",
+      bookingId: bookingData.roomId,
+      userId: null,
+      amount: (bookingData.price || 0) + calculateSurcharge(),
+      paymentMethod: "MOMO",
+      guestName: guestInfo.guestName,
+      guestPhone: guestInfo.guestPhone,
+      guestEmail: guestInfo.guestEmail,
+      guestIdentityNumber: guestInfo.guestIdentityNumber,
+      guestBirthday: guestInfo.guestBirthday,
+      guestNationality: guestInfo.guestNationality,
+    };
+
+    try {
+      const res = await axios.post(
+        "http://localhost:8085/api/payments/momo",
+        paymentData
+      );
+      const payUrl = res.data.payUrl;
+      if (payUrl) {
+        window.location.href = payUrl;
+      } else {
+        alert("Không lấy được link thanh toán Momo!");
+      }
+    } catch (err) {
+      alert("Tạo thanh toán thất bại!");
+      console.error(err);
+    }
+  };
+
+  // ================== CÁC HÀM PHỤ ==================
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -295,7 +253,6 @@ const BookingPage = () => {
       .padStart(2, "0")}`;
   };
 
-  // Tính phí phụ thu thêm người lớn và trẻ em
   const calculateSurcharge = () => {
     if (!bookingData) return 0;
     const addAdults = Math.max(
@@ -311,7 +268,6 @@ const BookingPage = () => {
     return chargeAdults + chargeChildren;
   };
 
-  // Cập nhật số lượng khách
   const updateGuestCount = (type, delta) => {
     if (modifiedGuestType && modifiedGuestType !== type) return;
     setGuestCounts((prev) => {
@@ -323,7 +279,6 @@ const BookingPage = () => {
     });
   };
 
-  // Format ngày sang định dạng dd/mm/yyyy
   const formatDateVN = (dateStr) => {
     if (!dateStr) return "Chưa chọn";
     const [year, month, day] = dateStr.split("-");
@@ -341,14 +296,13 @@ const BookingPage = () => {
 
   const handlePaymentClick = () => setShowPaymentModal(true);
   const closePaymentModal = () => setShowPaymentModal(false);
-
-  // Added function to manually retry holding the room
   const retryHoldRoom = () => {
     setRoomHeld(false);
     setHoldResult(null);
     holdRoom();
   };
 
+  // ================== JSX ==================
   return (
     <div className="booking-page">
       <p className="expire-warning">
@@ -457,12 +411,67 @@ const BookingPage = () => {
         <div className="booking-right">
           <section className="card customer-form">
             <h4>Thông tin của bạn</h4>
-            <input type="text" placeholder="Họ và tên*" />
-            <input type="text" placeholder="Số điện thoại" />
-            <input type="email" placeholder="Email*" />
-            <input type="text" placeholder="CMND / Hộ chiếu" />
-            <input type="date" placeholder="Ngày sinh" />
-            <select>
+            <input
+              type="text"
+              placeholder="Họ và tên*"
+              value={guestInfo.guestName}
+              onChange={(e) =>
+                setGuestInfo((info) => ({ ...info, guestName: e.target.value }))
+              }
+            />
+            <input
+              type="text"
+              placeholder="Số điện thoại"
+              value={guestInfo.guestPhone}
+              onChange={(e) =>
+                setGuestInfo((info) => ({
+                  ...info,
+                  guestPhone: e.target.value,
+                }))
+              }
+            />
+            <input
+              type="email"
+              placeholder="Email*"
+              value={guestInfo.guestEmail}
+              onChange={(e) =>
+                setGuestInfo((info) => ({
+                  ...info,
+                  guestEmail: e.target.value,
+                }))
+              }
+            />
+            <input
+              type="text"
+              placeholder="CMND / Hộ chiếu"
+              value={guestInfo.guestIdentityNumber}
+              onChange={(e) =>
+                setGuestInfo((info) => ({
+                  ...info,
+                  guestIdentityNumber: e.target.value,
+                }))
+              }
+            />
+            <input
+              type="date"
+              placeholder="Ngày sinh"
+              value={guestInfo.guestBirthday}
+              onChange={(e) =>
+                setGuestInfo((info) => ({
+                  ...info,
+                  guestBirthday: e.target.value,
+                }))
+              }
+            />
+            <select
+              value={guestInfo.guestNationality}
+              onChange={(e) =>
+                setGuestInfo((info) => ({
+                  ...info,
+                  guestNationality: e.target.value,
+                }))
+              }
+            >
               <option>Việt Nam</option>
               <option>Quốc tịch khác</option>
             </select>
@@ -530,7 +539,9 @@ const BookingPage = () => {
             </div>
             <div className="modal-actions">
               <button onClick={closePaymentModal}>Hủy</button>
-              <button className="proceed-payment">Tiếp tục</button>
+              <button className="proceed-payment" onClick={handleMomoPayment}>
+                Tiếp tục
+              </button>
             </div>
           </div>
         </div>
