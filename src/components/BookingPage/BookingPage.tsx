@@ -351,57 +351,66 @@ const BookingPage = () => {
             <p>
               <strong>
                 <div className="guest-controls">
-                  <button
-                    onClick={() => updateGuestCount("adults", -1)}
-                    disabled={
-                      modifiedGuestType && modifiedGuestType !== "adults"
-                    }
-                  >
-                    -
-                  </button>
-                  {guestCounts.adults} người lớn
-                  <button
-                    onClick={() => updateGuestCount("adults", 1)}
-                    disabled={
-                      modifiedGuestType && modifiedGuestType !== "adults"
-                    }
-                  >
-                    +
-                  </button>
-                  <button
-                    onClick={() => updateGuestCount("children", -1)}
-                    disabled={
-                      modifiedGuestType && modifiedGuestType !== "children"
-                    }
-                  >
-                    -
-                  </button>
-                  {guestCounts.children} trẻ em
-                  <button
-                    onClick={() => updateGuestCount("children", 1)}
-                    disabled={
-                      modifiedGuestType && modifiedGuestType !== "children"
-                    }
-                  >
-                    +
-                  </button>
-                  <button
-                    onClick={() => updateGuestCount("babies", -1)}
-                    disabled={
-                      modifiedGuestType && modifiedGuestType !== "babies"
-                    }
-                  >
-                    -
-                  </button>
-                  {guestCounts.babies} em bé
-                  <button
-                    onClick={() => updateGuestCount("babies", 1)}
-                    disabled={
-                      modifiedGuestType && modifiedGuestType !== "babies"
-                    }
-                  >
-                    +
-                  </button>
+                  {/* Người lớn */}
+                  <div className="guest-row">
+                    <button
+                      onClick={() => updateGuestCount("adults", -1)}
+                      disabled={
+                        modifiedGuestType && modifiedGuestType !== "adults"
+                      }
+                    >
+                      -
+                    </button>
+                    <span>{guestCounts.adults} người lớn</span>
+                    <button
+                      onClick={() => updateGuestCount("adults", 1)}
+                      disabled={
+                        modifiedGuestType && modifiedGuestType !== "adults"
+                      }
+                    >
+                      +
+                    </button>
+                  </div>
+                  {/* Trẻ em */}
+                  <div className="guest-row">
+                    <button
+                      onClick={() => updateGuestCount("children", -1)}
+                      disabled={
+                        modifiedGuestType && modifiedGuestType !== "children"
+                      }
+                    >
+                      -
+                    </button>
+                    <span>{guestCounts.children} trẻ em</span>
+                    <button
+                      onClick={() => updateGuestCount("children", 1)}
+                      disabled={
+                        modifiedGuestType && modifiedGuestType !== "children"
+                      }
+                    >
+                      +
+                    </button>
+                  </div>
+                  {/* Em bé */}
+                  <div className="guest-row">
+                    <button
+                      onClick={() => updateGuestCount("babies", -1)}
+                      disabled={
+                        modifiedGuestType && modifiedGuestType !== "babies"
+                      }
+                    >
+                      -
+                    </button>
+                    <span>{guestCounts.babies} em bé</span>
+                    <button
+                      onClick={() => updateGuestCount("babies", 1)}
+                      disabled={
+                        modifiedGuestType && modifiedGuestType !== "babies"
+                      }
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
               </strong>
             </p>
