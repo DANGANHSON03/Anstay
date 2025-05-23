@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Apartment.css";
-
 interface Owner {
   id: number;
   name: string;
@@ -9,14 +8,12 @@ interface Owner {
   email: string;
   address: string;
 }
-
 interface Image {
   id: number;
   apartmentId: number;
   imageUrl: string;
   featured: boolean;
 }
-
 interface Apartment {
   id: number;
   name: string;
@@ -34,7 +31,6 @@ interface Apartment {
   images: Image[];
   area: string;
 }
-
 const Apartment = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -46,7 +42,6 @@ const Apartment = () => {
   );
   // Add new state for price sorting
   const [priceSort, setPriceSort] = useState<"asc" | "desc" | null>(null);
-
   // Add this helper function inside the component
   const getAreaName = (areaCode: string) => {
     switch (areaCode) {
@@ -68,7 +63,6 @@ const Apartment = () => {
         return areaCode;
     }
   };
-
   useEffect(() => {
     const fetchApartments = async () => {
       try {
@@ -80,7 +74,6 @@ const Apartment = () => {
           throw new Error("Failed to fetch apartments");
         }
         const data = await response.json();
-        console.log("Fetched data:", data);
         setListingData(data);
       } catch (err) {
         setError(err.message);
@@ -88,17 +81,14 @@ const Apartment = () => {
         setLoading(false);
       }
     };
-
     fetchApartments();
   }, [currentArea]); // Add currentArea as dependency
-
   // Update currentArea when location.state changes
   useEffect(() => {
     if (location.state?.location) {
       setCurrentArea(location.state.location);
     }
   }, [location.state?.location]);
-
   // Update URL when currentArea changes
   useEffect(() => {
     // Update URL without causing navigation
@@ -108,11 +98,9 @@ const Apartment = () => {
       window.location.pathname
     );
   }, [currentArea]);
-
   useEffect(() => {
     // Log current URL
     console.log("Current URL:", window.location.pathname);
-
     // Determine area from URL
     const path = window.location.pathname;
     if (path.includes("apartment-ha-noi")) {
@@ -121,14 +109,12 @@ const Apartment = () => {
       setCurrentArea("HA_LONG");
     }
   }, []);
-
   // Modify handleAreaChange to use navigate
   const handleAreaChange = (area: string) => {
     navigate("/apartment", { state: { location: area } });
     setVisibleCount(9);
     setActiveImages({});
   };
-
   // Add function to handle price sorting
   const handlePriceSort = (order: "asc" | "desc") => {
     setPriceSort(order);
@@ -139,41 +125,33 @@ const Apartment = () => {
     });
     setListingData(sortedListings);
   };
-
   // State for active image index per listing
   const [activeImages, setActiveImages] = useState<{ [key: number]: number }>(
     {}
   );
-
   // State for visible listings count (initially show 9)
   const [visibleCount, setVisibleCount] = useState(9);
-
   // Function to navigate images
   const navigateImage = (listingId: number, direction: string) => {
     const currentIndex = activeImages[listingId] || 0;
     const imagesCount =
       listingData.find((listing) => listing.id === listingId)?.images.length ||
       0;
-
     let newIndex;
     if (direction === "next") {
       newIndex = (currentIndex + 1) % imagesCount;
     } else {
       newIndex = (currentIndex - 1 + imagesCount) % imagesCount;
     }
-
     setActiveImages({ ...activeImages, [listingId]: newIndex });
   };
-
   // Function to handle "Xem thêm" button click
   const handleLoadMore = () => {
     // Increase visible count by 9 or show all remaining items
     setVisibleCount((prev) => Math.min(prev + 9, listingData.length));
   };
-
   // Get visible listings
   const visibleListings = listingData.slice(0, visibleCount);
-
   // Thay thế hàm openPopup bằng hàm navigate
   const handleListingClick = (listing: Apartment) => {
     if (listing.status !== "OCCUPIED") {
@@ -192,10 +170,8 @@ const Apartment = () => {
       });
     }
   };
-
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-
   return (
     <div>
       <div className="apart-top">
@@ -232,7 +208,6 @@ const Apartment = () => {
               </select>
             </div>
           </div>
-
           {/* Listings grid */}
           <div className="listings-grid">
             {visibleListings.map((listing) => (
@@ -307,7 +282,6 @@ const Apartment = () => {
                     ))}
                   </div>
                 </div>
-
                 {/* Content */}
                 <div className="listing-content">
                   <h3 className="listing-title">{listing.name}</h3>
@@ -315,13 +289,13 @@ const Apartment = () => {
                     className="listing-address"
                     style={{ textAlign: "left" }}
                   >
-                    📍 {listing.location}
+                    :round_pushpin: {listing.location}
                   </div>
                   <div
                     className="listing-address"
                     style={{ textAlign: "left" }}
                   >
-                    📍 {getAreaName(listing.area)}
+                    :round_pushpin: {getAreaName(listing.area)}
                   </div>
                   <div className="listing-details">
                     <div
@@ -341,7 +315,6 @@ const Apartment = () => {
               </div>
             ))}
           </div>
-
           {/* Load More Button - only show if there are more items to load */}
           {visibleCount < listingData.length && (
             <div className="load-more-container">
@@ -355,5 +328,4 @@ const Apartment = () => {
     </div>
   );
 };
-
 export default Apartment;
