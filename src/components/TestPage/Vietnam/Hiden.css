@@ -7,7 +7,7 @@ span {
   font-weight: 600;
 }
 
-.guide-container-Hiden {
+.guide-container-Hiden button {
   color: black !important;
 }
 .guide-title {
@@ -578,9 +578,7 @@ span {
   overflow: hidden;
   color: black !important;
 }
-button {
-  color: black !important;
-}
+
 .accordion-content-Hiden {
   display: flex;
   flex-direction: column;
@@ -915,9 +913,9 @@ button {
   h2 {
     font-size: 20px;
   }
-  .accordion-Hiden {
+  /* .accordion-Hiden {
     max-width: 380px;
-  }
+  } */
 }
 @media (max-width: 480px) {
   .guide-button-open > button {
@@ -932,7 +930,7 @@ button {
     width: 100%;
     margin-top: 10px;
   }
-  .accordion-Hiden {
+  /* .accordion-Hiden {
     max-width: 360px;
-  }
+  } */
 }

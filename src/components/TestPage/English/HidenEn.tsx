@@ -171,21 +171,21 @@ function HidenEn() {
               <div className="guide-button-open">
                 <button
                   onClick={() => {
-                    setShowImg("A");
-                    handleClick();
-                  }}
-                  className={!Clicked ? "active2" : ""}
-                >
-                  Tower B
-                </button>
-                <button
-                  onClick={() => {
                     setShowImg("B");
                     handleClick();
                   }}
                   className={Clicked ? "active2" : ""}
                 >
                   Tower A
+                </button>
+                <button
+                  onClick={() => {
+                    setShowImg("A");
+                    handleClick();
+                  }}
+                  className={!Clicked ? "active2" : ""}
+                >
+                  Tower B
                 </button>
               </div>
 
@@ -593,7 +593,7 @@ function HidenEn() {
                           </tr>
                           <tr>
                             <td>2</td>
-                            <td>Porcelain ashtray</td>
+                            <td>Ashtray</td>
                             <td>Once</td>
                             <td>55,000</td>
                           </tr>
@@ -671,7 +671,7 @@ function HidenEn() {
                           </tr>
                           <tr>
                             <td>15</td>
-                            <td>Soup ladle</td>
+                            <td>Tablespoon</td>
                             <td>Once</td>
                             <td>60,000</td>
                           </tr>
@@ -762,7 +762,7 @@ function HidenEn() {
                     className="sub-accordion-header-Hiden"
                     aria-expanded={isTabOpen("5-2")}
                   >
-                    Porcelain Table
+                    Ceramic Tableware Price List
                   </button>
                   {isTabOpen("5-2") && (
                     <div className="sub-accordion-content-Hiden">
@@ -784,7 +784,7 @@ function HidenEn() {
                           </tr>
                           <tr>
                             <td>2</td>
-                            <td>Porcelain ashtray</td>
+                            <td>Ashtray</td>
                             <td>Piece</td>
                             <td>55,000</td>
                           </tr>
@@ -820,7 +820,7 @@ function HidenEn() {
                           </tr>
                           <tr>
                             <td>8</td>
-                            <td>Soup spoon</td>
+                            <td>Spoon</td>
                             <td>Piece</td>
                             <td>100,000</td>
                           </tr>
@@ -832,7 +832,7 @@ function HidenEn() {
                           </tr>
                           <tr>
                             <td>10</td>
-                            <td>Eating knife</td>
+                            <td>Butter knife</td>
                             <td>Piece</td>
                             <td>110,000</td>
                           </tr>
@@ -880,7 +880,7 @@ function HidenEn() {
                           </tr>
                           <tr>
                             <td>18</td>
-                            <td>Electric cooker</td>
+                            <td>Rice cooker</td>
                             <td>Piece</td>
                             <td>950,000</td>
                           </tr>
@@ -910,7 +910,7 @@ function HidenEn() {
                           </tr>
                           <tr>
                             <td>23</td>
-                            <td>Landline phone</td>
+                            <td>Landline</td>
                             <td>Once</td>
                             <td>200,000</td>
                           </tr>
@@ -958,7 +958,7 @@ function HidenEn() {
                           </tr>
                           <tr>
                             <td>31</td>
-                            <td>Glass surface</td>
+                            <td>Glass panel</td>
                             <td>Once</td>
                             <td>1,000,000</td>
                           </tr>
@@ -1352,7 +1352,7 @@ function HidenEn() {
                           </tr>
                           <tr>
                             <td>23</td>
-                            <td>Landline phone</td>
+                            <td>Landline</td>
                             <td>Piece</td>
                             <td>200,000</td>
                           </tr>
@@ -1376,7 +1376,7 @@ function HidenEn() {
                           </tr>
                           <tr>
                             <td>27</td>
-                            <td>Double sofa (1.6m or 1.8m)</td>
+                            <td> Sofa (1.6m or 1.8m)</td>
                             <td>Piece</td>
                             <td>7,000,000</td>
                           </tr>
@@ -1388,13 +1388,13 @@ function HidenEn() {
                           </tr>
                           <tr>
                             <td>29</td>
-                            <td>Single wooden chair</td>
+                            <td>Wooden chair</td>
                             <td>Piece</td>
                             <td>1,500,000</td>
                           </tr>
                           <tr>
                             <td>30</td>
-                            <td>Round wooden table</td>
+                            <td>Wooden round table</td>
                             <td>Piece</td>
                             <td>1,000,000</td>
                           </tr>
@@ -1858,6 +1858,8 @@ function HidenEn() {
                   </button>
                   {isTabOpen("10-1") && (
                     <div className="sub-accordion-content-Hiden">
+                      <p>Zalo/Whatsapp: 0936.486.890</p>
+                      <p>Phone: 0982.461.015</p>
                       <img
                         style={{ width: "74vw" }}
                         src="https://i.ibb.co/chPHm58X/image-2.png"

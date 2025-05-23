@@ -45,13 +45,13 @@ const Contact: React.FC = () => {
 
   return (
     <div className="main-contact">
-      <div className="img-contact">
+      {/* <div className="img-contact">
         <img
           src="https://i.ibb.co/7drwxYbK/35250.jpg"
           alt="img-contact"
           className="img-back-contact"
         />
-      </div>
+      </div> */}
       <div className="form-contact">
         <div className="contact-left">
           <h1>Liên hệ</h1>

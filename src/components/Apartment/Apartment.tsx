@@ -80,6 +80,7 @@ const Apartment = () => {
           throw new Error("Failed to fetch apartments");
         }
         const data = await response.json();
+        console.log("Fetched data:", data);
         setListingData(data);
       } catch (err) {
         setError(err.message);
