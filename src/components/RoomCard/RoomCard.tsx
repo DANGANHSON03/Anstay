@@ -97,7 +97,7 @@ const RoomCard = () => {
     }
   }, [locationParam]);
 
-  // Lấy ra ngày đã đặt hoặc đang giữ của từng room
+  // Lấy ra ngày đã đặt hoặc đang giữ của từng room (hàm này giữ nguyên logic cũ)
   const getExcludedDates = useCallback(
     (roomId: number) => {
       const periods = bookedDatesByRoom[roomId] || [];
@@ -114,25 +114,56 @@ const RoomCard = () => {
     [bookedDatesByRoom]
   );
 
-  // Số đêm đặt
+  // ====== SỬA logic tính số đêm: Không cho phép ở 0 đêm hoặc check-out <= check-in ======
   const getNightCount = (roomId: number) => {
     const range = dateRanges[roomId];
     if (range && range.startDate && range.endDate) {
-      return Math.ceil(
+      const diff =
         (range.endDate.getTime() - range.startDate.getTime()) /
-          (1000 * 60 * 60 * 24)
-      );
+        (1000 * 60 * 60 * 24);
+      return diff > 0 ? diff : 0;
     }
     return 0;
   };
 
-  // Ngăn chọn ngày đã book
+  // ====== SỬA handleDateChange: Báo lỗi khi chọn ngày không hợp lệ, reset ngày check-out ======
+  const handleDateChange = (
+    roomId: number,
+    dates: [Date | null, Date | null]
+  ) => {
+    const [start, end] = dates;
+    if (start && end) {
+      if (start >= end) {
+        alert("Ngày trả phòng phải sau ngày nhận phòng ít nhất 1 ngày.");
+        setDateRanges((prev) => ({
+          ...prev,
+          [roomId]: { startDate: start, endDate: null },
+        }));
+        return;
+      }
+    }
+    setDateRanges((prev) => ({
+      ...prev,
+      [roomId]: { startDate: start, endDate: end },
+    }));
+  };
+
+  // So sánh ngày chỉ lấy ngày-tháng-năm (không so sánh giờ)
+  const isSameDay = (d1: Date, d2: Date) =>
+    d1.getFullYear() === d2.getFullYear() &&
+    d1.getMonth() === d2.getMonth() &&
+    d1.getDate() === d2.getDate();
+
+  // ====== SỬA chuẩn lại filterDate (chỉ cần dùng filterDate, không cần excludeDates) ======
   const filterDate = (roomId: number, date: Date) => {
     const periods = bookedDatesByRoom[roomId] || [];
-    const isBooked = periods.some(
-      (period) => date >= period.start && date <= period.end
-    );
-    if (isBooked) return false;
+    for (const period of periods) {
+      let current = new Date(period.start);
+      while (current <= period.end) {
+        if (isSameDay(current, date)) return false;
+        current.setDate(current.getDate() + 1);
+      }
+    }
     return true;
   };
 
@@ -143,17 +174,6 @@ const RoomCard = () => {
     const month = pad(date.getMonth() + 1);
     const day = pad(date.getDate());
     return `${year}-${month}-${day}`;
-  };
-
-  const handleDateChange = (
-    roomId: number,
-    dates: [Date | null, Date | null]
-  ) => {
-    const [start, end] = dates;
-    setDateRanges((prev) => ({
-      ...prev,
-      [roomId]: { startDate: start, endDate: end },
-    }));
   };
 
   return (
@@ -167,7 +187,6 @@ const RoomCard = () => {
         const totalOriginal = price * totalNights * quantity;
         const totalDiscounted = pricePerNight * totalNights * quantity;
         const amountSaved = totalOriginal - totalDiscounted;
-        const excludedDates = getExcludedDates(room.id);
 
         return (
           <div className="room-card" key={room.id}>
@@ -291,7 +310,6 @@ const RoomCard = () => {
                     locale="vi"
                     dateFormat="dd/MM/yyyy"
                     placeholderText="Chọn khoảng ngày"
-                    excludeDates={excludedDates}
                     filterDate={(date) => filterDate(room.id, date)}
                     minDate={new Date()}
                     className="date-input"
@@ -311,6 +329,12 @@ const RoomCard = () => {
                     className="btn-select"
                     onClick={() => {
                       if (range.startDate && range.endDate) {
+                        if (range.startDate >= range.endDate) {
+                          alert(
+                            "Ngày trả phòng phải sau ngày nhận phòng ít nhất 1 ngày."
+                          );
+                          return;
+                        }
                         setSelectedRoomId(room.id);
                       } else {
                         alert(
@@ -325,6 +349,12 @@ const RoomCard = () => {
                     className="btn-book"
                     onClick={() => {
                       if (range.startDate && range.endDate) {
+                        if (range.startDate >= range.endDate) {
+                          alert(
+                            "Ngày trả phòng phải sau ngày nhận phòng ít nhất 1 ngày."
+                          );
+                          return;
+                        }
                         const params = new URLSearchParams({
                           id: room.id.toString(),
                           roomName: room.name,
@@ -393,6 +423,12 @@ const RoomCard = () => {
                   const room = rooms.find((r) => r.id === selectedRoomId);
                   const range = dateRanges[selectedRoomId];
                   if (room && range && range.startDate && range.endDate) {
+                    if (range.startDate >= range.endDate) {
+                      alert(
+                        "Ngày trả phòng phải sau ngày nhận phòng ít nhất 1 ngày."
+                      );
+                      return;
+                    }
                     const price = Number(room.price) || 0;
                     const discount = Number(room.discount) || 0;
                     const pricePerNight = Math.round(
