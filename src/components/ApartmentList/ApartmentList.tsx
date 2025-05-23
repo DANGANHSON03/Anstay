@@ -42,24 +42,27 @@ const ApartmentList = () => {
   const [apartments, setApartments] = useState<Apartment[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
+  const AREA_ENUM_MAP: Record<string, string> = {
+    "ha-noi": "HA_NOI",
+    "ha-long": "HA_LONG",
+  };
   useEffect(() => {
     const fetchApartments = async () => {
       try {
-        const res = await fetch("https://anstay.com.vn/api/apartments");
+        const areaParam = AREA_ENUM_MAP[locationSlug || "ha-noi"];
+        const res = await fetch(
+          `http://localhost:8085/api/apartments/by-area?area=${areaParam}`
+        );
         const data = await res.json();
 
         if (Array.isArray(data)) {
-          const filtered = data.filter((apt) => {
-            const aptSlug = normalizeToSlug(apt.location || "");
-            const targetSlug = locationSlug || "ha-noi";
-
-            return aptSlug.includes(targetSlug);
-          });
-
-          setApartments(filtered);
+          setApartments(data);
+        } else {
+          setApartments([]);
         }
       } catch (err) {
         console.error("Lỗi khi fetch danh sách căn hộ:", err);
+        setApartments([]);
       } finally {
         setLoading(false);
       }
@@ -86,7 +89,14 @@ const ApartmentList = () => {
 
   return (
     <div className="apartment-list-container">
-      <h2 className="list-title">Danh sách căn hộ {locationName}</h2>
+      <h2 className="list-title">
+        Danh sách căn hộ{" "}
+        {locationSlug === "ha-noi"
+          ? "Hà Nội"
+          : locationSlug === "ha-long"
+          ? "Hạ Long"
+          : ""}
+      </h2>
 
       {loading ? (
         <p>Đang tải...</p>
@@ -99,14 +109,15 @@ const ApartmentList = () => {
                 onClick={() => handleClick(apt.name)}
               >
                 <Slider {...sliderSettings}>
-                  {apt.images?.map((img, index) => (
-                    <img
-                      key={index}
-                      src={img.imageUrl || img.image || ""}
-                      alt={`Ảnh ${index + 1}`}
-                      className="apartment-main-image"
-                    />
-                  ))}
+                  {Array.isArray(apt.images) &&
+                    apt.images.map((img, index) => (
+                      <img
+                        key={index}
+                        src={img.imageUrl || img.image || ""}
+                        alt={`Ảnh ${index + 1}`}
+                        className="apartment-main-image"
+                      />
+                    ))}
                 </Slider>
 
                 <div className="apartment-full-info">

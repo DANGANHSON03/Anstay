@@ -168,12 +168,7 @@ const RoomCard = ({ data }: { data: RoomData }) => {
                         <img
                           src={images[currentIndex]}
                           alt={`Ảnh ${currentIndex + 1} của ${room.name}`}
-                          style={{
-                            width: "300px",
-                            height: "100%",
-                            objectFit: "cover",
-                            borderRadius: "10px",
-                          }}
+                          style={{}}
                         />
                         <button
                           onClick={prevImage}

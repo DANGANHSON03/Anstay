@@ -32,8 +32,10 @@
 }
 
 .room-image img {
-  height: 150px;
+  width: 300px;
+  height: 100%;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 .room-image-count {
@@ -210,6 +212,10 @@
   cursor: pointer;
   border: none;
 }
+.btns{
+  margin-top: 250px;
+  padding: 15px;
+}
 button {
   color: white !important;
 }
@@ -217,6 +223,7 @@ button {
   background: #198ec8;
   color: #fff;
   transition: background 0.3s ease;
+  padding: 15px;
 }
 .btn-select:hover {
   background: #025d8b; /* màu đậm hơn */
@@ -226,6 +233,7 @@ button {
   background: #389b3b;
   color: #fff;
   transition: background 0.3s ease;
+  padding: 15px;
 }
 .btn-book:hover {
   background: #037908; /* màu đậm hơn */
@@ -359,7 +367,154 @@ button {
   font-weight: bold;
   cursor: pointer;
 }
-@media (max-width: 768px) {
+@media (min-width: 600px) and (max-width: 1024px) {
+  .room-card {
+    max-width: 700px;
+    width: 100%;
+    margin: 24px auto;
+    padding: 0 8px;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .body-card {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .room-info {
+    width: 100%;
+    max-width: 650px;
+    padding: 18px 12px;
+    gap: 16px;
+    font-size: 16px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+  .room-image {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    aspect-ratio: 16/9;
+    height: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    display: block;
+  }
+  .room-image img {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+  }
+  .room-details {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    box-sizing: border-box;
+  }
+  .room-actions {
+    flex-direction: row;
+    gap: 16px;
+    margin: 14px 0 0 0;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    max-width: 650px;
+  }
+  .btns button,
+  .btn-book,
+  .btn-select {
+    font-size: 17px;
+    padding: 12px 22px;
+    border-radius: 6px;
+  }
+  .room-price {
+    font-size: 20px;
+    align-items: flex-end;
+    margin-top: 10px;
+  }
+  .discount-tag {
+    font-size: 17px;
+    padding: 8px 14px;
+    border-radius: 6px;
+  }
+  .room-policy ul,
+  .room-promotions {
+    font-size: 15px;
+  }
+  .night-info {
+    font-size: 15px;
+    padding: 10px;
+    margin-bottom: 8px;
+  }
+}
+  .room-title {
+    font-size: 19px;
+  }
+  .room-icons {
+    font-size: 14px;
+    gap: 8px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    transform: scale(1);
+  }
+  .room-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .room-actions {
+    flex-direction: row;
+    gap: 8px;
+    margin: 8px 0;
+    justify-content: flex-end;
+  }
+  .btns button,
+  .btn-book,
+  .btn-select {
+    font-size: 14px;
+    padding: 10px 14px;
+    border-radius: 5px;
+  }
+  .room-price {
+    font-size: 18px;
+    align-items: flex-end;
+  }
+  .discount-tag {
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 5px;
+  }
+  .room-policy ul,
+  .room-promotions {
+    font-size: 13px;
+  }
+  .night-info {
+    font-size: 13px;
+    padding: 8px;
+    margin-bottom: 6px;
+  }
+}
+@media (max-width: 480px) {
   .room-card {
     padding-bottom: 15px;
     margin: 12px 12px;
@@ -382,10 +537,48 @@ button {
     padding: 8px;
     gap: 8px;
   }
-  .room-image img {
-    border-radius: 6px;
+  .room-image {
     width: 100%;
-    height: 140px;
+    margin: 0;
+    aspect-ratio: 16/9;
+    height: auto;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    display: block;
+  }
+  .room-image img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
+    margin: 0;
+  }
+  .room-image .next-btn,
+  .room-image .prev-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.4);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .room-image .prev-btn {
+    left: 8px;
+  }
+  .room-image .next-btn {
+    right: 8px;
   }
   .room-title {
     font-size: 18px;
@@ -427,7 +620,7 @@ button {
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
-    justify-content: flex-start; /* giữ mặc định cho mobile */
+    justify-content: flex-start;
   }
   .room-price {
     font-size: 18px;
@@ -435,8 +628,8 @@ button {
   .room-icons.compact {
     display: flex;
     flex-direction: column;
-    align-items: center; /* căn giữa toàn bộ */
-    gap: 8px; /* khoảng cách giữa các dòng */
+    align-items: center;
+    gap: 8px;
     text-align: center;
     padding: 12px 0;
   }
@@ -487,7 +680,7 @@ button {
     align-items: center;
     font-size: 14px;
     color: #111;
-    gap: 4px; /* giữa icon và số */
+    gap: 4px;
   }
 
   .price-strike {
@@ -495,13 +688,13 @@ button {
   }
   .btns {
     display: flex;
-    flex-direction: row; /* xếp ngang */
-    gap: 8px; /* khoảng cách rõ ràng giữa nút */
+    flex-direction: row;
+    gap: 8px;
     margin-top: 10px;
   }
 
   .btns button {
-    flex: 1; /* mỗi nút rộng bằng nhau */
+    flex: 1;
     padding: 10px 0;
     font-size: 16px;
     border-radius: 6px;
@@ -535,5 +728,246 @@ button {
   }
   button {
     color: white !important;
+  }
+}
+@media (max-width: 768px) {
+  .room-card {
+    padding-bottom: 15px;
+    margin: 12px 12px;
+    max-width: 100%;
+    margin: 8px 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .room-actions {
+    display: flow;
+  }
+  .body-card {
+    margin: 0 12px;
+    flex-direction: column;
+    gap: 0;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+  .room-info {
+    padding: 8px;
+    gap: 8px;
+  }
+  .room-image {
+    width: 100%;
+    margin: 0;
+    aspect-ratio: 16/9;
+    height: auto;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    display: block;
+  }
+  .room-image img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
+    margin: 0;
+  }
+  .room-image .next-btn,
+  .room-image .prev-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.4);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .room-image .prev-btn {
+    left: 8px;
+  }
+  .room-image .next-btn {
+    right: 8px;
+  }
+  .room-title {
+    font-size: 18px;
+  }
+  .room-icons {
+    font-size: 13px;
+    gap: 8px;
+    display: contents;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0.9);
+  }
+  .room-ic {
+    display: contents;
+    gap: 5px;
+  }
+  .room-details {
+    flex-grow: 1;
+    display: flow;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .room-size {
+    display: inline-block;
+  }
+  .room-standard-rate {
+    font-size: 16px;
+  }
+  .room-policy ul,
+  .room-promotions {
+    font-size: 12px;
+  }
+  .room-promotions {
+    margin-top: -8px;
+  }
+
+  .room-price-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    justify-content: flex-start;
+  }
+  .room-price {
+    font-size: 18px;
+  }
+  .room-icons.compact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    padding: 12px 0;
+  }
+
+  .room-icons.compact h4 {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0;
+  }
+  .room-policy strong {
+    font-size: 17.5px;
+  }
+  .room-policy ul {
+    font-weight: bold;
+    background-color: #d7d2d2;
+    font-size: 14px;
+  }
+  .room-promotions strong {
+    font-size: 17px;
+  }
+
+  .discount-tag {
+    background-color: #e74c3c;
+    color: white;
+    padding: 14px 18px;
+    border-radius: 6px;
+    font-size: 20px;
+    font-weight: bold;
+    display: inline-block;
+  }
+  .room-promotions .badge {
+    font-size: 14px;
+    padding: 4px 8px;
+    margin-right: 6px;
+    margin-top: 4px;
+  }
+
+  .room-ic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .room-ic span {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #111;
+    gap: 4px;
+  }
+
+  .price-strike {
+    font-size: 12px;
+  }
+  .btns {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .btns button {
+    flex: 1;
+    padding: 10px 0;
+    font-size: 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  }
+  .btns button,
+  .btn-book,
+  .btn-select {
+    font-size: 12px;
+    padding: 15px 17px;
+  }
+  .qty-control {
+    width: 90px;
+  }
+  .date-control,
+  .date-picker-container {
+    gap: 4px;
+    margin-bottom: 6px;
+  }
+  .night-info {
+    border-radius: 6px;
+    border: 1px solid#302b2b;
+    font-weight: bold;
+  }
+  .react-datepicker-wrapper {
+    display: flex;
+  }
+  .date-picker-container label {
+    text-align: center;
+  }
+  button {
+    color: white !important;
+  }
+}
+@media (min-width: 800px) and (max-width: 900px) {
+  .room-card,
+  .body-card,
+  .room-info,
+  .room-details,
+  .room-actions {
+    max-width: 98vw !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box;
+  }
+  .room-image {
+    max-width: 98vw !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+  .room-image img {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
   }
 }
