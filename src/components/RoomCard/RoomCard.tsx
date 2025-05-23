@@ -26,6 +26,11 @@ interface DateRange {
   endDate: Date | null;
 }
 
+interface BookedPeriod {
+  start: Date;
+  end: Date;
+}
+
 const RoomCard = () => {
   const [quantity, setQuantity] = useState(1);
   const [dateRanges, setDateRanges] = useState<{ [roomId: number]: DateRange }>(
@@ -33,12 +38,18 @@ const RoomCard = () => {
   );
   const [selectedRoomId, setSelectedRoomId] = useState<number | null>(null);
 
+  const [rooms, setRooms] = useState<RoomData[]>([]);
+  const [bookedDatesByRoom, setBookedDatesByRoom] = useState<{
+    [roomId: number]: BookedPeriod[];
+  }>({});
+  const [loadingBookedDates, setLoadingBookedDates] = useState(false);
+
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const locationParam = searchParams.get("location");
-  const [rooms, setRooms] = useState<RoomData[]>([]);
 
+  // Fetch apartment + room list
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -53,9 +64,31 @@ const RoomCard = () => {
           );
           const roomsData: RoomData[] = await roomsResponse.json();
           setRooms(roomsData);
+
+          // Fetch tất cả ngày đã book của từng room (đã đặt & đang giữ)
+          setLoadingBookedDates(true);
+          const newBookedDates: { [roomId: number]: BookedPeriod[] } = {};
+          for (const room of roomsData) {
+            const res = await fetch(
+              `http://localhost:8085/api/apartment-bookings/by-room?roomId=${room.id}`
+            );
+            const bookings = await res.json();
+            // Chỉ lấy status HOLD, CONFIRMED, PENDING
+            const validStatuses = ["HOLD", "CONFIRMED", "PENDING"];
+            const periods: BookedPeriod[] = bookings
+              .filter((b: any) => validStatuses.includes(b.status))
+              .map((b: any) => ({
+                start: new Date(b.checkIn),
+                end: new Date(b.checkOut),
+              }));
+            newBookedDates[room.id] = periods;
+          }
+          setBookedDatesByRoom(newBookedDates);
+          setLoadingBookedDates(false);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
+        setLoadingBookedDates(false);
       }
     };
 
@@ -64,25 +97,24 @@ const RoomCard = () => {
     }
   }, [locationParam]);
 
-  const bookedDates = [
-    { start: new Date("2025-05-21"), end: new Date("2025-05-22") },
-    { start: new Date("2025-05-25"), end: new Date("2025-05-27") },
-  ];
+  // Lấy ra ngày đã đặt hoặc đang giữ của từng room
+  const getExcludedDates = useCallback(
+    (roomId: number) => {
+      const periods = bookedDatesByRoom[roomId] || [];
+      const dates: Date[] = [];
+      periods.forEach(({ start, end }) => {
+        let current = new Date(start);
+        while (current <= end) {
+          dates.push(new Date(current));
+          current.setDate(current.getDate() + 1);
+        }
+      });
+      return dates;
+    },
+    [bookedDatesByRoom]
+  );
 
-  const getExcludedDates = useCallback(() => {
-    const dates: Date[] = [];
-    bookedDates.forEach(({ start, end }) => {
-      let current = new Date(start);
-      while (current <= end) {
-        dates.push(new Date(current));
-        current.setDate(current.getDate() + 1);
-      }
-    });
-    return dates;
-  }, [bookedDates]);
-
-  const excludedDates = getExcludedDates();
-
+  // Số đêm đặt
   const getNightCount = (roomId: number) => {
     const range = dateRanges[roomId];
     if (range && range.startDate && range.endDate) {
@@ -94,8 +126,10 @@ const RoomCard = () => {
     return 0;
   };
 
-  const filterDate = (date: Date) => {
-    const isBooked = bookedDates.some(
+  // Ngăn chọn ngày đã book
+  const filterDate = (roomId: number, date: Date) => {
+    const periods = bookedDatesByRoom[roomId] || [];
+    const isBooked = periods.some(
       (period) => date >= period.start && date <= period.end
     );
     if (isBooked) return false;
@@ -103,7 +137,6 @@ const RoomCard = () => {
   };
 
   const pad = (num: number) => String(num).padStart(2, "0");
-
   const formatDate = (date: Date | null) => {
     if (!date) return "";
     const year = date.getFullYear();
@@ -134,6 +167,7 @@ const RoomCard = () => {
         const totalOriginal = price * totalNights * quantity;
         const totalDiscounted = pricePerNight * totalNights * quantity;
         const amountSaved = totalOriginal - totalDiscounted;
+        const excludedDates = getExcludedDates(room.id);
 
         return (
           <div className="room-card" key={room.id}>
@@ -181,7 +215,6 @@ const RoomCard = () => {
                     </span>
                   </div>
                 </div>
-
                 <div className="room-policy">
                   <strong>Payment & Cancellation Policy:</strong>
                   <ul>
@@ -189,7 +222,6 @@ const RoomCard = () => {
                     <li>Hủy phòng trước 24h</li>
                   </ul>
                 </div>
-
                 <div className="room-promotions">
                   <strong>Other promotions and discounts:</strong>
                   <div className="badge purple">
@@ -260,11 +292,18 @@ const RoomCard = () => {
                     dateFormat="dd/MM/yyyy"
                     placeholderText="Chọn khoảng ngày"
                     excludeDates={excludedDates}
-                    filterDate={filterDate}
+                    filterDate={(date) => filterDate(room.id, date)}
                     minDate={new Date()}
                     className="date-input"
                     isClearable
                   />
+                  {loadingBookedDates && (
+                    <div
+                      style={{ fontSize: 12, color: "#e60023", marginTop: 4 }}
+                    >
+                      Đang tải lịch phòng...
+                    </div>
+                  )}
                 </div>
 
                 <div className="btns">
