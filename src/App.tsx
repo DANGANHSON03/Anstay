@@ -24,8 +24,7 @@ import HidenPage from "./pages/HidenPage/HidenPage";
 import FormQr from "./components/FormQr/FormQr.tsx";
 import SearchResults from "./pages/SearchResults/SearchResults";
 import ApartmentList from "./pages/ApartmentList/ApartmentList";
-import Header from "./components/Header/Header";
-
+import BookingPage from "./components/BookingPage/BookingPage.tsx";
 function App() {
   return (
     <AuthProvider>
@@ -82,7 +81,14 @@ function App() {
               </MainLayout>
             }
           />
-
+          <Route
+            path="booking-page"
+            element={
+              <MainLayout>
+                <BookingPage />
+              </MainLayout>
+            }
+          />
           <Route
             path="/apartment-ha-long"
             element={
@@ -110,7 +116,7 @@ function App() {
           />
 
           <Route
-            path="/booking"
+            path="/booking-page"
             element={
               <MainLayout>
                 <Booking />
