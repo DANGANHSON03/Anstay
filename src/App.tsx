@@ -25,6 +25,8 @@ import FormQr from "./components/FormQr/FormQr.tsx";
 import SearchResults from "./pages/SearchResults/SearchResults";
 import ApartmentList from "./pages/ApartmentList/ApartmentList";
 import BookingPage from "./components/BookingPage/BookingPage.tsx";
+import BlogDetail from "./pages/Blog/BlogDetail";
+
 function App() {
   return (
     <AuthProvider>
@@ -248,6 +250,7 @@ function App() {
               </MainLayout>
             }
           />
+          <Route path="/blog/:id" element={<BlogDetail />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
