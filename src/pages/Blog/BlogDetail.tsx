@@ -35,10 +35,38 @@ export default function BlogDetail() {
           <div className="blog-detail-description">{blog.description}</div>
         </div>
 
-        <div
-          className="blog-html"
-          dangerouslySetInnerHTML={{ __html: blog.content }}
-        />
+        <div className="blog-html">
+          {Array.isArray(blog.content) ? (
+            blog.content.map((block, index) => {
+              switch (block.type) {
+                case "title":
+                  return <h2 key={index}>{block.text}</h2>;
+                case "paragraph":
+                  return (
+                    <div
+                      key={index}
+                      className="blog-list-item"
+                      dangerouslySetInnerHTML={{ __html: block.html }}
+                    />
+                  );
+                case "image":
+                  return (
+                    <img
+                      key={index}
+                      src={block.src}
+                      alt={block.alt}
+                      className="blog-content-img"
+                    />
+                  );
+                default:
+                  return null;
+              }
+            })
+          ) : (
+            // fallback để render nếu content vẫn là string cũ
+            <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+          )}
+        </div>
 
         {blog.gallery.length > 0 && (
           <section className="blog-gallery-section">

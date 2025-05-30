@@ -128,17 +128,9 @@ body {
   letter-spacing: 0.03em;
 }
 
-.blog-html strong,
-.blog-html b {
-  color: #2563eb;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-shadow: 0 1px 4px #38bdf855;
-}
-
 .blog-html em,
 .blog-html i {
-  color: #0ea5e9;
+  color: #1f2937;
   font-style: italic;
   font-weight: 500;
   text-shadow: 0 1px 4px #0ea5e955;
@@ -336,6 +328,24 @@ body {
 
 .blog-gallery-img-wrapper:hover .blog-gallery-caption {
   opacity: 1;
+}
+.blog-html {
+  color: #1f2937; /* Màu đen tro hiện đại */
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.blog-html b {
+  color: inherit !important;
+  font-weight: 600;
+}
+
+.blog-html h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1d4ed8; /* hoặc #333 nếu muốn đồng bộ */
+  margin-top: 24px;
+  margin-bottom: 12px;
 }
 
 @media (max-width: 768px) {
