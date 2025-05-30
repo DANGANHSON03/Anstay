@@ -1889,6 +1889,279 @@ function Hiden() {
             </div>
           )}
         </div>
+        <div className="accordion-item-Hiden">
+          <button
+            onClick={() => toggleTab(12)}
+            className="accordion-header-Hiden"
+            aria-expanded={isTabOpen(12)}
+          >
+            Giới thiệu một vài địa điểm ăn uống hấp dẫn
+          </button>
+          {isTabOpen(12) && (
+            <div className="accordion-content-Hiden">
+              <div className="sub-accordion-Hiden">
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("12-1");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("12-1")}
+                  >
+                    Đồ ăn
+                  </button>
+                  {isTabOpen("12-1") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <div className="food-all">
+                        <div className="food">
+                          <div className="descriptionFood food-left">
+                            <h2>Ăn sáng</h2>
+                            <p>
+                              - Bún cù kỳ Hường Béo - Đường Tấn Mài, Cái Dăm,
+                              Bãi Cháy (50k/bát)
+                            </p>
+                            <p>
+                              - Bún hải sản Ngọc Hà - 334 Hạ Long, Bãi Cháy (từ
+                              40k/bát)
+                            </p>
+                            <p>
+                              - Bánh đa cua - bánh cuốn chả mực cô Tuyết - Sân
+                              vườn Cái Dăm, Bãi Cháy (từ 35k/suất)
+                            </p>
+                            <p>- Phở gà Tuấn Hiếu - 352 Cái Dăm (từ 40k/bát)</p>
+                            <p>
+                              - Phở gà Hà Nội - Rặng dừa Cái Dăm, Bãi Cháy (từ
+                              50k/bát)
+                            </p>
+                            <p>
+                              - Bún riêu cua tóp mỡ Hà Nội - 1124 Đường Hạ Long,
+                              Bãi Cháy (từ 35k/suất)
+                            </p>
+                            <p>
+                              - Bún cá chấm Hào sản - Sân vườn Cái Dăm, Bãi Cháy
+                              (từ 35k/suất)
+                            </p>
+                            <p>
+                              - Bún bò huế Phương Đông - Sân vườn Cái Dăm, Bãi
+                              Cháy (từ 35k/suất)
+                            </p>
+                            <p>
+                              - Bánh mì ngon Thuý Thuỳ - 420 Cái Dăm (từ 20k)
+                            </p>
+                            <p>
+                              - Bún sườn măng - Sân vườn Cái Dăm, Bãi Cháy (từ
+                              35k/bát)
+                            </p>
+                          </div>
+                          <div className="img-food">
+                            <img
+                              src="https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2023/7/21/1219307/Bun-Cu-Ky.jpeg"
+                              alt=""
+                            />
+                          </div>
+                        </div>
+                        <div className="food">
+                          <div className="img-food">
+                            <img
+                              src="https://hotel84.com/hotel84-images/news/photo/nhahang-cua-vang-halong.jpg"
+                              alt=""
+                            />
+                            <img
+                              src="https://scontent.fsgn5-12.fna.fbcdn.net/v/t39.30808-6/487729480_1185500953368411_2510347861964589143_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=lxTcEOeEcvkQ7kNvwGtzSpm&_nc_oc=AdmuH3iBX_CYDU09x7cTO7bXBHg-XbxBZKIJYQWfhWoZeMPzET9t8BeSv3knQPH_uXw&_nc_zt=23&_nc_ht=scontent.fsgn5-12.fna&_nc_gid=SFJJIjGDsRp4WvPq307ilg&oh=00_AfIONJ7R0Qp3BJndsEPR5m4c-XeqE0RB7_hICLIO0uxu1g&oe=683D99AF"
+                              alt=""
+                            />
+                          </div>
+                          <div className="descriptionFood  food-right">
+                            <h2>Nhà hàng/Hải sản/Ăn chính</h2>
+                            <p>- Nhà hàng Ngọc Phương Nam</p>
+                            <p>- Nhà hàng Hồng Hạnh 3 – 50 Hạ Long, Bãi Cháy</p>
+                            <p>
+                              - Nhà hàng Hồng Hạnh 6 – Tổ 11C khu 4A, P. Hùng
+                              Thắng, Hạ Long
+                            </p>
+                            <p>
+                              - Nhà hàng Cua Vàng – 32 Phan Châu Trinh, Bãi
+                              Cháy, Hạ Long
+                            </p>
+                            <p>
+                              - Nhà hàng Green – Số 2 Đ. Hoàng Quốc Việt, KĐT
+                              Cái Dăm, Bãi Cháy, Hạ Long
+                            </p>
+                            <p>
+                              - Nhà hàng Thuỳ Linh – Đối diện chung cư Newlife,
+                              Đ. Hoàng Quốc Việt, P. Hùng Thắng, Bãi Cháy
+                            </p>
+                            <p>
+                              - Nhà hàng Thiên Anh – 11 Đ. Phan Bội Châu, Bãi
+                              Cháy
+                            </p>
+                            <p>
+                              - Nhà hàng Nhật Sakurajima Corner – dãy A KBT
+                              Green Bay Village, Đ. Hoàng Quốc Việt, P. Hùng
+                              Thắng, Hạ Long (buffet từ 399k)
+                            </p>
+                            <p>
+                              - Nhà hàng Hàn quốc Sơm Maul – Đường Rặng Dừa Cái
+                              Dăm, Bãi Cháy (buffet từ 170k)
+                            </p>
+                            <p>
+                              - Nhà hàng Hàn Quốc Won – Cạnh KS Blue Sky Đường
+                              Rặng dừa Cái Dăm (từ 150k/người)
+                            </p>
+                            <p>
+                              - Nhà hàng Trung Quốc YnY – Đường Rặng Dừa Cái Dăm
+                              (từ 50k/người)
+                            </p>
+                            <p>
+                              - Nhà hàng Trung Quốc Shu Xiang Yuan – Số 2 Đường
+                              Rặng Dừa Cái Dăm (từ 50k/người)
+                            </p>
+                            <p>
+                              - Nhà hàng Lẩu bò Ba Toa 1900 – Đường Rặng Dừa Cái
+                              Dăm (từ 150k/người)
+                            </p>
+                            <p>
+                              - Nhà hàng lẩu nướng Kiwi – Bò nhúng dấm – Tầng 1
+                              Toà A Chung cư Newlife (từ 150k/người)
+                            </p>
+                            <p>
+                              - Nhà hàng Âu Mapa Bistro – 409 Đường Hạ Long, Bãi
+                              Cháy (từ 250k/người)
+                            </p>
+                          </div>
+                        </div>
+                        <div className="food">
+                          <div className="descriptionFood food-left">
+                            <h2>Ăn nhẹ, ăn vặt</h2>
+                            <p>
+                              - Xiên chiên, nhậu nhẹ nhàng Tổ cafe – 50 Hùng
+                              Thắng (Từ 50k/người)
+                            </p>
+                            <p>
+                              - Bún đậu quán Anh Em – Khu sân vườn Cái Dăm, Bãi
+                              Cháy (Từ 40k/suất)
+                            </p>
+                            <p>
+                              - Bò nướng đá núi lửa Fujicow – 551 Đường Hạ Long,
+                              Bãi Cháy (Từ 80k/suất)
+                            </p>
+                            <p>
+                              - Jinju Kimbap – Sân vườn Cái Dăm, Bãi Cháy (từ
+                              50k/người)
+                            </p>
+                            <p>- Ăn vặt chợ Vườn Đào (từ 50k/người)</p>
+                            <p>
+                              - Bầu Pizza – SN 29 Tổ 10 Khu 5 Bãi Cháy (từ
+                              80k/cái)
+                            </p>
+                            <p>- Lotteria – 676 Hạ Long</p>
+                            <p>
+                              - Cơm rang phở Quân – Sân vườn Cái Dăm (từ
+                              45k/suất)
+                            </p>
+                            <p>
+                              - Nem nướng, sữa chua Nhón – Đằng sau toà C chung
+                              cư Newlife Bãi Cháy
+                            </p>
+                            <p>- Hợp tác xã quà quê – 1132 Hạ Long, Ao Cá</p>
+                          </div>
+                          <div className="img-food">
+                            <img
+                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZBrSHuG_3OmcB7gHho4mjf9BYIR2pGpK_jQ&s"
+                              alt=""
+                            />
+                          </div>
+                        </div>
+                        <div className="food">
+                          <div className="img-food">
+                            <img
+                              src="https://scontent.fsgn5-3.fna.fbcdn.net/v/t39.30808-6/468951126_1288895119091087_4787621595311610663_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=aVJBIrkYWQ4Q7kNvwHTCUCa&_nc_oc=AdkYGN3zFWskIqzIG5-E4WDqvnwx9ZsfRKnuuu7WuwuuK6UKd46vDPBfa_HxdWbePtY&_nc_zt=23&_nc_ht=scontent.fsgn5-3.fna&_nc_gid=a97BhvzzKVnlEbMOKGvNkQ&oh=00_AfL4eXxS1dD554nRY6xaEUDIgq6WZGc18Tdt4hhd0bPZIQ&oe=683CAE1C"
+                              alt=""
+                            />
+                          </div>
+                          <div className="descriptionFood food-right">
+                            <h2>Ăn đêm</h2>
+                            <p>
+                              - Quán ăn đêm Bà Lan Béo – đường vào Cổng chợ Vườn
+                              Đào
+                            </p>
+                            <p>
+                              - Quán ăn đêm Minh Tuấn – Đ. Hậu Cần, Bãi Cháy
+                            </p>
+                            <p>- Quán ăn đêm Lan Thư – 444 Cái Dăm</p>
+                            <p>- Quán ăn đêm Cô Hường – Số 186 Giếng Đáy</p>
+                          </div>
+                        </div>
+                        <div className="food">
+                          <div className="descriptionFood food-left">
+                            <h2>Quán Ốc</h2>
+                            <p>
+                              - Ốc Chull – Đường vào nhà hàng Cua Vàng, Cái Dăm
+                              Bãi Cháy
+                            </p>
+                            <p>- Ốc Nàng Dâu – 228 EC Hùng Thắng</p>
+                            <p>- Ốc Ngọc Sơn – 538 Cái Dăm</p>
+                            <p>- Ốc Giếng Đáy – Số 14 Tổ 4 Khu 4 Giếng Đáy</p>
+                          </div>
+                          <div className="img-food">
+                            <img
+                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1kTB2ZfJ2gvvYwFWb2mVvLwqZqa4fTdE7-w&s"
+                              alt=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div className="sub-accordion-item-Hiden">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTab("12-2");
+                    }}
+                    className="sub-accordion-header-Hiden"
+                    aria-expanded={isTabOpen("12-2")}
+                  >
+                    Đồ uống
+                  </button>
+                  {isTabOpen("12-2") && (
+                    <div className="sub-accordion-content-Hiden">
+                      <div className="food-all">
+                        <div className="food">
+                          <div className="img-food">
+                            <img
+                              src="https://vetauthamvinhhalong.com/wp-content/uploads/2023/04/nha-hang-hong-hanh-ha-long-1.jpg"
+                              alt=""
+                            />
+                          </div>
+                          <div className="descriptionFood food-right">
+                            <h2> Đồ uống-cafe, chill, quán có đồ uống</h2>
+                            <p>La Luna Coffee – Đồi Monaco, Bãi Cháy</p>
+                            <p>
+                              Cái Quán ở ngay Ao Cá – Số 2A Cao Đạt, Bãi Cháy
+                              (bờ hồ Ao Cá)
+                            </p>
+                            <p>Laika bãi biển – Đường Bao biển Bãi Cháy</p>
+                            <p>
+                              Thông zeo – Căn tin hải quân, Đồi Hải quân, Vườn
+                              Đào, Bãi Cháy
+                            </p>
+                            <p>
+                              Tổ cafe (có cả xiên chiên, nhậu nhẹ nhàng) – 50
+                              Hùng Thắng
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Popups for video guides */}
