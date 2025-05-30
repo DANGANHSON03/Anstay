@@ -1911,43 +1911,43 @@ function HidenEn() {
                           <div className="descriptionFood food-left">
                             <h2>Breakfast</h2>
                             <p>
-                              - Huong Beo Crab Noodle – Tan Mai St., Cai Dam,
+                              🗺️ Huong Beo Crab Noodle – Tan Mai St., Cai Dam,
                               Bai Chay (50k/bowl)
                             </p>
                             <p>
-                              - Ngoc Ha Seafood Noodle – 334 Ha Long St., Bai
+                              🗺️ Ngoc Ha Seafood Noodle – 334 Ha Long St., Bai
                               Chay (from 40k/bowl)
                             </p>
                             <p>
-                              - Cua Fish Cake Noodle, Rice Roll with Squid – Co
+                              🗺️ Cua Fish Cake Noodle, Rice Roll with Squid – Co
                               Tuyet Garden, Cai Dam, Bai Chay (from 35k/set)
                             </p>
                             <p>
-                              - Tuan Hieu Chicken Pho – 352 Cai Dam (from
+                              🗺️ Tuan Hieu Chicken Pho – 352 Cai Dam (from
                               40k/bowl)
                             </p>
                             <p>
-                              - Hanoi Chicken Pho – Rang Dua, Cai Dam, Bai Chay
+                              🗺️ Hanoi Chicken Pho – Rang Dua, Cai Dam, Bai Chay
                               (from 50k/bowl)
                             </p>
                             <p>
-                              - Crab Paste Noodle with Fried Fat – 1124 Ha Long
+                              🗺️ Crab Paste Noodle with Fried Fat – 1124 Ha Long
                               St., Bai Chay (from 35k/serving)
                             </p>
                             <p>
-                              - Dipping Fish Noodle – Garden, Cai Dam, Bai Chay
+                              🗺️ Dipping Fish Noodle – Garden, Cai Dam, Bai Chay
                               (from 35k/serving)
                             </p>
                             <p>
-                              - Hue Beef Noodle – Phuong Dong Garden, Cai Dam,
+                              🗺️ Hue Beef Noodle – Phuong Dong Garden, Cai Dam,
                               Bai Chay (from 35k/serving)
                             </p>
                             <p>
-                              - Thuy Thuy Delicious Banh Mi – 420 Cai Dam (from
+                              🗺️ Thuy Thuy Delicious Banh Mi – 420 Cai Dam (from
                               20k)
                             </p>
                             <p>
-                              - Pork Rib Bamboo Shoot Noodle – Garden, Cai Dam,
+                              🗺️ Pork Rib Bamboo Shoot Noodle – Garden, Cai Dam,
                               Bai Chay (from 35k/bowl)
                             </p>
                           </div>
@@ -1971,58 +1971,58 @@ function HidenEn() {
                           </div>
                           <div className="descriptionFood food-right">
                             <h2>Restaurants/Seafood/Main meals</h2>
-                            <p>- Ngoc Phuong Nam Restaurant</p>
-                            <p>- Hong Hanh 3 – 50 Ha Long, Bai Chay</p>
+                            <p>🗺️ Ngoc Phuong Nam Restaurant</p>
+                            <p>🗺️ Hong Hanh 3 – 50 Ha Long, Bai Chay</p>
                             <p>
-                              - Hong Hanh 6 – Group 11C, Zone 4A, Hung Thang
+                              🗺️ Hong Hanh 6 – Group 11C, Zone 4A, Hung Thang
                               Ward
                             </p>
                             <p>
-                              - Cua Vang Restaurant – 32 Phan Chau Trinh, Bai
+                              🗺️ Cua Vang Restaurant – 32 Phan Chau Trinh, Bai
                               Chay
                             </p>
                             <p>
-                              - Green Restaurant – No.2 Hoang Quoc Viet, Cai
+                              🗺️ Green Restaurant – No.2 Hoang Quoc Viet, Cai
                               Dam, Bai Chay
                             </p>
                             <p>
-                              - Thuy Linh Restaurant – Opposite Newlife
+                              🗺️ Thuy Linh Restaurant – Opposite Newlife
                               apartment, Hoang Quoc Viet St.
                             </p>
                             <p>
-                              - Thien Anh Restaurant – 11 Phan Boi Chau, Bai
+                              🗺️ Thien Anh Restaurant – 11 Phan Boi Chau, Bai
                               Chay
                             </p>
                             <p>
-                              - Sakurajima Corner Japanese Restaurant – Block A,
-                              Green Bay Village (buffet from 399k)
+                              🗺️ Sakurajima Corner Japanese Restaurant – Block
+                              A, Green Bay Village (buffet from 399k)
                             </p>
                             <p>
-                              - Som Maul Korean Restaurant – Rang Dua, Cai Dam
+                              🗺️ Som Maul Korean Restaurant – Rang Dua, Cai Dam
                               (buffet from 170k)
                             </p>
                             <p>
-                              - Won Korean Restaurant – Next to Blue Sky Hotel
+                              🗺️ Won Korean Restaurant – Next to Blue Sky Hotel
                               (from 150k/person)
                             </p>
                             <p>
-                              - YnY Chinese Restaurant – Rang Dua, Cai Dam (from
-                              50k/person)
+                              🗺️ YnY Chinese Restaurant – Rang Dua, Cai Dam
+                              (from 50k/person)
                             </p>
                             <p>
-                              - Shu Xiang Yuan Chinese Restaurant – No.2 Rang
+                              🗺️ Shu Xiang Yuan Chinese Restaurant – No.2 Rang
                               Dua, Cai Dam (from 50k/person)
                             </p>
                             <p>
-                              - Ba Toa 1900 Beef Hotpot – Rang Dua, Cai Dam
+                              🗺️ Ba Toa 1900 Beef Hotpot – Rang Dua, Cai Dam
                               (from 150k/person)
                             </p>
                             <p>
-                              - Kiwi Grilled Hotpot – Vinegar Dipped Beef – 1st
+                              🗺️ Kiwi Grilled Hotpot – Vinegar Dipped Beef – 1st
                               floor, Newlife Building A (from 150k/person)
                             </p>
                             <p>
-                              - Mapa Bistro – 409 Ha Long St., Bai Chay (from
+                              🗺️ Mapa Bistro – 409 Ha Long St., Bai Chay (from
                               250k/person)
                             </p>
                           </div>
@@ -2031,42 +2031,44 @@ function HidenEn() {
                           <div className="descriptionFood food-left">
                             <h2>Snacks & Light Meals</h2>
                             <p>
-                              - Fried Skewers, Light Snacks – To Cafe, 50 Hung
+                              🗺️ Fried Skewers, Light Snacks – To Cafe, 50 Hung
                               Thang (from 50k/person)
                             </p>
                             <p>
-                              - Bun Dau Mam Tom – Anh Em Restaurant, Garden Zone
-                              Cai Dam (from 40k/set)
+                              🗺️ Bun Dau Mam Tom – Anh Em Restaurant, Garden
+                              Zone Cai Dam (from 40k/set)
                             </p>
                             <p>
-                              - Fujicow Volcano Grilled Beef – 551 Ha Long St.,
+                              🗺️ Fujicow Volcano Grilled Beef – 551 Ha Long St.,
                               Bai Chay (from 80k/set)
                             </p>
                             <p>
-                              - Jinju Kimbap – Garden Zone, Cai Dam (from
+                              🗺️ Jinju Kimbap – Garden Zone, Cai Dam (from
                               50k/person)
                             </p>
                             <p>
-                              - Vườn Đào Night Market Snacks (from 50k/person)
+                              🗺️ Vườn Đào Night Market Snacks (from 50k/person)
                             </p>
                             <p>
-                              - Bau Pizza – No.29, Group 10, Zone 5 Bai Chay
+                              🗺️ Bau Pizza – No.29, Group 10, Zone 5 Bai Chay
                               (from 80k/pizza)
                             </p>
-                            <p>- Lotteria – 676 Ha Long</p>
+                            <p>🗺️ Lotteria – 676 Ha Long</p>
                             <p>
-                              - Quân Fried Rice & Pho – Garden, Cai Dam (from
+                              🗺️ Quân Fried Rice & Pho – Garden, Cai Dam (from
                               45k/set)
                             </p>
                             <p>
-                              - Nem Nuong & Yogurt – Behind Building C, Newlife
+                              🗺️ Nem Nuong & Yogurt – Behind Building C, Newlife
                               Apartment
                             </p>
-                            <p>- Quê Gifts Cooperative – 1132 Ha Long, Ao Ca</p>
+                            <p>
+                              🗺️ Quê Gifts Cooperative – 1132 Ha Long, Ao Ca
+                            </p>
                           </div>
                           <div className="img-food">
                             <img
-                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZBrSHuG_3OmcB7gHho4mjf9BYIR2pGpK_jQ&s"
+                              src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t39.30808-6/487828241_8895413127230861_7865375941938956231_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=THIXI6XdQGgQ7kNvwGgcS6x&_nc_oc=AdkkKOEXk7elg1tOm93Os3xEHoVubYVbcvLK5QG_dzVIo6zxWUGcnw1THvJpWJDV-HI&_nc_zt=23&_nc_ht=scontent.fsgn5-5.fna&_nc_gid=fFHedRwi1zgmdgujkZjT9Q&oh=00_AfLg1vQMxSL15f4uUK9WM3jUhZMyZFpOa8UTy5eMzrWaOg&oe=683F00FF"
                               alt=""
                             />
                           </div>
@@ -2081,26 +2083,27 @@ function HidenEn() {
                           <div className="descriptionFood food-right">
                             <h2>Late Night Eats</h2>
                             <p>
-                              - Ba Lan Beo Night Food – Entrance of Vuon Dao
+                              🗺️ Ba Lan Beo Night Food – Entrance of Vuon Dao
                               Market
                             </p>
                             <p>
-                              - Minh Tuan Night Food – Hau Can St., Bai Chay
+                              🗺️ Minh Tuan Night Food – Hau Can St., Bai Chay
                             </p>
-                            <p>- Lan Thu Night Food – 444 Cai Dam</p>
-                            <p>- Co Huong Night Food – No.186 Gieng Day</p>
+                            <p>🗺️ Lan Thu Night Food – 444 Cai Dam</p>
+                            <p>🗺️ Co Huong Night Food – No.186 Gieng Day</p>
                           </div>
                         </div>
                         <div className="food">
                           <div className="descriptionFood food-left">
                             <h2>Snail Restaurants</h2>
                             <p>
-                              - Oc Chull – Near Cua Vang Restaurant, Cai Dam
+                              🗺️ Oc Chull – Near Cua Vang Restaurant, Cai Dam
                             </p>
-                            <p>- Oc Nang Dau – 228 EC Hung Thang</p>
-                            <p>- Oc Ngoc Son – 538 Cai Dam</p>
+                            <p>🗺️ Oc Nang Dau – 228 EC Hung Thang</p>
+                            <p>🗺️ Oc Ngoc Son – 538 Cai Dam</p>
                             <p>
-                              - Oc Gieng Day – No.14, Group 4, Zone 4, Gieng Day
+                              🗺️ Oc Gieng Day – No.14, Group 4, Zone 4, Gieng
+                              Day
                             </p>
                           </div>
                           <div className="img-food">
@@ -2131,7 +2134,7 @@ function HidenEn() {
                         <div className="food">
                           <div className="img-food">
                             <img
-                              src="https://vetauthamvinhhalong.com/wp-content/uploads/2023/04/nha-hang-hong-hanh-ha-long-1.jpg"
+                              src="https://dulichtoday.vn/wp-content/uploads/2023/08/la-luna-coffee-ha-long-2-1.jpg"
                               alt=""
                             />
                           </div>
@@ -2139,18 +2142,19 @@ function HidenEn() {
                             <h2>
                               Drinks – Cafés, Chill Places, Beverage Spots
                             </h2>
-                            <p>La Luna Coffee – Monaco Hill, Bai Chay</p>
+                            <p>🗺️ La Luna Coffee – Monaco Hill, Bai Chay</p>
                             <p>
-                              Cai Quan – 2A Cao Dat, Bai Chay (Ao Ca Lakefront)
+                              🗺️ Cai Quan – 2A Cao Dat, Bai Chay (Ao Ca
+                              Lakefront)
                             </p>
-                            <p>Laika Beach Café – Coastal Road, Bai Chay</p>
+                            <p>🗺️ Laika Beach Café – Coastal Road, Bai Chay</p>
                             <p>
-                              Thong Zeo – Naval Canteen, Naval Hill, Vuon Dao,
-                              Bai Chay
+                              🗺️ Thong Zeo – Naval Canteen, Naval Hill, Vuon
+                              Dao, Bai Chay
                             </p>
                             <p>
-                              To Café (also serves fried skewers & light meals)
-                              – 50 Hung Thang
+                              🗺️ To Café (also serves fried skewers & light
+                              meals) – 50 Hung Thang
                             </p>
                           </div>
                         </div>

@@ -865,19 +865,27 @@ span {
 .food-all {
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
 }
 .food {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   gap: 5px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  margin: 5px 0;
+  padding: 0 10px;
 }
 .food-left > p {
   text-align: left;
 }
 .food-right > p {
-  text-align: right;
+  text-align: left;
+}
+.img-food {
+  padding: 5px 0;
 }
 .img-food > img {
   width: 300px;
