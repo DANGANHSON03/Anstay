@@ -117,7 +117,7 @@ const BookingPage = () => {
     });
 
     if (locationParam) {
-      fetch(`http://localhost:8085/api/apartments/search?name=${locationParam}`)
+      fetch(`https://anstay.com.vn/api/apartments/search?name=${locationParam}`)
         .then((res) => res.json())
         .then((data) => setApartments(data))
         .catch((err) => {
@@ -175,7 +175,7 @@ const BookingPage = () => {
 
     try {
       await axios.post(
-        "http://localhost:8085/api/apartment-bookings",
+        "https://anstay.com.vn/api/apartment-bookings",
         bookingPayload,
         {
           headers: { "Content-Type": "application/json" },
@@ -229,7 +229,7 @@ const BookingPage = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8085/api/payments/momo",
+        "https://anstay.com.vn/api/payments/momo",
         paymentData
       );
       const payUrl = res.data.payUrl;

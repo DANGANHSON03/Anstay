@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./SearchResults.css";
 import img2 from "../../assets/Images/N009585.jpg";
@@ -7,7 +7,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import RoomCard from "../../components/RoomCard/RoomCard";
-import { useRef } from "react";
 
 const SearchResults = () => {
   const [searchResults, setSearchResults] = useState([]);
@@ -22,7 +21,10 @@ const SearchResults = () => {
   const [room, setRoom] = useState(1);
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
-  const sliderRef = useRef<any>(null);
+  const sliderRef = useRef(null);
+
+  // NEW: State cho tất cả ảnh của các room thuộc apartment này
+  const [allRoomImages, setAllRoomImages] = useState([]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -41,16 +43,6 @@ const SearchResults = () => {
       const adultsParam = searchParams.get("adults");
       const childrenParam = searchParams.get("children");
 
-      console.log("Search Parameters:", {
-        location: locationParam,
-        checkIn: checkInParam,
-        checkOut: checkOutParam,
-        room: roomParam,
-        adults: adultsParam,
-        children: childrenParam,
-      });
-
-      // Update state with URL parameters
       if (checkInParam) setCheckIn(checkInParam);
       if (checkOutParam) setCheckOut(checkOutParam);
       if (roomParam) setRoom(Number(roomParam));
@@ -59,22 +51,53 @@ const SearchResults = () => {
 
       try {
         const response = await fetch(
-          `http://localhost:8085/api/apartments/search?name=${locationParam}`
+          `https://anstay.com.vn/api/apartments/search?name=${locationParam}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        console.log("API Response Data:", data);
         setSearchResults(Array.isArray(data) ? data : []);
       } catch (error) {
-        console.error("Error fetching search results:", error);
         setSearchResults([]);
       }
     };
 
     fetchSearchResults();
   }, [location.search]);
+
+  // NEW: Effect lấy tất cả ảnh của các room thuộc apartment
+  useEffect(() => {
+    const fetchAllRoomImages = async () => {
+      if (!searchResults || searchResults.length === 0) {
+        setAllRoomImages([]);
+        return;
+      }
+      // Lấy toàn bộ roomId từ kết quả searchResults (giả sử mỗi phần tử là 1 room)
+      const roomIds = searchResults.map((room) => room.id);
+
+      // Gọi API lấy ảnh cho từng room, gom lại thành 1 list lớn
+      let images = [];
+      await Promise.all(
+        roomIds.map(async (roomId) => {
+          try {
+            const res = await fetch(
+              `https://anstay.com.vn/api/room-images/room/${roomId}`
+            );
+            if (res.ok) {
+              const data = await res.json();
+              // data là array các ảnh của room đó
+              images = images.concat(data);
+            }
+          } catch (err) {
+            /* Bỏ qua lỗi từng room */
+          }
+        })
+      );
+      setAllRoomImages(images);
+    };
+    fetchAllRoomImages();
+  }, [searchResults]);
 
   const getNights = () => {
     const inDate = new Date(checkIn);
@@ -83,12 +106,13 @@ const SearchResults = () => {
     return diff;
   };
 
+  // GIỮ NGUYÊN LOGIC CŨ
   const propertyData = searchResults[0]
     ? {
         name: searchResults[0].name,
         rating: searchResults[0].description,
         address: searchResults[0].location,
-        images: searchResults[0].images.map((img) => img.imageUrl) || [],
+        images: searchResults[0].images?.map((img) => img.imageUrl) || [],
       }
     : {
         name: "",
@@ -98,13 +122,12 @@ const SearchResults = () => {
       };
 
   const rooms = searchResults.map((result) => {
-    console.log("Description data:", result.description);
     return {
       id: result.id,
       name: result.name,
       description: result.description,
-      image: result.images[0]?.imageUrl || img2,
-      imageCount: `1/${result.images.length}`,
+      image: result.images?.[0]?.imageUrl || img2,
+      imageCount: `1/${result.images?.length || 1}`,
       guests: result.maxAdults || 2,
       beds: result.max_bed || 1,
       children: result.maxChildren || 0,
@@ -125,7 +148,7 @@ const SearchResults = () => {
     };
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     navigate("/search-results", {
       state: {
@@ -145,7 +168,7 @@ const SearchResults = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
-    centerMode: false, //Tắt centerMode ở mobile
+    centerMode: false,
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: 1 } },
       { breakpoint: 600, settings: { slidesToShow: 1, centerMode: false } },
@@ -223,13 +246,22 @@ const SearchResults = () => {
 
       <div className="carousel-wrapper">
         <Slider ref={sliderRef} {...settings}>
-          {propertyData.images.map((src, i) => (
-            <div key={i} className="carousel-slide">
-              <div className="image-wrapper">
-                <img src={src} alt={`Slide ${i}`} />
-              </div>
-            </div>
-          ))}
+          {/* ĐỔ ẢNH TOÀN BỘ ROOM Ở ĐÂY */}
+          {allRoomImages.length > 0
+            ? allRoomImages.map((img, i) => (
+                <div key={i} className="carousel-slide">
+                  <div className="image-wrapper">
+                    <img src={img.imageUrl} alt={`Slide ${i}`} />
+                  </div>
+                </div>
+              ))
+            : propertyData.images.map((src, i) => (
+                <div key={i} className="carousel-slide">
+                  <div className="image-wrapper">
+                    <img src={src} alt={`Slide ${i}`} />
+                  </div>
+                </div>
+              ))}
         </Slider>
         {/* PHẦN THÔNG TIN BÊN DƯỚI */}
         <div className="carousel-info">

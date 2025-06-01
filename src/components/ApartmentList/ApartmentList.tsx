@@ -51,7 +51,7 @@ const ApartmentList = () => {
       try {
         const areaParam = AREA_ENUM_MAP[locationSlug || "ha-noi"];
         const res = await fetch(
-          `http://localhost:8085/api/apartments/by-area?area=${areaParam}`
+          `https://anstay.com.vn/api/apartments/by-area?area=${areaParam}`
         );
         const data = await res.json();
 

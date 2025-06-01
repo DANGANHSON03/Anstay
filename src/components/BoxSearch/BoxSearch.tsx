@@ -28,7 +28,7 @@ const BoxSearch = () => {
   useEffect(() => {
     const fetchLocations = async () => {
       try {
-        const response = await fetch("http://localhost:8085/api/apartments");
+        const response = await fetch("https://anstay.com.vn/api/apartments");
         const data = await response.json();
         const apartmentLocations = data.map((apartment: any) => ({
           id: apartment.id,

@@ -16,7 +16,7 @@ const PaymentSuccess = () => {
       return;
     }
     axios
-      .get(`http://localhost:8085/api/payments/transaction/${orderId}`)
+      .get(`https://anstay.com.vn/api/payments/transaction/${orderId}`)
       .then((res) => {
         if (res.data.status === "COMPLETED") setStatus("success");
         else setStatus("fail");
