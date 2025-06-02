@@ -51,7 +51,16 @@ const Blog = () => {
             <div className="blog-content">
               <h2 className="blog-title">{blog.title}</h2>
               <div className="blog-meta">
-                <span>📅 {blog.createdAt?.split("T")[0]}</span>
+                <span>
+                  📅{" "}
+                  {blog.createdAt
+                    ? blog.createdAt
+                        .split("T")[0]
+                        .split("-")
+                        .reverse()
+                        .join("-")
+                    : ""}
+                </span>
                 {/* <span>👁️ 0</span> */}
               </div>
               <p className="blog-description">

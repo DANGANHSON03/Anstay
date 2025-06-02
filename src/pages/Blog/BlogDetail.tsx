@@ -49,7 +49,12 @@ export default function BlogDetail() {
       <div className="blog-detail-container">
         <h1 className="blog-detail-title">{blog.title}</h1>
         <div className="blog-detail-header">
-          <p className="blog-detail-meta">📅 {blog.createdAt?.split("T")[0]}</p>
+          <p className="blog-detail-meta">
+            📅{" "}
+            {blog.createdAt
+              ? blog.createdAt.split("T")[0].split("-").reverse().join("-")
+              : ""}
+          </p>
           <img
             src={getFullImageUrl(blog.thumbnail)}
             alt="Ảnh chính"

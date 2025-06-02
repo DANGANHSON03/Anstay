@@ -18,6 +18,13 @@ body {
     0 2px 12px rgba(99, 102, 241, 0.09);
   border: 1.5px solid #e0e7ff;
 }
+.blog-html img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 8px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
 
 .blog-detail-title {
   font-family: "Merriweather", "Inter", serif;
@@ -384,6 +391,13 @@ body {
     grid-template-columns: 1fr;
     gap: 20px;
     padding: 0 1rem;
+  }
+  .blog-html img {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 8px;
+    margin-top: 12px;
+    margin-bottom: 12px;
   }
   .blog-gallery-img {
     width: 100%;
