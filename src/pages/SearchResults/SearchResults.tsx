@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./SearchResults.css";
-import img2 from "../../assets/Images/N009585.jpg";
-import img3 from "../../assets/Images/N009586.jpg";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -12,19 +10,14 @@ const SearchResults = () => {
   const [searchResults, setSearchResults] = useState([]);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-
-  const [index, setIndex] = useState(0);
   const navigate = useNavigate();
-  const [id, setId] = useState("");
+  const sliderRef = useRef(null);
+
   const [checkIn, setCheckIn] = useState("2025-05-10");
   const [checkOut, setCheckOut] = useState("2025-05-11");
   const [room, setRoom] = useState(1);
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
-  const sliderRef = useRef(null);
-
-  // NEW: State cho tất cả ảnh của các room thuộc apartment này
-  const [allRoomImages, setAllRoomImages] = useState([]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -53,9 +46,7 @@ const SearchResults = () => {
         const response = await fetch(
           `https://anstay.com.vn/api/apartments/search?name=${locationParam}`
         );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+        if (!response.ok) throw new Error("Network error");
         const data = await response.json();
         setSearchResults(Array.isArray(data) ? data : []);
       } catch (error) {
@@ -66,39 +57,6 @@ const SearchResults = () => {
     fetchSearchResults();
   }, [location.search]);
 
-  // NEW: Effect lấy tất cả ảnh của các room thuộc apartment
-  useEffect(() => {
-    const fetchAllRoomImages = async () => {
-      if (!searchResults || searchResults.length === 0) {
-        setAllRoomImages([]);
-        return;
-      }
-      // Lấy toàn bộ roomId từ kết quả searchResults (giả sử mỗi phần tử là 1 room)
-      const roomIds = searchResults.map((room) => room.id);
-
-      // Gọi API lấy ảnh cho từng room, gom lại thành 1 list lớn
-      let images = [];
-      await Promise.all(
-        roomIds.map(async (roomId) => {
-          try {
-            const res = await fetch(
-              `https://anstay.com.vn/api/room-images/room/${roomId}`
-            );
-            if (res.ok) {
-              const data = await res.json();
-              // data là array các ảnh của room đó
-              images = images.concat(data);
-            }
-          } catch (err) {
-            /* Bỏ qua lỗi từng room */
-          }
-        })
-      );
-      setAllRoomImages(images);
-    };
-    fetchAllRoomImages();
-  }, [searchResults]);
-
   const getNights = () => {
     const inDate = new Date(checkIn);
     const outDate = new Date(checkOut);
@@ -106,13 +64,27 @@ const SearchResults = () => {
     return diff;
   };
 
-  // GIỮ NGUYÊN LOGIC CŨ
+  // ✅ Gom ảnh từ tất cả room, lọc trùng
+  const uniqueImages = (() => {
+    const urls = new Set();
+    const result = [];
+    searchResults.forEach((item) => {
+      item.images?.forEach((img) => {
+        if (img.imageUrl && !urls.has(img.imageUrl)) {
+          urls.add(img.imageUrl);
+          result.push(img.imageUrl);
+        }
+      });
+    });
+    return result;
+  })();
+
   const propertyData = searchResults[0]
     ? {
         name: searchResults[0].name,
         rating: searchResults[0].description,
         address: searchResults[0].location,
-        images: searchResults[0].images?.map((img) => img.imageUrl) || [],
+        images: uniqueImages,
       }
     : {
         name: "",
@@ -121,38 +93,35 @@ const SearchResults = () => {
         images: [],
       };
 
-  const rooms = searchResults.map((result) => {
-    return {
-      id: result.id,
-      name: result.name,
-      description: result.description,
-      image: result.images?.[0]?.imageUrl || img2,
-      imageCount: `1/${result.images?.length || 1}`,
-      guests: result.maxAdults || 2,
-      beds: result.max_bed || 1,
-      children: result.maxChildren || 0,
-      size: result.acreage ? `${result.acreage} m²` : "chưa rõ",
-      bedType: "Queen-size",
-      price: result.pricePerDay?.toLocaleString() || "",
-      priceOriginal: result.pricePerMonth?.toLocaleString() || "",
-      nights: getNights(),
-      roomsLeft: Number(result.numRooms) || 1,
-      promotions: result.discountPercent > 0 ? ["SALE OFF"] : [],
-      discountText:
-        result.discountPercent > 0 ? `Discount ${result.discountPercent}%` : "",
-      policy: [
-        "Full payment is required on the day of booking.",
-        "Free cancellation if you cancel 5 days before check-in. After that, 50% fee.",
-      ],
-      name_room: result.name_apartment,
-    };
-  });
+  const rooms = searchResults.map((result) => ({
+    id: result.id,
+    name: result.name,
+    description: result.description,
+    image: result.images?.[0]?.imageUrl,
+    imageCount: `1/${result.images?.length || 1}`,
+    guests: result.maxAdults || 2,
+    beds: result.max_bed || 1,
+    children: result.maxChildren || 0,
+    size: result.acreage ? `${result.acreage} m²` : "chưa rõ",
+    bedType: "Queen-size",
+    price: result.pricePerDay?.toLocaleString() || "",
+    priceOriginal: result.pricePerMonth?.toLocaleString() || "",
+    nights: getNights(),
+    roomsLeft: Number(result.numRooms) || 1,
+    promotions: result.discountPercent > 0 ? ["SALE OFF"] : [],
+    discountText:
+      result.discountPercent > 0 ? `Discount ${result.discountPercent}%` : "",
+    policy: [
+      "Full payment is required on the day of booking.",
+      "Free cancellation if you cancel 5 days before check-in. After that, 50% fee.",
+    ],
+    name_room: result.name_apartment,
+  }));
 
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate("/search-results", {
       state: {
-        id,
         checkIn,
         checkOut,
         room,
@@ -162,34 +131,24 @@ const SearchResults = () => {
     });
   };
 
+  // ✅ Cấu hình slider phù hợp: nếu chỉ có 1 ảnh thì tắt điều khiển
   const settings = {
-    infinite: true,
+    infinite: uniqueImages.length > 1,
+    arrows: uniqueImages.length > 1,
+    dots: uniqueImages.length > 1,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: true,
-    centerMode: false,
-    responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 1 } },
-      { breakpoint: 600, settings: { slidesToShow: 1, centerMode: false } },
-    ],
-  };
-
-  const handleHomeClick = () => {
-    navigate("/");
   };
 
   return (
     <div className={location.state?.hideSearchBar ? "no-searchbar" : ""}>
-      {/* Ẩn search bar nếu location.state?.hideSearchBar là true */}
       {!location.state?.hideSearchBar && (
         <form className="search-bar" onSubmit={handleSubmit}>
           <div className="section dates">
             <div className="date-header">
               <label>Ngày</label>
-              <span className="nights">
-                {getNights()} Đêm{getNights() > 1 ? "" : ""}
-              </span>
+              <span className="nights">{getNights()} Đêm</span>
             </div>
             <div className="date-display">
               <div>
@@ -245,31 +204,31 @@ const SearchResults = () => {
       )}
 
       <div className="carousel-wrapper">
-        <Slider ref={sliderRef} {...settings}>
-          {/* ĐỔ ẢNH TOÀN BỘ ROOM Ở ĐÂY */}
-          {allRoomImages.length > 0
-            ? allRoomImages.map((img, i) => (
-                <div key={i} className="carousel-slide">
-                  <div className="image-wrapper">
-                    <img src={img.imageUrl} alt={`Slide ${i}`} />
-                  </div>
+        {propertyData.images.length > 0 ? (
+          <Slider ref={sliderRef} {...settings}>
+            {propertyData.images.map((src, i) => (
+              <div key={i} className="carousel-slide">
+                <div className="image-wrapper">
+                  <img src={src} alt={`Slide ${i}`} />
                 </div>
-              ))
-            : propertyData.images.map((src, i) => (
-                <div key={i} className="carousel-slide">
-                  <div className="image-wrapper">
-                    <img src={src} alt={`Slide ${i}`} />
-                  </div>
-                </div>
-              ))}
-        </Slider>
-        {/* PHẦN THÔNG TIN BÊN DƯỚI */}
+              </div>
+            ))}
+          </Slider>
+        ) : (
+          <div className="carousel-slide">
+            <div className="image-wrapper">
+              <img src="/default-image.jpg" alt="No image" />
+            </div>
+          </div>
+        )}
+
         <div className="carousel-info">
           <h3 className="carousel-title">{searchParams.get("location")}</h3>
           <div className="carousel-address">🗺️ {propertyData.address}</div>
           <div className="carousel-address">💬 {propertyData.rating}</div>
         </div>
       </div>
+
       <div>
         {rooms.map((room) => (
           <RoomCard key={room.id} data={room} />
