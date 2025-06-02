@@ -389,9 +389,8 @@ const RoomCard = () => {
               {/* ... */}
               <div className="room-pricing">
                 <div className="room-icons compact">
-                  <h4>Standard Rate</h4>
                   <div className="discount-tag">
-                    Giảm giá {discount > 0 ? discount : 0}%
+                    <FaTag /> Giảm giá {discount > 0 ? discount : 0}%
                   </div>
                   <div>
                     <span>
@@ -406,14 +405,13 @@ const RoomCard = () => {
                   </div>
                 </div>
                 <div className="room-policy">
-                  <strong>Payment & Cancellation Policy:</strong>
+                  <strong>Chính sách thanh toán và hủy bỏ:</strong>
                   <ul>
                     <li>Thanh toán khi nhận phòng</li>
                     <li>Hủy phòng trước 24h</li>
                   </ul>
                 </div>
                 <div className="room-promotions">
-                  <strong>Other promotions and discounts:</strong>
                   <div className="badge purple">
                     <FaTag /> Giảm giá {discount > 0 ? discount : 0}% cho đặt
                     phòng sớm
@@ -514,7 +512,7 @@ const RoomCard = () => {
                       }
                     }}
                   >
-                    SELECT
+                    <strong>LỰA CHỌN</strong>
                   </button>
                   <button
                     className="btn-book"
@@ -551,7 +549,7 @@ const RoomCard = () => {
                       }
                     }}
                   >
-                    BOOK NOW
+                    <strong>ĐẶT NGAY</strong>
                   </button>
                 </div>
               </div>
@@ -562,7 +560,7 @@ const RoomCard = () => {
       {selectedRoomId !== null && (
         <div className="bottom-bar">
           <div className="bottom-bar-info">
-            🛒 Your selections include:{" "}
+            🛒 Lựa chọn của bạn bao gồm:{" "}
             <strong>
               {quantity} Room{quantity > 1 ? "s" : ""},{" "}
               {getNightCount(selectedRoomId)} Night
@@ -637,7 +635,7 @@ const RoomCard = () => {
                 }
               }}
             >
-              BOOK NOW
+              ĐẶT NGAY
             </button>
           </div>
         </div>

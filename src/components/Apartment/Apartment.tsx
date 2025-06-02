@@ -289,13 +289,13 @@ const Apartment = () => {
                     className="listing-address"
                     style={{ textAlign: "left" }}
                   >
-                    :round_pushpin: {listing.location}
+                    📍{listing.location}
                   </div>
                   <div
                     className="listing-address"
                     style={{ textAlign: "left" }}
                   >
-                    :round_pushpin: {getAreaName(listing.area)}
+                    📍 {getAreaName(listing.area)}
                   </div>
                   <div className="listing-details">
                     <div

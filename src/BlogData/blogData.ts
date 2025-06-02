@@ -15,7 +15,7 @@ export const blogData = [
     title: "Kinh nghiệm du lịch Hạ Long 2025 chi tiết từ A-Z",
     date: "23-10-2023",
     views: 320,
-    image: "https://i.ibb.co/N2Rs9wjR/image.png",
+    image: "https://i.ibb.co/PZPdRspg/image.png",
     description:
       "Khám phá vẻ đẹp của Vịnh Hạ Long, trải nghiệm du thuyền sang trọng, thưởng thức ẩm thực biển tươi ngon, check-in những địa điểm nổi tiếng và tận hưởng kỳ nghỉ tuyệt vời cùng gia đình, bạn bè...",
     content: [
