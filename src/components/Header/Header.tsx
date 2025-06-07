@@ -5,7 +5,7 @@ import { CircleHelp, Earth, BriefcaseBusiness, UserRound } from "lucide-react";
 import { DownOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { useLocation } from "react-router-dom";
-import { Dropdown, Space } from "antd";
+import { Dropdown, Space, Spin } from "antd";
 import { HelpCircle } from "lucide-react";
 import LoginPopup from "../Login/LoginPopup";
 import { AuthContext } from "../../Context/AuthContext";
@@ -14,52 +14,7 @@ type MenuItem = {
   label: string | React.ReactNode;
   children?: MenuItem[];
 };
-const items: MenuItem[] = [
-  {
-    key: "1",
-    label: "Ha Noi",
-    children: [
-      {
-        key: "1-1",
-        label: (
-          <Link to="/tour-ha-noi" state={{ location: "HA_NOI" }}>
-            Tour Hà Nội
-          </Link>
-        ),
-      },
-      {
-        key: "1-2",
-        label: (
-          <Link to="/apartment-ha-noi" state={{ location: "HA_NOI" }}>
-            Căn hộ Hà Nội
-          </Link>
-        ),
-      },
-    ],
-  },
-  {
-    key: "2",
-    label: "Ha Long",
-    children: [
-      {
-        key: "2-1",
-        label: (
-          <Link to="/tour-ha-long" state={{ location: "HA_LONG" }}>
-            Tour Hạ Long
-          </Link>
-        ),
-      },
-      {
-        key: "2-2",
-        label: (
-          <Link to="/apartment-ha-long" state={{ location: "HA_LONG" }}>
-            Căn hộ Hạ Long
-          </Link>
-        ),
-      },
-    ],
-  },
-];
+
 const Header: React.FC = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [loggedInFullname, setLoggedInFullname] = useState<string | null>(null);
@@ -71,6 +26,11 @@ const Header: React.FC = () => {
   const [userName, setUserName] = useState<string>("");
   const [loggedInUser, setLoggedInUser] = useState<any>(null);
   const location = useLocation();
+  const [hnApartments, setHnApartments] = useState([]); // Dữ liệu căn hộ Hà Nội
+  const [hlApartments, setHlApartments] = useState([]);
+  const [loading, setLoading] = useState({ hn: false, hl: false });
+  const [openMenu1, setOpenMenu1] = useState<string | null>(null); // cấp 1
+  const [openMenu2, setOpenMenu2] = useState<string | null>(null); // cấp 2
   if (!auth) return null;
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user") || "null");
@@ -153,6 +113,92 @@ const Header: React.FC = () => {
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const fetchApartments = async (area: "HA_NOI" | "HA_LONG") => {
+    try {
+      setLoading((prev) => ({
+        ...prev,
+        [area === "HA_NOI" ? "hn" : "hl"]: true,
+      }));
+      const res = await fetch(
+        `https://anstay.com.vn/api/apartments/by-area?area=${area}`
+      );
+      if (!res.ok) throw new Error("Failed to fetch apartments");
+      const data = await res.json();
+
+      const mappedItems: MenuProps["items"] = data.map((apt: any) => ({
+        key: `${area.toLowerCase()}-apt-${apt.id}`,
+        label: (
+          <Link
+            to={`/apartment/${area.toLowerCase()}/${apt.id}/${apt.name}`}
+            state={{ apartment: apt.name }}
+          >
+            {apt.name}
+          </Link>
+        ),
+      }));
+
+      if (area === "HA_NOI") setHnApartments(mappedItems);
+      else setHlApartments(mappedItems);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading((prev) => ({
+        ...prev,
+        [area === "HA_NOI" ? "hn" : "hl"]: false,
+      }));
+    }
+  };
+
+  useEffect(() => {
+    fetchApartments("HA_NOI");
+    fetchApartments("HA_LONG");
+  }, []);
+  const items: MenuItem[] = [
+    {
+      key: "1",
+      label: "Ha Noi",
+      children: [
+        {
+          key: "1-1",
+          label: (
+            <Link to="/tour-ha-noi" state={{ location: "HA_NOI" }}>
+              Tour Hà Nội
+            </Link>
+          ),
+        },
+        {
+          key: "hn-apartment",
+          label: "Căn hộ Hà Nội",
+          children: loading.hn
+            ? [{ key: "hn-loading", label: <Spin size="small" /> }]
+            : hnApartments,
+        },
+      ],
+    },
+    {
+      key: "2",
+      label: "Ha Long",
+      children: [
+        {
+          key: "2-1",
+          label: (
+            <Link to="/tour-ha-long" state={{ location: "HA_LONG" }}>
+              Tour Hạ Long
+            </Link>
+          ),
+        },
+        {
+          key: "hl-apartment",
+          label: "Căn hộ Hạ Long",
+          children: loading.hl
+            ? [{ key: "hl-loading", label: <Spin size="small" /> }]
+            : hlApartments,
+        },
+      ],
+    },
+  ];
+
   return (
     <header className="header">
       {navActive && (
@@ -248,36 +294,74 @@ const Header: React.FC = () => {
                   >
                     Tour và căn hộ <DownOutlined />
                   </button>
+
                   {open && (
-                    <ul className="dropdown-menu">
-                      {items.map((item: MenuItem) => (
-                        <li key={item.key} className="dropdown-item">
-                          <button
-                            className="dropdown-submenu-btn"
-                            onClick={() =>
-                              setOpenSubMenu(
-                                openSubMenu === item.key ? null : item.key
-                              )
-                            }
-                          >
-                            {item.label} <DownOutlined />
-                          </button>
-                          {openSubMenu === item.key && (
-                            <ul className="dropdown-submenu">
-                              {item.children?.map((subItem: MenuItem) => (
-                                <li
-                                  key={subItem.key}
-                                  className="dropdown-submenu-item"
-                                  onClick={() => setNavActive(false)}
-                                >
-                                  {subItem.label}
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="dropdown-wrapper">
+                      <ul className="dropdown-menu">
+                        {items.map((item) => (
+                          <li key={item.key} className="dropdown-item">
+                            <button
+                              className="dropdown-submenu-btn"
+                              onClick={() =>
+                                setOpenMenu1(
+                                  openMenu1 === item.key ? null : item.key
+                                )
+                              }
+                            >
+                              {item.label} <DownOutlined />
+                            </button>
+
+                            {openMenu1 === item.key && (
+                              <ul className="dropdown-submenu">
+                                {item.children?.map((subItem) => (
+                                  <li
+                                    key={subItem.key}
+                                    className="dropdown-submenu-item"
+                                  >
+                                    {subItem.children ? (
+                                      <>
+                                        <button
+                                          className="dropdown-submenu-btn"
+                                          onClick={() =>
+                                            setOpenMenu2(
+                                              openMenu2 === subItem.key
+                                                ? null
+                                                : subItem.key
+                                            )
+                                          }
+                                        >
+                                          {subItem.label} <DownOutlined />
+                                        </button>
+
+                                        {openMenu2 === subItem.key && (
+                                          <ul className="dropdown-submenu">
+                                            {subItem.children.map((child) => (
+                                              <li
+                                                key={child.key}
+                                                className="dropdown-submenu-item"
+                                                onClick={() =>
+                                                  setNavActive(false)
+                                                }
+                                              >
+                                                {child.label}
+                                              </li>
+                                            ))}
+                                          </ul>
+                                        )}
+                                      </>
+                                    ) : (
+                                      <div onClick={() => setNavActive(false)}>
+                                        {subItem.label}
+                                      </div>
+                                    )}
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   )}
                 </div>
               ) : (

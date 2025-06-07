@@ -1,7 +1,7 @@
 .floating-container {
   position: fixed;
   right: 10px;
-  bottom: 50px;
+  bottom: 16px;
   z-index: 1000;
 }
 

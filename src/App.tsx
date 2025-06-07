@@ -26,7 +26,7 @@ import SearchResults from "./pages/SearchResults/SearchResults";
 import ApartmentList from "./pages/ApartmentList/ApartmentList";
 import BookingPage from "./components/BookingPage/BookingPage.tsx";
 import BlogDetail from "./pages/Blog/BlogDetail";
-
+import ApartmentRoom from "./pages/ApartmentRoom/ApartmentRoom";
 function App() {
   return (
     <AuthProvider>
@@ -247,6 +247,14 @@ function App() {
             element={
               <MainLayout>
                 <ApartmentList />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/apartment/:area/:apartmentId/:apartmentName"
+            element={
+              <MainLayout>
+                <ApartmentRoom />
               </MainLayout>
             }
           />
