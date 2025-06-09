@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Blog.css";
 
-const API_URL = "http://localhost:8085";
+const API_URL = "https://anstay.com.vn";
 const BLOG_API = `${API_URL}/api/admin/blog-posts`;
 
 const Blog = () => {

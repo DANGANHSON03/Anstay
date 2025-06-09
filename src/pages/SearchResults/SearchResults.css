@@ -185,12 +185,12 @@ label {
 
 .carousel-slide {
   padding: 0 10px;
-  height: 450px; /* Chiều cao cố định như ảnh bạn gửi */
+  height: 450px;
 }
 
 .image-wrapper {
   width: 100%;
-  height: 300px; /* cố định cho cả desktop + mobile */
+  height: 60vh;
   overflow: hidden;
   position: relative;
 }
@@ -301,6 +301,11 @@ label {
     font-size: 15px;
     padding: 6px 12px;
   }
+  .image-wrapper {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+  }
 }
 
 @media (max-width: 480px) {
@@ -352,6 +357,11 @@ label {
   .carousel-address {
     font-size: 13px;
   }
+  .image-wrapper {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+  }
 }
 
 @media (max-width: 768px) {
@@ -374,7 +384,7 @@ label {
 
   .image-wrapper {
     width: 100%;
-    min-height: 200px;
+    height: 300px;
     overflow: hidden;
   }
 

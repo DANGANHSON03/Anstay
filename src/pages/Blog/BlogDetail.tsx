@@ -5,7 +5,7 @@ import "./BlogDetail.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 
-const API_URL = "http://localhost:8085";
+const API_URL = "https://anstay.com.vn";
 
 export default function BlogDetail() {
   const { id } = useParams();

@@ -251,7 +251,7 @@ function App() {
             }
           />
           <Route
-            path="/apartment/:area/:apartmentId/:apartmentName"
+            path="/apartment/:area/:apartmentName"
             element={
               <MainLayout>
                 <ApartmentRoom />

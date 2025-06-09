@@ -130,7 +130,7 @@ const Header: React.FC = () => {
         key: `${area.toLowerCase()}-apt-${apt.id}`,
         label: (
           <Link
-            to={`/apartment/${area.toLowerCase()}/${apt.id}/${apt.name}`}
+            to={`/apartment/${area.toLowerCase()}/${apt.name}`}
             state={{ apartment: apt.name }}
           >
             {apt.name}

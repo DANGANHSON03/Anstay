@@ -12,6 +12,7 @@ const BookingPage = () => {
   });
   const [modifiedGuestType, setModifiedGuestType] = useState(null);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [showAtVenueSuccess, setShowAtVenueSuccess] = useState(false);
   const [timeLeft, setTimeLeft] = useState(600);
   const [holdResult, setHoldResult] = useState(null);
   const [roomHeld, setRoomHeld] = useState(false);
@@ -21,7 +22,7 @@ const BookingPage = () => {
   const endTimeRef = useRef(null);
   const holdTimeoutRef = useRef(null);
 
-  // ===== Thông tin khách vãng lai (input controlled) =====
+  // Thông tin khách vãng lai (input controlled)
   const [guestInfo, setGuestInfo] = useState({
     guestName: "",
     guestPhone: "",
@@ -140,94 +141,44 @@ const BookingPage = () => {
     }
   }, []);
 
-  // ================== GIỮ PHÒNG ==================
-  const holdRoom = async () => {
-    if (!bookingData || roomHeld || isLoading) return;
-    setIsLoading(true);
-
-    let selectedApartment = null;
-    let selectedRoomId = bookingData.roomId;
-    for (const apt of apartments) {
-      if (apt.rooms && apt.rooms.some((r) => r.id === selectedRoomId)) {
-        selectedApartment = apt;
-        break;
-      }
-    }
-    if (!selectedApartment) {
-      selectedApartment = apartments[0] || { id: 1 };
-      selectedRoomId = selectedApartment?.rooms?.[0]?.id || selectedRoomId || 1;
-    }
-    const bookingPayload = {
-      userId: null,
-      apartmentId: selectedApartment?.id || 1,
-      roomId: selectedRoomId,
-      checkIn: bookingData.checkIn,
-      checkOut: bookingData.checkOut,
-      totalPrice: (bookingData.price || 0) + calculateSurcharge(),
-      status: "HOLD",
-      guestName: guestInfo.guestName,
-      guestPhone: guestInfo.guestPhone,
-      guestEmail: guestInfo.guestEmail,
-      guestIdentityNumber: guestInfo.guestIdentityNumber,
-      guestBirthday: guestInfo.guestBirthday,
-      guestNationality: guestInfo.guestNationality,
-    };
-
+  // ================== HÀM XỬ LÝ THANH TOÁN MOMO ==================
+  const handleMomoPayment = async () => {
     try {
-      await axios.post(
+      // 1. Tạo booking trước
+      const bookingRes = await axios.post(
         "https://anstay.com.vn/api/apartment-bookings",
-        bookingPayload,
         {
-          headers: { "Content-Type": "application/json" },
-          timeout: 8000,
+          apartmentId: apartments[0]?.id || 1,
+          roomId: bookingData.roomId,
+          userId: null, // hoặc userId nếu có
+          checkIn: bookingData.checkIn,
+          checkOut: bookingData.checkOut,
+          totalPrice: (bookingData.price || 0) + calculateSurcharge(),
+          status: "HOLD",
+          guestName: guestInfo.guestName,
+          guestPhone: guestInfo.guestPhone,
+          guestEmail: guestInfo.guestEmail,
+          guestIdentityNumber: guestInfo.guestIdentityNumber,
+          guestBirthday: guestInfo.guestBirthday,
+          guestNationality: guestInfo.guestNationality,
         }
       );
-      setRoomHeld(true);
-      setHoldResult({ success: true, message: "Giữ phòng thành công!" });
-    } catch (err) {
-      setHoldResult({
-        success: false,
-        message: "Có lỗi xảy ra khi đặt phòng! Vui lòng thử lại sau.",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+      const bookingId = bookingRes.data.id;
 
-  useEffect(() => {
-    if (!bookingData || apartments.length === 0 || roomHeld) return;
-    if (holdTimeoutRef.current) clearTimeout(holdTimeoutRef.current);
-    holdTimeoutRef.current = setTimeout(() => {
-      holdRoom();
-    }, 1500);
-    return () => {
-      if (holdTimeoutRef.current) clearTimeout(holdTimeoutRef.current);
-    };
-  }, [bookingData, apartments, roomHeld]);
-
-  // ================== THANH TOÁN MOMO ==================
-  const handleMomoPayment = async () => {
-    if (!roomHeld) {
-      alert("Bạn phải giữ phòng thành công trước khi thanh toán!");
-      return;
-    }
-    // Có thể validate thêm info khách tại đây
-
-    const paymentData = {
-      bookingType: "APARTMENT",
-      bookingId: bookingData.roomId,
-      userId: null,
-      amount: (bookingData.price || 0) + calculateSurcharge(),
-      paymentMethod: "MOMO",
-      guestName: guestInfo.guestName,
-      guestPhone: guestInfo.guestPhone,
-      guestEmail: guestInfo.guestEmail,
-      guestIdentityNumber: guestInfo.guestIdentityNumber,
-      guestBirthday: guestInfo.guestBirthday,
-      guestNationality: guestInfo.guestNationality,
-    };
-
-    try {
+      // 2. Gọi thanh toán MOMO
+      const paymentData = {
+        bookingType: "APARTMENT",
+        bookingId: bookingId,
+        userId: null,
+        amount: (bookingData.price || 0) + calculateSurcharge(),
+        paymentMethod: "MOMO",
+        guestName: guestInfo.guestName,
+        guestPhone: guestInfo.guestPhone,
+        guestEmail: guestInfo.guestEmail,
+        guestIdentityNumber: guestInfo.guestIdentityNumber,
+        guestBirthday: guestInfo.guestBirthday,
+        guestNationality: guestInfo.guestNationality,
+      };
       const res = await axios.post(
         "https://anstay.com.vn/api/payments/momo",
         paymentData
@@ -239,8 +190,81 @@ const BookingPage = () => {
         alert("Không lấy được link thanh toán Momo!");
       }
     } catch (err) {
-      alert("Tạo thanh toán thất bại!");
+      alert("Có lỗi khi tạo booking hoặc thanh toán Momo!");
       console.error(err);
+    }
+  };
+
+  // ================== HÀM XỬ LÝ THANH TOÁN TẠI CHỖ (CASH) ==================
+  const handleSubmitCash = async () => {
+    try {
+      // 1. Tạo booking trước
+      const bookingPayload = {
+        apartmentId: apartments[0]?.id || 1,
+        roomId: bookingData.roomId,
+        userId: null,
+        checkIn: bookingData.checkIn,
+        checkOut: bookingData.checkOut,
+        totalPrice: (bookingData.price || 0) + calculateSurcharge(),
+        status: "PENDING",
+        guestName: guestInfo.guestName,
+        guestPhone: guestInfo.guestPhone,
+        guestEmail: guestInfo.guestEmail,
+        guestIdentityNumber: guestInfo.guestIdentityNumber,
+        guestBirthday: guestInfo.guestBirthday,
+        guestNationality: guestInfo.guestNationality,
+      };
+
+      console.log("Booking payload:", bookingPayload);
+
+      const bookingRes = await axios
+        .post("https://anstay.com.vn/api/apartment-bookings", bookingPayload)
+        .catch((error) => {
+          console.error("Booking API Error:", {
+            message: error.message,
+            response: error.response?.data,
+            status: error.response?.status,
+          });
+          throw error;
+        });
+
+      console.log("Booking API Response:", bookingRes.data);
+      const bookingId = bookingRes.data.id;
+
+      // 2. Gọi thanh toán CASH
+      const cashPaymentData = {
+        bookingType: "APARTMENT",
+        bookingId: bookingId,
+        userId: null,
+        amount: (bookingData.price || 0) + calculateSurcharge(),
+        guestName: guestInfo.guestName,
+        guestPhone: guestInfo.guestPhone,
+        guestEmail: guestInfo.guestEmail,
+        guestIdentityNumber: guestInfo.guestIdentityNumber,
+        guestBirthday: guestInfo.guestBirthday,
+        guestNationality: guestInfo.guestNationality,
+      };
+
+      console.log("Cash payment payload:", cashPaymentData);
+
+      const cashResponse = await axios
+        .post("https://anstay.com.vn/api/payments/cash", cashPaymentData)
+        .catch((error) => {
+          console.error("Cash Payment API Error:", {
+            message: error.message,
+            response: error.response?.data,
+            status: error.response?.status,
+          });
+          throw error;
+        });
+
+      console.log("Cash Payment API Response:", cashResponse.data);
+
+      setShowPaymentModal(false);
+      setShowAtVenueSuccess(true);
+    } catch (err) {
+      console.error("Full error object:", err);
+      alert("Có lỗi khi giữ chỗ hoặc thanh toán tại chỗ!");
     }
   };
 
@@ -299,7 +323,7 @@ const BookingPage = () => {
   const retryHoldRoom = () => {
     setRoomHeld(false);
     setHoldResult(null);
-    holdRoom();
+    // holdRoom(); // Nếu muốn giữ phòng cứng thì gọi lại API giữ phòng ở đây.
   };
 
   // ================== JSX ==================
@@ -450,28 +474,7 @@ const BookingPage = () => {
                 }))
               }
             />
-            <input
-              type="text"
-              placeholder="CMND / Hộ chiếu"
-              value={guestInfo.guestIdentityNumber}
-              onChange={(e) =>
-                setGuestInfo((info) => ({
-                  ...info,
-                  guestIdentityNumber: e.target.value,
-                }))
-              }
-            />
-            <input
-              type="date"
-              placeholder="Ngày sinh"
-              value={guestInfo.guestBirthday}
-              onChange={(e) =>
-                setGuestInfo((info) => ({
-                  ...info,
-                  guestBirthday: e.target.value,
-                }))
-              }
-            />
+
             <select
               value={guestInfo.guestNationality}
               onChange={(e) =>
@@ -524,19 +527,23 @@ const BookingPage = () => {
           <button
             className="btn-pay"
             onClick={handlePaymentClick}
-            disabled={!roomHeld && !holdResult?.success}
+            // Có thể mở modal khi phòng đã được hold/giữ thành công
           >
             Thanh toán
           </button>
         </div>
       </div>
 
+      {/* ==== MODAL chọn phương thức thanh toán ==== */}
       {showPaymentModal && (
         <div className="payment-modal-overlay">
           <div className="payment-modal">
             <h3>Chọn phương thức thanh toán</h3>
             <div className="payment-options">
-              <button className="payment-option active">
+              <button
+                className="payment-option active"
+                onClick={handleMomoPayment}
+              >
                 <img src="/momo-icon.png" alt="Momo" /> Momo
               </button>
               <button className="payment-option" disabled>
@@ -545,12 +552,37 @@ const BookingPage = () => {
               <button className="payment-option" disabled>
                 <img src="/paypal-icon.png" alt="PayPal" /> PayPal
               </button>
+              <button
+                className="payment-option"
+                onClick={handleSubmitCash}
+                type="button"
+              >
+                <img src="/paypal-icon.png" alt="PayPal" /> Thanh toán tại chỗ
+              </button>
             </div>
             <div className="modal-actions">
               <button onClick={closePaymentModal}>Hủy</button>
-              <button className="proceed-payment" onClick={handleMomoPayment}>
-                Tiếp tục
-              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ==== POPUP thành công khi chọn "Thanh toán tại chỗ" ==== */}
+      {showAtVenueSuccess && (
+        <div className="payment-modal-overlay">
+          <div className="payment-modal">
+            <h3>Giữ chỗ thành công</h3>
+            <div style={{ margin: "18px 0" }}>
+              Chúng tôi đã nhận được yêu cầu đặt phòng.
+              <br />
+              <b>
+                Anstay sẽ liên hệ với bạn để xác nhận trong thời gian sớm nhất.
+              </b>
+              <br />
+              <b>Hotline CSKH : 038 494 5614</b>
+            </div>
+            <div className="modal-actions">
+              <button onClick={() => (window.location.href = "/")}>Đóng</button>
             </div>
           </div>
         </div>

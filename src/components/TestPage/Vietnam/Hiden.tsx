@@ -60,6 +60,8 @@ function Hiden() {
       B3406: "53397647#",
       B3409: "81384700#",
       B3509: "61956091#",
+      B2506: "250114#",
+      B1008: "828282#",
     };
     return doorCodes[normalizedApartment] || "8668";
   };
@@ -149,31 +151,33 @@ function Hiden() {
   return (
     <div className="guide-container-Hiden">
       <h2 className="guide-title-Hiden">Hướng Dẫn Du Lịch</h2>
-      <div
-        className="door-password-section"
-        style={{
-          marginBottom: "10px",
-          padding: "15px",
-          backgroundColor: "#f5f5f5",
-          borderRadius: "8px",
-          border: "1px solid #ddd",
-        }}
-      >
-        <h2
+      {(!apartment || getDoorCode(apartment) !== "8668") && (
+        <div
+          className="door-password-section"
           style={{
             marginBottom: "10px",
-            color: "#333",
-            fontSize: "35px",
-            textTransform: "uppercase",
+            padding: "15px",
+            backgroundColor: "#f5f5f5",
+            borderRadius: "8px",
+            border: "1px solid #ddd",
           }}
         >
-          Mật khẩu cửa phòng {normalizedApartment} :{" "}
-          {getDoorCode(normalizedApartment)}
-        </h2>
-        <p style={{ color: "#666", fontStyle: "italic" }}>
-          Vui lòng không chia sẻ mật khẩu với người khác !!!
-        </p>
-      </div>
+          <h2
+            style={{
+              marginBottom: "10px",
+              color: "#333",
+              fontSize: "35px",
+              textTransform: "uppercase",
+            }}
+          >
+            Mật khẩu cửa phòng {normalizedApartment} :{" "}
+            {getDoorCode(normalizedApartment)}
+          </h2>
+          <p style={{ color: "#666", fontStyle: "italic" }}>
+            Vui lòng không chia sẻ mật khẩu với người khác !!!
+          </p>
+        </div>
+      )}
 
       <div className="accordion-Hiden">
         <div className="accordion-item-Hiden">
@@ -423,32 +427,33 @@ function Hiden() {
             </div>
           )}
         </div>
-        <div className="accordion-item-Hiden">
-          <button
-            onClick={() => toggleTab(7)}
-            className="accordion-header-Hiden"
-            aria-expanded={isTabOpen(7)}
-          >
-            Thông tin Wi-Fi
-          </button>
-          {isTabOpen(7) && (
-            <div className="accordion-content-Hiden">
-              <div className="wifi-info-Hiden">
-                <div className="wifi-credential-Hiden">
-                  <p className="wifi-label-Hiden">Tên Wi-Fi:</p>
-                  <p className="wifi-value-Hiden">
-                    Welcome to Anstay - {apartment?.toUpperCase()}
-                  </p>
-                </div>
-                <div className="wifi-credential-Hiden">
-                  <p className="wifi-label-Hiden">Mật khẩu:</p>
-                  <p className="wifi-value-Hiden">Anstaycamon</p>
+        {(!apartment || getDoorCode(apartment) !== "8668") && (
+          <div className="accordion-item-Hiden">
+            <button
+              onClick={() => toggleTab(7)}
+              className="accordion-header-Hiden"
+              aria-expanded={isTabOpen(7)}
+            >
+              Thông tin Wi-Fi
+            </button>
+            {isTabOpen(7) && (
+              <div className="accordion-content-Hiden">
+                <div className="wifi-info-Hiden">
+                  <div className="wifi-credential-Hiden">
+                    <p className="wifi-label-Hiden">Tên Wi-Fi:</p>
+                    <p className="wifi-value-Hiden">
+                      Welcome to Anstay - {apartment?.toUpperCase()}
+                    </p>
+                  </div>
+                  <div className="wifi-credential-Hiden">
+                    <p className="wifi-label-Hiden">Mật khẩu:</p>
+                    <p className="wifi-value-Hiden">Anstaycamon</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
-        </div>
-
+            )}
+          </div>
+        )}
         <div className="accordion-item-Hiden">
           <button
             onClick={() => toggleTab(3)}

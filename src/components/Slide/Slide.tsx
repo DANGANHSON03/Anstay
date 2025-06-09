@@ -40,9 +40,9 @@ const Slide = () => {
               <br />
               Kỳ Nghỉ Đáng Nhớ
             </h1>
-            <div className="slider-buttons">
+            {/* <div className="slider-buttons">
               <button className="btn primary">Xem Căn Hộ →</button>
-            </div>
+            </div> */}
           </div>
 
           <div className="scroll-controls">
