@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Facebook, Instagram } from "lucide-react";
 import "./Footer.css";
+import LoginPopup from "../Login/LoginPopup";
 
 const Footer: React.FC = () => {
+  const [showLogin, setShowLogin] = useState(false);
+
   return (
     <div className="footer-wrapper">
       <div className="footer-main">
@@ -14,42 +17,54 @@ const Footer: React.FC = () => {
             </div>
             <div className="row-link">
               <div className="list-item">
-                <Link to="#">Đăng nhập</Link>
-              </div>
-              <div className="list-item">
-                <Link to="#">Đăng ký</Link>
+                <button
+                  onClick={() => setShowLogin(true)}
+                  className="link-button"
+                >
+                  Đăng nhập
+                </button>
               </div>
             </div>
+
+            {showLogin && (
+              <LoginPopup
+                onClose={() => setShowLogin(false)}
+                onLoginSuccess={() => setShowLogin(false)}
+              />
+            )}
           </div>
+
           <div className="row">
             <div className="row-title">
               <h3>LIÊN HỆ</h3>
             </div>
             <div className="row-link">
               <div className="list-item">
-                <Link to="#">Về Chúng Tôi</Link>
+                <Link to="/about-us">Về Chúng Tôi</Link>
               </div>
               <div className="list-item">
                 <Link to="#">Sách Hướng Dẫn</Link>
               </div>
             </div>
           </div>
+
           <div className="row">
             <div className="row-title">
               <h3>CHÍNH SÁCH</h3>
             </div>
             <div className="row-link">
               <div className="list-item">
-                <Link to="#">Chính Sách Bảo Mật</Link>
+                <Link to="/chinh-sach-bao-mat">Chính Sách Bảo Mật</Link>
               </div>
               <div className="list-item">
-                <Link to="#">Chương Trình Hợp Tác</Link>
+                <Link to="/chuong-trinh-hop-tac">Chương Trình Hợp Tác</Link>
               </div>
               <div className="list-item">
-                <Link to="#">Chăm Sóc Khách Hàng</Link>
+                <Link to="/cham-soc-khach-hang">Chăm Sóc Khách Hàng</Link>
               </div>
             </div>
           </div>
+
           <div className="row">
             <div className="row-title">
               <h3>THEO DÕI CHÚNG TÔI</h3>
@@ -59,7 +74,7 @@ const Footer: React.FC = () => {
                 <a href="https://www.facebook.com/AnstayVN">
                   <img
                     src="https://i.ibb.co/dst8XydC/Facebook-Logo-2019.png"
-                    alt="face"
+                    alt="facebook"
                     className="icon-fl"
                   />
                   Facebook
@@ -73,7 +88,7 @@ const Footer: React.FC = () => {
                 >
                   <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_of_Zalo.svg/2048px-Icon_of_Zalo.svg.png"
-                    alt="face"
+                    alt="zalo"
                     className="icon-fl"
                   />
                   Zalo
@@ -83,7 +98,7 @@ const Footer: React.FC = () => {
                 <a href="#">
                   <img
                     src="https://i.ibb.co/zhkk3H5Y/1.jpg"
-                    alt="tele"
+                    alt="telegram"
                     className="icon-fl"
                   />
                   Telegram
@@ -92,6 +107,7 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
+
         <div className="footer-right">
           <div className="footer-right-title">
             <h3>HÌNH THỨC THANH TOÁN</h3>
@@ -104,27 +120,41 @@ const Footer: React.FC = () => {
             />
             <img
               src="https://i.ibb.co/8nrFMDmd/huong-dan-dang-ky-tai-khoan-paypal-1024x512-removebg-preview.png"
-              alt="tpbank"
+              alt="paypal"
               className="footer-right-img2"
             />
             <img
               src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-MoMo-Square.png"
-              alt="tpbank"
+              alt="momo"
               className="footer-right-img3"
             />
             <img
               src="https://i.ibb.co/xqwC41Nm/tether-usdt-logo-png-seeklogo-323175-removebg-preview.png"
-              alt="tpbank"
+              alt="usdt"
               className="footer-right-img4"
             />
           </div>
+          <br />
+          <p
+            className="payment-note"
+            style={{
+              fontWeight: "bold",
+              fontSize: "20px",
+              color: "#1f2937",
+              textAlign: "center",
+              marginTop: "0px",
+            }}
+          >
+            Đang chờ xác nhận từ Bộ Công Thương
+          </p>
         </div>
       </div>
+
       <div className="footer-bottom">
         <div>CÔNG TY CỔ PHẦN ANSTAY VIỆT NAM</div>
         <div>
-          Copyright 2025 ©<span style={{ fontWeight: 600 }}>Anstay VN</span> All
-          rights reserved
+          Copyright 2025 © <span style={{ fontWeight: 600 }}>Anstay VN</span>{" "}
+          All rights reserved
         </div>
       </div>
     </div>

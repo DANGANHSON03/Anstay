@@ -27,6 +27,9 @@ import ApartmentList from "./pages/ApartmentList/ApartmentList";
 import BookingPage from "./components/BookingPage/BookingPage.tsx";
 import BlogDetail from "./pages/Blog/BlogDetail";
 import ApartmentRoom from "./pages/ApartmentRoom/ApartmentRoom";
+import BaoMat from "./pages/ChinhSach/BaoMat/BaoMat.tsx";
+import ChamSoc from "./pages/ChinhSach/ChamSoc/ChamSoc.tsx";
+import HopTac from "./pages/ChinhSach/HopTac/HopTac.tsx";
 function App() {
   return (
     <AuthProvider>
@@ -259,6 +262,9 @@ function App() {
             }
           />
           <Route path="/blog/:id" element={<BlogDetail />} />
+          <Route path="/chinh-sach-bao-mat" element={<BaoMat />} />
+          <Route path="/cham-soc-khach-hang" element={<ChamSoc />} />
+          <Route path="/chuong-trinh-hop-tac" element={<HopTac />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
