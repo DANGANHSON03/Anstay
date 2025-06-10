@@ -22,8 +22,8 @@ body {
   max-width: 100% !important;
   height: auto !important;
   border-radius: 8px;
-  margin-top: 12px;
-  margin-bottom: 12px;
+  display: flex;
+  margin: 12px auto;
 }
 
 .blog-detail-title {
@@ -56,7 +56,6 @@ body {
   gap: 12px;
 }
 .blog-detail-meta::before {
-  content: "📝";
   font-size: 1.2em;
   margin-right: 6px;
 }

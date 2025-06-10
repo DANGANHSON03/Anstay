@@ -257,6 +257,11 @@ const Header: React.FC = () => {
                           Thông tin cá nhân
                         </button>
                       </Link>
+                      <Link to="/bloguser">
+                        <button className="btn-login information-btn">
+                          Viết Blog
+                        </button>
+                      </Link>
                       <Link to="#">
                         <button
                           onClick={handleLogout}

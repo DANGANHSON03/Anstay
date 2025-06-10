@@ -30,6 +30,7 @@ import ApartmentRoom from "./pages/ApartmentRoom/ApartmentRoom";
 import BaoMat from "./pages/ChinhSach/BaoMat/BaoMat.tsx";
 import ChamSoc from "./pages/ChinhSach/ChamSoc/ChamSoc.tsx";
 import HopTac from "./pages/ChinhSach/HopTac/HopTac.tsx";
+import BlogUser from "./pages/BlogUser/BlogUser.tsx";
 function App() {
   return (
     <AuthProvider>
@@ -197,6 +198,14 @@ function App() {
             element={
               <MainLayout>
                 <DashBroad />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/blogUser"
+            element={
+              <MainLayout>
+                <BlogUser />
               </MainLayout>
             }
           />

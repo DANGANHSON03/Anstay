@@ -134,7 +134,7 @@ const Footer: React.FC = () => {
               className="footer-right-img4"
             />
           </div>
-          <br />
+
           <p
             className="payment-note"
             style={{

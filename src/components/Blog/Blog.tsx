@@ -17,12 +17,13 @@ const Blog = () => {
       .then((res) => setBlogs(res.data))
       .catch(() => setBlogs([]));
   }, []);
+  const publishedBlogs = blogs.filter((b) => b.status === "PUBLISHED");
 
   const indexOfLastBlog = currentPage * blogsPerPage;
   const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
-  const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
+  const currentBlogs = publishedBlogs.slice(indexOfFirstBlog, indexOfLastBlog);
 
-  const totalPages = Math.ceil(blogs.length / blogsPerPage);
+  const totalPages = Math.ceil(publishedBlogs.length / blogsPerPage);
 
   // Xử lý ảnh (thêm domain nếu cần)
   const getFullImageUrl = (url) => {
