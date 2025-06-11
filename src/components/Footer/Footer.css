@@ -1,11 +1,11 @@
 .footer-wrapper {
   width: 100vw; /* Chiều rộng full màn hình */
-  background: #f8f9fa; /* Màu nền */
+  background: white; /* Màu nền */
   display: flex;
   justify-content: center; /* Căn giữa nội dung */
   align-items: center; /* Căn giữa theo chiều dọc */
   border-top: 2px solid #ddd;
-  margin-top: 50px;
+  padding-top: 8px;
   flex-direction: column;
 }
 
@@ -21,6 +21,7 @@
   text-align: left;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .footer-right {
@@ -28,6 +29,18 @@
   text-align: left;
   padding-left: 200px;
   margin-top: 10px;
+}
+.link-button {
+  color: black;
+  padding: 2px 12px;
+  font-size: 16px;
+  /* border: 1px solid #111214; */
+  border-radius: 6px;
+  background: white;
+  color: #19191b;
+  cursor: pointer;
+  margin: 0;
+  vertical-align: middle;
 }
 .footer-right-img {
   display: flex;

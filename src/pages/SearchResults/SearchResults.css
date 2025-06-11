@@ -67,7 +67,7 @@
 
 label {
   display: block;
-  margin-bottom: 4px;
+  /* margin-bottom: 4px; */
 }
 
 .search-bar .dates .date-header {

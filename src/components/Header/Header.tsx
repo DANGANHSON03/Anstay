@@ -213,7 +213,7 @@ const Header: React.FC = () => {
             <img
               src="https://i.ibb.co/35SyTcnX/Anstay.png"
               alt="logo"
-              className="header-logo"
+              className="header1-logo"
             />
           </Link>
         </div>

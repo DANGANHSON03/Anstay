@@ -107,7 +107,7 @@
   border-color: #cbd5e1;
 }
 
-label {
+.form-page-background > label {
   display: block;
   margin-bottom: 0;
   font-weight: 500;

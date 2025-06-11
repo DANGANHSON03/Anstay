@@ -198,8 +198,9 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onLoginSuccess }) => {
 
             <div className="options">
               <div className="option-child">
-                <input type="checkbox" />
-                <label> Ghi nhớ tài khoản</label>
+                <label>
+                  <input type="checkbox" /> {" Ghi nhớ tài khoản "}
+                </label>
               </div>
               <div className="option-child">
                 <label>Quên mật khẩu?</label>
