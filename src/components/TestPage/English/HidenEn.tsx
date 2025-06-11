@@ -62,8 +62,18 @@ function HidenEn() {
       B3406: "53397647#",
       B3409: "81384700#",
       B3509: "61956091#",
+      B409: "150860#",
     };
     return doorCodes[normalizedApartment] || "8668";
+  };
+
+  const getWifiPassword = (apartment) => {
+    if (!apartment) return "Anstaycamon";
+    const normalizedApartment = apartment.trim().toUpperCase();
+    const wifiPasswords = {
+      // Add specific apartment wifi passwords here if needed
+    };
+    return wifiPasswords[normalizedApartment] || "66668888";
   };
 
   useEffect(() => {
@@ -434,7 +444,9 @@ function HidenEn() {
                   </div>
                   <div className="wifi-credential-Hiden">
                     <p className="wifi-label-Hiden">Password:</p>
-                    <p className="wifi-value-Hiden">Anstaycamon</p>
+                    <p className="wifi-value-Hiden">
+                      {getWifiPassword(apartment)}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1665,7 +1677,7 @@ function HidenEn() {
                           </tr>
                           <tr>
                             <td>30</td>
-                            <td>Round wooden table</td>
+                            <td>Wooden round table</td>
                             <td>Piece</td>
                             <td>1,000,000</td>
                           </tr>

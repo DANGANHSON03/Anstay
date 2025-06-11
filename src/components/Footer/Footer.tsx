@@ -143,6 +143,7 @@ const Footer: React.FC = () => {
               color: "#1f2937",
               textAlign: "center",
               marginTop: "0px",
+              marginBottom: "0px",
             }}
           >
             Đang chờ xác nhận từ Bộ Công Thương

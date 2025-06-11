@@ -27,6 +27,7 @@
   flex: 1; /* Chiếm 1 phần */
   text-align: left;
   padding-left: 200px;
+  margin-top: 10px;
 }
 .footer-right-img {
   display: flex;

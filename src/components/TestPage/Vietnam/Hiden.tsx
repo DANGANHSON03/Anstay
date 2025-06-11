@@ -62,8 +62,18 @@ function Hiden() {
       B3509: "61956091#",
       B2506: "250114#",
       B1008: "828282#",
+      B409: "150860#",
     };
     return doorCodes[normalizedApartment] || "8668";
+  };
+
+  const getWifiPassword = (apartment) => {
+    if (!apartment) return "Anstaycamon";
+    const normalizedApartment = apartment.toUpperCase();
+    const specialPasswords = {
+      B409: "66668888",
+    };
+    return specialPasswords[normalizedApartment] || "Anstaycamon";
   };
 
   const languagesTab = {
@@ -447,7 +457,9 @@ function Hiden() {
                   </div>
                   <div className="wifi-credential-Hiden">
                     <p className="wifi-label-Hiden">Mật khẩu:</p>
-                    <p className="wifi-value-Hiden">Anstaycamon</p>
+                    <p className="wifi-value-Hiden">
+                      {getWifiPassword(apartment)}
+                    </p>
                   </div>
                 </div>
               </div>
