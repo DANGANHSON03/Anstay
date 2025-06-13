@@ -31,6 +31,7 @@ import BaoMat from "./pages/ChinhSach/BaoMat/BaoMat.tsx";
 import ChamSoc from "./pages/ChinhSach/ChamSoc/ChamSoc.tsx";
 import HopTac from "./pages/ChinhSach/HopTac/HopTac.tsx";
 import BlogUser from "./pages/BlogUser/BlogUser.tsx";
+import ExploSub from "./components/ExploExperSub/ExploSub";
 function App() {
   return (
     <AuthProvider>
@@ -190,6 +191,14 @@ function App() {
             element={
               <MainLayout>
                 <ExploExper />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/explore&experience/:slug"
+            element={
+              <MainLayout>
+                <ExploSub />
               </MainLayout>
             }
           />
