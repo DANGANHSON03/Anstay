@@ -227,68 +227,6 @@ function Hiden() {
       <div className="accordion-Hiden">
         <div className="accordion-item-Hiden">
           <button
-            onClick={() => toggleTab(0)}
-            className="accordion-header-Hiden"
-            aria-expanded={isTabOpen(0)}
-          >
-            Biến Kỳ Nghỉ Thành Cơ Hội Sở Hữu Căn Hộ Mơ Ước!
-          </button>
-          {isTabOpen(0) && (
-            <div className="accordion-content-Hiden">
-              <div className="guide-button-open">
-                <div className="apart-own">
-                  <div className="text-own">
-                    <h4>
-                      Chào mừng bạn đến với thế giới nghỉ dưỡng của Anstay!
-                    </h4>
-                    <p>
-                      {" "}
-                      Bạn đang nghỉ ngơi trong một căn hộ xinh xắn – còn nếu
-                      muốn sở hữu hẳn một căn như vậy thì sao?
-                    </p>
-                    <p>
-                      Chỉ hơn 2 tỉ là bạn có thể trở thành chủ nhân hợp pháp –
-                      sổ đỏ vĩnh viễn của 1 căn hộ đẹp như mơ!
-                    </p>
-                    <p>
-                      Cho thuê hiệu suất siêu tốt – có thể kiếm thêm thu nhập
-                      đều đặn mỗi tháng (ngồi chơi vẫn thấy tiền về...)
-                    </p>
-                    <p>
-                      Ngân hàng hỗ trợ vay tới 70–80%, hình thức chuyển nhượng
-                      nhanh gọn.
-                    </p>
-                    <p>
-                      “Nếu bạn lỡ thích chiếc giường này, hay view ban công xịn
-                      xò kia, thì mình có thể biến giấc mơ đó thành sự thật
-                      nhé!”
-                    </p>
-                    <p>
-                      {" "}
-                      Bấm{" "}
-                      <button
-                        className="contact-button"
-                        onClick={() => {
-                          handleWould();
-                        }}
-                      >
-                        Tôi có nhu cầu
-                      </button>{" "}
-                      hoặc nhắn một cái “Tôi muốn mua!” – đội ngũ Anstay sẽ hỗ
-                      trợ tận tình ngay!
-                    </p>
-                  </div>
-                  <div className="image-own">
-                    <img src="https://i.ibb.co/m5RxVt4W/anh2.jpg" alt="" />
-                    <img src="https://i.ibb.co/CpKqbd90/anh1.jpg" alt="" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-        <div className="accordion-item-Hiden">
-          <button
             onClick={() => toggleTab(1)}
             className="accordion-header-Hiden"
             aria-expanded={isTabOpen(1)}
@@ -2275,6 +2213,68 @@ function Hiden() {
                       </div>
                     </div>
                   )}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="accordion-item-Hiden">
+          <button
+            onClick={() => toggleTab(0)}
+            className="accordion-header-Hiden"
+            aria-expanded={isTabOpen(0)}
+          >
+            Biến Kỳ Nghỉ Thành Cơ Hội Sở Hữu Căn Hộ Mơ Ước!
+          </button>
+          {isTabOpen(0) && (
+            <div className="accordion-content-Hiden">
+              <div className="guide-button-open">
+                <div className="apart-own">
+                  <div className="image-own">
+                    <img src="https://i.ibb.co/m5RxVt4W/anh2.jpg" alt="" />
+                    <img src="https://i.ibb.co/CpKqbd90/anh1.jpg" alt="" />
+                  </div>
+                  <div className="text-own">
+                    <h4>
+                      🎉 Chào mừng bạn đến với thế giới nghỉ dưỡng của Anstay!
+                    </h4>
+                    <p>
+                      {" "}
+                      Bạn đang nghỉ ngơi trong một căn hộ xinh xắn – còn nếu
+                      muốn sở hữu hẳn một căn như vậy thì sao?
+                    </p>
+                    <p>
+                      🏡Chỉ hơn 2 tỉ là bạn có thể trở thành chủ nhân hợp pháp –
+                      sổ đỏ vĩnh viễn của 1 căn hộ đẹp như mơ!
+                    </p>
+                    <p>
+                      💰 Cho thuê hiệu suất siêu tốt – có thể kiếm thêm thu nhập
+                      đều đặn mỗi tháng (ngồi chơi vẫn thấy tiền về...)
+                    </p>
+                    <p>
+                      🏦 Ngân hàng hỗ trợ vay tới 70–80%, hình thức chuyển
+                      nhượng nhanh gọn.
+                    </p>
+                    <p>
+                      💬“Nếu bạn lỡ thích chiếc giường này, hay view ban công
+                      xịn xò kia, thì mình có thể biến giấc mơ đó thành sự thật
+                      nhé!”
+                    </p>
+                    <p>
+                      {" "}
+                      👉 Bấm{" "}
+                      <button
+                        className="contact-button"
+                        onClick={() => {
+                          handleWould();
+                        }}
+                      >
+                        Tôi có nhu cầu
+                      </button>{" "}
+                      hoặc nhắn một cái “Tôi muốn mua!” – đội ngũ Anstay sẽ hỗ
+                      trợ tận tình ngay!
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
