@@ -48,6 +48,7 @@ function Hiden() {
       B1006: "828282#",
       B1114: "919191#",
       A1509: "Thẻ",
+      A1510: "Thẻ",
       B1904: "737373#",
       B2006: "828282#",
       B2112: "828282#",
@@ -72,8 +73,23 @@ function Hiden() {
     const normalizedApartment = apartment.toUpperCase();
     const specialPasswords = {
       B409: "66668888",
+      A1509: "68686868",
+      A1510: "68686868",
     };
     return specialPasswords[normalizedApartment] || "Anstaycamon";
+  };
+
+  const getWifiName = (apartment) => {
+    if (!apartment) return `Welcome to Anstay - ${apartment?.toUpperCase()}`;
+    const normalizedApartment = apartment.toUpperCase();
+    const specialWifiNames = {
+      A1509: "A La Carte Ha Long Bay",
+      A1510: "A La Carte Ha Long Bay",
+    };
+    return (
+      specialWifiNames[normalizedApartment] ||
+      `Welcome to Anstay - ${apartment.toUpperCase()}`
+    );
   };
 
   const languagesTab = {
@@ -548,9 +564,7 @@ function Hiden() {
                 <div className="wifi-info-Hiden">
                   <div className="wifi-credential-Hiden">
                     <p className="wifi-label-Hiden">Tên Wi-Fi:</p>
-                    <p className="wifi-value-Hiden">
-                      Welcome to Anstay - {apartment?.toUpperCase()}
-                    </p>
+                    <p className="wifi-value-Hiden">{getWifiName(apartment)}</p>
                   </div>
                   <div className="wifi-credential-Hiden">
                     <p className="wifi-label-Hiden">Mật khẩu:</p>

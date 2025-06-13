@@ -50,6 +50,7 @@ function HidenEn() {
       B1006: "828282#",
       B1114: "919191#",
       A1509: "Thẻ",
+      A1510: "Thẻ",
       B1904: "737373#",
       B2006: "828282#",
       B2112: "828282#",
@@ -71,9 +72,24 @@ function HidenEn() {
     if (!apartment) return "Anstaycamon";
     const normalizedApartment = apartment.trim().toUpperCase();
     const wifiPasswords = {
-      // Add specific apartment wifi passwords here if needed
+      B409: "66668888",
+      A1509: "68686868",
+      A1510: "68686868",
     };
     return wifiPasswords[normalizedApartment] || "66668888";
+  };
+
+  const getWifiName = (apartment) => {
+    if (!apartment) return `Welcome to Anstay - ${apartment?.toUpperCase()}`;
+    const normalizedApartment = apartment.toUpperCase();
+    const specialWifiNames = {
+      A1509: "A La Carte Ha Long Bay",
+      A1510: "A La Carte Ha Long Bay",
+    };
+    return (
+      specialWifiNames[normalizedApartment] ||
+      `Welcome to Anstay - ${apartment.toUpperCase()}`
+    );
   };
 
   useEffect(() => {
@@ -437,10 +453,7 @@ function HidenEn() {
                 <div className="wifi-info-Hiden">
                   <div className="wifi-credential-Hiden">
                     <p className="wifi-label-Hiden">Wi-Fi:</p>
-                    <p className="wifi-value-Hiden">
-                      {" "}
-                      Welcome to Anstay - {apartment?.toUpperCase()}
-                    </p>
+                    <p className="wifi-value-Hiden">{getWifiName(apartment)}</p>
                   </div>
                   <div className="wifi-credential-Hiden">
                     <p className="wifi-label-Hiden">Password:</p>
