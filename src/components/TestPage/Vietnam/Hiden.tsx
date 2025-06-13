@@ -6,7 +6,7 @@ function Hiden() {
   const { apartment } = useParams();
   const normalizedApartment = apartment?.trim();
 
-  const [openTabs, setOpenTabs] = useState([]);
+  const [openTabs, setOpenTabs] = useState([0]);
   const [events, setEvents] = useState([]);
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [showAllEvents, setShowAllEvents] = useState(false);
@@ -157,6 +157,41 @@ function Hiden() {
   const isTabOpen = (tabId) => {
     return openTabs.includes(tabId);
   };
+  const SHEET_API_URL =
+    "https://script.google.com/macros/s/AKfycbyoPiVxG8avFgMe5tlK5iKwrJigsH_N3hgykaW1RRmbwINiZV5Tm7Ss4lLPUDrtdIOt/exec";
+  const handleWould = () => {
+    const fullName = sessionStorage.getItem("user_fullName");
+    const email = sessionStorage.getItem("user_email");
+    const phoneNumber = sessionStorage.getItem("user_phoneNumber");
+    const apartment = sessionStorage.getItem("user_apartment");
+
+    if (!fullName || !email || !phoneNumber || !apartment) {
+      alert("Không tìm thấy thông tin người dùng.");
+      return;
+    }
+
+    const payload = {
+      fullName,
+      email,
+      phoneNumber,
+      apartment,
+      action: "Quan tâm", // để Google Script biết đây là hành động gì
+    };
+    console.log("📦 Dữ liệu gửi:", payload);
+
+    fetch(SHEET_API_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then(() =>
+        alert("✅ Đã ghi nhận nhu cầu chúng tôi sẽ liên lạc với bạn!")
+      )
+      .catch(() => alert("⚠️ Lỗi khi gửi, vui lòng thử lại."));
+  };
 
   return (
     <div className="guide-container-Hiden">
@@ -190,6 +225,68 @@ function Hiden() {
       )}
 
       <div className="accordion-Hiden">
+        <div className="accordion-item-Hiden">
+          <button
+            onClick={() => toggleTab(0)}
+            className="accordion-header-Hiden"
+            aria-expanded={isTabOpen(0)}
+          >
+            Biến Kỳ Nghỉ Thành Cơ Hội Sở Hữu Căn Hộ Mơ Ước!
+          </button>
+          {isTabOpen(0) && (
+            <div className="accordion-content-Hiden">
+              <div className="guide-button-open">
+                <div className="apart-own">
+                  <div className="text-own">
+                    <h4>
+                      Chào mừng bạn đến với thế giới nghỉ dưỡng của Anstay!
+                    </h4>
+                    <p>
+                      {" "}
+                      Bạn đang nghỉ ngơi trong một căn hộ xinh xắn – còn nếu
+                      muốn sở hữu hẳn một căn như vậy thì sao?
+                    </p>
+                    <p>
+                      Chỉ hơn 2 tỉ là bạn có thể trở thành chủ nhân hợp pháp –
+                      sổ đỏ vĩnh viễn của 1 căn hộ đẹp như mơ!
+                    </p>
+                    <p>
+                      Cho thuê hiệu suất siêu tốt – có thể kiếm thêm thu nhập
+                      đều đặn mỗi tháng (ngồi chơi vẫn thấy tiền về...)
+                    </p>
+                    <p>
+                      Ngân hàng hỗ trợ vay tới 70–80%, hình thức chuyển nhượng
+                      nhanh gọn.
+                    </p>
+                    <p>
+                      “Nếu bạn lỡ thích chiếc giường này, hay view ban công xịn
+                      xò kia, thì mình có thể biến giấc mơ đó thành sự thật
+                      nhé!”
+                    </p>
+                    <p>
+                      {" "}
+                      Bấm{" "}
+                      <button
+                        className="contact-button"
+                        onClick={() => {
+                          handleWould();
+                        }}
+                      >
+                        Tôi có nhu cầu
+                      </button>{" "}
+                      hoặc nhắn một cái “Tôi muốn mua!” – đội ngũ Anstay sẽ hỗ
+                      trợ tận tình ngay!
+                    </p>
+                  </div>
+                  <div className="image-own">
+                    <img src="https://i.ibb.co/m5RxVt4W/anh2.jpg" alt="" />
+                    <img src="https://i.ibb.co/CpKqbd90/anh1.jpg" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
         <div className="accordion-item-Hiden">
           <button
             onClick={() => toggleTab(1)}
@@ -2243,7 +2340,7 @@ function Hiden() {
           </video>
         ) : (
           <div>
-            <img
+            {/* <img
               src="https://i.ibb.co/Mykb5jVT/dao-ngoc-vung-1.jpg"
               alt="Xem video"
               style={{
@@ -2253,7 +2350,7 @@ function Hiden() {
                 maxHeight: "700px",
               }}
               onClick={() => setShowVideo(true)}
-            />
+            /> */}
             <button
               onClick={() => setShowVideo(true)}
               style={{

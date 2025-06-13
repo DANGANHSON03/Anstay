@@ -92,7 +92,13 @@ const FormQr = () => {
     };
 
     try {
-      navigate(`/hiden-page/${formData.apartment}`);
+      sessionStorage.setItem("user_fullName", formData.fullName);
+      sessionStorage.setItem("user_email", formData.email);
+      sessionStorage.setItem("user_phoneNumber", formData.phoneNumber);
+      sessionStorage.setItem("user_apartment", formData.apartment);
+      setTimeout(() => {
+        navigate(`/hiden-page/${formData.apartment}`);
+      }, 100);
 
       // Send data after navigation starts
       fetch(SHEET_API_URL.trim(), {

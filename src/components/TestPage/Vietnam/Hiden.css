@@ -893,7 +893,28 @@ span {
   border-radius: 10px;
   object-fit: cover;
 }
-
+.apart-own {
+  display: flex;
+  padding: 5px 10px;
+}
+.image-own {
+}
+.image-own img {
+  width: 100%;
+  max-width: 800px;
+  display: block;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+.text-own {
+  text-align: left;
+}
+.contact-button {
+  width: 150px !important;
+  height: 40px !important;
+  line-height: 1;
+}
 @media (max-width: 1024px) {
   .video-container-Hiden {
     max-width: 1000px;
