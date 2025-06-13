@@ -894,11 +894,31 @@ span {
   object-fit: cover;
 }
 .apart-own {
+  padding: 20px;
   display: flex;
-  padding: 5px 10px;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
+
 .image-own {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+  color: #111;
+  font-weight: 400;
+  font-family: "Segoe UI", Roboto, sans-serif;
 }
+.text-own p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #100202;
+  margin: 0;
+  font-weight: 500;
+}
+
 .image-own img {
   width: 100%;
   max-width: 800px;
