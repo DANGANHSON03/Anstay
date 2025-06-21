@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Facebook, Instagram } from "lucide-react";
+import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import "./Footer.css";
 import LoginPopup from "../Login/LoginPopup";
 
@@ -11,6 +11,39 @@ const Footer: React.FC = () => {
     <div className="footer-wrapper">
       <div className="footer-main">
         <div className="footer-left">
+          {/* Thêm phần THÔNG TIN LIÊN HỆ */}
+          <div className="row">
+            <div className="row-title">
+              <h3>THÔNG TIN LIÊN HỆ</h3>
+            </div>
+            <div className="row-link">
+              <div className="list-item contact-info">
+                <div className="contact-item-with-icon">
+                  <MapPin size={16} className="contact-icon" />
+                  <span className="contact-label">Địa chỉ:</span>
+                  <span className="contact-content">
+                    Tòa Star Lake DeaWoo, khu đô thị Tây Hồ Tây, Hà Nội
+                  </span>
+                </div>
+              </div>
+              <div className="list-item contact-info">
+                <div className="contact-item-with-icon">
+                  <Phone size={16} className="contact-icon" />
+                  <span className="contact-label">Điện thoại:</span>
+                  <span className="contact-content">091 661 2772</span>
+                </div>
+              </div>
+              <div className="list-item contact-info">
+                <div className="contact-item-with-icon">
+                  <Mail size={16} className="contact-icon" />
+                  <span className="contact-label">Email:</span>
+                  <span className="contact-content">
+                    anstayresidence@gmail.com
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="row">
             <div className="row-title">
               <h3>TÀI KHOẢN</h3>

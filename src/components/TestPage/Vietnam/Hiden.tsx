@@ -64,6 +64,7 @@ function Hiden() {
       B2506: "250114#",
       B1008: "828282#",
       B409: "150860#",
+      B2401: "060908#",
     };
     return doorCodes[normalizedApartment] || "8668";
   };
@@ -73,8 +74,9 @@ function Hiden() {
     const normalizedApartment = apartment.toUpperCase();
     const specialPasswords = {
       B409: "66668888",
-      A1509: "68686868",
-      A1510: "68686868",
+      A1509: "66668888",
+      A1510: "66668888",
+      B2401: "20082014",
     };
     return specialPasswords[normalizedApartment] || "Anstaycamon";
   };
@@ -85,6 +87,7 @@ function Hiden() {
     const specialWifiNames = {
       A1509: "A La Carte Ha Long Bay",
       A1510: "A La Carte Ha Long Bay",
+      B2401: "B2401",
     };
     return (
       specialWifiNames[normalizedApartment] ||
@@ -402,6 +405,12 @@ function Hiden() {
                   )}
                 </div>
               </div>
+              <p>
+                {" "}
+                ⚠️<strong>LƯU Ý QUAN TRỌNG</strong> 🗑️ Có thùng rác nằm **{" "}
+                <strong>bên dưới khu vực bếp </strong>** – vui lòng bỏ rác đúng
+                nơi quy định để giữ gìn vệ sinh chung. Xin cảm ơn! 🙏
+              </p>
             </div>
           )}
         </div>
@@ -2283,10 +2292,9 @@ function Hiden() {
                           handleWould();
                         }}
                       >
-                        Tôi có nhu cầu
+                        Tôi muốn mua
                       </button>{" "}
-                      hoặc nhắn một cái “Tôi muốn mua!” – đội ngũ Anstay sẽ hỗ
-                      trợ tận tình ngay!
+                      – đội ngũ Anstay sẽ hỗ trợ bạn ngay!
                     </p>
                   </div>
                 </div>

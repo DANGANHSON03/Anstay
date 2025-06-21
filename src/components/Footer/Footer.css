@@ -10,26 +10,41 @@
 }
 
 .footer-main {
-  width: 1200px; /* Nội dung cố định 1200px */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footer-left {
-  flex: 3; /* Chiếm 2 phần */
-  text-align: left;
+  width: 1500px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
 
-.footer-right {
-  flex: 1; /* Chiếm 1 phần */
+.footer-left {
+  flex: 3.5; /* Giảm từ 4 xuống 3.5 */
   text-align: left;
-  padding-left: 200px;
-  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px; /* Giảm từ 20px xuống 15px */
 }
+
+.footer-right {
+  flex: 1.5;
+  text-align: left;
+  padding-left: 30px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-right-title {
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+.footer-right-title h3 {
+  margin: 0;
+  font-size: inherit;
+}
+
 .link-button {
   color: black;
   padding: 2px 12px;
@@ -42,47 +57,94 @@
   margin: 0;
   vertical-align: middle;
 }
+
 .footer-right-img {
   display: flex;
   gap: 20px;
   padding-top: 15px;
 }
+
 .footer-right-img1 {
   width: 80px;
   height: 30px;
 }
+
 .footer-right-img2 {
   width: 85px;
   height: 50px;
   padding-bottom: 20px;
 }
+
 .footer-right-img3 {
   width: 30px;
   height: 30px;
 }
+
 .footer-right-img4 {
   width: 43px;
   height: 43px;
   padding-bottom: 10px;
 }
+
 .icon-fl {
   width: 24px;
   height: 24px;
   object-fit: contain;
 }
+
 .list-item {
   padding-top: 15px;
   display: flex;
   align-items: center;
 }
+
 .list-item a {
   display: flex;
   align-items: center;
-  gap: 10px; /* Khoảng cách giữa icon và chữ */
+  gap: 10px;
   text-decoration: none;
   color: #333;
   font-size: 16px;
   font-weight: 500;
+}
+
+/* Styling cho phần thông tin liên hệ - Thay thế phần cũ */
+.list-item.contact-info {
+  padding-top: 15px;
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 600;
+  flex-direction: row; /* Đặt icon và text cùng dòng */
+  flex-wrap: wrap; /* Cho phép xuống dòng khi cần */
+}
+
+.contact-item-with-icon {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  flex-wrap: nowrap; /* Icon và label luôn cùng dòng */
+}
+
+.contact-icon {
+  color: #3949ab;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.contact-label {
+  font-weight: 700;
+  color: #333;
+  margin-right: 5px; /* Khoảng cách giữa label và nội dung */
+  white-space: nowrap; /* Label không xuống dòng */
+}
+
+.contact-content {
+  flex: 1;
+  word-wrap: break-word; /* Chỉ xuống dòng khi thực sự cần thiết */
 }
 
 .footer-bottom {
@@ -96,8 +158,12 @@
   color: #f8f9fa;
   flex-direction: column;
 }
+
+/* Tablet */
 @media (max-width: 1024px) {
   .footer-main {
+    width: 95%;
+    max-width: 1024px;
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -105,17 +171,20 @@
 
   .footer-left {
     flex-direction: row;
-
     justify-content: space-between;
+    gap: 10px;
   }
+
   .row {
     margin: 0 44px;
   }
 
   .footer-right {
-    padding-left: 0;
+    width: 100%;
     text-align: center;
+    padding-left: 0;
     margin-top: 20px;
+    align-items: center; /* Căn giữa trên tablet */
   }
 
   .footer-right-img {
@@ -133,17 +202,20 @@
   .footer-left {
     width: 100%;
     justify-content: center;
+    gap: 10px;
   }
 
   .footer-right {
     width: 100%;
     text-align: center;
+    padding-left: 0;
   }
 
   .footer-right-img {
     flex-wrap: wrap;
     gap: 10px;
   }
+
   .footer-right-img > img {
     object-fit: contain;
     width: 40px;
@@ -162,18 +234,22 @@
     font-size: 14px;
     height: 50px;
   }
+
   .row-title h3 {
     font-size: 14px;
     width: 153px;
   }
+
   .row {
     margin: 0 15px;
     width: 110px;
   }
+
   .footer-left {
     align-items: flex-start;
     justify-content: space-around;
   }
+
   .row > div {
     float: left;
   }
@@ -189,6 +265,7 @@
     width: 100%;
     max-width: 480px;
   }
+
   .footer-main {
     width: 95%;
     flex-direction: column;
@@ -201,6 +278,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
+
   .footer-left h3 {
     text-align: left;
   }
@@ -242,6 +320,7 @@
     height: 45px;
     padding: 5px;
   }
+
   .ftr-2 {
     display: flex;
     flex-direction: row;

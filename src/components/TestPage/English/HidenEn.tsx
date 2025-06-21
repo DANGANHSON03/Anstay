@@ -3,7 +3,7 @@ import "../Vietnam/Hiden.css";
 import { useLocation, useParams } from "react-router-dom";
 
 function HidenEn() {
-  const [openTabs, setOpenTabs] = useState([]);
+  const [openTabs, setOpenTabs] = useState([0]);
   const [events, setEvents] = useState([]);
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [showAllEvents, setShowAllEvents] = useState(false);
@@ -64,6 +64,7 @@ function HidenEn() {
       B3409: "81384700#",
       B3509: "61956091#",
       B409: "150860#",
+      B2401: "060908#",
     };
     return doorCodes[normalizedApartment] || "8668";
   };
@@ -75,6 +76,7 @@ function HidenEn() {
       B409: "66668888",
       A1509: "68686868",
       A1510: "68686868",
+      B2401: "20082014",
     };
     return wifiPasswords[normalizedApartment] || "66668888";
   };
@@ -85,6 +87,7 @@ function HidenEn() {
     const specialWifiNames = {
       A1509: "A La Carte Ha Long Bay",
       A1510: "A La Carte Ha Long Bay",
+      B2401: "B2401",
     };
     return (
       specialWifiNames[normalizedApartment] ||
@@ -153,6 +156,41 @@ function HidenEn() {
 
   const isTabOpen = (tabId) => {
     return openTabs.includes(tabId);
+  };
+  const SHEET_API_URL =
+    "https://script.google.com/macros/s/AKfycbyoPiVxG8avFgMe5tlK5iKwrJigsH_N3hgykaW1RRmbwINiZV5Tm7Ss4lLPUDrtdIOt/exec";
+  const handleWould = () => {
+    const fullName = sessionStorage.getItem("user_fullName");
+    const email = sessionStorage.getItem("user_email");
+    const phoneNumber = sessionStorage.getItem("user_phoneNumber");
+    const apartment = sessionStorage.getItem("user_apartment");
+
+    if (!fullName || !email || !phoneNumber || !apartment) {
+      alert("Không tìm thấy thông tin người dùng.");
+      return;
+    }
+
+    const payload = {
+      fullName,
+      email,
+      phoneNumber,
+      apartment,
+      action: "Quan tâm", // để Google Script biết đây là hành động gì
+    };
+    console.log("📦 Dữ liệu gửi:", payload);
+
+    fetch(SHEET_API_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then(() =>
+        alert("✅ Đã ghi nhận nhu cầu chúng tôi sẽ liên lạc với bạn!")
+      )
+      .catch(() => alert("⚠️ Lỗi khi gửi, vui lòng thử lại."));
   };
 
   return (
@@ -353,6 +391,13 @@ function HidenEn() {
                   )}
                 </div>
               </div>
+              <p>
+                {" "}
+                ⚠️<strong>IMPORTANT NOTE</strong> 🗑️ There is a trash can
+                located ** <strong>under the kitchen area </strong>** – please
+                dispose of trash properly to maintain public hygiene. Thank you!
+                🙏
+              </p>
             </div>
           )}
         </div>
@@ -2233,49 +2278,112 @@ function HidenEn() {
           </div>
         </>
       )}
-      <div className="video-container-Hiden">
-        <h2>Tour Introduction Video</h2>
-        {showVideo ? (
-          <video
-            controls
-            autoPlay
-            width="100%"
-            style={{
-              maxWidth: "1024px",
-              maxHeight: "500px",
-              margin: "0 auto",
-              display: "block",
-              objectFit: "contain",
-            }}
-          >
-            <source src={getVideoUrl("4")} type="video/mp4" />
-          </video>
-        ) : (
-          <div>
-            <img
-              src="https://i.ibb.co/Mykb5jVT/dao-ngoc-vung-1.jpg"
-              alt="Xem video"
-              style={{
-                cursor: "pointer",
-                width: "100%",
-                maxWidth: "1024px",
-                maxHeight: "700px",
-              }}
-              onClick={() => setShowVideo(true)}
-            />
+      {true && (
+        <div className="video-container-Hiden">
+          <div className="accordion-item-Hiden">
             <button
-              onClick={() => setShowVideo(true)}
+              onClick={() => toggleTab(0)}
+              className="accordion-header-Hiden"
+              aria-expanded={isTabOpen(0)}
+            >
+              Turn Your Vacation Into a Dream Apartment Ownership Opportunity!
+            </button>
+            {isTabOpen(0) && (
+              <div className="accordion-content-Hiden">
+                <div className="guide-button-open">
+                  <div className="apart-own">
+                    <div className="image-own">
+                      <img src="https://i.ibb.co/m5RxVt4W/anh2.jpg" alt="" />
+                      <img src="https://i.ibb.co/CpKqbd90/anh1.jpg" alt="" />
+                    </div>
+                    <div className="text-own">
+                      <h4>
+                        🎉 Welcome to the world of Anstay's resort living!
+                      </h4>
+                      <p>
+                        You're enjoying your stay in a lovely apartment – but
+                        what if you could own one just like this?
+                      </p>
+                      <p>
+                        🏡For just over 2 billion VND, you can become the legal
+                        owner – with a permanent red book – of your dream
+                        apartment!
+                      </p>
+                      <p>
+                        💰 High rental performance – you can earn stable monthly
+                        income (money keeps coming in while you're relaxing...)
+                      </p>
+                      <p>
+                        🏦 Bank support up to 70–80%, with quick and easy
+                        transfer procedures.
+                      </p>
+                      <p>
+                        💬“If you’ve fallen for that bed, or that luxurious
+                        balcony view – we can turn that dream into reality for
+                        you!”
+                      </p>
+                      <p>
+                        👉 Click{" "}
+                        <button
+                          className="contact-button"
+                          onClick={() => {
+                            handleWould();
+                          }}
+                        >
+                          I want to buy
+                        </button>{" "}
+                        – the Anstay team is ready to assist you right away!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <h2>Tour Introduction Video</h2>
+          {showVideo ? (
+            <video
+              controls
+              autoPlay
+              width="100%"
               style={{
-                fontSize: "16px",
-                backgroundColor: "#1666dd",
-                color: "#fff",
+                maxWidth: "1024px",
+                maxHeight: "500px",
+                margin: "0 auto",
+                display: "block",
+                objectFit: "contain",
               }}
             >
-              ▶ Watch video
-            </button>
-          </div>
-        )}
-      </div>
+              <source src={getVideoUrl("4")} type="video/mp4" />
+            </video>
+          ) : (
+            <div>
+              <img
+                src="https://i.ibb.co/Mykb5jVT/dao-ngoc-vung-1.jpg"
+                alt="Xem video"
+                style={{
+                  cursor: "pointer",
+                  width: "100%",
+                  maxWidth: "1024px",
+                  maxHeight: "700px",
+                }}
+                onClick={() => setShowVideo(true)}
+              />
+              <button
+                onClick={() => setShowVideo(true)}
+                style={{
+                  fontSize: "16px",
+                  backgroundColor: "#1666dd",
+                  color: "#fff",
+                }}
+              >
+                ▶ Watch video
+              </button>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
