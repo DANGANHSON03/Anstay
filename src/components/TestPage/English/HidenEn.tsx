@@ -2334,6 +2334,12 @@ function HidenEn() {
                         </button>{" "}
                         – the Anstay team is ready to assist you right away!
                       </p>
+                      <p>
+                        Contact us via Zalo :{" "}
+                        <a href="http://id.zalo.me/account?continue=http%3A%2F%2Fzalo.me%2F0916612772">
+                          <strong> 👉Anstay Residence</strong>
+                        </a>
+                      </p>
                     </div>
                   </div>
                 </div>

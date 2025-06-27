@@ -2292,9 +2292,15 @@ function Hiden() {
                           handleWould();
                         }}
                       >
-                        Tôi muốn mua
+                        Tôi có nhu cầu
                       </button>{" "}
                       – đội ngũ Anstay sẽ hỗ trợ bạn ngay!
+                    </p>
+                    <p>
+                      Nhấn liên hệ qua zalo :{" "}
+                      <a href="http://id.zalo.me/account?continue=http%3A%2F%2Fzalo.me%2F0916612772">
+                        <strong> 👉Anstay Residence</strong>
+                      </a>
                     </p>
                   </div>
                 </div>
