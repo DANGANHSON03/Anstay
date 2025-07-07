@@ -65,6 +65,7 @@ function HidenEn() {
       B3509: "61956091#",
       B409: "150860#",
       B2401: "060908#",
+      A2208: "Thẻ",
     };
     return doorCodes[normalizedApartment] || "8668";
   };
@@ -601,6 +602,18 @@ function HidenEn() {
               <p>
                 - During your stay, if you need additional towels or trash bags,
                 please contact the reception for assistance(free).
+              </p>
+              <p>
+                <span>ROOM SERVICE POLICY</span>
+              </p>
+              <p>
+                Towels, bottled water, tea, coffee, and amenities are provided
+                daily after 4:00 PM.
+              </p>
+              <p>
+                For guests staying two nights or more, room cleaning is
+                complimentary during the stay. Please inform the front desk
+                before 9:00 AM to arrange a suitable cleaning time.
               </p>
 
               <p>

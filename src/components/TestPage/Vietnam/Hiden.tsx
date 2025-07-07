@@ -65,6 +65,7 @@ function Hiden() {
       B1008: "828282#",
       B409: "150860#",
       B2401: "060908#",
+      A2208: "Thẻ",
     };
     return doorCodes[normalizedApartment] || "8668";
   };
@@ -616,6 +617,19 @@ function Hiden() {
                 <p>
                   - Trong thời gian lưu trú thêm khăn tắm, túi rác vui lòng liên
                   hệ với lễ tân để được hỗ trợ miễn phí.
+                </p>
+                <p>
+                  <span>QUY ĐỊNH DỊCH VỤ PHÒNG</span>
+                </p>
+                <p>
+                  Khăn tắm, nước lọc, trà và cà phê miễn phí , cấp đồ amenities
+                  được cung cấp hàng ngày sau 16:00.
+                </p>
+                <p>
+                  Đối với khách lưu trú từ 2 đêm trở lên, phòng sẽ được miễn phí
+                  dọn dẹp trong thời gian lưu trú. Quý khách vui lòng thông báo
+                  cho lễ tân trước 9:00 sáng để được sắp xếp và thông báo thời
+                  gian dọn phòng phù hợp.
                 </p>
                 <strong>An toàn:</strong>
               </p>
